@@ -49,6 +49,7 @@ Page({
     animationData: {}
   },
   onShareAppMessage: function () {
+    // 你是猪+1----
     var that = this;
     var goodsdata = this.data.goodsdetail;
     return {
