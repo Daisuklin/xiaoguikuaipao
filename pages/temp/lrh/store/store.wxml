@@ -1,0 +1,181 @@
+<template name="store3">  
+  <view style='width:100%;background:white;margin-bottom:30rpx;padding-bottom:10rpx;'>
+    <view class='top' style='display:flex;flex-direction: row;padding-left:20rpx;padding:right:20rpx;padding-top:30rpx;padding-bottom:10rpx;' id="{{item.store_id}}" hover-class='press-style' data-jumptype="{{item.store_show_type}}" bindtap='checkStore'>
+      <view style='height:120rpx;width:120rpx;position:relative;'>
+        <image src='{{item.store_avatar}}' mode='aspectFill' style='height:120rpx;width:120rpx;display:block;'></image>
+        <view wx:if="{{item.isPopular==1}}" style='height:30rpx;width:50rpx;text-align:center;line-height:30rpx;background:#5DD9AB;color:white;font-size:2.6667vw;position:absolute;top:0px;left:70rpx;'>品牌</view>
+        <view wx:if="{{!item.business}}" style='height:35rpx;width:120rpx;background:#5DD9AB;color:white;font-size:24rpx;text-align:center;line-height:35rpx;position:absolute;bottom:0px;left:0px;opacity:0.9;'>休息中</view>
+      </view>
+      <view style='padding-left:20rpx;height:120rpx;width:570rpx;'>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          <label style='font-size:4.26667vw;color:#222222;position:relative;top:-10rpx'>{{item.store_name}}</label>
+          <!-- <label wx:if="{{item.joinPackageMall==0}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>小龟专送</label>  -->
+          <label wx:if="{{item.joinPackageMall==1}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>平台包邮</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          
+          <label style='color:#666666;font-size:3.2vw;'>
+             <image src='https://qnimg.xiaoguikuaipao.com/SXd7IRXAHEw6cc59f435de0983fc2f19f9b' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit==0}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/0AgChgg9B3DIc2f1c8dfa64338b3f52b4e6' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=0.5&&item.store_credit<1.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/QewXAsydlvDS4da25040aa866568fe8fa09' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=1.5&&item.store_credit<2.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/UAWUu0MuySCUe878d094e38d5c018960d82' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=2.5&&item.store_credit<3.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/OFLGMvFfPzWjf0f56bbd414215470e40e56' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=3.5&&item.store_credit<4.5}}"></image> 
+            <image src='https://qnimg.xiaoguikuaipao.com/vmtXQ3HFDl5C5cb2fef4af820777d53f216' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=4.5&&item.store_credit<=5}}"></image>
+            {{item.store_credit}}.0
+          </label>
+          <label style='color:#666666;font-size:3.2vw;'>销量{{item.store_sales}}丨商品{{item.goodsNum}}</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-end;padding-top:4rpx;'>
+          <!-- <label wx:if="{{item.joinPackageMall==1}}" style='color:#666666;font-size:3.2vw;'>{{item.packageMallStr==null?'':item.packageMallStr}}</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr!=null}}" style='color:#666666;font-size:3.2vw;'>商家包邮</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr==null}}" style='color:#666666;font-size:3.2vw;'> </label> -->
+          <label style='color:#666666;font-size:3.2vw;width:350rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;'>{{item.packageMallStr}}</label>
+          <label style='color:#666666;font-size:3.2vw;'>{{item.distance}}</label>
+        </view>
+      </view>
+    </view>
+    <!-- height:{{item.mansongStr==null&&item.pakcageStr==null?15:80}}rpx; -->
+    <view class='center' style='padding-left:155rpx;width:595rpx;align-items:center;'>
+      <label wx:for="{{item.pakcageStr}}" wx:for-item="item2" style='display:inline-block;border:1rpx solid #5DD9AB;color:#5DD9AB;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;' wx:if="{{index<2}}">{{item2}}</label>
+      <label wx:for="{{item.mansongStr}}" wx:for-item="item2" style='display:inline-block;border:1rpx solid #FF8842;color:#FF8842;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;'  wx:if="{{index<2}}">{{item2}}</label>
+    </view>
+
+    <scroll-view style="margin-top:15rpx;width:750rpx;height:334rpx;background-color:white;white-space:nowrap;" scroll-x>
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" style="display:inline-block;width:200rpx;height:334rpx;margin-left:20rpx;" hover-class='press-style' id="{{item2.goods_id}}" bindtap='checkProduct'>
+        <view style='width:200rpx;height:240rpx;position:relative;border:1rpx solid #EEEEEE;'>
+          <image mode='aspectFill' src='{{item2.goods_image}}' style='width:200rpx;height:240rpx;display:block;'></image>
+          <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='position:absolute;font-size:3.2vw;height:40rpx;line-height:40rpx;width:192rpx;bottom:0px;left:0px;color:white;background-color:#FF8842;padding-left:10rpx;text-decoration: line-through;'>
+            <label>
+              <image src='../../image/home2/zk.png' style='height:29rpx;width:29rpx;margin-bottom:-3rpx;'></image>
+            </label>
+            <label style='margin-left:8rpx;'>{{item2.goodsPriceStr}}</label>
+          </view>
+        </view>
+        <view style='width:200rpx;height:47rpx;font-size:3.6vw;color:#444444;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;align-items:flex-start;'>{{item2.goods_name}}</view>
+        <view wx:if="{{item2.discountPriceStr==item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.goodsPriceStr}}</view>
+        <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.discountPriceStr}}</view>
+      </view>
+      <label style='display:inline-block;width:1rpx;height:332rpx;margin-left:20rpx;'></label>
+    </scroll-view>
+  </view>
+</template>
+<template name="store4">
+  <view wx:if="{{item.business}}"  style='width:100%;background:white;margin-bottom:30rpx;padding-bottom:10rpx;'>
+    <view class='top' style='display:flex;flex-direction: row;padding-left:20rpx;padding:right:20rpx;padding-top:30rpx;padding-bottom:10rpx;' id="{{item.store_id}}" hover-class='press-style' data-jumptype="{{item.store_show_type}}" bindtap='checkStore'>
+      <view style='height:120rpx;width:120rpx;position:relative;'>
+        <image src='{{item.store_avatar}}' mode='aspectFill' style='height:120rpx;width:120rpx;display:block;'></image>
+        <view wx:if="{{item.isPopular==1}}" style='height:30rpx;width:50rpx;text-align:center;line-height:30rpx;background:#5DD9AB;color:white;font-size:2.6667vw;position:absolute;top:0px;left:70rpx;'>品牌</view>
+        <view  wx:if="{{!item.business}}" style='height:35rpx;width:120rpx;background:#5DD9AB;color:white;font-size:24rpx;text-align:center;line-height:35rpx;position:absolute;bottom:0px;left:0px;opacity:0.9;'>休息中</view>
+      </view>
+      <view style='padding-left:20rpx;height:120rpx;width:530rpx;'>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          <label style='font-size:4.26667vw;color:#222222;position:relative;top:-10rpx'>{{item.store_name}}</label>
+          <!-- <label wx:if="{{item.joinPackageMall==0}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>小龟专送</label>  -->
+          <label wx:if="{{item.joinPackageMall==1}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>平台包邮</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          <label style='color:#666666;font-size:3.2vw;'>
+             <image src='https://qnimg.xiaoguikuaipao.com/SXd7IRXAHEw6cc59f435de0983fc2f19f9b' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit==0}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/0AgChgg9B3DIc2f1c8dfa64338b3f52b4e6' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=0.5&&item.store_credit<1.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/QewXAsydlvDS4da25040aa866568fe8fa09' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=1.5&&item.store_credit<2.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/UAWUu0MuySCUe878d094e38d5c018960d82' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=2.5&&item.store_credit<3.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/OFLGMvFfPzWjf0f56bbd414215470e40e56' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=3.5&&item.store_credit<4.5}}"></image> 
+            <image src='https://qnimg.xiaoguikuaipao.com/vmtXQ3HFDl5C5cb2fef4af820777d53f216' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=4.5&&item.store_credit<=5}}"></image>
+            {{item.store_credit}}.0
+          </label>
+          <label style='color:#666666;font-size:3.2vw;'>销量{{item.store_sales}}丨商品{{item.goodsNum}}</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-end;padding-top:4rpx;'>
+          <!-- <label wx:if="{{item.joinPackageMall==1}}" style='color:#666666;font-size:3.2vw;'>{{item.packageMallStr==null?'':item.packageMallStr}}</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr!=null}}" style='color:#666666;font-size:3.2vw;'>商家包邮</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr==null}}" style='color:#666666;font-size:3.2vw;'> </label> -->
+          <label style='color:#666666;font-size:3.2vw;width:350rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;'>{{item.packageMallStr}}</label>
+          <label style='color:#666666;font-size:3.2vw;'>{{item.distance}}</label>
+        </view>
+      </view>
+    </view>
+    <!-- height:{{item.mansongStr==null&&item.pakcageStr==null?15:80}}rpx; -->
+    <view class='center' style='padding-left:155rpx;width:555rpx;align-items:center;'>
+      <label wx:for="{{item.pakcageStr}}" wx:for-item="item2" style='display:inline-block;border:1rpx solid #5DD9AB;color:#5DD9AB;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;'>{{item2}}</label>
+      <label wx:for="{{item.mansongStr}}" wx:for-item="item2" style='display:inline-block;border:1rpx solid #FF8842;color:#FF8842;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;'>{{item2}}</label>
+    </view>
+
+    <scroll-view style="margin-top:15rpx;width:710rpx;height:334rpx;background-color:white;white-space:nowrap;" scroll-x>
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" style="display:inline-block;width:200rpx;height:334rpx;margin-left:20rpx;" hover-class='press-style' id="{{item2.goods_id}}" bindtap='checkProduct'>
+        <view style='width:200rpx;height:240rpx;position:relative;border:1rpx solid #EEEEEE;'>
+          <image mode='aspectFill' src='{{item2.goods_image}}' style='width:200rpx;height:240rpx;display:block;'></image>
+          <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='position:absolute;font-size:3.2vw;height:40rpx;line-height:40rpx;width:192rpx;bottom:0px;left:0px;color:white;background-color:#FF8842;padding-left:10rpx;text-decoration: line-through;'>
+            <label>
+              <image src='../../image/home2/zk.png' style='height:29rpx;width:29rpx;margin-bottom:-3rpx;'></image>
+            </label>
+            <label style='margin-left:8rpx;'>{{item2.goodsPriceStr}}</label>
+          </view>
+        </view>
+        <view style='width:200rpx;height:47rpx;font-size:3.6vw;color:#444444;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;align-items:flex-start;'>{{item2.goods_name}}</view>
+        <view wx:if="{{item2.discountPriceStr==item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.goodsPriceStr}}</view>
+        <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.discountPriceStr}}</view>
+      </view>
+      <label style='display:inline-block;width:1rpx;height:332rpx;margin-left:20rpx;'></label>
+    </scroll-view>
+  </view>
+</template>
+<template name="store5">
+  <view  wx:if="{{item.business}}"  style='width:100%;background:white;margin-bottom:30rpx;padding-bottom:10rpx;'>
+    <view class='top' style='display:flex;flex-direction: row;padding-left:20rpx;padding:right:20rpx;padding-top:30rpx;padding-bottom:10rpx;' id="{{item.store_id}}" hover-class='press-style' data-jumptype="{{item.store_show_type}}" bindtap='checkStore'>
+      <view style='height:120rpx;width:120rpx;position:relative;'>
+        <image src='{{item.store_avatar}}' mode='aspectFill' style='height:120rpx;width:120rpx;display:block;'></image>
+        <view wx:if="{{item.isPopular==1}}" style='height:30rpx;width:50rpx;text-align:center;line-height:30rpx;background:#5DD9AB;color:white;font-size:2.6667vw;position:absolute;top:0px;left:70rpx;'>品牌</view>
+        <view  wx:if="{{!item.business}}" style='height:35rpx;width:120rpx;background:#5DD9AB;color:white;font-size:24rpx;text-align:center;line-height:35rpx;position:absolute;bottom:0px;left:0px;opacity:0.9;'>休息中</view>
+      </view>
+      <view style='padding-left:20rpx;height:120rpx;width:570rpx;'>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          <label style='font-size:4.26667vw;color:#222222;position:relative;top:-10rpx'>{{item.store_name}}</label>
+          <!-- <label wx:if="{{item.joinPackageMall==0}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>小龟专送</label>  -->
+          <label wx:if="{{item.joinPackageMall==1}}" style='border-radius:15rpx 0px 15rpx 0px;line-height:30rpx;text-align:center;color:white;font-size:2.6667vw;width:100rpx;height:30rpx;background:rgba(93,217,171,1);padding:1px 2px;'>平台包邮</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-start;'>
+          <label style='color:#666666;font-size:3.2vw;'>
+             <image src='https://qnimg.xiaoguikuaipao.com/SXd7IRXAHEw6cc59f435de0983fc2f19f9b' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit==0}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/0AgChgg9B3DIc2f1c8dfa64338b3f52b4e6' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=0.5&&item.store_credit<1.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/QewXAsydlvDS4da25040aa866568fe8fa09' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=1.5&&item.store_credit<2.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/UAWUu0MuySCUe878d094e38d5c018960d82' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=2.5&&item.store_credit<3.5}}"></image>
+            <image src='https://qnimg.xiaoguikuaipao.com/OFLGMvFfPzWjf0f56bbd414215470e40e56' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=3.5&&item.store_credit<4.5}}"></image> 
+            <image src='https://qnimg.xiaoguikuaipao.com/vmtXQ3HFDl5C5cb2fef4af820777d53f216' style='display:inline-block;height:25rpx;width:160rpx;padding-right:5rpx;' mode='aspectFill' wx:if="{{item.store_credit>=4.5&&item.store_credit<=5}}"></image>
+            {{item.store_credit}}.0
+          </label>
+          <label style='color:#666666;font-size:3.2vw;'>销量{{item.store_sales}}丨商品{{item.goodsNum}}</label>
+        </view>
+        <view style='display:flex;flex-direction: row;justify-content: space-between;align-items:flex-end;padding-top:4rpx;'>
+          <!-- <label wx:if="{{item.joinPackageMall==1}}" style='color:#666666;font-size:3.2vw;'>{{item.packageMallStr==null?'':item.packageMallStr}}</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr!=null}}" style='color:#666666;font-size:3.2vw;'>商家包邮</label>
+          <label wx:if="{{item.joinPackageMall==0&&item.pakcageStr==null}}" style='color:#666666;font-size:3.2vw;'> </label> -->
+          <label style='color:#666666;font-size:3.2vw;width:350rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;'>{{item.packageMallStr}}</label>
+          <label style='color:#666666;font-size:3.2vw;'>{{item.distance}}</label>
+        </view>
+      </view>
+    </view>
+    <!-- height:{{item.mansongStr==null&&item.pakcageStr==null?15:80}}rpx; -->
+    <view class='center' style='padding-left:155rpx;width:595rpx;align-items:center;'>
+      <label wx:for="{{item.pakcageStr}}" wx:for-item="item2" style='display:inline-block;border:1rpx solid #5DD9AB;color:#5DD9AB;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;'>{{item2}}</label>
+      <label wx:for="{{item.mansongStr}}" wx:for-item="item2" wx:if="{{item2!=''}}" style='display:inline-block;border:1rpx solid #FF8842;color:#FF8842;font-size:3.2vw;padding:0px 5rpx;margin-right:15rpx;height:30rpx;line-height:30rpx;'>{{item2}}</label>
+    </view>
+
+    <scroll-view style="margin-top:15rpx;width:750rpx;height:334rpx;background-color:white;white-space:nowrap;" scroll-x>
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" style="display:inline-block;width:200rpx;height:334rpx;margin-left:20rpx;" hover-class='press-style' id="{{item2.goods_id}}" bindtap='checkProduct'>
+        <view style='width:200rpx;height:240rpx;position:relative;border:1rpx solid #EEEEEE;'>
+          <image mode='aspectFill' src='{{item2.goods_image}}' style='width:200rpx;height:240rpx;display:block;'></image>
+          <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='position:absolute;font-size:3.2vw;height:40rpx;line-height:40rpx;width:192rpx;bottom:0px;left:0px;color:white;background-color:#FF8842;padding-left:10rpx;text-decoration: line-through;'>
+            <label>
+              <image src='../../image/home2/zk.png' style='height:29rpx;width:29rpx;margin-bottom:-3rpx;'></image>
+            </label>
+            <label style='margin-left:8rpx;'>{{item2.goodsPriceStr}}</label>
+          </view>
+        </view>
+        <view style='width:200rpx;height:47rpx;font-size:3.6vw;color:#444444;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;align-items:flex-start;'>{{item2.goods_name}}</view>
+        <view wx:if="{{item2.discountPriceStr==item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.goodsPriceStr}}</view>
+        <view wx:if="{{item2.discountPriceStr!=item2.goodsPriceStr}}" style='width:200rpx;height:47rpx;font-size:3.6vw;color:#E5002B;align-items:flex-start;'>￥{{item2.discountPriceStr}}</view>
+      </view>
+      <label style='display:inline-block;width:1rpx;height:332rpx;margin-left:20rpx;'></label>
+    </scroll-view>
+  </view>
+</template>

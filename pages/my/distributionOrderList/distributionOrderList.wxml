@@ -1,0 +1,75 @@
+<!--pages/my/orderList/item.wxml-->
+<import src="/pages/temp/reasonInfo/reasonInfo.wxml"/>
+ 
+<view style=' position: fixed;top: 0;width:100vw; background: rgb(255,255,255);z-index: 999;'>
+  <view class="orderList" style=' overflow: hidden;'>
+    <view bindtap='discolor' data-type="all" class="{{pageInfo.type=='all'?'orderList-navigation':'normal'}}">全部
+    </view>
+    <view bindtap='discolor' data-type="complete" class="{{pageInfo.type=='complete'?'orderList-navigation':'normal'}}">已完成
+    </view>
+    <view bindtap='discolor' data-type="ing" class="{{pageInfo.type=='ing'?'orderList-navigation':'normal'}}">进行中
+    </view>
+  </view>
+</view>
+<view  scroll-y="true"  bindscrolltolower="lower" bindscroll="scroll"  class='orderLis-itmes'>
+      <block wx:for='{{orderList}}' wx:for-item="order" wx:key="order" >
+        <view class='item' id="{{order.orderId}}" bindtap='{{order.isMySendOrder!=2?"toDistributionOrderDetail":""}}'>
+          <view class='item_title g-clr'>
+            <text class="fltL" > {{order.isMySendOrder==0?"寄件":(order.isMySendOrder==1?"收件":"送件")}}</text>
+              <view wx:if="{{order.orderTypeStr=='shopnc'&&order.isMySendOrder==2}}" class='xiaoguiApp fltL'>
+                <image src='/image/orderList/xiaogui.png'></image>
+                <text >#{{order.itemSN}}</text>
+              </view>
+            <view wx:if="{{order.orderTypeStr=='eleme'&&order.isMySendOrder==0}}" class='elmApp fltL'>
+              <image src='/image/orderList/eleme.png'></image>
+              <text >#{{order.itemSN}}</text>
+            </view>
+            <view wx:if="{{order.orderTypeStr=='meituan'&&order.isMySendOrder==0}}" class='mtApp fltL'>
+              <image src='/image/orderList/mt.png'></image>
+              <text >#{{order.itemSN}}</text>
+            </view>
+            <text class='fltR'>{{order.itemState}} {{order.isMySendOrder!=2?" >":""}}</text>
+          </view>
+          <view class='ul'>
+            <view class='li'>
+              <image src='/image/orderList/time.png'></image>
+              <text wx:if="{{order.isMySendOrder==2&&order.shopName!=null}}">{{order.shopName}}</text>
+              {{order.createdAt}}
+            </view>
+            <view class='li'>
+              <image src='/image/orderList/zuobiao_01.png'></image>
+              {{order.fromAddress}}
+            </view>
+            <view class='li'>
+              <image src='/image/orderList/zuobiao_02.png'></image>
+             {{order.toAddress}}
+            </view>
+          </view>
+      </view>
+
+      </block>
+   <view wx:if="{{orderList.length==0}}" style='background:#fff;width:100vw; height:100vh;display:flex;justify-content:center;align-items:center;'>
+    <view style='width:100%; text-align:center;'>
+      <image src='/image/orderList/none.jpg' style='width:42.666vw; height:36.53vw;margin-bottom:7vh;' ></image>
+      <text style="display:block;margin-bottom:3vh; font-size:3.6vw;">亲！别看了，快去下单吧~</text>
+      <button  style="display:block;margin-bottom:3vh;width:26.666vw;height:8vw;font-size:4vw; background:rgba(93,217,171,1);line-height:8vw;color:#fff;" bindtap='toIndex'>去逛逛</button>
+    </view>
+  </view>
+</view>
+
+ 
+
+<view class='navsBox g-clr'>
+  <view class='navitem'  bindtap='toOrderList'>
+    商城订单
+    <view class='icon'>
+      <image src='/image/orderList/house1.png'></image>
+    </view>
+  </view>
+  <view class='navitem'>
+    配送订单
+    <view class='icon'>
+      <image src='/image/orderList/motorcycle.png'></image>
+    </view>
+  </view>
+</view>

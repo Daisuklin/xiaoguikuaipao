@@ -1,0 +1,176 @@
+<view wx:if="{{pageInfo!='' && pageInfo!=null}}">
+  <view class='orderTitle g-clr'>
+    <view wx:if="{{pageInfo.type=='eleme'}}" class='iconInfo fltL'>
+            <view  class='elmApp'>
+              <image src='/image/orderList/eleme.png'></image>
+              <text >#{{pageInfo.extInfo.daySn}}</text>
+            </view>
+    </view>
+    <view wx:if="{{pageInfo.type=='meituan'}}" class='iconInfo fltL'>
+            <view  class='mtApp'>
+              <image src='/image/orderList/mt.png'></image>
+              <text >#{{pageInfo.extInfo.daySeq}}</text>
+            </view>
+    </view>
+    <text class='orderNumber fltL'>订单号: {{pageInfo.num}}</text>
+    <text class='orderState fltR'>{{pageInfo.itemState}}</text>
+  </view>
+
+
+  <view class='addressBox g-clr'>
+    <view class='addressIcon'>
+      <text>寄</text>
+    </view>
+    <view class='userInfo '>
+      <text class='userName'>{{pageInfo.sendAddressDetail.contactName}}: {{pageInfo.sendAddressDetail.contactNumber}}</text>
+      <text class='userAddress'>{{pageInfo.sendAddressDetail.addr}}</text>
+    </view>
+    <view class='phone  ' bindtap='callUserNum' id="{{pageInfo.sendAddressDetail.contactNumber}}">
+        <view style='width:14.666vw;'><image src='/image/orderList/phone.png'></image></view>
+       <view style='width:14.666vw;'><text>电话</text></view>
+    </view>
+  </view>
+
+
+  <view class='addressBox g-clr'>
+    <view class='addressIcon fltL'>
+      <text>收</text>
+    </view>
+    <view class='userInfo fltL'>
+      <text class='userName'>{{pageInfo.receiveAddressDetail.contactName}}: {{pageInfo.receiveAddressDetail.contactNumber}}</text>
+      <text class='userAddress'>{{pageInfo.receiveAddressDetail.addr}}</text>
+    </view>
+     <view class='phone fltL'  bindtap='callUserNum' id="{{pageInfo.receiveAddressDetail.contactNumber}}">
+       <view  style='width:14.666vw;'><image src='/image/orderList/phone.png'></image></view>
+       <view  style='width:14.666vw;'><text>电话</text></view>
+        
+    </view>
+  </view>
+
+  <view class='orderDetail g-clr'>
+    <view class='detailInfo'>
+      <text>{{pageInfo.commodityStr}}</text>
+      <text bindtap='showCommodityStr' >></text>
+    </view>
+    <view  class='detailCount'>
+      <text>{{pageInfo.commodityCount}}</text>
+      <text>个</text>
+    </view>
+  </view>
+  <view wx:if='{{isShowCommodityStr}}' class='orderDetailInfo g-clr'>
+    <text>{{pageInfo.commodityStr}}</text>
+  </view>
+  <view class='distributionUser' wx:if="{{pageInfo.acceptUser!=null}}">
+    <view class='title'>收件快递员信息</view>
+    <view class='content g-clr'>
+        <view class='face'>
+            <image src='{{pageInfo.acceptUser.avatar}}'></image>
+        </view>
+        <view class='distributionUserInfo'>
+            <text>{{pageInfo.acceptUser.nickname}}</text>
+            <text>{{pageInfo.acceptUser.mobile}}</text>
+        </view>
+        <view class='distributionUserPhone'  bindtap='callUserNum' id="{{pageInfo.acceptUser.mobile}}">
+           <image src='/image/orderList/phone.png'></image>
+          <text>电话</text>
+        </view>
+    </view>
+  </view>
+
+  <view class='remarks'>
+    <view>备注</view>
+    <view>{{pageInfo.memo}}</view>
+  </view>
+
+  <view class='playInfo'>
+    <view class='title'>支付信息</view>
+    <view class='playInfoContent'>
+      <view>
+          <text>运费</text>
+          <text>￥{{pageInfo.carriage}}</text>
+      </view>
+      <view>
+          <text>恶劣天气服务费</text>
+          <text>￥{{pageInfo.weatherCharge}}</text>
+      </view>
+      <view>
+          <text>节日服务费</text>
+          <text>￥{{pageInfo.festivalCharge}}</text>
+      </view>
+      <view>
+          <text>订单时间</text>
+          <text>{{pageInfo.createdAt}}</text>
+      </view>
+      <view>
+          <text>支付方式</text>
+          <text>{{pageInfo.payWay}}</text>
+      </view>
+      
+    </view>
+  </view>
+
+</view>
+<view wx:if="{{(pageInfo.itemState=='确认成功'||pageInfo.itemState=='接单成功'||pageInfo.itemState=='快件信息确认'||pageInfo.itemState=='支付成功')&&isShowClearOrderBtn}}">
+   <button  class='clearOrder' bindtap='closeClearOrderSelect' id='{{pageInfo.id}}'>取消订单</button>
+</view>
+<view bindtap='closeClearOrderSelect' wx:if="{{showClearOrderSelect}}"    class='clearOrderSelectbg' ></view>
+<view wx:if="{{showClearOrderSelect}}"  class='clearOrderSelect'>
+  <view class='title'>取消原因</view>
+  <view class='radios' >
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label  wx:for="{{items}}" class="radio radioitems">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class='clearOrderSelectBtnBox'>
+    <button bindtap='cancelOrder' id='{{pageInfo.id}}'>确定</button>
+    <button  bindtap='closeClearOrderSelect'>取消</button>
+  </view>
+</view>
+
+<view wx:if="{{pageInfo.itemState=='完成'&&showPingjiaBtn}}">
+  <view class='clearOrderSelectBtnBox'>
+      <button bindtap='pingjiaBtn' class='pingjiabtn' id='{{pageInfo.id}}'>评价配送员</button>
+  </view>
+</view>
+
+
+<view bindtap='closePingjiaBg' wx:if="{{isShowPingjia&&pageInfo.itemState=='完成'}}"    class='clearOrderSelectbg' ></view>
+<view wx:if="{{isShowPingjia&&pageInfo.itemState=='完成'}}"  class="evaluateContainer">
+  <view class='title'>
+      <text>评价</text>
+  </view>
+  <view class='content'>
+    <view class='userInfo'>
+      <view class='face'>
+           <image src="{{pageInfo.acceptUser.avatar==null?'/image/detail/peisong.png':pageInfo.acceptUser.avatar}}"></image>
+      </view>
+      <view>
+      <rich-text class='evaluate-head_font'>{{pageInfo.acceptUser.nickname}}</rich-text>
+      <rich-text class='evaluate-head_font1'>{{pageInfo.signedAt}}左右送达</rich-text>
+      </view>
+    </view>
+    <view class='leveBox'>
+      <view class='li1' wx:if="{{leveId!=0}}">
+          <text >"{{leveId==5?"无可挑剔":(leveId==4?"非常满意":(leveId==3?"满意":(leveId==2?"一般":"吐槽")))}}"</text>
+      </view>
+      <view  class='li2'>
+           <image data-leve='1' bindtap='changeLeve' src="/image/evaluate/{{leveId>1?'happy':(leveId==1?'cry':'unhappy')}}.png"></image>
+           <image data-leve='2' bindtap='changeLeve' src="/image/evaluate/{{leveId>=2?'happy':'unhappy'}}.png"></image>
+           <image data-leve='3' bindtap='changeLeve' src="/image/evaluate/{{leveId>=3?'happy':'unhappy'}}.png"></image>
+           <image data-leve='4' bindtap='changeLeve' src="/image/evaluate/{{leveId>=4?'happy':'unhappy'}}.png"></image>
+           <image data-leve='5' bindtap='changeLeve' src="/image/evaluate/{{leveId==5?'happy':'unhappy'}}.png"></image>
+      </view>
+      <view>
+        <textarea bindinput="bindTextAreaChange" fixed="true" value="{{info}}" maxlength="{{noteMaxLen}}" class='evaluate-head_text'        placeholder-class="Forms" placeholder='您的评价让小龟做的更好。（您的意见，将匿名延迟告知配送员）'></textarea>
+        <view class="number-limit">
+          <view class="fr">{{noteNowLen}}/{{noteMaxLen}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='submitBtn' bindtap='sendPingLun'>
+      匿名提交
+    </view>
+  </view>
+</view>

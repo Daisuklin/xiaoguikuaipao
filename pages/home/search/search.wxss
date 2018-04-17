@@ -1,0 +1,43 @@
+/* pages/home/search/search.wxss */
+Page{
+  max-height: 100%;
+  width:100%;
+  background-color: white;
+}
+/* .input_class{
+  display:inline-block;background-color:white;padding-left:55rpx;
+  width:470rpx;height:66rpx;font-size:28rpx;border-radius:33rpx;
+  margin-left:80rpx;line-height: 66rpx;
+} */
+.hot-text{
+  margin-left:26rpx;margin-top:15rpx;float:left;background-color:#e8e8e8;display:inline-block;font-size:26rpx;height:36rpx;border-radius:28rpx;padding:10rpx 20rpx;
+}
+.hot-title{
+  padding-left:26rpx;padding-top:21rpx;color:rgb(119,119,119);font-size:30rpx;
+}
+
+.search-container{
+  width:100%;
+}
+.line{
+  position: absolute;
+  top: 12vw;
+  left: 0px;
+  height: 1rpx;
+  background:#eee;
+  width:100vw;
+}
+.text-search{
+  display:inline-block;font-size:34rpx;
+  position:absolute;width:78rpx;padding-left:24rpx;color:#5DD9AB;
+  top: 0.6666vw;
+}
+.icon-search{
+  display:inline-block;position:absolute;z-index:1000;height:10rpx;width:10rpx;
+  left:40rpx;top: 2vw;
+}
+.input_class{
+  display:inline-block;background:rgba(242,242,242,1);padding-left:65rpx;
+  width:547rpx;height:66rpx;font-size:28rpx;border-radius:33rpx;
+  margin-left:20rpx;line-height: 66rpx;
+}

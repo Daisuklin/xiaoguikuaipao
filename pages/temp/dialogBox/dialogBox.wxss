@@ -1,0 +1,10 @@
+/* pages/temp/dialogBox/dialogBox.wxss */
+/* 自定义对话框 */
+.dialog_box_park{width: 105vw;height: 105vh;background: rgb(43, 43, 43);opacity:0.5;position: fixed;top: -1rpx;left:-1rpx;z-index: 10009;}
+.dialog_box{position: fixed;top: 40vh;background: #fff;z-index: 10010;width: 80vw;left: 10vw;border-radius: 10rpx;}
+.dialog_box .dialog_title{text-align: center;font-size: 4vw;padding: 40rpx 30rpx;color: #666;}
+.dialog_box .dialog_buttomgroup{display: flex;}
+.dialog_box .dialog_buttomgroup .dialog_btn{flex: 1;border-top: 1rpx solid #eee;background: #fff;border-radius: 0rpx;}
+.dialog_box .dialog_buttomgroup .dialog_btn::after{border: none;background: none;}
+.dialog_box .dialog_buttomgroup .btnSubmit{color: #444;border-left: 1rpx solid #eee;border-bottom-right-radius: 10rpx;}
+.dialog_box .dialog_buttomgroup .btncancel{color: #66CD00;border-bottom-left-radius: 10rpx;}

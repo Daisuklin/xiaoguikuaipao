@@ -1,0 +1,27 @@
+<view class='container'>
+  <view class='buy-num-tip'>购买面值</view>
+  <view class='input-container'>
+    <label class='danwei'>￥</label>
+    <label>
+      <input type="number" focus="{{focus}}" bindinput='setValue' class="input-num1" value='{{value}}'></input>
+    </label>
+  </view>
+  <view class='coupon-content' wx:if="{{coupons.length!=0}}" hidden='{{man}}'>现购满{{begin}}元赠{{give}}元抵扣券优惠</view>
+  <view class='coupon-content' wx:if="{{coupons.length!=0}}" hidden='{{!man}}'>已满{{begin}}元赠{{give}}元抵扣券</view>
+  <view class='more-coupon' bindtap='moreCoupons' wx:if="{{begin!=''}}">更多抵扣券优惠></view>
+  <view class='buy-btn' bindtap='buy'>购买</view>
+  <view class='have-coupon'>当前剩余抵扣券￥{{money}}</view>
+</view>
+<!-- 购买弹窗 begin -->
+<view class="bot_tobuy_park" hidden='{{tanchuang}}'></view>
+<view class="bot_tobuy" hidden='{{tanchuang}}'>
+  <image class="btn_close" src='{{icon.close}}' bindtap='close'></image>
+  <view class="tobuy_content_top">
+    <text class="p_text1">实际到账</text>
+    <text class="p_text2">￥<text style='font-size:11vw'>{{actuallyNum}}</text>
+    <text style='color:#999;font-size:4vw;'>抵扣券</text></text>
+    <view class="tobuy_content_center">- 购买的抵扣券不支持提现 -</view>
+  </view>
+  <button type='primary' class="btn_sumint" bindtap="submitPay">确定支付￥{{value}}</button>
+</view>
+<!-- 购买弹窗 end -->

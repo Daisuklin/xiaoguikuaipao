@@ -1,0 +1,52 @@
+/* pages/store/actlife/actlife.wxss */
+.img-ks-lazyload{
+  width: 90vw;
+}
+.show-product-img{
+  width: 94vw;margin-left: 3vw;height: 91vw;
+  position: relative;
+}
+.show-product-name{
+  height: 8vw;
+  background:rgba(229,0,79,1);
+  color: white;
+  font-size: 3.6vw;
+  line-height: 8vw;
+  text-align: center;
+  padding: 0px 18rpx;
+  border-radius: 4vw;
+  position: absolute;
+  left:56vw;
+  top: 75vw;
+}
+Page{
+  max-height: 100%;
+  width:100%;
+  background:white;
+}
+.line{
+  height: 1rpx;
+  width:693rpx;
+  background:#eee;
+  margin-left: 57rpx;
+}
+.rich_textcon{display:block;text-align: left;width: 94vw;margin-left: 3vw;margin-top:4vw;}
+.rich_textcon p{width: 94vw; margin:0 auto;}
+.rich_textcon img{width: 100%;}
+.weui-cell__ft_in-access:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
+}

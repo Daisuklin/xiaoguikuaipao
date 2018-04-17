@@ -1,0 +1,26 @@
+<!--pages/temp/reasonInfo/reasonInfo.wxml-->
+
+<template name="showReasonInfo">
+   
+  <view class='reasonInfoBox' style="height:auto; position: fixed; bottom: 0;left: 0; width: 100vw; background:#fff">
+    <view class='dl'style="position: relative;">
+      <text bindtap='closeReasonInfoBox' style='color:#535353;position: absolute;right:2vw;top:5vw; width:4vw; height:4vw; line-height:4vw;'>X</text>
+      <view class='dt' style='color:#535353;line-height:14vw;text-align: center;font-size:5vw;border-bottom: 1px solid #e9e9e9 '>申请{{refundReasonInfo.title}}原因</view> 
+      <view class='dd' style='padding:2vw; width:96vw; color:#474747;'>
+            <radio-group class="radio-group" bindchange="reasonChange">
+              <label class="radio g-clr" wx:for="{{refundReasonInfo.reasonList}}" style='line-height: 9vw;font-size: 3.4vw;display: block;' >
+                <radio value="{{item.reason_id}}" checked="{{item.checked}}"/><text class='fltR'>{{item.reason_info}}</text>
+              </label>
+            </radio-group>
+      </view>  
+      <view class='dd'  style='padding:2vw; width:96vw;font-size:4vw;'>
+        <text  style='padding-bottom:2vw;display:block;width:96vw;'>其他原因(或补充说明)</text>
+        <textarea  fixed="true" placeholder="感谢你提出的宝贵意见，我们会尽快完善" value="{{reasonMessage}}"  bindinput="textareaBindInput" style='background:#f0f0f0;border-radius:10px;width:92vw;padding:2vw;'>
+        </textarea>
+      </view> 
+      <view class='dd' style='text-align: center;padding-bottom:2vw;'>
+        <button style='width:36vw;font-size:4vw; background:#5dc355;color:#fff;' data-orderId="{{refundReasonInfo.orderId}}"  data-ordersn="{{refundReasonInfo.orderSN}}"  data-title="{{refundReasonInfo.title}}"  bindtap='submitReasonInfo' >提交</button>
+      </view>   
+    </view>  
+  </view>
+</template>

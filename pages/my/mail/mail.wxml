@@ -1,0 +1,160 @@
+<!--pages/my/mail/mail.wxml-->
+<view style="float: left;width:100vw;">
+  <view class="mail-step" bindtap="sender" hover-class='mail-click'>
+    <image src="../../../image/mail/send.png" class="mail-step_picture pad_r_10"></image>
+    <!-- <image src="../../../image/mail/acquire.png" class="mail-step_image"></image> -->
+    <input wx:if='{{!show}}' disabled="false" placeholder="请输入寄件人地址" class="mail-step_input" />
+    <!--寄件人默认地址 -->
+    <view hidden='{{showMail}}' class='mail-step_font'>
+      <view class='mail-step_name'>{{name}}</view>
+      <view class='mail-step_phone'>{{phone}}</view>
+      <view class='mail-step_text'>{{addr}} {{roomNo}}</view>
+    </view>
+    <image src="../../../image/mail/acquire.png" class="mail-step_image"></image>
+  </view>
+
+
+  <view class="mail-step" bindtap="consignee" hover-class='mail-click'>
+    <image src="../../../image/mail/collect.png" class="mail-step_picture pad_r_10"></image>
+    <!-- <image src="../../../image/mail/acquire.png" class="mail-step_image"></image> -->
+    <input wx:if='{{!show1}}' disabled="false" placeholder="请输入收件人地址" class="mail-step_input " />
+    <!--收件人默认地址-->
+    <view class='mail-step_font' hidden='{{showAddressee}}'>
+      <view class='mail-step_name'>{{contactName}}</view>
+      <view class='mail-step_phone'>{{contactNumber}}</view>
+      <view class='mail-step_text'>{{addr1}} {{roomNo1}}</view>
+    </view>
+    <image src="../../../image/mail/acquire.png" class="mail-step_image"></image>
+  </view>
+
+  <view class="mail-select">
+    <view class="{{message=='选择物品类型'?'mail-arrows':'mari_hava_set'}}" bindtap="arrows">{{ message }}</view>
+    <image src="../../../image/mail/acquire.png" class="mail-step_image1"></image>
+    <view class='mail-select_xian'></view>
+    <input maxlength='2' value='{{price}}' type="number" class="mail-digit" bindinput='IN' />
+    <view class="mail-digit_ge">个</view>
+  </view>
+
+
+  <view class="mail-remark">
+    <input value='{{information}}' bindinput='information' placeholder="备注信息(选填)" class="mail-remark_textarea" />
+  </view>
+
+
+  <view class='xiantiao1'></view>
+
+  <view class="mail-coupon1">运费
+    <image wx:if='{{carriage != null}}' src='../../../image/mail/doubt.png' class='mail-coupon1_image' bindtap='question'></image>
+    <view class="mail-coupon_yuan">元</view>
+    <input value='{{money}}' placeholder="0.00" class="mail-coupon_input change" disabled="false" />
+  </view>
+  <!-- 夜间服务费 -->
+  <block wx:if="{{serve!=null&&serve!=0}}">
+    <view class='xiantiao'></view>
+    <view class="mail-coupon1">夜间服务费
+      <image wx:if='{{nightInfo != null}}' src='../../../image/mail/doubt.png' class='mail-coupon1_image' bindtap='question'></image>
+      <view class="mail-coupon_yuan">元</view>
+      <input value='{{serve}}' placeholder="0.00" class="mail-coupon_input change" disabled="false" />
+    </view>
+  </block>
+
+  <view class='xiantiao' hidden='{{!weather}}'></view>
+  <view class="mail-coupon1" hidden='{{!weather}}'>恶劣天气服务费
+    <view class="mail-coupon_yuan">元</view>
+    <input value='{{weather}}' placeholder="0.00" class="mail-coupon_input change" disabled="false" />
+  </view>
+
+  <view class='xiantiao' hidden='{{!festivalFee}}'></view>
+  <view class="mail-coupon1" hidden='{{!festivalFee}}'>节日服务费
+    <view class="mail-coupon_yuan">元</view>
+    <input value='{{festivalFee}}' placeholder="0.00" class="mail-coupon_input change" disabled="false" />
+  </view>
+
+  <view class='xiantiao1'></view>
+
+  <view class="cheng"></view>
+
+  <view class="mail-clause">总费用估算：
+    <view class="mail-clause_yuan">元</view>
+    <view class="mail-clause_pay">{{allPay}}</view>
+  </view>
+
+  <view style='height:9vw;padding-top:3vw;'>
+    <checkbox-group bindchange="checkboxChange" class="mail-consent">
+      <label class="checkbox" wx:for="{{items}}">
+        <checkbox value="{{item.name}}" checked="{{checked}}" />{{item.value}}
+      </label>
+    </checkbox-group>
+    <view style='overflow: hidden;'>
+      <view class="mail-consent_deed" bindtap="deed">《快件运单契约条款》</view>
+    </view>
+  </view>
+
+  <view hidden='{{whether}}' class="mail-button" bindtap='subscribe'>立即寄件</view>
+  <view wx:if='{{whether==true}}' class="mail-button" bindtap='anew'>立即寄件</view>
+</view>
+
+<!-- 物品类型 -->
+<view class="template" hidden="{{hiddenState}}">
+  <view class="maskingf-kind" bindtap='masking'></view>
+  <view class="masking">
+
+    <text class='masking-text'>物品类型</text>
+
+    <view class="maskingf-button">
+      <view id="0" class="maskingf-button_tier {{activeIndex == 0 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">文件</view>
+      <view id="1" class="maskingf-button_tier {{activeIndex == 1 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">数码产品</view>
+      <view id="2" class="maskingf-button_tier {{activeIndex == 2 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">生活用品</view>
+      <view id="3" class="maskingf-button_tier {{activeIndex == 3 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">服装</view>
+      <view id="4" class="maskingf-button_tier {{activeIndex == 4 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">食品</view>
+      <view id="5" class="maskingf-button_tier {{activeIndex == 5 ? 'maskingf-button_tier_on' : ''}}" bindtap="tabClick">其他</view>
+    </view>
+    <view hidden="{{hiddenFlag}}" class="masking-2">
+      <input value='{{rest}}' placeholder="请输入您的物品名称" class="masking-2_input" bindinput="matter" />
+      <view class='masking-2_button'>
+        <view id="6" class="masking-1_click" bindtap="cancel">取消</view>
+        <view class="masking-2_click" bindtap="uploading">确定</view>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<!-- 夜间服务费说明 -->
+<view class="park_contents" hidden="{{!showNight}}"></view>
+<view class='park_content_tou' hidden="{{!showNight}}">
+  <view class="txt_tou">计费规则</view>
+  <view class="park_content_begin">
+    <view class="content_top">- 公里计费 -</view>
+    <view class="txt_con txt_my">{{carriage[0].key}}
+      <text style='float:right'>{{carriage[0].value}}</text>
+    </view>
+    <view class="txt_con">{{carriage[1].key}}
+      <text style='float:right'>{{carriage[1].value}}</text>
+    </view>
+    <view class="txt_con">{{carriage[2].key}}
+      <text style='float:right'>{{carriage[2].value}}</text>
+    </view>
+  </view>
+  <view class="park_content_end">
+    <view class="content_top">- 夜间服务费 -</view>
+    <view class="txt_com txt_your">{{nightInfo[0].key}}
+      <text style='float:right'>{{nightInfo[0].value}}</text>
+    </view>
+    <view class="txt_com">{{nightInfo[1].key}}
+      <text style='float:right'>{{nightInfo[1].value}}</text>
+    </view>
+    <view class="txt_com">{{nightInfo[2].key}}
+      <text style='float:right'>{{nightInfo[2].value}}</text>
+    </view>
+  </view>
+  <view class="btn_close" bindtap="closeServiceFee">确定</view>
+</view>
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,171 @@
+/* pages/coupon/buycoupon/buycoupon.wxss */
+
+.container {
+  width: 690rpx;
+  margin-left: 30rpx;
+  background: white;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  padding: 30rpx 60rpx;
+}
+
+.buy-num-tip {
+  font-size: 30rpx;
+  font-family: STHeitiJ-Light;
+  color: rgba(0, 0, 0, 1);
+  text-align: left;
+  width: 100%;
+}
+
+.input-container {
+  width: 570rpx;
+  padding: 35rpx 0px;
+  height: 100rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.danwei {
+  display: inline-block;
+  width: 60rpx;
+  
+  position: relative;
+  top: -35rpx;
+  font-size: 55rpx;
+}
+
+/* .input-num0 {
+  display: inline-block;
+  width: 510rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  font-family: STHeitiJ-Light;
+  color: rgba(153, 153, 153, 1);
+  text-align: center;
+  position: relative;
+  top: -3rpx;
+} */
+
+.input-num1 {
+  display: inline-block;
+  width: 510rpx;
+  height: 100rpx;
+  font-size: 90rpx;
+  font-family: Impact;
+  color: rgba(0, 0, 0, 1);
+}
+
+.buy-btn {
+  width: 570rpx;
+  margin-top: 30rpx;
+  line-height: 90rpx;
+  color: white;
+  text-align: center;
+  height: 90rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  /* #6DD9AB */
+}
+
+.coupon-content {
+  width: 570rpx;
+  text-align: center;
+  font-size: 27rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(254, 117, 26, 1);
+  padding: 30rpx 0px;
+}
+
+.more-coupon {
+  width: 570rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.have-coupon {
+  width: 570rpx;
+  text-align: center;
+  font-size: 27rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(136, 136, 136, 1);
+  margin-top: 20rpx;
+}
+
+/* 购买弹窗(中间)  */
+
+.bot_tobuy_park {
+  width: 105vw;
+  height: 105vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+  top: -1rpx;
+  left: -1rpx;
+  z-index: 10009;
+}
+
+.bot_tobuy .tobuy_content_top .p_text1 {
+  font-size: 4vw;
+  color: #444;
+  height: 4vw;
+}
+
+.bot_tobuy .tobuy_content_top .p_text2 {
+  color: #fe751a;
+  font-size: 4.6666vw;
+  height: 16vw;
+}
+
+.tobuy_content_center {
+  font-size: 3.2vw;
+  color: #999;
+  text-align: center;
+  height: 6.6666vw;
+  margin: 0rpx 4vw;
+  padding-top: 0rpx;
+}
+
+.bot_tobuy .btn_sumint::after {
+  border: none;
+}
+
+.bot_tobuy {
+  position: fixed;
+  top: 28vh;
+  background: #fff;
+  width: 84vw;
+  left: 8vw;
+  z-index: 10010;
+  border-radius: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.bot_tobuy .btn_sumint {
+  background: #5dd9ab;
+  border: none;
+  height: 12vw;
+  width: 76vw;
+  border-radius: 10rpx;
+}
+
+.bot_tobuy .tobuy_content_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx 0rpx 50rpx;
+}
+
+.bot_tobuy .btn_close {
+  width: 3.2vw;
+  height: 3.2vw;
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  padding: 15rpx;
+  border-radius: 50%;
+}
+

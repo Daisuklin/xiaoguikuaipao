@@ -1,0 +1,328 @@
+<view>
+  <view class='head' bindtap='checkStore'>
+    <view class='head-info2'></view>
+    <view class='head-info'>
+      <view>
+        <!-- <image src='../../../image/tmp/1.jpg' class='store-img'></image> -->
+        <image src='{{store.store_avatar}}' class='store-img' mode='aspectFill'></image>
+      </view>
+      <view class='info-container'>
+        <view class='text-block1 store-name'>{{store.store_name}}</view>
+        <view class='text-block2 store-name'>
+          <image src='../../../image/store/star1.png' wx:if="{{store.store_credit>=1}}" class='icon-star'></image>
+          <image src='../../../image/store/star2.png' wx:if="{{store.store_credit>=2}}" class='icon-star'></image>
+          <image src='../../../image/store/star3.png' wx:if="{{store.store_credit>=3}}" class='icon-star'></image>
+          <image src='../../../image/store/star4.png' wx:if="{{store.store_credit>=4}}" class='icon-star'></image>
+          <image src='../../../image/store/star5.png' wx:if="{{store.store_credit>=5}}" class='icon-star'></image>
+          <label class='score'>{{store.store_credit==0?'暂无评分':store.store_credit}} {{store.store_credit==0?'':'.0'}}
+          </label>
+        </view>
+        <view class='text-block3 store-sales-favs'>月售 {{store.store_sales}}丨收藏数 {{store.fansNum}}</view>
+        <view class='text-block4 store-notice' wx:if="{{store.store_description!=''}}"> {{store.store_description}}</view>
+        <view class='text-block4 store-notice2' wx:if="{{store.store_description==''}}">欢迎光临{{store.store_name}}</view>
+      </view>
+      <view class='triangle'>
+      </view>
+    </view>
+    <view class='head-img-container'>
+      <image mode='aspectFill' src="{{store.store_bg_Url==null?'../../../image/tmp/store3.png':store.store_bg_Url}}" class='head-img'></image>
+    </view>
+    <!-- animation="{{animationData1}}" -->
+    <view class='acitivities' animation="{{animationData1}}">
+      <label>
+        <image class='act-icon' src='{{arrs[0].ico}}'></image>
+      </label>
+      <label>{{arrs[0].message}}</label>
+    </view>
+  </view>
+
+  <!-- 中部主要内容 start -->
+  <view class='center-container'>
+    <!-- 左边滑动条 start -->
+    <scroll-view class='left-block' scroll-y>
+      <block wx:for="{{categories}}" wx:key="stc_id">
+        <view id="{{item.stc_id}}" data-catName="{{item.stc_name}}" bindtap='checkCat' class="{{catIndex==item.stc_id?'category-container1':'category-container0'}}">
+          {{item.stc_name}}
+        </view>
+      </block>
+      <view class='category-container2'></view>
+    </scroll-view>
+    <!-- 左边滑动条 end -->
+    <view>
+      <view class='title-hot'>
+        <label class='hot-line'></label>
+        <label class='hot-text'>{{catname}}</label>
+      </view>
+      <!-- 右边滑动条 start -->
+      <scroll-view class='right-block' scroll-y bindscrolltolower="{{getByStyle2?'getCatogoriesGoodsFromStorage':''}}">
+        <view style='margin-top:-2vw;'>
+          <block wx:for="{{goods}}" wx:key="goods_id">
+            <view hover-class='press-style' class="new-product-container {{item.goods_stcids==catIndex?'':'show0'}}" wx:if="{{item.goods_spec!=''&&item.goods_spec!=null}}">
+              <view class='new-product-img-container'>
+                <image src='{{item.goods_image}}' mode='aspectFill' bindtap='checkProduct' id="{{item.goods_id}}" class='new-product-img'></image>
+              </view>
+              <view class='new-product-info'>
+                <view class='new-product-name' bindtap='checkProduct' id="{{item.goods_id}}">{{item.goods_name}}</view>
+                <view class='new-product-sales' bindtap='checkProduct' id="{{item.goods_id}}">月售{{item.goods_salenum}}</view>
+                <view class='new-product-price-spec'>
+                  <view class='new-product-price' bindtap='checkProduct' id="{{item.goods_id}}">
+                    <label class='new-unit'>￥</label>
+                    <label class='new-price'>{{item.discountPriceStr}}</label>
+                    <label class='new-up' wx:if="{{item.goods_spec!=''&&item.goods_spec!=null}}">起</label>
+                  </view>
+                  <view hover-stop-propagation="true" class='spec-container'>
+                    <label class='new-choose-specification' hover-class='press-style' data-my="{{item}}" bindtap='chooseSpecifi'>选规格</label>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view hover-class='press-style' class="new-product-container {{item.goods_stcids==catIndex?'':'show0'}}" wx:if="{{item.goods_spec==''||item.goods_spec==null}}">
+              <view class='new-product-img-container'>
+                <image src='{{item.goods_image}}' mode='aspectFill' bindtap='checkProduct' id="{{item.goods_id}}" class='new-product-img'></image>
+              </view>
+              <view class='new-product-info'>
+                <view class='new-product-name' bindtap='checkProduct' id="{{item.goods_id}}">{{item.goods_name}}</view>
+                <view class='new-product-sales' bindtap='checkProduct' id="{{item.goods_id}}">月售{{item.goods_salenum}}</view>
+                <view class='new-product-price-spec'>
+                  <view class='new-product-price' bindtap='checkProduct' id="{{item.goods_id}}">
+                    <label class='new-unit'>￥</label>
+                    <label class='new-price'>{{item.discountPriceStr}}</label>
+                    <label class='new-up' wx:if="{{item.goods_spec!=''&&item.goods_spec!=null}}">起</label>
+                  </view>
+                  <view class='new-num-container' hover-stop-propagation="true">
+                    <image src='../../../image/cart/subtract.png' wx:if="{{item.cartNum!=0}}" class='new-icon-subtract' data-flag="subtract" id="{{item.goods_id}}" bindtap='changeGLNum' mode='aspectFill'></image>
+                    <label class='new-choose-product-num' wx:if="{{item.cartNum!=0}}">{{item.cartNum}}</label>
+                    <image src='../../../image/cart/add.png' class='new-icon-add' data-flag="add" id="{{item.goods_id}}" bindtap='changeGLNum' mode='aspectFill'></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+
+          <view style='height: 34.1333vw;'></view>
+        </view>
+      </scroll-view>
+      <!-- 右边滑动条 end -->
+    </view>
+    e
+  </view>
+  <!-- 中部主要内容 end -->
+
+
+  <!-- 管理购物车 start -->
+  <view  animation="{{item1}}" class='origini-animation'>
+    <block wx:if="{{ruleList.length > 0 || packageMallList.length >0}}">
+      <view class="carts_top" hidden='{{cartHidden}}'>
+        <view wx:if="{{ruleList.length > 0}}">
+          <block wx:if="{{priceDifference>0}}">
+            <view class="p_txt1">
+              再买
+              <text>{{priceDifference}}元</text>可减
+              <text>{{rulpric_discount}}元</text>
+            </view>
+          </block>
+          <block wx:if="{{less_rulpric > 0 && priceDifference<=0}}">
+            <view class="p_txt1">
+              已满
+              <text>{{less_rulpric}}元</text> 减
+              <text>{{already_discount}}元</text>
+            </view>
+          </block>
+        </view>
+        <view wx:if="{{packageMallList.length >0}}">
+          <view class="p_txt1" wx:if="{{packageDifference >0}}">
+            再买
+            <text>{{packageDifference}}元</text> 可包
+            <!-- <text>{{rulpric_discount_package}}公里</text>配送费 -->
+            <text>{{carriageFee}}元</text>配送费
+          </view>
+          <view class="p_txt1" wx:if="{{less_package > 0 && packageDifference<=0}}">
+            已满
+            <text>{{less_package}}元</text> 包
+            <!-- <text>{{already_discount_package}}公里</text>配送费 -->
+            <text>{{carriageFee}}元</text>配送费
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='content-top' hidden='{{cartHidden}}'>
+      <label class='hava-choosed-text'>已选商品</label>
+      <label class='clear-cart-text' bindtap='clearCart'>清空购物车</label>
+      <label class='icon-clear-container'>
+        <image src='{{icon.empty}}' class='icon-clear' bindtap='clearCart'></image>
+      </label>
+    </view>
+    <scroll-view class='cart-content' scroll-y="true" hidden='{{cartHidden}}'>
+      <block wx:for="{{carts}}">
+        <view class='choosed-product' wx:if="{{index<carts.length-1}}" hidden="{{item.goods_num==0}}">
+          <view wx:if="{{item.spec_key_value!=''&&item.spec_key_value!=null}}" class='choosed-product-name' bindtap='checkProduct' id="{{item.goods_id}}">
+            <view style='height:60rpx;width: 280rpx;line-height:60rpx;'>
+              {{item.goods_name}}
+            </view>
+            <view style='height:50rpx;width: 280rpx;font-size:24rpx;line-height:50rpx;'>
+              {{item.spec_key_value}}
+            </view>
+          </view>
+          <view wx:if="{{item.spec_key_value==''||item.spec_key_value==null}}" class='choosed-product-name' bindtap='checkProduct' id="{{item.goods_id}}">
+            {{item.goods_name}}
+          </view>
+          <view class='choose-change-num-container'>
+            <image src='../../../image/cart/subtract.png' class='icon-subtract' data-flag="subtract" id="{{item.cart_id}}" bindtap='changeNum'></image>
+            <label class='choose-product-num'>{{item.goods_num}}</label>
+            <image src='../../../image/cart/add.png' class='icon-add' data-flag="add" id="{{item.cart_id}}" bindtap='changeNum'></image>
+          </view>
+          <view class='item-prices0'>￥{{item.itemPrice}}</view>
+        </view>
+        <view class='choosed-product-last' wx:if="{{index==carts.length-1}}" hidden="{{item.goods_num==0}}">
+          <!-- <view class='choosed-product-name'>{{item.goods_name}}</view> -->
+          <view wx:if="{{item.spec_key_value!=''&&item.spec_key_value!=null}}" class='choosed-product-name' bindtap='checkProduct' id="{{item.goods_id}}">
+            <view style='height:60rpx;width: 280rpx;line-height:60rpx;'>
+              {{item.goods_name}}
+            </view>
+            <view style='height:50rpx;width: 280rpx;font-size:24rpx;line-height:50rpx;'>
+              {{item.spec_key_value}}
+            </view>
+          </view>
+          <view wx:if="{{item.spec_key_value==''||item.spec_key_value==null}}" class='choosed-product-name' bindtap='checkProduct' id="{{item.goods_id}}">
+            {{item.goods_name}}
+          </view>
+          <view class='choose-change-num-container'>
+            <image src='../../../image/cart/subtract.png' class='icon-subtract' data-flag="subtract" id="{{item.cart_id}}" bindtap='changeNum'></image>
+            <label class='choose-product-num'>{{item.goods_num}}</label>
+            <image src='../../../image/cart/add.png' class='icon-add' data-flag="add" id="{{item.cart_id}}" bindtap='changeNum'></image>
+          </view>
+          <view class='item-prices0'>￥{{item.itemPrice}}</view>
+        </view>
+      </block>
+      <view class='meal-box' wx:if="{{allPackgeFeel!=0}}">
+        <view class='choosed-product-name'>打包费</view>
+        <view class='item-prices1'>￥{{allPackgeFeel}}</view>
+        <view></view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 管理购物车 end -->
+
+  <!-- 添加购物车 start -->
+  <view class='add-cart' hidden='{{csHidden}}'>
+    <view class='choose-product-container'>
+      <image src="{{chooseGood.goods_image}}" class='choose-product-img'></image>
+      <view class='choose-name-price-container'>
+        <view class='choose-product-name'>{{chooseGood.goods_name}}</view>
+        <view>
+          <label class='choose-product-unit'>￥</label>
+          <label class='choose-product-pirce'>{{chooseGood.discountPriceStr}}</label>
+        </view>
+      </view>
+      <label class='close-icon-container'>
+        <image src='../../../image/store/close.png' class='close-icon' bindtap='tapMask'></image>
+      </label>
+    </view>
+
+    <!-- 规格内容 start-->
+    <scroll-view class='specification-container-scrow' scroll-y>
+      <block wx:for="{{chooseGood.goods_spec}}" wx:for-item="item1" wx:for-index="index">
+        <view class='specification-container'>
+          <view class='specification-title'>{{item1.specName}}</view>
+          <view class='specifications'>
+            <!-- <block wx:for="{{item1.vals}}" wx:for-item="item2" wx:for-index="index2">
+              <label id="{{index}}" data-specKey="{{item2.specKey}}" bindtap='checkSpecification' class="{{item1.arrIndex==item2.specKey?'specification1':'specification0'}}">{{item2.value}}</label>
+            </block> -->
+            <block wx:for="{{item1.vals}}" wx:for-item="item2" wx:for-index="index2">
+              <label style="{{item2.stockEnough==0?'background:#999;color:white;':''}}" id="{{index}}" data-specKey="{{item2.specKey}}" bindtap="{{item2.stockEnough==0?'':'checkSpecification'}}" class="{{item1.arrIndex==item2.specKey&&item2.stockEnough!=0?'specification1':'specification0'}}">{{item2.value}}
+                <label wx:if="{{item2.stockEnough==0}}" class='speciStorageNot'>(库存不足)</label>
+              </label>
+            </block>
+          </view>
+        </view>
+      </block>
+      <view style='clear:both;height:20rpx;width:100%;'></view>
+    </scroll-view>
+
+    <!-- 规格内容 end-->
+
+    <view class='choose-line'></view>
+    <view class='num-container'>
+      <view class='choose-num-text'>
+        数量
+      </view>
+      <view class='choose-change-num-container'>
+        <image src='../../../image/cart/subtract.png' class='icon-subtract' data-flag="subtract" bindtap='changeChooseNum'></image>
+        <label class='choose-product-num'>{{chooseGood.cartNum}}</label>
+        <image src='../../../image/cart/add.png' class='icon-add' data-flag="add" bindtap='changeChooseNum'></image>
+      </view>
+    </view>
+  </view>
+  <view class='add-cart-confirm' hidden='{{csHidden}}' bindtap='addCartLRH'>
+    确定
+  </view>
+  <!-- 添加购物车 end -->
+
+  <view class='mask-view' bindtap='tapMask' hidden='{{maskHidden}}'></view>
+
+  <block wx:if="{{ruleList.length > 0 || packageMallList.length >0}}">
+    <view class="carts_top2" hidden='{{!cartHidden}}' wx:if="{{cartTotalPrice!=0}}">
+      <view wx:if="{{ruleList.length > 0}}">
+        <block wx:if="{{priceDifference>0}}">
+          <view class="p_txt1">
+            再买
+            <text>{{priceDifference}}元</text>可减
+            <text>{{rulpric_discount}}元</text>
+          </view>
+        </block>
+        <block wx:if="{{less_rulpric > 0 && priceDifference<=0}}">
+          <view class="p_txt1">
+            已满
+            <text>{{less_rulpric}}元</text> 减
+            <text>{{already_discount}}元</text>
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{packageMallList.length >0}}">
+        <view class="p_txt1" wx:if="{{packageDifference >0}}">
+          再买
+          <text>{{packageDifference}}元</text> 可包
+          <!-- <text>{{rulpric_discount_package}}公里</text>配送费 -->
+          <text>{{carriageFee}}元</text>配送费
+        </view>
+        <view class="p_txt1" wx:if="{{less_package > 0 && packageDifference<=0}}">
+          已满
+          <text>{{less_package}}元</text> 包
+          <!-- <text>{{already_discount_package}}公里</text>配送费 -->
+          <text>{{carriageFee}}元</text>配送费
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 底部 start -->
+  <view class='bottom-bar'>
+    <view>
+      <image src="{{cartNum==0?'../../../image/store/cart-choose.png':'../../../image/store/cart-choose1.png'}}" bindtap="{{cartNum==0?'':'checkCart'}}" class='icon-cart-choose'></image>
+      <label class="{{cartNum==0?'cart-num0':'cart-num1'}}">{{cartNum==0?'':cartNum}}</label>
+      <label class='cart-num-animation' animation="{{animationData}}">{{animationText}}</label>
+    </view>
+    <view class='total-price-container'>
+      <view class='total-price'>￥{{cartTotalPrice}}</view>
+      <view class='total-price-tip'>不含其它费用</view>
+    </view>
+    <!--  -->
+    <view class='scan-container' hover-class='press-style' bindtap='scan' hidden='{{store.speediness==0?true:false}}'>
+      <image src='../../../image/scan2.png' class='scan2-icon'></image>
+      <view class='scan-text'>扫码购物</view>
+    </view>
+    <view class='go-calalcute' bindtap='toPay' hover-class='press-style2'>去结算</view>
+  </view>
+  <!-- 底部 end -->
+</view>
+<!-- <view class="icon_container" bindtap='scan'>
+  <image src="../../../image/store/scan.png" class="icon5"></image>
+</view> -->
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

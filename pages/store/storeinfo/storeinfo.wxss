@@ -1,0 +1,169 @@
+/* pages/store/storeinfo/storeinfo.wxss */
+Page{
+  background: #f8f8f8;
+  max-height: 100%;
+  width: 100%;
+}
+.score {
+  font-size: 2.6666vw;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+  margin-left: 10rpx;
+  position: relative;
+  top: -2rpx;
+}
+.head-container {
+  height: 37.0666vw;
+  width: 100vw;
+  position: relative;
+  z-index: 1000;
+}
+
+.store-logo {
+  height: 13.3333vw;
+  width: 13.3333vw;
+  border-radius: 50%;
+}
+
+.logo-container {
+  text-align: center;
+  padding-top: 50rpx;
+}
+
+.head-img {
+  height: 37.0666vw;
+  width: 100vw;
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+    filter: blur(10rpx);
+  /* top: -37.0666vw; */
+}
+
+.store-sales-favs {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+}
+
+.store-name {
+  width: 100%;
+  text-align: center;
+  font-size: 35rpx;
+  font-family: FZLTZHK--GBK1-0;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+}
+
+.icon-star {
+  display: inline-block;
+  width: 22rpx;
+  height: 22rpx;
+  margin-left: 8rpx;
+  /* margin: auto; */
+}
+
+.notice {
+  padding: 26rpx 31rpx;
+  background: white;
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.avtivities {
+  margin-top: 20rpx;
+  padding: 30rpx 30rpx;
+  background: white;
+}
+.icon_content{
+  display: flex;
+  align-items: flex-start;
+}
+.act-title {
+  font-size: 4vw;
+  font-family: FZLTZHK--GBK1-0;
+  color: rgba(0, 0, 0, 1);
+  padding-bottom: 30rpx;
+  font-weight: bold;
+}
+.icon-img2{
+  display: inline-block;
+  height:30rpx;
+  margin-right: 20rpx;
+  width: 30rpx;
+  font-size: 34rpx;
+  padding-top: 7rpx;
+}
+.icon-img {
+   display: block; 
+  /* height:30rpx;  */
+  margin-right: 20rpx;
+  /* width: 30rpx; */
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.act-text {
+  display: inline-block;
+  width: 640rpx;
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.infos {
+  margin-top: 20rpx;
+  padding-top: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background: white;
+  margin-bottom: 30rpx;
+}
+
+.infos-title {
+  font-size: 4vw;
+  font-family: FZLTZHK--GBK1-0;
+  color: rgba(0, 0, 0, 1);
+  padding-bottom: 33rpx;
+  font-weight: bold;
+}
+
+.text-container {
+  clear: both;
+  padding: 32rpx 0px;
+  border-bottom: 1rpx solid #eee;
+  display: flex;justify-content: space-between;align-items: center;
+}
+
+.text-name {
+  display: inline-block;
+  font-size: 3.6vw;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(0, 0, 0, 1);
+  flex: 1
+}
+
+.text-value {
+  font-size: 3.6vw;
+  float: right;
+  /* margin-top: 20rpx; */
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  flex: 3;
+  text-align: right;
+}
+
+.two-line {
+  text-align: right;
+  /* line-height: 38rpx; */
+  /* min-height: 70rpx; */
+  /* width: 500rpx; */
+}
+
+.top-position {
+  /* margin-top: -7rpx; */
+}

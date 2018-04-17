@@ -1,0 +1,23 @@
+<!--pages/newLogin/newLogin.wxml-->
+<view class='loginBox'>
+  <view class='logo'>
+      <image src='/image/login/newLoginIcon.png'></image>
+  </view>
+  <view class='logo_title'><text>小龟快跑</text></view>
+  <view class='dl'>
+    <view class='dt'>该程序将获取以下授权:</view>
+    <view class='dd'>获得您的公开信息（昵称、头像等）</view>
+  </view>
+  <view class='ul'>
+    <view class='li'>
+      <button plain='{{flag}}'  bindtap='refuseLogin'>拒绝</button>
+    </view>
+    <view class='li' wx:if="{{loginIng!=false}}">
+      <button  plain='{{flag}}'   class=''>允许</button>
+    </view>
+    <view class='li' wx:if="{{loginIng==false}}">
+      <button  plain='{{flag}}'   bindtap='userLogin' class=''>允许</button>
+    </view>
+  </view>
+</view>
+

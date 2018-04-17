@@ -1,0 +1,116 @@
+<!--pages/my/orderList/item.wxml-->
+<import src="/pages/temp/reasonInfo/reasonInfo.wxml"/>
+<view style=' position: fixed;top: 0;width:100vw; background: rgb(255,255,255);z-index: 999;'>
+  <view class="orderList" style=' overflow: hidden;'>
+    <view bindtap='discolor' data-type="all" class="{{pageInfo.state_type=='all'?'orderList-navigation':'normal'}}">全部
+    </view>
+    <view bindtap='discolor' data-type="start_cargo" class="{{pageInfo.state_type=='start_cargo'?'orderList-navigation':'normal'}}">待完成
+    </view>
+    <view bindtap='discolor' data-type="after_sale" class="{{pageInfo.state_type=='after_sale'?'orderList-navigation':'normal'}}">退单
+    </view>
+  </view>
+</view>
+
+<view  scroll-y="true"  bindscrolltolower="lower" bindscroll="scroll"  class='orderLis-itmes'>
+  <block wx:for='{{orderList}}' wx:for-item="order" wx:key="order"  >
+        <view class='orderLis-itme' hover-class="press-style"  bindtap='toStore' data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}">
+              <view class='orderItem_title'  >
+                  <view  data-sincehand='{{order.since_hand}}' data-stateDesc="{{order.state_desc}}" data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}" class='img'>
+                   <image  src="{{order.store_avatar==''||order.store_avatar=='undefined'?'../../../../image/detail/store.png':order.store_avatar}}"></image>
+                  </view>
+                  <text data-sincehand='{{order.since_hand}}' data-stateDesc="{{order.state_desc}}" data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}"  class=' name'>{{order.store_name}}<text class='go'>></text></text>
+                  <text  data-sincehand='{{order.since_hand}}' data-stateDesc="{{order.state_desc}}" data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}"  class=' order_state'>{{order.state_desc}}</text>
+              </view>
+              <view class='orderItemGoods g-clr' data-sincehand='{{order.since_hand}}' data-stateDesc="{{order.state_desc}}" data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}"  >
+                    <block wx:key="good" wx:for='{{order.extend_order_goods}}' wx:for-index="idx" wx:for-item="good">
+                            <view  data-sincehand='{{order.since_hand}}' data-stateDesc="{{order.state_desc}}" data-storeId='{{order.store_id}}'  data-orderId="{{order.order_id}}"  wx:if="{{idx<3}}" class='gooditme g-clr'>
+                                  <text class='name'>{{good.goods_name}}</text>
+                                  <text class='size'>{{good.goods_spec==null?"":good.goods_spec}}</text>
+                                  <text class='num'>X{{good.goods_num}}</text>
+                            </view>
+                            <view  wx:if="{{idx>=3}}" hidden="{{!order.check}}" class='gooditme g-clr'>
+                                <text class='name'>{{good.goods_name}}</text>
+                                <text class='size'>{{good.goods_spec==null?"":good.goods_spec}}</text>
+                                <text class='num'>X{{good.goods_num}}</text>
+                            </view>
+                    </block>
+                    <view hover-stop-propagation="true" class='showMoreBtn' hidden="{{order.extend_order_goods.length<4}}">
+                        <text catchtap='showOrderInfoByIndex' data-orderindex="{{order.order_id}}">查看 {{!order.check?"v":"∧"}}</text>
+                    </view>
+
+
+                    <view class='orderBookInfo'>
+                      <view class='booktime ' wx:if="{{order.booking_time&&order.state_desc!='已取消'&&order.state_desc!='已完成'&&order.state_desc!='已退款'&&order.state_desc!='已退货'&&order.state_desc!='退款失败'&&order.state_desc!='退货失败'&&order.state_desc!='仲裁中'&&order.state_desc!='退款中'&&order.state_desc!='退货中'}}">
+                        {{order.booking_time}}
+                      </view>
+                      
+                      <view class='ziti' wx:if="{{order.since_hand==1}}">
+                       快速购物
+                      </view>
+                      <view class='ziti' wx:if="{{order.since_hand==2}}">
+                        上门自提
+                      </view>
+                      <view class='showOrderMoney' wx:if="{{order.order_amount!=null}}">
+                        实付<text style='font-size:4vw;'>￥{{order.order_amount}}</text><text class='goodCount'>共{{order.goods_total_num}}件商品</text>
+                      </view>
+                    </view>
+              </view>
+              <view class='btn_Box g-clr' hover-stop-propagation="true"  wx:if="{{order.state_desc!='已退款'&&order.state_desc!='已退货'}}">
+                <button class='btns' catchtap='toChagePage'  data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="qxdd"  wx:if="{{order.state_desc=='待付款'}}">取消订单</button>
+
+                <button class='btns payMoney'  catchtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="qzf"   wx:if="{{order.state_desc=='待付款'}}" >去支付</button>
+
+                <button class='btns'  catchtap='toChagePage' data-storeId="{{order.store_id}}" data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="cxgm"  wx:if="{{order.state_desc=='已取消'}}">重新购买</button>
+
+                <button class='btns'  catchtap='toChagePage'  data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="sqtk"  wx:if="{{order.state_desc=='待接单'||order.state_desc=='待发货'||order.state_desc=='拣货中'||order.state_desc=='待自提'||(order.state_desc=='待收货'&&order.orderStatus<=2)||order.state_desc=='待验货'}}">申请退款</button>
+
+                 <button class='btns'  catchtap='toChagePage'  data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="sqth"  wx:if="{{order.state_desc=='待收货'&&order.orderStatus>2}}">申请退货</button>
+
+
+                <!-- <button class='btns'  bindtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="lxsj" open-type='contact'   wx:if="{{order.state_desc=='待接单'||order.state_desc=='拣货中'||order.state_desc=='待自提'||order.state_desc=='退款中'||order.state_desc=='仲裁中'||order.state_desc=='退货中'}}">联系商家</button> -->
+
+                <button class='btns'  catchtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="lxkf" open-type='contact' wx:if="{{order.state_desc=='退款中'||order.state_desc=='仲裁中'||order.state_desc=='退货中'||order.state_desc=='退款失败'||order.state_desc=='退货失败'}}">联系客服</button>
+ 
+                <button class='btns'  catchtap='toChagePage'  data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="cd" wx:if="{{order.state_desc=='待发货'}}">催单</button>
+
+                <button class='btns'  catchtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="qdsh"  wx:if="{{order.state_desc=='待收货'&&order.orderStatus>=3}}" >确认收货</button>
+
+                <button class='btns'  catchtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="zlyd" data-storeId="{{order.store_id}}"   wx:if="{{order.state_desc=='已完成'}}" >再来一单</button>
+
+              <button class='btns payMoney'  catchtap='toChagePage'  data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="ddpj"   wx:if="{{order.state_desc=='已完成'&&(order.evaluation_state=='未评价')}}">评价</button>
+
+                <button class='btns'   catchtap='toChagePage' data-orderid="{{order.order_id}}"  data-ordersn="{{order.order_sn}}" data-btntype="ddypj"   wx:if="{{order.state_desc=='已完成'&&order.evaluation_state!='未评价'}}">已评价</button>
+
+              </view>
+        </view>
+  </block>
+  <view wx:if="{{orderList.length==0}}" style='background:#fff;width:100vw; height:100vh;display:flex;justify-content:center;align-items:center;'>
+    <view style='width:100%; text-align:center;'>
+      <image src='/image/orderList/none.jpg' style='width:42.666vw; height:36.53vw;margin-bottom:7vh;' ></image>
+      <text style="display:block;margin-bottom:3vh; font-size:3.6vw;">亲！别看了，快去下单吧~</text>
+      <button  style="display:block;margin-bottom:3vh;width:26.666vw;height:8vw;font-size:4vw; background:rgba(93,217,171,1);line-height:8vw;color:#fff;" bindtap='toIndex'>去逛逛</button>
+    </view>
+  </view>
+</view>
+
+
+
+
+<view style='height:100vh;z-index:9999; width:100vw; background:rgba(0, 0, 0, 0.67);position:fixed;left:0;top:0;' wx:if='{{refundReasonInfo.isShow}}'>
+  <template is="showReasonInfo" data="{{refundReasonInfo}}"/> 
+</view>
+
+<view class='navsBox g-clr'>
+  <view class='navitem'>
+    商城订单
+    <view class='icon'>
+      <image src='/image/orderList/house.png'></image>
+    </view>
+  </view>
+  <view class='navitem' bindtap='toDistributionOrderList'>
+    配送订单
+    <view class='icon'>
+      <image src='/image/orderList/motorcycle1.png'></image>
+    </view>
+  </view>
+</view><!--  -->

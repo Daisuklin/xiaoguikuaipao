@@ -1,0 +1,77 @@
+<!-- 每日推荐  -->
+<view class="box_recommendation" wx:if="{{recommendationToEveryDay!=null&&recommendationToEveryDay!=''}}">
+  <!-- <view class="height_40"></view> -->
+  <view class="recommendation_title">每日推荐</view>
+  <view class="recommendation_scroll">
+    <scroll-view scroll-x style="width: 100%;height:286rpx;">
+      <block wx:for="{{recommendationToEveryDay}}">
+        <view class="recommendation_list" bindtap="bindrecomemenddation" id="{{item.store_id}}" data-showType="{{item.store_show_type}}" hover-class='press-style'>
+          <image src="{{item.shopncRecomBanner}}" class="text_imgbg all_image" mode='aspectFill'></image>
+          <view class="text_box">
+            <image class="text_imglogo all_image" src="{{item.store_avatar}}"></image>
+            <text>{{item.store_name}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="height_40"></view>
+</view>
+<!-- 活动页  -->
+<!-- 模板1  -->
+<block wx:for="{{template}}" wx:for-item="temps" wx:if="{{template!=''&&template!=null}}">
+  <block wx:if="{{temps.templateType=='item_01'}}">
+    <view class="box_activepage">
+      <view class="height_20_bgf8"></view>
+      <view class="activepage_content_top">
+        <view class="activepageimg_list list_big" wx:if="{{temps.actionType!=0}}" bindtap='bindActivepagepictrue' id="{{temps.tagerId}}" data-actiontype="{{temps.actionType}}" data-showtype="{{temps.store_show_type}}" data-labelname="{{temps.actionType==2?temps.labelName:''}}" data-showbanner="{{temps.showBanner}}" data-templatename="{{temps.templateName}}">
+          <image class="all_image img_big" src="{{temps.shopncRecomBanner}}" mode='aspectFill'></image>
+        </view>
+        <view class="{{temps.actionType==0?'activepageimg_list_alline':'activepageimg_list'}} list_normal">
+          <block wx:for="{{temps.themeActivity}}" wx:for-item="activity">
+            <image class="all_image img_normal" src="{{activity.themeLoge}}" bindtap="bindActivepageimg" data-themeobj="{{activity}}"></image>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 模板2 -->
+  <block wx:elif="{{temps.templateType=='item_02'}}">
+    <view class="height_20_bgf8"></view>
+    <view class="activepage_content_bottom">
+      <view class="activepageimg_list list_normal" wx:for="{{temps.themeActivity}}" wx:for-item="activity" bindtap="bindActivepageimg" data-themeobj="{{activity}}">
+        <image class="all_image img_normal" src="{{activity.themeLoge}}"></image>
+      </view>
+    </view>
+  </block>
+  <!-- 模板3 -->
+  <block wx:else>
+    <view class="box_activepage2">
+      <view class="height_20_bgf8"></view>
+      <view class="activepage_content2">
+        <view class="imgcontent_l" wx:if="{{temps.actionType!=0}}" bindtap='bindActivepagepictrue' id="{{temps.tagerId}}" data-showtype="{{temps.store_show_type}}" data-actiontype="{{temps.actionType}}" data-labelname="{{temps.actionType==2?temps.labelName:''}}" data-showbanner="{{temps.showBanner}}">
+          <image src="{{temps.shopncRecomBanner}}" class="all_image" mode='aspectFill'></image>
+        </view>
+        <view class="{{temps.actionType==0?'imgcontent_r_alline':'imgcontent_r'}} ">
+          <block wx:for="{{temps.themeActivity}}" wx:for-item="activity">
+            <image src="{{activity.themeLoge}}" class="all_image" bindtap="bindActivepageimg" data-themeobj="{{activity}}"></image>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+<!-- 品牌好店  -->
+<view class="box_goodstore" wx:if="{{popularStore!=''&&popularStore!=null}}">
+  <view class="goodstore_title">
+    <image src="{{icon.hotstore}}" class="all_image"></image>
+  </view>
+  <view class="goodstore_scroll">
+    <scroll-view scroll-x style="width: 100%;height: 34.9vw;" bindscrolltolower="bindscrolltolower" bindscrolltoupper="bindscrolltoupper" data-popularlength="{{popularStoreLengthOld}}">
+      <view class="goodstore_imglist" wx:for="{{popularStore}}" wx:for-item="popular" bindtap="bindHotStore" id="{{popular.storeId}}" data-showtype="{{popular.store_show_type}}">
+        <image src="{{popular.brandImg}}" class="all_image stroreimg"></image>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="height_40"></view>
+</view>

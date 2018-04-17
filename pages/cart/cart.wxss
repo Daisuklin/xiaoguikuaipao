@@ -1,0 +1,335 @@
+/* 中部购物车内容 */
+
+.cart-content {
+  margin-top: 80rpx;
+  margin-bottom: 100rpx;
+}
+
+/* 购物车里面货物样式 */
+
+.good {
+  clear: both;
+  width: 750rpx;
+  height: 150rpx;
+  padding: 30rpx 0px;
+  background: rgba(255, 255, 255, 1);
+}
+
+.good-line {
+  width: 710rpx;
+  height: 1rpx;
+  background: #eee;
+  position: relative;
+  left: 40rpx;
+}
+
+.good-icon-circle {
+  height: 40rpx;
+  width: 40rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+  float: left;
+}
+
+.good-img {
+  display: inline-block;
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 20rpx;
+  float: left;
+  border-radius: 10rpx;
+}
+
+.product-name-price-num-style {
+  display: inline-block;
+  width: 460rpx;
+  height: 150rpx;
+  margin-left: 30rpx;
+  float: left;
+}
+
+.product-name {
+  width: 446rpx;
+  font-size: 36rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(34, 34, 34, 1);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: -8rpx;
+}
+
+.row-container {
+  width: 460rpx;
+}
+
+.style-price {
+  width: 240rpx;
+  float: left;
+  
+}
+
+.product-style {
+  font-size: 28rpx;
+  font-family: STHeiti;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 5rpx;
+  width: 240rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.product-price0 {
+  font-size: 28rpx;
+  font-family: STHeiti;
+  color: rgba(153, 153, 153, 1);
+  text-decoration: line-through;
+  position: relative;
+  top: 15rpx;
+}
+
+.product-price1 {
+  font-size: 32rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(68, 68, 68, 1);
+  position: relative;
+  top: 15rpx;
+  left: 15rpx;
+}
+
+.change-num-container {
+  width: 190rpx;
+  height: 60rpx;
+  float: right;
+  /* background-color: gray; */
+  position: relative;
+  top: 45rpx;
+}
+
+.choose-product-num {
+  display: inline-block;
+  width: 70rpx;
+  height: 60rpx;
+  line-height: 90rpx;
+  position: relative;
+  top: -15rpx;
+  text-align: center;
+}
+
+/* 购物车店铺样式 */
+
+.store {
+  background: white;
+}
+.store2 {
+  background: white;
+  margin-bottom: 20rpx;
+}
+.store-title-img {
+  
+  height: 114rpx;
+  line-height: 114rpx;
+  width: 750rpx;
+  background: white;
+  border-bottom: 1rpx solid #eee;
+}
+
+.store-title-icon-circle {
+  height: 40rpx;
+  width: 40rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-top: 37rpx;
+  float: left;
+}
+
+.store-logo {
+  display: inline-block;
+  width: 70rpx;
+  height: 70rpx;
+  margin-left: 20rpx;
+  margin-top: 22rpx;
+  float: left;
+}
+
+.store-name {
+  font-size: 34rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(34, 34, 34, 1);
+  float: left;
+  margin-left: 20rpx;
+}
+
+.triangle {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 6rpx 6rpx 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  float: left;
+  margin-top: 53rpx;
+  margin-left: 16rpx;
+}
+
+/* 上下文字样式 */
+
+.num-container {
+  display: inline-block;
+  float: right;
+  margin-right: 25rpx;
+}
+
+.total {
+  font-size: 34rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.total-num {
+  font-size: 40rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(229, 0, 79, 1);
+}
+
+.chooseAllText {
+  font-size: 34rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  margin-left: 19rpx;
+  position: relative;
+  top: -3rpx;
+}
+.chooseAllText2 {
+  font-size: 34rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  margin-left:20rpx;
+  position: relative;
+  top: -3rpx;
+}
+.calculateText {
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 5rpx;
+  font-size: 34rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
+}
+.calculateText2 {
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  background: #999;
+  border-radius: 5rpx;
+  font-size: 34rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
+}
+
+.delText {
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 5rpx;
+  font-size: 34rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
+}
+
+/* 图标样式 */
+
+.icon-add {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+
+.icon-subtract {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  display: inline-block;
+}
+
+.icon-circle {
+  height: 40rpx;
+  width: 40rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+
+/* 顶部和底部 */
+
+.top-bar {
+  height: 80rpx;
+  width: 725rpx;
+  background: rgba(255, 255, 255, 1);
+  opacity: 1;
+  z-index: 10000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: 34rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  text-align: right;
+  line-height: 80rpx;
+  padding-right: 25rpx;
+  border-bottom: 1rpx solid rgba(238, 238, 238, 1);
+  border-top: 1rpx solid rgba(238, 238, 238, 1);
+}
+
+.bottom-bar {
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+  border-top: 1rpx solid rgba(238, 238, 238, 1);
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+  z-index: 10000;
+}
+
+.bottom-bar2 {
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 750rpx;
+  background: rgba(255, 255, 255, 1);
+  border-top: 1rpx solid rgba(238, 238, 238, 1);
+  margin-bottom: 20rpx;
+  /* position: fixed;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+  z-index: 10000; */
+}
+.press-style{
+  background: #ECECEC;
+}

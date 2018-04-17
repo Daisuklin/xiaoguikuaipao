@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "地址管理",
+  "navigationBarBackgroundColor": "white",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

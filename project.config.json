@@ -1,0 +1,90 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.1",
+	"appid": "wx0156fc8fcb812dbf",
+	"projectname": "%E5%B0%8F%E9%BE%9FtestDemo",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "",
+	"pluginRoot": "",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 1,
+					"name": "左右模板",
+					"pathName": "pages/store/glspecial/glspecial",
+					"query": "storeId=802"
+				},
+				{
+					"id": 2,
+					"name": "上下模板",
+					"pathName": "pages/store/index",
+					"query": "storeId=5947"
+				},
+				{
+					"id": -1,
+					"name": "寄件",
+					"pathName": "pages/my/mail/mail",
+					"query": "transmitId=1"
+				},
+				{
+					"id": 3,
+					"name": "新版首页",
+					"pathName": "pages/home2/home2",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "二级分类",
+					"pathName": "pages/home/moreclass/moreclass",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "海报",
+					"pathName": "pages/store/poster/poster",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "主题",
+					"pathName": "pages/home/themepage/themepage",
+					"query": "banner=https://qnimg.xiaoguikuaipao.com/FoXFISEzJshzvZr6lLHZQWV_H_0z&themeId=435&isStoreType=0"
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/detail/goodsdetail",
+					"query": "goodId=32274"
+				}
+			]
+		}
+	}
+}

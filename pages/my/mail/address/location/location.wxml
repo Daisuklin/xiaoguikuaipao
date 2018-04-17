@@ -1,0 +1,13 @@
+<!--pages/my/mail/address/location/location.wxml-->
+<view class="location">
+<view class="location_image">
+<image src="../../../../../image/mail/this.png" class="location-image"></image>
+</view>
+<view class="location-current">
+<image src="../../../../../image/mail/location.png" class="location-current_image"></image>
+<view class="location-current_gain">正在获取当前位置</view>
+<view class="xian"></view>
+<textarea class="location-current_input" bindinput="gain" placeholder="详细地址（街道、门牌号...）"/>
+</view>
+<button class="location-current_button">确定</button>
+</view>

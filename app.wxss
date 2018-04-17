@@ -1,0 +1,45 @@
+/**app.wxss**/
+@import 'style/weui.wxss';
+Page{
+  background-color: #f8f8f8;
+  width:100%;
+  max-height: 100%;
+}
+.press-style{
+  background: #ECECEC;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.shangjai_free {
+  display: inline-block;
+  width: 100rpx;
+  height: 30rpx;
+  background: white;
+  border-radius: 5rpx;
+  font-size: 20rpx;
+  color: #f94400;
+  text-align: center;
+  line-height: 30rpx;
+  border: 1rpx solid #f94400;
+  margin-left: 10rpx;
+}
+
+.shangjia_post {
+  display: inline-block;
+  width: 88rpx;
+  height: 32rpx;
+  background: rgba(249, 68, 0, 1);
+  border-radius: 16rpx 0px 16rpx 0px;
+  font-size: 20rpx;
+  color: white;
+  text-align: center;
+  line-height: 30rpx;
+}

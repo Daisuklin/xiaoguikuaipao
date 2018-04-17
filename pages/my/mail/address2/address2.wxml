@@ -1,0 +1,31 @@
+<!--pages/my/mail/address2/address2.wxml-->
+<view class="add-ship">姓名：
+  <input value='{{addressList.contactName}}' class="add-input" placeholder-style='color: #999; font-size: 3.6vw;' placeholder="请填写收货人的姓名" bindinput="setName" />
+</view>
+<view class="xian"></view>
+<view class="add-ship">电话：
+  <input maxlength='11' value='{{addressList.contactNumber}}' class="add-input" placeholder-style='color: #999; font-size: 3.6vw;' placeholder="请填写收货手机号码" bindinput="setPhone" type="number" />
+</view>
+<view class="xian"></view>
+<view class="add-ship">所在地区：
+  <view style='float:right;' bindtap="location">
+    <image src='../../../../image/mail/acquire.png' class='add-ship_imagexiao'></image>
+    <image src='../../../../image/mail/add.png' class='add-ship_image'></image>
+    <input class="add-input1" value='{{city}}' placeholder-style='color: #999; font-size: 3.6vw;' placeholder="点击选择" disabled="false" />
+  </view>
+</view>
+<view class="xian"></view>
+<textarea value='{{city1}}' class="add-textarea" placeholder-style='color: #999; font-size: 4vw;' placeholder="请补充填写详细地址(选填)" bindinput="textAddr" />
+
+<!-- 默认地址选项及线条样式 -->
+<!-- <view class="xian1"></view>
+<view class="add-default">默认地址
+  <view class="body-view">
+    <switch id='{{item.id}}' bindchange="switch2Change" checked='{{selectivity}}' />
+  </view>
+</view> -->
+
+<!--------------保存地址按钮-------------->
+<button hidden='{{save}}' disabled='{{forbidden}}' class=" add-button" bindtap="save">保存地址</button>
+<!--------------编辑地址专用按钮-------------->
+<button hidden='{{saveButton}}' class=" add-button" bindtap="saveButton">保存地址</button>

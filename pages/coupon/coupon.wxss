@@ -1,0 +1,133 @@
+/* pages/coupon/coupon.wxss */
+
+.head-img {
+  height: 350rpx;
+  width: 750rpx;
+  display: block;
+}
+
+.head {
+  height: 750rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 0px;
+  z-index: 10000;
+}
+
+.head-price-container {
+  width: 450rpx;
+  text-align: center;
+  margin-left: 150rpx;
+}
+
+.head-price-danwei {
+  font-size: 50rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(255, 255, 255, 1);
+}
+
+.head-price {
+  font-size: 90rpx;
+  font-family: MicrosoftYaHei;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 580;
+}
+
+.head-tip {
+  font-size: 30rpx;
+  width: 300rpx;
+  text-align: center;
+  font-family: FZLTHJW--GB1-0;
+  margin-left: 225rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+.head-buy-btn {
+  width: 200rpx;
+  height: 60rpx;
+  margin-top: 20rpx;
+  margin-left: 275rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 30rpx;
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(93, 217, 171, 1);
+}
+
+.middle-action {
+  display: flex;
+  flex-direction: rows;
+  padding: 0px 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: rgba(255, 255, 255, 1);
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.middel-tip {
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.middle-btn {
+  margin-left: 390rpx;
+  display: inline-block;
+  width: 97rpx;
+  height: 60rpx;
+  margin-top: -2rpx;
+}
+
+.history-tip {
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 30rpx;
+  background: rgba(238, 238, 238, 1);
+}
+
+.history {
+  padding: 5px 30rpx;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #eee;
+}
+
+.history-id {
+  font-size: 27rpx;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.history-date {
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 3rpx;
+}
+
+.history-num {
+  font-size: 30rpx;
+  float: right;
+  width: 40%;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+  text-align: right;
+}
+
+.history-money {
+  font-size: 30rpx;
+}
+
+.history-content {
+  font-size: 24rpx;
+}
+.press-style{
+  background: #ECECEC;
+}

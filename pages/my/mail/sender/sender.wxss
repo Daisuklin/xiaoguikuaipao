@@ -1,0 +1,27 @@
+/* pages/my/mail/sender/sender.wxss */
+Page {
+  background: white;
+  text-align: center;
+}
+.sender-site{
+  width:14.1vw;
+  height: 6.8vh;
+  margin-top: 370rpx;
+}
+.sender-site_mail{
+  color: #B0B0C2;
+  font-size: 19px;
+  margin-top: -7rpx;
+  margin-bottom: 10rpx;
+}
+.sender-site_shop{
+  color: #B0B0B0;
+  font-size: 13.3px;
+  margin-bottom: 10rpx;
+}
+.sender-site_button{
+  color: #B0B0B0;
+  background: white;
+  font-size: 3vw;
+  width: 23.5vw; 
+}

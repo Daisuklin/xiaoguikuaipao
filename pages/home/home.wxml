@@ -1,0 +1,85 @@
+<import src="/pages/temp/lrh/store/store.wxml"/>
+<view class="" style="padding-bottom:10rpx;padding-top:10rpx;background-color:rgb(93,217,171);width:100%;display:flex;flex-direction:row;position:fixed;top:0px;left:0px;z-index:1000;">
+  <view class="" style="position:relative;top:10rpx;" bindtap='chooseAddr'>
+    <image src="../../image/location.png" style="display:block;height:40rpx;width:32rpx;margin-left:20rpx;"></image>
+  </view>
+
+  <view class="addr" bindtap='chooseAddr' style="width:274rpx;position:relative;top:10rpx;left:0px;">{{addrName}}</view>
+  <!-- <view class="" style="height:10rpx;width:406rpx;background-color:white;"></view> -->
+  <input class="index_input" placeholder="搜索" bindfocus="toSearch" placeholder-class="input-placeholder"/>
+</view>
+
+
+<view class="" style="margin-top:80rpx;">
+  <swiper style="width:100%;height:278rpx;">
+    <block wx:for="{{activityList}}">
+      <swiper-item>
+        <image src="{{item.themeLoge}}" mode='aspectFill' data-url="{{item.themeLoge}}" style="width:100%;height:278rpx;"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- <image src="{{homeData.activityList[0].themeLoge}}" style="width:100%;height:278rpx;margin-top:20rpx;"></image> -->
+<block wx:for="{{arrs}}">
+  <view class="weui-flex" style="background-color:white;text-align:center;font-size:24.6rpx;padding-bottom:10rpx;">
+    <block wx:for="{{item}}" wx:for-item="item2">
+      <view id="{{item2.gc_id}}" data-catName="{{item2.gc_name}}" bindtap="checkGoodClass" class="weui-flex__item" hover-class='press-style'>
+        <view>
+          <image src="{{item2.xin_gc_ico}}" mode='aspectFill' style="height:120rpx;width:142rpx;"></image>
+        </view>
+        <view>{{item2.gc_name}}</view>
+      </view>
+    </block>
+  </view>
+</block>
+
+<view class="" style="height:10rpx;background-color:#e6e6e6;"></view>
+<block wx:for="{{themeList}}">
+  <view class="myweui-cells" data-theme="{{item.theme}}" id="{{item.theme.themeLoge}}" bindtap="checkTheme" style="padding:33rpx 0px 33rpx 0px;">
+    <view class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <view class="" style="height:20rpx;width:20rpx;border-radius:50%;background-color:{{item.theme.themeColor}};"></view>
+      </view>
+      <view class="weui-cell__bd" style="font-size:35.5rpx;padding-left:13rpx;">{{item.theme.themeName}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size:24rpx;">更多</view>
+    </view>
+  </view>
+  <view class="" data-theme="{{item.theme}}" id="{{item.theme.themeLoge}}" bindtap="checkTheme" style="background:white;width:100%;height:380rpx;{{item.goodList.length==0?'padding-bottom:10rpx;':''}}">
+    <image src="{{item.theme.themeLoge}}" mode='aspectFill' style="width:710rpx;height:380rpx;display:block;margin-left:20rpx;border-radius:6rpx;"></image>
+  </view>
+  <view class="" style="background-color:white;">
+    <scroll-view scroll-x="true" wx:if="{{item.goodList.length!=0}}" scroll-x="false" style="padding-top:10rpx;padding-bottom:10rpx;width:710rpx;margin-left:20rpx;height:290rpx;background-color:white;white-space:nowrap; ">
+      <block wx:for="{{item.goodList}}" wx:for-item="item2">
+        <view id='{{item2.goods_id}}' bindtap='checkProduct' style="width:220rpx;height:290rpx;margin-right:10rpx;display:inline-block; ">
+          <image src="{{item2.goods_image}}" mode='aspectFill' style="display:block;height:190rpx;width:220rpx;border-radius:5rpx 5rpx 0rpx 0rpx;"></image>
+          <view style="height:100rpx;width:220rpx;background-color:{{item.theme.themeColor}};border-radius:0rpx 0rpx 5rpx 5rpx;">
+            <view style="font-size:22rpx;color:{{item.theme.priceColor}};width:212rpx;text-align:center;padding:11rpx 5rpx 0rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+              <label class="textover-show">{{item2.goods_name}}</label>
+              <text style="border-bottom:1rpx solid white;display:block;padding-top:6rpx;width:20.8vw;margin:0px auto;"></text>
+            </view>
+            <view class="">
+              <view class="home_list_label">
+                <label class="label_sprice1" style="">￥{{item2.goodsPriceStr}}</label>
+                <label class="label_sprice2" style="color:{{item.theme.priceColor}};">￥</label>
+                <label class="label_sprice3" style="color:{{item.theme.priceColor}};">{{item2.discountPriceStr}}</label>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</block>
+
+<view class="" style="width:100%;text-align:center;color:#666;font-size:28rpx;padding:39rpx 0px;">
+  <view class="" style="">
+    <view class="left" style=""></view>
+    <view class="" style="display:inline-block;">热门店铺</view>
+    <view class="right"></view>
+  </view>
+</view>
+
+<block wx:for="{{storeList}}">
+  <template is="store" data="{{item}}" />
+</block>

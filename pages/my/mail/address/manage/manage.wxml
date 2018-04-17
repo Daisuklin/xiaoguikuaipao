@@ -1,0 +1,50 @@
+<!--pages/my/mail/address/manage/manage.wxml-->
+<!-- 搜索导航 -->
+<view class="manage-up">
+  <image hidden="{{icon}}" src="../../../../../image/mail/search.png" class="manage-up_image"></image>
+  <input placeholder-class="reloading" bindinput="SearchView" confirm-type="search" placeholder="搜索" style="background:rgba(238,238,238,1);position:relative; " class="manage-up_search" />
+</view>
+<!-- 把地址列表往下顶 -->
+<view style='height:12vw;border-bottom:1px solid rgba(238,238,238,1)'></view>
+<!-- 地址列表渲染 -->
+<block wx:for='{{manageList}}'>
+  <view class="manage-content_duplication">
+    <view class="manage-content_duplication1">
+      <view>
+        <view bindtap='jump' id="{{item.id}}">
+          <view class="manage-content_textarea">{{item.addr}} {{item.roomNo == "null"?"":item.roomNo}}</view>
+          <view style=" overflow: hidden;">
+            <view class="manage-content_compellation">{{item.contactName}}</view>
+            <view class="manage-content_telephone">{{item.contactNumber}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 横线部分 -->
+    <view class='xian1'></view>
+    <!-- 默认地址，删除和编辑操作三合一 -->
+    <view style=" overflow: hidden;padding-bottom:2.6666vw;">
+      <view id="{{item.id}}" class="{{isChecked==item.id?'normal':'is_checked'}}" bindtap="site"></view>
+      <view class="manage-content_site">默认地址</view>
+      <view style='float:right; font-size: 3.2vw;'>
+        <view style='float:right;margin-right:3.8666vw;' bindtap='cancel' id="{{item.id}}">
+          <image class='manage-up_image2' src='../../../../../image/mail/delete.png'></image>删除
+        </view>
+
+        <view style='float:right;margin-right:6.4vw;' bindtap='compile' id="{{item.id}}">
+          <image class='manage-up_image1' src='../../../../../image/mail/compile.png'></image>编辑
+        </view>
+
+      </view>
+    </view>
+    <view class='xian' wx:if="{{index!=manageList.length-1}}"></view>
+  </view>
+</block>
+
+<view style='height:12.8vw;'></view>
+
+<!-- 底部按钮 -->
+<view style='border-top:1rpx solid #eee;height:12.8vw;width:100vw;position:fixed;bottom:0px;left:0px;z-index:1000;background:white;' bindtap='management'>
+  <image src='../../../../../image/mail/plus.png' style='width: 4vw;height: 4vw;margin-left: 34.8vw;margin-top: 4.26666vw;margin-right: 2.4vw;float: left;'></image>
+  <text style='font-sine:3.6vw;margin-top:3.3533vw;float: left;color: #444444;'>新增收货地址</text>
+</view>

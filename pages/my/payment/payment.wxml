@@ -1,0 +1,51 @@
+<!--pages/my/payment/payment.wxml-->
+<!-- 总模块 -->
+<view class='page'>
+  <!-- 支付倒计时部分 -->
+  <view class='payment-time'>
+    <view class='payment-time_text'>支付剩余时间</view>
+    <view class='payment-time_view'>{{clock}}{{moment}}</view>
+  </view>
+  <!-- 选择支付方式部分 -->
+  <view class='payment-way'>
+    <view class='payment-way_select'>选择支付方式</view>
+  </view>
+  <!-- 勾选部分 -->
+  <view class='payment-check' style='margin-bottom:7.8667vw;'>
+    <!-- 抵扣券 -->
+    <view class='payment-check_deduction' id='paybalance' bindtap='seduce'>
+      <image src='../../../image/voucher.png' style='width:5.4667vw;height:5.8667vw;margin-top:4.4vw;float:left'></image>
+      <view class='payment-check_font'>抵扣券支付
+        <text class='payment-check_text'>剩余抵扣券:￥{{payBalance}}</text>
+      </view>
+      <!-- 点击勾选 -->
+      <image id='paybalance' wx:if='{{payway != "paybalance"}}' src='../../../image/evaluate/circle.png' style='width:6.4vw;height:6.4vw;float:right;margin-right:4vw;margin-top:4.1333vw;' catchtap='seduce'></image>
+      <image wx:if='{{payway == "paybalance"}}' src='../../../image/evaluate/cancel.png' style='width:6.4vw;height:6.4vw;float:right;margin-right:4vw;margin-top:4.1333vw;' catchtap='seduce'></image>
+    </view>
+    <!-- 微信支付 -->
+    <view class='payment-check_deduction' style='border-bottom:none' id='wxa' bindtap='seduce'>
+      <image src='../../../image/wx.png' style='width:5.6vw;height:5.0667vw;margin-top:4.4vw;float:left'></image>
+      <view class='payment-check_font'>微信支付</view>
+      <!-- 点击勾选 -->
+      <image id='wxa' wx:if='{{payway != "wxa"}}' src='../../../image/evaluate/circle.png' style='width:6.4vw;height:6.4vw;float:right;margin-right:4vw;margin-top:4.1333vw;' catchtap='seduce'></image>
+      <image wx:if='{{payway == "wxa"}}' src='../../../image/evaluate/cancel.png' style='width:6.4vw;height:6.4vw;float:right;margin-right:4vw;margin-top:4.1333vw;' catchtap='seduce'></image>
+    </view>
+  </view>
+  <!-- 提交 -->
+  <view class='payment-button' bindtap='payment'>
+    <view style='float: left;'>确认支付</view>
+    <view class='payment-button_text'>￥{{totalPrices}}</view>
+  </view>
+</view>
+
+<!-- 抵扣券金额不足蒙版提示 -->
+<view class='payment-masking' hidden='{{!marked}}'></view>
+<!-- 抵扣券金额不足界面 -->
+<view class='payment-masking_interface' hidden='{{!marked}}'>
+  <view class='payment-masking_view'>抵扣券金额不足</view>
+  <!-- 点击按钮方面 -->
+  <view class='payment-masking_big'>
+    <view class='payment-masking_font' bindtap='backtrack'>返回</view>
+    <view class='payment-masking_text' bindtap='skip'>前往购买</view>
+  </view>
+</view>

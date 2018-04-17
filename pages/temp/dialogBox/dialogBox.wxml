@@ -1,0 +1,14 @@
+<!--pages/temp/dialogBox/dialogBox.wxml-->
+<template name="showDialogBox">
+  <!-- 自定义对话框 -->
+  <block>
+    <!-- <view class="dialog_box_park" wx:if="{{isDialogShow}}"></view> -->
+    <view class="dialog_box" wx:if="{{refundDialogBox.isDialogShow}}">
+      <view class="dialog_title">{{refundDialogBox.dialogTitle}}</view>
+      <view class="dialog_buttomgroup">
+        <button type="default" class="dialog_btn btncancel" bindtap="{{refundDialogBox.getCancelDialog}}">取消</button>
+        <button type="default" class="dialog_btn btnSubmit" bindtap="{{refundDialogBox.getSubmitEvent}}">确定</button>
+      </view>
+    </view>
+  </block>
+</template>

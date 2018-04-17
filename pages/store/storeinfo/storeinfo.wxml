@@ -1,0 +1,68 @@
+<view class='head-container'>
+  <view class='logo-container'>
+    <image src='{{storeData.store_avatar}}' class='store-logo'></image>
+  </view>
+  <view class='store-name'>{{storeData.store_name}}</view>
+  <view class='store-sales-favs'>
+    <label>
+      <image src='../../../image/store/star1.png' wx:if="{{storeData.store_credit>=1}}" class='icon-star'></image>
+      <image src='../../../image/store/star2.png' wx:if="{{storeData.store_credit>=2}}" class='icon-star'></image>
+      <image src='../../../image/store/star3.png' wx:if="{{storeData.store_credit>=3}}" class='icon-star'></image>
+      <image src='../../../image/store/star4.png' wx:if="{{storeData.store_credit>=4}}" class='icon-star'></image>
+      <image src='../../../image/store/star5.png' wx:if="{{storeData.store_credit>=5}}" class='icon-star'></image>
+      <label class='score'>{{storeData.store_credit==0?'暂无评分':storeData.store_credit}} {{storeData.store_credit==0?'':'.0'}}</label>
+    </label>
+    <label style="{{storeData.store_credit==0?'':'margin-left:15rpx;'}}">月售{{storeData.store_sales}}</label>
+  </view>
+</view>
+<view>
+  <image src='{{storeData.store_bg_Url}}' class='head-img'></image>
+</view>
+<view class='notice'>
+  <view class='act-title'>【公告】</view>
+  {{storeData.store_description}}
+</view>
+
+<view class='avtivities'>
+  <view class='act-title'>优惠与活动</view>
+  <view wx:if="{{storeData.isPackageMallStr!=null&&storeData.isPackageMallStr!=''}}" class="icon_content">
+    <!-- <label class='icon-img'> -->
+      <image src='../../../image/store/mian.png' class='icon-img2'></image>
+    <!-- </label> -->
+    <label class='act-text'>{{storeData.isPackageMallStr}}</label>
+  </view>
+  <view wx:if="{{storeData.firstOrderYouhuiStr!=null&&storeData.firstOrderYouhuiStr!=''}}" class="icon_content">
+    <!-- <label class='icon-img'> -->
+      <image src='../../../image/store/shou.png' class='icon-img2'></image>
+    <!-- </label> -->
+    <label class='act-text'>{{storeData.firstOrderYouhuiStr}}</label>
+  </view>
+  <view wx:if="{{storeData.mansongStr!=null&&storeData.mansongStr!=''}}" class="icon_content">
+    <!-- <label class='icon-img'> -->
+      <image src='../../../image/store/jian.png' class='icon-img2'></image>
+    <!-- </label> -->
+    <label class='act-text'>{{storeData.mansongStr}}</label>
+  </view>
+</view>
+
+<view class='infos'>
+  <view class='infos-title'>商家信息</view>
+  <view class='text-container'>
+    <label class='text-name'>品类</label>
+    <label class='text-value'></label>
+  </view>
+  <view class='text-container'>
+    <label class='text-name'>商家电话</label>
+    <label class='text-value' bindtap='callPhone' data-phone="{{storeData.store_phone}}" >{{storeData.store_phone}}</label>
+  </view>
+  <view class='text-container'>
+    <label class='text-name'>地址</label>
+    <label class="text-value two-line {{storeData.store_address.length>15?'top-position':''}}">{{storeData.store_address}}
+    </label>
+  </view>
+  <view class='text-container'>
+    <label class='text-name'>营业时间</label>
+    <label class="text-value two-line {{storeData.run_timeStr.length>10?'top-position':''}}">{{storeData.run_timeStr}}
+    </label>
+  </view>
+</view>

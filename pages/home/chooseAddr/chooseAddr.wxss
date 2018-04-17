@@ -1,0 +1,126 @@
+/* pages/home/chooseAddr/chooseAddr.wxss */
+
+Page {
+  max-height: 100%;
+  width: 100%;
+  background: white;
+}
+.distict{
+  color: #999;
+  font-size: 3.6vw;
+  padding-left: 10rpx;
+}
+.head {
+  height: 30vw;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  background: white;
+}
+
+.title-container2 {
+  margin: auto;
+  width: 100vw;
+  height: 14vw;
+  padding-top:3vw;
+  background: #5dd9ab;
+}
+
+.searchInput2 {
+  display: block;
+  font-size: 3.6vw;
+  line-height: 10vw;
+  height: 10vw;
+  /* height: 66rpx;
+  line-height: 66rpx; */
+  width: 88vw;
+  margin-left: 3vw;
+  padding-left:5vw;
+  border-radius:5vw;
+  background: white;
+}
+
+.around-addr2 {
+  padding-left: 30rpx;
+  font-size: 3.6vw;
+  line-height: 12vw;
+  height: 12vw;
+  background: white;
+  color: #999;
+  border-bottom: 1rpx solid #eee;
+}
+
+.loc-text2 {
+  padding-left: 20rpx;
+  font-size: 4vw;
+  color: black;
+  float: left;
+}
+
+.loc-icon2 {
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 3.6vw;
+  float: right;
+  margin-right: 30rpx;
+}
+
+/**************************************/
+
+.searchInput {
+  font-size: 3.6vw;
+  line-height: 12vw;
+  height: 12vw;
+  padding-left: 15rpx;
+  background: white;
+}
+
+.loc-icon {
+  height: 40rpx;
+  width: 40rpx;
+  margin-bottom: -5rpx;
+}
+
+.loc-text {
+  padding-left: 20rpx;
+  font-size: 4vw;
+  color: white;
+}
+
+.title-container {
+  margin: auto;
+  width: 100vw;
+  text-align: center;
+  height: 18vw;
+  line-height: 18vw;
+  background: #5dd9ab;
+}
+
+.around-addr {
+  padding-left: 30rpx;
+  font-size: 3.6vw;
+  line-height: 12vw;
+  height: 12vw;
+  background: white;
+  color: #999;
+  border-bottom: 1rpx solid #eee;
+}
+
+.addrs-container {
+  margin-top: 30vw;
+}
+
+.addr {
+  border-bottom: 1rpx solid #eee;
+  height: 11vw;
+  line-height: 11vw;
+  font-size: 3.6vw;
+  margin-left: 3vw;
+  width: 97vw;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -1,0 +1,16 @@
+/* pages/my/mail/contract/contract.wxss */
+Page{
+  background:white;
+}
+.contract-clause{
+  font-weight: bolder;
+  font-size: 4.6667vw;
+  line-height: 145rpx;
+  text-align: center;
+}
+.contract-clause_character{
+  /* margin-left: 4vw; */
+  padding: 0rpx 4vw 6vw;
+  font-size: 3.6vw;
+  /* width: 92vw; */
+}

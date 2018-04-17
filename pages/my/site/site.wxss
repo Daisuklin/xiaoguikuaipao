@@ -1,0 +1,137 @@
+/* pages/my/site/site.wxss */
+
+Page {
+  background: rgba(255, 255, 255, 1);
+  font-family: "FZLTHJW--GB1-0";
+  font-size: 3.6vw;
+}
+
+.xian {
+  border: 1vh solid #f8f8f8;
+}
+
+.xian1 {
+  border-bottom: 1px solid rgba(238, 238, 238, 1);
+  margin-top: 3.3vw;
+  margin-bottom: 2.6666vw;
+}
+
+.manage-up {
+  background: rgba(255, 255, 255, 1);
+  height: 6vh;
+  width: 100vw;
+  padding-top: 1.155vh;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+}
+
+.manage-up_search {
+  font-size: 3vw;
+  border-radius: 20vw;
+  width: 92.5vw;
+  height: 5vh;
+  margin-left: 2.2vw;
+  padding-left: 2.5vw;
+}
+
+.reloading {
+  margin-left: 4.5vw;
+}
+
+.manage-up_image {
+  width: 2.95vw;
+  height: 2vh;
+  margin-top: 1.5vh;
+  margin-left: 4.6vw;
+  position: absolute;
+  z-index: 999;
+}
+
+.manage-content_duplication {
+  clear: both;
+  margin-bottom: 20rpx;
+}
+
+.manage-content_compellation {
+  color: #999;
+  float: left;
+  margin-top: 0.75vh;
+  margin-right: 2.6vw;
+}
+
+.manage-content_telephone {
+  float: left;
+  margin-top: 0.55vh;
+  color: #999;
+}
+
+.manage-content_duplication1 {
+  margin-left: 4vw;
+}
+
+.manage-content_textarea {
+  width: 89.3333vw;
+  margin-top: 4vw;
+  margin-bottom: 2.5333vw;
+  color: #000;
+  line-height: 4.5vw;
+}
+
+checkbox {
+  border-radius: 50vw;
+}
+
+.is_checked {
+  width: 34rpx;
+  height: 34rpx;
+  border: 1px solid #9c9c9c;
+  border-radius: 50%;
+  margin-left: 4vw;
+  float: left;
+  margin-right: 1.2vw;
+}
+
+.normal {
+  width: 34rpx;
+  height: 34rpx;
+  border: 1px solid white;
+  background: url(https://qnimg.xiaoguikuaipao.com/Fm-4yvBdoKYgh48SYn5mf7GhGUqA) no-repeat;
+  background-size: 100%;
+  margin-left: 4vw;
+  float: left;
+  margin-right: 1.2vw;
+}
+
+.manage-content_site {
+  font-size: 3vw;
+  color: #666;
+  float: left;
+  margin-top: 0.2vh;
+}
+
+.management {
+  background: #5dd9ab;
+  color: #fdf7f7;
+  width: 93.8vw;
+  position: fixed;
+  font-size: 3.4vw;
+  line-height: 6vh;
+  z-index: 999;
+}
+
+.manage-up_image1 {
+  width: 3.6vw;
+  height: 3.8666vw;
+  margin-right: 2vw;
+  position:relative;
+  top:3rpx;
+}
+
+.manage-up_image2 {
+  width: 3.8666vw;
+  height: 4vw;
+  margin-right: 1.8666vw;
+  position:relative;
+  top:4rpx;
+}

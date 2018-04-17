@@ -1,0 +1,56 @@
+<import src="/pages/temp/lrh/store/store.wxml" />
+<view class="box_hotshop">
+  <view class="hotshop_title">热门店铺</view>
+  <view id="center-tar" style="{{fixStyle?'display:none;':''}}">
+    <view class="tar_container">
+      <view class="single_tar">
+        <block wx:for="{{tab}}">
+          <view id="{{index}}" bindtap='chooseTar' style='display:inline-block;width:25%;'>
+            <view class="tar_name {{activeIndex==index?'textcolor':''}} ">
+              <label wx:if="{{item.tabname=='筛选'}}" style="{{index==3?'border-left:1rpx solid #eee;padding-left:37rpx;':''}}">{{item.tabname}}</label>
+              <label wx:if="{{item.tabname!='筛选'}}" style="{{index==3?'border-left:1rpx solid #eee;padding-left:37rpx;color: #222222;font-size: 3.6vw;font-weight: bold;':''}}">{{item.tabname}}</label>
+              <image wx:if="{{index==3}}" src='{{sx}}' style='height:26rpx;width:26rpx;display:inline-block;margin-left:15rpx;margin-bottom:-2rpx;'></image>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view id="center-tar" style="{{fixStyle?'':'display:none;'}}" class='tarfixed demo1'  animation="{{item1}}">
+    <view class='tar_top_container'>
+      <view class="tar_container">
+        <view class="single_tar">
+          <block wx:for="{{tab}}">
+            <view id="{{index}}" bindtap='chooseTar' style='display:inline-block;width:25%;'>
+              <view class="tar_name {{activeIndex==index?'textcolor':''}} ">
+                <label style="{{index==3?'border-left:1rpx solid #eee;padding-left:37rpx;':''}}">{{item.tabname}}</label>
+                <image wx:if="{{index==3}}" src='{{sx}}' style='height:26rpx;width:26rpx;display:inline-block;margin-left:15rpx;margin-bottom:-2rpx;'></image>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='classes_container' wx:if="{{xsHidden}}">
+        <view class='choose_class'>
+          <label>
+            <image src='{{shop}}' class='choose_class_icon'></image>
+          </label>
+          <label class='choose_class_title'>商家类型</label>
+        </view>
+        <view class="all_class2" wx:for="{{labelStores}}">
+          <view class="{{labelId==item2.labelId?'shop_class1':'shop_class0'}}" id="{{item2.labelId}}" bindtap='chooseLabel' wx:for="{{item}}" data-my="{{item2.name}}" wx:for-item="item2" wx:if="{{item2!=null}}">{{item2.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:for="{{stores}}">
+    <template is="store5" data="{{item}}" />
+  </view>
+  <view class='pull-text' wx:if='{{goodsLen!=stores.length}}'>上拉加载更多</view>
+  <view wx:if='{{goodsLen==stores.length&&stores.length==0}}'>
+    <image class='no-server-img2' src='https://qnimg.xiaoguikuaipao.com/bcAW6TwzgWwl7140b4c6a0953a227d04376'></image>
+  </view>
+  <view class='pull-text' wx:if='{{goodsLen==stores.length}}' style="margin-bottom:{{stores.length==0?'80':''}}rpx;">唉吆喂，没有更多了</view>
+</view>
+<view class='mask-view' bindtap='tapMask' hidden='{{!fixStyle}}'></view>

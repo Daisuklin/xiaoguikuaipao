@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "店铺内搜索",
+  "navigationBarBackgroundColor": "white",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "disableScroll":true
+}

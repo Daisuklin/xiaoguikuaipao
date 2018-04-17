@@ -1,0 +1,126 @@
+<swiper class='head-img'>
+  <block wx:for="{{activityList}}">
+    <swiper-item>
+      <image src="{{item.themeLoge}}" class='head-img'></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 中部导航 -->
+<view class="{{fixStyle?'fix1':'fix0'}}">
+  <scroll-view scroll-x="true" wx:if="{{item.goodList.length!=0}}" scroll-x="false" class="categoryScrow">
+    <view wx:for="{{goodsClassList}}" id="{{item.gc_id}}" bindtap='checkClassGoods' wx:for-item="item" class='index-container'>
+      <view class="index-container-box">
+        <image src="{{item.xin_gc_ico}}" class='index-img'></image>
+        <view class="index-text">{{item.gc_name}}</view>
+      </view>
+    </view>
+    <view class="index-replace-block">
+    </view>
+  </scroll-view>
+  <view class="more-container" bindtap="moreClass">
+     <view class="eclipseColor"></view>
+    <view class="more-block">
+      <image src="{{more.xin_gc_ico}}" class='more-img'></image>
+      <view class="more-text">更多</view>
+    </view> 
+  </view>
+</view>
+
+<view class="imgs-container">
+  <view class="img1-container">
+    <image src="{{imgs[0].label_xin_logo}}" id="{{imgs[0].id}}" bindtap='checkSecondClass' class='img1'></image>
+  </view>
+  <view class="img2-container">
+    <image src="{{imgs[1].label_xin_logo}}" id="{{imgs[1].id}}" bindtap='checkSecondClass' class='img2-1'></image>
+    <image src="{{imgs[2].label_xin_logo}}" id="{{imgs[2].id}}" bindtap='checkSecondClass' class='img2-1'></image>
+  </view>
+  <view class="img3-container">
+    <image src="{{imgs[3].label_xin_logo}}" id="{{imgs[3].id}}" bindtap='checkSecondClass' class='img3-1'></image>
+    <image src="{{imgs[4].label_xin_logo}}" id="{{imgs[4].id}}" bindtap='checkSecondClass' class='img3-2'></image>
+  </view>
+</view>
+
+<block wx:for="{{themeList}}">
+  <view class="banner-container" style="">
+    <image src="{{item.theme.themeLoge}}" class='banner-img' />
+  </view>
+  <view style="background-color:white;">
+    <scroll-view scroll-x="true" scroll-x="false" class='scrow-style' style=" ">
+      <view wx:for="{{item.goodList}}" wx:for-item="item2" id="{{item2.goods_id}}" bindtap='checkProduct' style=" " class='scrow-block'>
+        <image src="{{item2.goods_image}}" class='scrow-block-img' style="" mode='aspectFill'></image>
+        <view style="" class='text-block' style='background:{{item.theme.themeColor}};'>
+          <view class="" style="" class='product-name'>
+            <label style="" class='product-name-label'>{{item2.goods_name}}</label>
+          </view>
+          <view class="">
+            <view class="price-block" style="color:{{item.theme.priceColor}};">
+              <label style="" class='price-text'>尝鲜价</label>
+              <label style="" class='price-danwei'>￥</label>
+              <label style="" class='pirce'>{{item2.goods_price}}</label>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</block>
+
+<view class="tip-container" style="">
+  <view class="">
+    <view class="left"></view>
+    <view class="" style="display:inline-block;">热门店铺</view>
+    <view class="right"></view>
+  </view>
+</view>
+<import src="/pages/temp/lrh/store/store.wxml" />
+<block wx:for="{{storeList}}">
+  <template is="store3" data="{{item}}" />
+</block>
+<!-- <block wx:for="{{storeList}}">
+  <view style="display:block;clear:both;background-color:white;margin-left:15rpx;margin-right:15rpx;margin-bottom:10rpx;border-radius:5rpx;">
+    <view bindtap='checkStore' data-jumptype="{{item.store_show_type}}"  id="{{item.store_id}}" class="myweui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <image src="{{item.store_avatar}}" style="display:block;vertical-align: middle;width:128rpx;height:128rpx;border-radius:5rpx;"></image>
+      </view>
+      <view class="weui-cell__bd" style="margin-left:16rpx;">
+        <view class="" style="font-size:32rpx;margin-top:-8rpx;;">{{item.store_name}}</view>
+        <view class="" style="font-size:24rpx;color:rgba(102,102,102,1);padding-top:5rpx">月销{{item.store_sales}}笔</view>
+        <view class="" style="color:rgba(102,102,102,1);font-size:22rpx;padding-top:10rpx;">
+          <label style="padding-right:10rpx;border-right:1rpx solid rgba(102,102,102,1);">起送￥{{item.sendPrice}}</label>
+          <label style="margin-left:10rpx;">商品{{item.goodsNum}}</label>
+        </view>
+      </view>
+      <view class="weui-cell__ft">
+        <label class="shangjia_post">商家包邮</label>
+        <label class="shangjai_free">小龟配送</label>
+      </view>
+    </view>
+    <block wx:for="{{item.youhuiList}}" wx:for-item="item2">
+      <view class="" style="clear:both;margin-left:160rpx;margin-top:-10rpx;">
+        <view class="">
+          <label class="" style="">
+            <image src="{{item2.activityLogo}}" style="width:28rpx;height:28rpx;"></image>
+          </label>
+          <label class="label2">{{item2.activityStrInfo}}</label>
+        </view>
+      </view>
+    </block>
+    <scroll-view scroll-x="true" scroll-x="false" style="padding-top:10rpx;padding-bottom:10rpx;width:100%;height:310rpx;background-color:white;white-space: nowrap;">
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" style="width:220rpx;height:310rpx;margin-left:10rpx;display:inline-block; ">
+        <image src="{{item2.goods_image}}" style="display:block;height:221rpx;width:220rpx;border-radius:5rpx;"></image>
+        <view class="hidden_class" style="width:210rpx;height:40rpx;line-height:40rpx;font-size:24rpx;padding:0px 5rpx;">
+          {{item2.goods_name}}
+        </view>
+        <view class="" style="margin-top:-20rpx;width:100%;height:50rpx;line-height:30rpx;" wx:if="{{item2.isXianshi==1}}">
+          <label style="overflow:hidden;color:#FF5500;font-size:31rpx;">￥{{item2.goods_price*item2.price_discount}}</label>
+          <label style="overflow:hidden;text-decoration:line-through;font-size:28rpx;color:#999;line-height:63rpx;margin-left:9rpx;">￥{{item2.goods_price}}</label>
+        </view>
+        <view class="" style="margin-top:-20rpx;width:100%;height:50rpx;line-height:30rpx;" wx:if="{{item2.isXianshi==0}}">
+          <label style="color:#FF5500;font-size:31rpx;overflow:hidden;">￥{{item2.goods_price}}</label>
+        </view>
+      </view>
+    </scroll-view>
+    <view style='height:1rpx;width:100%;'></view>
+  </view>
+</block> -->

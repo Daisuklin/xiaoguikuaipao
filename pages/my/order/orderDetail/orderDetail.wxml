@@ -1,0 +1,451 @@
+<!--pages/my/order/orderDetail/orderDetail.wxml-->
+<import src="/pages/temp/reasonInfo/reasonInfo.wxml" />
+<import src='/pages/temp/dialogBox/dialogBox.wxml' />
+
+<view class="distribution_box">
+  <block wx:if="{{orderDetail.state_desc =='待付款' ||orderDetail.state_desc =='拣货中' || orderDetail.state_desc =='待自提' || orderDetail.state_desc =='待验货' || orderDetail.state_desc =='待接单' || orderDetail.state_desc =='待发货' || orderDetail.state_desc =='待收货' || orderDetail.state_desc =='已发货'||orderDetail.state_desc =='已接单' ||orderDetail.state_desc =='备货中'|| orderDetail.state_desc =='备货完成'}}">
+    <!-- 未完成及非售后流程公共header begin -->
+    <view class="unpay_top">
+      <block wx:if="{{orderDetail.orderStatus==1||orderDetail.orderStatus==2||orderDetail.orderStatus==3||orderDetail.orderStatus==4||orderDetail.orderStatus==5}}">
+        <text class="unpay_top_h" wx:if="{{orderDetail.orderStatus==1 && orderDetail.since_hand ==0}}">商家在备货中</text>
+        <text class="unpay_top_h" wx:if="{{orderDetail.orderStatus==2 && orderDetail.since_hand ==0}}">等待配送员接单</text>
+        <text class="unpay_top_h" wx:if="{{orderDetail.orderStatus==3 && orderDetail.since_hand ==0}}">小龟正前往商家</text>
+        <text class="unpay_top_h" wx:if="{{orderDetail.orderStatus==4 && orderDetail.since_hand ==0}}">小龟正在配送中</text>
+        <text class="unpay_top_h" wx:if="{{orderDetail.orderStatus==5 && orderDetail.since_hand ==0}}">配送员已到达</text>
+      </block>
+      <block wx:if="{{orderDetail.orderStatus!=1&&orderDetail.orderStatus!=2 && orderDetail.orderStatus!=3 && orderDetail.orderStatus!=4 &&orderDetail.orderStatus!=5 && orderDetail.since_hand ==0}}">
+        <text class="unpay_top_h">{{orderDetail.state_desc}}</text>
+      </block>
+      <block wx:if="{{orderDetail.since_hand !=0}}">
+        <text class="unpay_top_h">{{orderDetail.state_desc}}</text>
+      </block>
+      <block wx:if="{{orderDetail.state_desc == '待付款'}}">
+        <!--待付款显示倒计时-->
+        <view class="unpay_top_c" wx:if="{{orderDetail.state_desc == '待付款'}}">剩余支付时间
+          <text class="txt_time">{{surplusTime}}</text>
+        </view>
+      </block>
+      <block wx:if="{{orderDetail.state_desc != '待付款' && orderDetail.since_hand ==0}}">
+        <!--非待付款显示预计送达-->
+        <view class="unpay_top_c">
+          <image src="{{icon.icon_appoint}}"></image>预计送达
+          <text class="txt_timebg2">{{orderDetail.booking_time!=null?orderDetail.booking_time:orderDetail.estimatedTime}}</text>
+        </view>
+      </block>
+      <!-- 待付款 -->
+      <view class="unpay_top_b" wx:if="{{orderDetail.state_desc == '待付款'}}">
+        <button type="default" class="btn_cancel" bindtap="cancellationOfOrder" disabled="{{orderDetail.state_desc == '待付款'? false:true}}">取消订单</button>
+        <button type="primary" class="btn_gopay" bindtap="gotopay" disabled="{{orderDetail.state_desc == '待付款'? false:true}}">去支付</button>
+      </view>
+      <block wx:if="{{orderDetail.since_hand ==0}}">
+        <!-- 非自提 -->
+        <view class="unpay_top_b">
+          <block wx:if="{{orderDetail.state_desc=='待接单' || orderDetail.state_desc=='已接单'|| orderDetail.state_desc=='待发货'|| orderDetail.state_desc=='已发货'|| orderDetail.state_desc=='待收货'|| orderDetail.state_desc=='备货中'|| orderDetail.state_desc=='备货完成'}}">
+            <button type="default" class="btn_cancel" bindtap='gotoApplyForRefund' wx:if="{{orderDetail.orderStatus <=2}}">申请退款</button>
+          </block>
+          <block wx:if="{{orderDetail.state_desc=='待接单'}}">
+            <button type="primary" class="btn_gopay" bindtap='contactBusinesses'>联系商家</button>
+          </block>
+          <block wx:if="{{orderDetail.state_desc=='待发货'}}">
+            <button type="primary" class="btn_gopay" bindtap='todoReminder' wx:if="{{orderDetail.orderStatus==1}}">催单</button>
+          </block>
+          <block wx:if="{{orderDetail.state_desc=='待收货' && orderDetail.orderStatus >2}}">
+            <button type="default" class="btn_cancel" bindtap='getSelectRefund'>申请退货</button>
+          </block>
+          <block wx:if="{{orderDetail.state_desc=='待收货' && orderDetail.orderStatus>2}}">
+            <button type="primary" class="btn_gopay" bindtap='getConfirmReceipt' style="margin-left:20rpx;">确认收货</button>
+          </block>
+        </view>
+      </block>
+      <block wx:if="{{orderDetail.since_hand !=0 && orderDetail.state_desc !='待付款'}}">
+        <!-- 自提状态 -->
+        <view class="unpay_top_b">
+          <!-- <button type="default" class="btn_cancel" bindtap='cancellationOfOrder' wx:if="{{}}">取消订单</button> -->
+          <button type="default" class="btn_cancel" bindtap='gotoApplyForRefund' wx:if="{{orderDetail.state_desc =='拣货中' || orderDetail.order_source == 1 ||orderDetail.state_desc =='待验货' ||orderDetail.state_desc =='待接单'}}">申请退款</button>
+          <button type="default" class="btn_cancel" bindtap='getSelectRefund' wx:if="{{orderDetail.state_desc =='待自提'}}">申请退货</button>
+          <block wx:if="{{orderDetail.order_source == 0 && orderDetail.since_hand == 2}}">
+            <button type="primary" class="btn_gopay" bindtap='contactBusinesses'>联系商家</button>
+          </block>
+
+        </view>
+      </block>
+    </view>
+    <!-- 未完成及非售后流程公共header end -->
+  </block>
+  <block wx:if="{{orderDetail.state_desc == '已完成' || orderDetail.state_desc == '已取消' || orderDetail.state_desc == '已退款' || orderDetail.state_desc == '已退货' ||orderDetail.state_desc == '退款中' ||orderDetail.state_desc == '退货中' ||orderDetail.state_desc == '仲裁中'}}">
+    <!-- 完成状态及售后状态公共header begin -->
+    <view class="fulfillment_top">
+      <view class="fulfill_top_bg">
+        <view class="fulfill_top_l">
+          <text class="txt1">{{orderDetail.state_desc}}</text>
+          <!-- 完成订单 -->
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '已完成'}}">您已在 {{finnshed_time}} 完成订单</text>
+          <!-- 取消订单 -->
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '已取消'}}">您已在 {{cancel_time}} 取消订单</text>
+          <!-- 退款成功 -->
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '已退款' }}">已在 {{seller_time}} 退款成功</text>
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '已退货' }}">已在 {{seller_time}} 退货成功</text>
+          <!-- 退款中，退货中 -->
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '退款中' }}">正在退款中，请耐心等候！</text>
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '退货中' }}">正在退款中，请耐心等候！</text>
+          <text class="txt2" wx:if="{{orderDetail.state_desc == '仲裁中' }}">平台正在帮您与商家沟通中，请耐心等候！</text>
+        </view>
+        <image src="{{orderDetail.state_desc=='已完成'? icon.order_success:icon.order_fail}}" class="fulfill_top_img"></image>
+      </view>
+      <!-- 已完成begin -->
+      <view class="fulfill_top_bot" wx:if="{{orderDetail.state_desc == '已完成'}}">
+        <view class="txtcon">
+          <text></text> 已支付{{payment_time}}
+        </view>
+        <block wx:if="{{orderDetail.since_hand!=1}}">
+          <view class="txtcon">
+            <text></text> 已接单{{receiving_time}}
+          </view>
+        </block>
+        <view class="txtcon">
+          <text></text> {{orderDetail.since_hand!=0?'已自提':'已送达'}}{{finnshed_time}}
+        </view>
+      </view>
+      <!-- 已完成end -->
+      <!-- 已取消 begin -->
+      <view class="fulfill_top_bot" wx:if="{{orderDetail.state_desc == '已取消'}}">
+        <view class="txtcon">
+          <text></text> 已支付{{payment_time}}
+        </view>
+        <view class="txtcon">
+          <text></text> 已取消 {{cancel_time}}
+        </view>
+        <view class="txtcon">
+          <text></text>
+        </view>
+      </view>
+      <!-- 已取消 end -->
+      <!-- 已申请退款 begin -->
+      <view class="fulfill_top_bot" wx:if="{{orderDetail.state_desc == '已退款' || orderDetail.state_desc == '退款中'}}">
+        <view class="txtcon">
+          <text></text> 已支付{{payment_time}}
+        </view>
+        <view class="txtcon">
+          <text></text> 申请退款{{sellerAddTime}}
+        </view>
+        <view class="txtcon">
+          <text></text>{{orderDetail.state_desc == '已退款'? (orderDetail.state_desc == '已退款'?'退款成功':'退款失败') + seller_time : ''}}
+        </view>
+      </view>
+      <!-- 已申请退款 end -->
+      <!-- 已申请退货 begin -->
+      <view class="fulfill_top_bot" wx:if="{{orderDetail.state_desc == '已退货' || orderDetail.state_desc == '退货中'}}">
+        <view class="txtcon">
+          <text></text> 已支付{{payment_time}}
+        </view>
+        <view class="txtcon">
+          <text></text> 申请退货{{sellerAddTime}}
+        </view>
+        <view class="txtcon">
+          <text></text> {{orderDetail.state_desc == '已退货'? (orderDetail.state_desc == '已退货'?'退货成功':'退货失败') + seller_time : ''}}
+        </view>
+      </view>
+      <!-- 已申请退货 end -->
+      <!-- 已申请仲裁 begin -->
+      <view class="fulfill_top_bot" wx:if="{{orderDetail.state_desc == '仲裁中' || orderDetail.state_desc == '已仲裁'}}">
+        <view class="txtcon">
+          <text></text> 已支付{{payment_time}}
+        </view>
+        <view class="txtcon">
+          <text></text> 申请退货{{sellerAddTime}}
+        </view>
+        <view class="txtcon">
+          <text></text>
+        </view>
+      </view>
+      <!-- 已申请仲裁 end -->
+      <view class="remind_msg" wx:if="{{orderDetail.state_desc == '退货失败' || orderDetail.state_desc == '退款失败'}}">获取商家被拒理由</view>
+    </view>
+    <!-- 完成状态及售后状态公共header end -->
+  </block>
+  <block wx:if="{{orderDetail.state_desc == '已完成' || orderDetail.state_desc == '已取消' || orderDetail.state_desc == '已退款' || orderDetail.state_desc == '已退货' ||orderDetail.state_desc == '退款中' ||orderDetail.state_desc == '退货中' ||orderDetail.state_desc == '仲裁中'}}">
+    <!--未完成及非售后流程公共地址信息 -->
+    <view class="unpay_magg" wx:if="{{orderDetail.since_hand == 0}}">
+      <view wx:if="{{orderDetail.booking_time !=null }}">
+        <text class="text_l">预约配送</text>
+        <text class="text_r">{{orderDetail.booking_time}}送达</text>
+      </view>
+      <view>
+        <text class="text_l">收货人</text>
+        <text class="text_r">{{orderDetail.extend_order_common.reciver_name}}  {{orderDetail.extend_order_common.reciver_info.mob_phone}}</text>
+      </view>
+      <view>
+        <text class="text_l">配送地址</text>
+        <text class="text_r">{{orderDetail.extend_order_common.reciver_info.address}}</text>
+      </view>
+      <!-- <view>
+        <text class="text_l">配送服务</text>
+        <text class="text_r">由{{orderDetail.shipping_type}}提供配送服务</text>
+      </view> -->
+    </view>
+    <!-- 自提地址提示 -->
+    <view class="unpay_magg" wx:if="{{orderDetail.since_hand != 0}}">
+      <view>
+        <text class="text_l">自提手机</text>
+        <text class="text_r">{{orderDetail.buyer_phone}}</text>
+      </view>
+      <view>
+        <text class="text_l">商家</text>
+        <text class="text_r">{{extend_store.store_name}}</text>
+      </view>
+      <view>
+        <text class="text_l">地址</text>
+        <text class="text_r">{{extend_store.store_address}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{orderDetail.since_hand !=0}}">
+    <!-- 自提中间的二维码 -->
+    <view class="waitspec_qrcode" wx:if="{{orderDetail.state_desc == '待自提' || orderDetail.state_desc == '待验货'}}">
+      <view>
+        <image src="{{orderDetail.qrcode}}"></image>
+      </view>
+      <text class="txt_c" wx:if="{{orderDetail.since_hand == 1}}">请移步到验货通道，出示二维码进行验货</text>
+      <text class="txt_c" wx:if="{{orderDetail.since_hand == 1}}">即可完成购物，并打印小票</text>
+      <text class="txt_c" wx:if="{{orderDetail.since_hand == 2}}">请凭取货二维码，在商家营业时间内自提商品</text>
+      <text class="txt_c" wx:if="{{orderDetail.since_hand == 2}}">如有特殊情况不能尽快取货，请提前通知商家</text>
+    </view>
+  </block>
+
+  <block wx:if="{{orderDetail.since_hand ==0}}">
+    <!-- 配送流程图 -->
+    <view class="distribution_state_parent" wx:if="{{orderDetail.state_desc =='待付款'|| orderDetail.state_desc =='拣货中' || orderDetail.state_desc =='待自提' || orderDetail.state_desc =='待验货' || orderDetail.state_desc =='待发货' || orderDetail.state_desc =='待收货' || orderDetail.state_desc =='已发货'|| orderDetail.state_desc =='待接单' ||orderDetail.state_desc =='已接单' ||orderDetail.state_desc =='备货中'|| orderDetail.state_desc =='备货完成'}}">
+      <!-- 配送之待收货begin -->
+      <view class="distribution_top" wx:if="{{orderDetail.orderStatus>2 &&orderDetail.orderStatus<5 && orderDetail.since_hand ==0 &&  orderDetail.state_desc =='待收货'}}">
+        <view class="head_l">
+          <image src="{{orderDetail.extend_logistics.member_avatar!=null?orderDetail.extend_logistics.member_avatar:icon.order_peisong}}" class="img_user"></image>
+          <view class="head_title">
+            <text>{{orderDetail.extend_logistics.member_name}}</text>
+            <view>
+              <image src="{{icon.icon_xing}}"></image>
+              <image src="{{icon.icon_xing}}"></image>
+              <image src="{{icon.icon_xing}}"></image>
+              <image src="{{icon.icon_xing}}"></image>
+              <image src="{{icon.icon_xing}}"></image>
+            </view>
+          </view>
+        </view>
+        <view class="head_r">
+          <!-- <button open-type='contact' class='icon_mas'>
+            <image src="{{icon.icon_store_mas}}" class="img1"></image>
+          </button> -->
+          <!--留言-->
+          <image src="{{icon.icon_store_call}}" class="img2" bindtap='getDistributor'></image>
+        </view>
+      </view>
+      <view class="distribution_state" wx:if="{{orderDetail.since_hand ==0}}">
+        <image src="{{icon.icon_Distri_state0}}" wx:if="{{orderDetail.orderStatus==0}}"></image>
+        <image src="{{icon.icon_Distri_state1}}" wx:if="{{orderDetail.orderStatus==1}}"></image>
+        <image src="{{icon.icon_Distri_state5}}" wx:if="{{orderDetail.orderStatus==2}}"></image>
+        <image src="{{icon.icon_Distri_state2}}" wx:if="{{orderDetail.orderStatus==3}}"></image>
+        <image src="{{icon.icon_Distri_state3}}" wx:if="{{orderDetail.orderStatus==4}}"></image>
+        <image src="{{icon.icon_Distri_state4}}" wx:if="{{orderDetail.orderStatus==5}}"></image>
+      </view>
+    </view>
+  </block>
+
+
+  <!-- 店铺、商品信息begin -->
+  <view class="order_distribution_content">
+    <view class="order_distribution border_radius15">
+      <view style="padding:0px 32rpx;">
+        <view class="order_shop_box">
+          <view class="order_shop" bindtap="goToTheStore" id="{{orderDetail.store_id}}">
+            <view class="ordershop__hd">
+              <image src="{{orderDetail.store_avatar!=null?orderDetail.store_avatar:icon.storetop}}"></image>
+            </view>
+            <view class="ordershop__bd">{{orderDetail.store_name}}</view>
+          </view>
+          <view class="order_pro__bd"></view>
+          <!-- <text class="text_r">自提购买</text> -->
+          <text class="text_r1" wx:if="{{orderDetail.since_hand == 0}}">小龟配送</text>
+          <text class="text_r2" wx:if="{{orderDetail.since_hand == 1}}">快速购物</text>
+          <text class="text_r2" wx:if="{{orderDetail.since_hand ==2}}">上门自提</text>
+        </view>
+        <view class="pro_list {{ifmore ? '' : 'order_fath'}}">
+          <view class="production_list_box" wx:for="{{extend_order_goods}}" wx:for-item="items" bindtap="goToTheGoodsDetail" id='{{items.goods_id}}'>
+            <view class='goods_Image'>
+              <image src="{{items.goods_image}}" class="paypro_img" mode="aspectFill" ></image>
+            </view>
+            <view class="production_list">
+              <view class="order_pro">
+                <view class="order_pro__hd">{{items.goods_name}}</view>
+                <view class="order_pro__bd">
+                  <text class="order_pro_text1">x{{items.goods_num}}</text>
+                  <text class="order_pro_price">￥{{items.newDiscountPrice}}</text>
+                </view>
+              </view>
+              <view class="order_pro_bot">
+                <view class="order_bot__hd">{{items.goods_spec!=null? items.goods_spec :''}}</view>
+                <view class="order_bot__bd">
+                  <text class="order_bot_text1">￥{{items.newGoodsPrice}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+        <view class="btn_startup_fath" wx:if="{{orderDetail.extend_order_goods.length>3}}">
+          <button class="btn_startup" bindtap="changeIfMore">{{ifmore ? '点击收起' : '查看更多'}}
+            <image src="{{ifmore ? icon.order_top : icon.order_bot}}"></image>
+          </button>
+        </view>
+        <!-- 附加信息 -->
+        <view class="order_pro_box pad-top20" bindtap="">
+          <view class="order_pro" wx:for="{{overhead_info}}" wx:for-item="additional">
+            <view class="order_pro__hd" style='font-size: 3.6vw;'>{{additional.name}}
+              <image src="{{icon.icon_qusition}}" class="img_ques" bindtap="getServiceFee" wx:if="{{additional.name=='夜间服务费'}}"></image>
+            </view>
+            <view class="order_pro__bd">
+              <text class="order_pro_price">{{additional.price_des}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="">
+        <view class="order_total">
+          {{coupon_info.length>0?'共':'实付'}}
+          <text class="txt3">￥</text>
+          <text class="txt1">{{orderPrice}}</text>
+          <text class="txt2">共{{orderDetail.goods_total_num}}件商品</text>
+        </view>
+        <block wx:if="{{coupon_info.length>0 }}">
+          <!-- 优惠情况 -->
+          <view class="order_avorable_Price">
+            <view class="order_avorable_discount" wx:for="{{coupon_info}}" wx:for-item="coupon_info">
+              <view>
+                <image src="{{coupon_info.ico}}"></image>
+                <text class="avo_txtl"> {{coupon_info.name}}</text>
+              </view>
+              <text class="avo_txt2">{{coupon_info.price_des}}</text>
+            </view>
+          </view>
+          <!-- 实际付款 -->
+          <view class="order_actual_payment">
+            实付
+            <text style="color:#E5004F;">￥</text>
+            <text class="txt1">{{orderDetail.order_amount}}</text>
+            <text class="txt2">已优惠￥{{orderDetail.extend_order_common.favorablePrice}}</text>
+          </view>
+        </block>
+        <!-- 已完成的再来一单和评价 -->
+        <block wx:if="{{orderDetail.state_desc == '已完成'}}">
+          <view class="order_btngroup">
+            <button type="primary" class="btn_gopay1" bindtap='getMoreNote' id="{{orderDetail.store_id}}">再来一单</button>
+            <button type="primary" class="btn_gopay2" bindtap='gotoEvaluate' wx:if="{{orderDetail.evaluation_state==0}}">评价</button>
+            <button type="primary" class="btn_gopay2" disabled='true' wx:if="{{orderDetail.evaluation_state==1|| orderDetail.evaluation_state==2}}">已评价</button>
+          </view>
+        </block>
+      </view>
+      <block wx:if="{{orderDetail.since_hand == 0}}">
+        <view class="Contact_businesses" bindtap='contactBusinesses' wx:if="{{orderDetail.state_desc =='拣货中' || orderDetail.state_desc =='待自提' || orderDetail.state_desc =='待验货' || orderDetail.state_desc =='待发货' || orderDetail.state_desc =='待收货' || orderDetail.state_desc =='已发货'}}">
+          <image src="{{icon.icon_store_call}}"></image>联系商家
+        </view>
+      </block>
+
+    </view>
+
+  </view>
+  <!-- 联系商家 -->
+
+  <!-- 店铺、商品信息begin -->
+  <block wx:if="{{orderDetail.state_desc =='待付款' ||orderDetail.state_desc =='拣货中' || orderDetail.state_desc =='待自提' || orderDetail.state_desc =='待验货' || orderDetail.state_desc =='待接单' || orderDetail.state_desc =='待发货' || orderDetail.state_desc =='待收货' || orderDetail.state_desc =='已发货'}}">
+    <!-- 非自提地址提示 -->
+    <view class="unpay_magg" wx:if="{{orderDetail.since_hand==0}}">
+      <view wx:if="{{orderDetail.booking_time !=null }}">
+        <text class="text_l">预约配送</text>
+        <text class="text_r">{{orderDetail.booking_time}} 送达</text>
+      </view>
+      <view>
+        <text class="text_l">收货人</text>
+        <text class="text_r">{{orderDetail.extend_order_common.reciver_name}}  {{orderDetail.extend_order_common.reciver_info.mob_phone}}</text>
+      </view>
+      <view>
+        <text class="text_l">配送地址</text>
+        <text class="text_r">{{orderDetail.extend_order_common.reciver_info.address}}</text>
+      </view>
+    </view>
+    <!-- 自提地址提示 -->
+    <view class="unpay_magg" wx:if="{{orderDetail.since_hand != 0}}">
+      <view>
+        <text class="text_l">自提手机</text>
+        <text class="text_r">{{orderDetail.buyer_phone}}</text>
+      </view>
+      <view>
+        <text class="text_l">商家</text>
+        <text class="text_r">{{extend_store.store_name}}</text>
+      </view>
+      <view>
+        <text class="text_l">地址</text>
+        <text class="text_r">{{extend_store.store_address}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class="unpay_magg">
+    <view>
+      <text class="text_l">订单号</text>
+      <text class="text_r">{{orderDetail.order_sn}}</text>
+    </view>
+    <view>
+      <text class="text_l">订单时间</text>
+      <text class="text_r">{{addTime}}</text>
+    </view>
+    <view>
+      <text class="text_l">支付方式</text>
+      <text class="text_r">{{orderDetail.payment_name}}</text>
+    </view>
+  </view>
+  <view class="unpay_magg" wx:if="{{orderDetail.order_msg!=''&&orderDetail.order_msg!=null}}">
+    <view style="padding-bottom:0rpx;">
+      <text class="text_l">备注</text>
+      <text class="text_r">{{orderDetail.order_msg}}</text>
+    </view>
+  </view>
+  <!-- 夜间服务费begin -->
+    <view class="park_contents" hidden="{{!showNight}}"></view>
+    <view class="park_content_main" hidden="{{!showNight}}">
+      <text class="content_top">- 夜间服务费 -</text>
+      <block wx:for="{{nightInfo}}" wx:if="{{nightInfo!=''}}">
+        <view class="txt_con_view">
+          <text class="txt_con">{{item.key}}</text>
+          <text class="txt_con">{{item.value}}</text>
+        </view>
+      </block>
+      <text class="btn_close" bindtap="closeServiceFee">确定</text>
+    </view>
+    <!-- 夜间服务费end -->
+  <view class="height200"></view>
+</view>
+<view style='height:100vh;z-index:9999; width:100vw; background:rgba(0, 0, 0, 0.67);position:fixed;left:0;top:0;' wx:if='{{refundReasonInfo.isShow}}'>
+  <template is="showReasonInfo" data="{{refundReasonInfo}}" />
+</view>
+<!-- 提示弹窗 -->
+
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>
+<!-- 自定义对话框 -->
+<view style='height:100vh;z-index:9999; width:100vw; background:rgba(0, 0, 0, 0.2);position:fixed;left:0;top:0;' wx:if='{{refundDialogBox.isDialogShow}}'>
+  <template is="showDialogBox" data="{{refundDialogBox}}" />
+</view>
+<!-- <block>
+<view class="dialog_box_park" wx:if="{{isDialogShow}}"></view>
+  <view class="dialog_box" wx:if="{{isDialogShow}}">
+    <view class="dialog_title">{{dialogTitle}}</view>
+    <view class="dialog_buttomgroup">
+      <button type="default" class="dialog_btn btncancel" bindtap='getCancelDialog'>取消</button>
+      <button type="default" class="dialog_btn btnSubmit" bindtap="{{getSubmitEvent}}">确定</button>
+    </view>
+  </view>
+</block> -->

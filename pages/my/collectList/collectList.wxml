@@ -1,0 +1,75 @@
+<!--pages/my/collectList/collectList.wxml-->
+<view class='collectList-synthesize' style='background: white;overflow: hidden;'>
+  <view class="{{isChecked?'collectList-store':'none'}}" bindtap='store'>店铺
+    <view hidden='{{subscript}}' class='xian0'></view>
+  </view>
+  <view class="{{isChecked1?'collectList-merchant':'none1'}}" bindtap='merchant'>商品
+    <view hidden='{{subscript1}}' class='xian0'></view>
+  </view>
+</view>
+<view class='xian6'></view>
+
+<!-- 店铺列表 -->
+<view hidden='{{trade}}'>
+  <block wx:for='{{storeList}}'>
+    <view data-shopType="{{item.store_show_type}}" id="{{item.store_id}}" bindtap='checkStore' style='background: white;margin-top:-.1vh;width:100vw; border-top:1px solid rgba(238,238,238,1);overflow: hidden;'>
+      <view class='collectList-synthesize_particulars' style='margin-top:1.5vh;'>
+        <view>
+          <image src='{{item.store_avatar}}' class='collectList-synthesize_image'></image>
+          <view class='collectList-synthesize_font'>{{item.store_name}}</view>
+          <image src='../../../image/orderList/acquire.png' class='collectList-synthesize_image1'></image>
+        </view>
+        <view>
+          <view style='float: right;' catchtap='exchange' id="{{item.store_id}}" hidden='{{exchange==item.store_id}}'>
+            <image src='../../../image/orderList/spot.png' class='collectList-synthesize_image2'></image>
+          </view>
+          <view id="{{item.store_id}}" catchtap='vanish' wx:if="{{exchange==item.store_id}}" class='collectList-synthesize_cancel'>取消收藏</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view bindtap='eliminate'>
+    <view class='pull-text' wx:if='{{allStoreLen==12}}'>上拉加载更多</view>
+    <view class='pull-text' wx:if='{{allStoreLen!=12}}'>没有更多啦</view>
+    <view style='clear:both;height:100px;'></view>
+  </view>
+</view>
+
+<!-- 商品列表 -->
+<view hidden='{{trade1}}'>
+  <block wx:for='{{commodityList}}'>
+    <view style='overflow: hidden' bindtap='checkGoods' id="{{item.goods_id}}">
+      <image style='float:left' src='{{item.goods_image}}' class='collectList-synthesize_image3'></image>
+      <view class='collectList-synthesize_xian' style='margin-left:35vw;border-bottom:1px solid rgba(238,238,238,1)'>
+        <view id="{{item.goods_id}}" class="{{judge==item.goods_id?'collectList-synthesize_font4':'collectList-synthesize_font1'}}">{{item.goods_name}}</view>
+        <view style='float:left;margin-top:1.3vh;'>
+          <view class='collectList-synthesize_element'>{{item.goods_salenum}}
+            <view class='collectList-synthesize_sale'>月售</view>
+          </view>
+          <view class='collectList-synthesize_font2' style='margin-top:5vh;'>
+            <view style='float:left;'>{{item.discountPriceStr}}
+              <view style='float:left;margin-right:1vw;'>¥</view>
+            </view>
+          </view>
+        </view>
+        <block wx:if="{{item.price_discount!=0}}">
+          <view class='collectList-synthesize_font3' style='float:left;margin-top:7.4vh;'>
+            <view style='float:left;padding-left:16rpx;text-decoration:line-through;'>{{item.goodsPriceStr}}
+              <view style='float:left;margin-right:.7vw;'>¥</view>
+              <!-- <view class='xian7'></view> -->
+            </view>
+          </view>
+        </block>
+        <view style='float: right;' id="{{item.goods_id}}" catchtap='exchange2' hidden='{{exchange2==item.goods_id}}'>
+          <image src='../../../image/orderList/spot.png' class='collectList-synthesize_image4'></image>
+        </view>
+        <view id="{{item.goods_id}}" catchtap='exchange3' wx:if="{{exchange2==item.goods_id}}" class='collectList-synthesize_cancel1'>取消收藏</view>
+      </view>
+    </view>
+  </block>
+  <view bindtap='eliminate'>
+    <view class='pull-text' wx:if='{{allGoodsLen==12}}'>上拉加载更多</view>
+    <view class='pull-text' wx:if='{{allGoodsLen!=12}}'>没有更多啦</view>
+    <view style='clear:both;height:100px;'></view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<view class='item-column' bindtap='checkAll' hover-class='press-style'>
+  <view class='item-name'>全部</view>
+  <view class='triangle'></view>
+</view>
+
+<view style='margin-top:20rpx;'>
+  <block wx:for="{{categories}}">
+    <view class='item-column-son' id="{{item.stc_id}}" bindtap='checkCategory' hover-class='press-style'>
+      <view class='item-name'>{{item.stc_name}}</view>
+      <view class='triangle'></view>
+    </view>
+  </block>
+</view>
+
+
+
+<view class="bottomBar" style="" hidden='true'>
+  <view class="page_ontainer1" style="" hover-class="press_class">
+    <view class="icon_container" style="">
+      <image src="../../../image/store/search1.png" class="icon_common" style="display:block;width:45rpx;height:38rpx;margin:auto;"></image>
+    </view>
+    <view class="page_name" style="color:rgb(93,217,171);">分类</view>
+  </view>
+  <view class="page_ontainer2" style="" hover-class="press_class">
+    <view class="icon_container" style="">
+      <image src="../../../image/store/message0.png" class="icon_common" style="display:block;width:40rpx;height:38rpx;margin:auto;"></image>
+    </view>
+    <view class="page_name" style="">信息</view>
+  </view>
+
+  <view class="page_ontainer5" style="" hover-class="press_class">
+    <view class="icon_container" style="">
+      <image src="../../../image/store/scan.png" class="icon_common" style="display:block;width:100rpx;height:100rpx;margin:auto;position:relative;top:-36rpx;"></image>
+    </view>
+    <view class="page_name" style="width:100rpx;padding-top:15rpx;">扫码购物</view>
+  </view>
+
+  <view class="page_ontainer4" style="" hover-class="press_class">
+    <view class="icon_container" style="">
+      <image src="../../../image/store/my0.png" class="icon_common" style="display:block;width:38rpx;height:45rpx;margin:auto;"></image>
+    </view>
+    <view class="page_name" style="">我的</view>
+  </view>
+  <view class="page_ontainer3" style="" hover-class="press_class">
+    <view class="icon_container" style="width:75rpx;">
+      <image src="../../../image/store/cart0.png" class="icon_common" style="display:block;width:45rpx;height:41rpx;margin:auto;"></image>
+    </view>
+    <view class="page_name" style="width:75rpx;">购物车</view>
+  </view>
+</view>

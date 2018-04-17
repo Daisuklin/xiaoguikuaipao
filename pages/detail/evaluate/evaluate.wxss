@@ -1,0 +1,44 @@
+/* pages/detail/evaluate/evaluate.wxss */
+Page {
+  background-color: #eee;
+  width: 100%;
+  max-height: 100%;
+}
+.fl{float: left;}
+.fr{float: right;}
+.mar_top_20{margin-top: 20rpx;}
+.pad_30{padding: 30rpx;}
+.swiper_box {
+  width: 100%;
+  height: 750rpx;
+}
+
+.border-radius50 {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+}
+.goods_comment{padding-top: 0rpx;margin-bottom: 200rpx;}
+.goods_comment_titel{display: flex;flex-direction: row;align-items: center;justify-content: space-between;height: 90rpx;padding: 0rpx 30rpx;}
+.comment_titel_l{font-size: 30rpx;}
+.goods_comment_titel text{font-size: 28rpx;}
+.goods_comment_list{background: #fff;}
+.goods_comment_list .comment_list_content{display: flex;flex-direction: row;border-bottom: 1px solid #eee;}
+.goods_comment_list .comment_list_content:last-child{border-bottom: none;}
+.goods_comment_list .comment_list_content .comment_list_l{padding-right: 20rpx;}
+.goods_comment_list .comment_list_content .comment_list_l image{width: 10.6667vw; height: 10.6667vw;}
+.comment_list_r{width: 100%;display: flex;flex-direction: column;}
+.comment_list_top{display: flex;flex-direction: row;justify-content: space-between;align-items: center;}
+.comment_list_top .txt_tel{font-size: 4vw;color:#444;}
+.comment_list_top .txt_data{font-size: 2.6667vw;color:#999;}
+.comment_list_distribution{font-size: 3.2vw;color: #999;}
+.comment_list_distribution text{color:#F5A51E;}
+.comment_list_distribution image{width: 3.6vw;height: 3.6vw;padding-right: 10rpx;position: relative;top: 4rpx;}
+.comment_list_specifications{font-size: 28rpx;color: #999;}
+.comment_list_introduce{font-size: 3.6vw;color:#444;padding-top: 15rpx;}
+.comment_list_reviewmap{display: flex;flex-direction: row;justify-content: space-between;padding-top: 20rpx;}
+.comment_list_reviewmap image{width: 25.3333vw;height: 25.3333vw;}
+.business_reply{background: #F8F8F8;border-radius:10rpx;padding: 18rpx;line-height: 40rpx;margin-top: 30rpx;margin-bottom: 20rpx;}
+.business_reply text{font-size: 3.2vw;color:#999;}

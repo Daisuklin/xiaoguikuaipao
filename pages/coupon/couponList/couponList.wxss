@@ -1,0 +1,192 @@
+/* pages/coupon/couponList/couponList.wxss */
+
+Page {
+  background-color: #f8f8f8;
+  width: 100%;
+}
+
+.couponList_content {
+  margin: 4vw;
+}
+
+.couponList_content .coupon_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2.6666vw;
+}
+
+.couponList_content .coupon_list .coupon_list_l {
+  width: 26.6666vw;
+  height: 26.6666vw;
+}
+
+.couponList_content .coupon_list .coupon_list_r {
+  height: 26.6666vw;
+  width: 65.3333vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.couponList_content .coupon_list .coupon_list_r .coupon_list_r_img {
+  height: 26.6666vw;
+  width: 65.3333vw;
+  position: absolute;
+  top: 0vw;
+  left: 0vw;
+  z-index: 0;
+}
+
+.couponList_content .coupon_list .coupon_list_r text {
+  text-align: center;
+  line-height: 7vw;
+  z-index: 1;
+  position: relative;
+  margin-right: 6.6666vw;
+}
+
+.couponList_content .coupon_list .coupon_list_r text.text_top {
+  font-size: 4.6666vw;
+  color: #fff;
+}
+
+.couponList_content .coupon_list .coupon_list_r text.text_bottom {
+  font-size: 6.6666vw;
+  color: #fff;
+  padding-bottom: 10rpx;
+  font-weight: 600;
+  /* position: fixed; */
+}
+
+/* 购买弹窗(底部) */
+
+/* .bot_tobuy {
+  position: fixed;
+  bottom: 0vw;
+  background: #fff;
+  width: 100vw;
+  left: 0vw;
+  z-index: 10010;
+} */
+
+/* .bot_tobuy .tobuy_content_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 70rpx 0rpx 40rpx;
+} */
+
+/* .bot_tobuy .btn_sumint{background: #5DD9AB;border: none;border-radius: 0rpx;height: 12vw;} */
+
+/* .bot_tobuy_park {
+  width: 105vw;
+  height: 105vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+  top: -1rpx;
+  left: -1rpx;
+  z-index: 10009;
+}
+.bot_tobuy .tobuy_content_top .p_text1 {
+  font-size: 4vw;
+  color: #444;
+  height: 4vw;
+}
+
+.bot_tobuy .tobuy_content_top .p_text2 {
+  color: #fe751a;
+  font-size: 4.6666vw;
+  height: 16vw;
+}
+
+.tobuy_content_center {
+  font-size: 3.2vw;
+  color: #999;
+  text-align: center;
+  height: 6.6666vw;
+  margin: 0rpx 4vw;
+  padding-top: 0rpx;
+}
+.bot_tobuy .btn_sumint::after {
+  border: none;
+} */
+
+/* 购买弹窗(中间)  */
+
+.bot_tobuy_park {
+  width: 105vw;
+  height: 105vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+  top: -1rpx;
+  left: -1rpx;
+  z-index: 10009;
+}
+
+.bot_tobuy .tobuy_content_top .p_text1 {
+  font-size: 4vw;
+  color: #444;
+  height: 4vw;
+}
+
+.bot_tobuy .tobuy_content_top .p_text2 {
+  color: #fe751a;
+  font-size: 4.6666vw;
+  height: 16vw;
+}
+
+.tobuy_content_center {
+  font-size: 3.2vw;
+  color: #999;
+  text-align: center;
+  height: 6.6666vw;
+  margin: 0rpx 4vw;
+  padding-top: 0rpx;
+}
+
+.bot_tobuy .btn_sumint::after {
+  border: none;
+}
+
+.bot_tobuy {
+  position: fixed;
+  top: 28vh;
+  background: #fff;
+  width: 84vw;
+  left: 8vw;
+  z-index: 10010;
+  border-radius: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.bot_tobuy .btn_sumint {
+  background: #5dd9ab;
+  border: none;
+  height: 12vw;
+  width: 76vw;
+  border-radius: 10rpx;
+}
+
+.bot_tobuy .tobuy_content_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx 0rpx 50rpx;
+}
+
+.bot_tobuy .btn_close {
+  width: 3.2vw;
+  height: 3.2vw;
+  position: absolute;
+  top: 2vw;
+  right: 2vw;
+  padding: 15rpx;
+  border-radius: 50%;
+}

@@ -1,0 +1,143 @@
+/* pages/home/moreclass/moreclass.wxss */
+
+Page {
+  max-height: 100%;
+  width: 100%;
+  background: white;
+}
+.label-container{
+  background-color:white;text-align:center;font-size:24.6rpx;padding-top:20rpx;
+}
+.label-icon{
+  height:82rpx;width:82rpx;
+}
+
+
+.maskingf-kind {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+}
+
+.thirdClass0 {
+  display: inline-block;
+  float: left;
+  height: 202rpx;
+  width: 164rpx;
+  margin-right: 15rpx;
+  margin-bottom: 15rpx;
+  background: white;
+}
+
+.thirdClass1 {
+  display: inline-block;
+  float: left;
+  height: 202rpx;
+  width: 164rpx;
+  margin-bottom: 15rpx;
+  background: white;
+}
+
+.svShadow {
+  box-shadow: 0px 1px 10px #d9d9d9;
+}
+
+.eclipseColor {
+  height: 60rpx;
+  width: 1rpx;
+  border-radius: 50%;
+  background: radial-gradient(#d9d9d9, white); /* 标准的语法（必须放在最后） */
+  box-shadow: 0px 0px 20rpx 20rpx #d9d9d9;
+  position: relative;
+  top: 50rpx;
+  left: 40rpx;
+  z-index: 100;
+}
+
+.sanjiao0 {
+  display: inline-block;
+  height: 20rpx;
+  width: 20rpx;
+  border-width: 0px 2px 2px 0px;
+  border-color: rgb(51, 51, 51);
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin-top: -10rpx;
+  z-index: 10000;
+}
+
+.sanjiao1 {
+  display: inline-block;
+  height: 20rpx;
+  width: 20rpx;
+  border-width: 2px 0px 0px 2px;
+  border-color: rgb(51, 51, 51);
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin-top: 10rpx;
+  z-index: 10000;
+}
+
+.fix0 {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 
+.hoverCategoryClass {
+  background-color: #f0f0f0;
+} */
+
+.fix1 {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: white;
+}
+
+.categoryScrow {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 640rpx;
+  height: 168rpx;
+  background-color: white;
+  white-space: nowrap;
+}
+
+.choose-color1 {
+  color: #5dd9ab;
+}
+
+.choose-color0 {
+}
+
+.choose1 {
+  width: 70rpx;
+  height: 6rpx;
+  margin-left: 40rpx;
+  background: #5dd9ab;
+}
+
+.choose0 {
+  width: 70rpx;
+  height: 6rpx;
+  margin-left: 36rpx;
+}
+.press-style{
+  background: #ECECEC;
+}

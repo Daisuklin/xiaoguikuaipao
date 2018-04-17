@@ -1,0 +1,11 @@
+<!--pages/login/index/index.wxml-->
+<view class='login_index'>
+  <image src='/image/login/login_bg.jpg' class='backgroundImg'></image>
+  <view style="text-align: center">
+    <image class='temp_login_logo' src='/image/login/login_logo.png'></image>
+    <rich-text  class='appName'>小龟快跑</rich-text>
+  </view>
+  <view class='loginBtn'>
+    <button open-type="getUserInfo" bindgetuserinfo='getUserInfo'>授权登陆</button>
+  </view>
+</view>

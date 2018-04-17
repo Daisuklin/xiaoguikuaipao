@@ -1,0 +1,81 @@
+<!-- pages/store/my/my.wxml  -->
+<view class="page">
+  <!-- 个人资料信息部分 -->
+  <view class="head-news">
+    <view class="head-portraits">
+      <button wx:if="{{avatarUrl == '../../../image/head.png'}}" plain="false" open-type="getUserInfo" bindgetuserinfo="{{avatarUrl == '../../../image/head.png'? 'getUserInfo': ''}}" class='head-portraits_button' style='border:none'>
+        <!-- 头像 start -->
+        <image src="{{avatarUrl}}" class='head-portraits_img'></image>
+        <!-- 头像 end -->
+      </button>
+      <image wx:if="{{avatarUrl != '../../../image/head.png'}}" src="{{avatarUrl}}" class='head-portraits_button head-portraits_img'></image>
+      <!-- 放昵称 start -->
+      <button open-type="getUserInfo" bindgetuserinfo="{{avatarUrl == '../../../image/head.png'? 'getUserInfo': ''}}" plain="false" class='head-portraits_name' style='border:none'>{{nickName}}</button>
+      <!-- 放昵称 end -->
+    </view>
+
+    <!-- 中间环节信息部 -->
+    <view class="weui-flex" style="background-color:#FFFFFF;width:92vw;margin-top:4vw;float:left">
+      <!-- 寄件功能 -->
+      <view class="weui-flex__item" bindtap="mail">
+        <view>
+          <image src="{{icon.post}}" style="height:12vw;width:12vw;"></image>
+        </view>
+        <view style=" font-size: 3.6vw;color:#444444">寄件</view>
+      </view>
+      <!-- 分割线 -->
+      <view class='right'></view>
+      <!-- 订单功能 -->
+      <view class="weui-flex__item" bindtap="orderList">
+        <view>
+          <image src="{{icon.order}}" style="height:12vw;width:12vw;"></image>
+        </view>
+        <view style=" font-size: 3.6vw;color:#444444">订单</view>
+      </view>
+      <!-- 分割线 -->
+      <view class='right'></view>
+      <!-- 地址功能 -->
+      <view class="weui-flex__item" bindtap='site'>
+        <view>
+          <image src="{{icon.message}}" style="height:12vw;width:12vw;"></image>
+        </view>
+        <view style=" font-size: 3.6vw;color:#444444">地址</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- end部的功能 -->
+  <view class="myweui-cells" style='margin-top:4vw;'>
+    <!-- 抵扣券部分 -->
+     <view bindtap='deduction' class="my-style" style="width:100vw;">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" style='margin-left:.7vw;'>
+        <view class="weui-cell__hd">
+          <image src="{{icon.deduction}}" style="  width: 5.4667vw;height: 5.8667vw;"></image>
+        </view>
+        <view class="weui-cell__bd">寄件抵扣券</view>
+      </view>
+    </view> 
+    <!-- 分割线部分 -->
+     <view class='xiantiao'></view> 
+    <!-- 收藏部分 -->
+    <view bindtap='collect' class="my-style" style="width:100vw;">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" style='margin-left:.7vw;'>
+        <view class="weui-cell__hd">
+          <image src="{{icon.collect}}" style="  width: 5.2vw;height: 4.4vw;"></image>
+        </view>
+        <view class="weui-cell__bd">收藏</view>
+      </view>
+    </view>
+    <!-- 客服部分 -->
+    <view bindtap="tucao" class="my-style" style="width:100vw;margin-top:4vw;">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" style='margin-left:.7vw;'>
+        <view class="weui-cell__hd">
+          <image src="{{icon.contact}}" style="  width: 5.4667vw;height: 4.8vw;"></image>
+        </view>
+        <view class="weui-cell__bd">联系我们：400-660-9727</view>
+      </view>
+    </view>
+
+    <view style="border-radius:5px;width:80vw;margin-left:75rpx; margin-top:38rpx" class="weui-cell_button" bindtap="quit" wx:if="{{avatarUrl != '../../../image/head.png'}}">退出登录</view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+/* pages/message/message.wxss */
+.tipmessage{
+  width:100%;
+  text-align: center;
+  color:rgb(153,153,153);
+  font-size:30rpx;
+  margin-top:30rpx;
+}

@@ -1,0 +1,97 @@
+{
+  "pages": [
+    "pages/home2/home2",
+    "pages/home/home",
+    "pages/store/poster/poster",
+    "pages/my/distributionOrderDetail/distributionOrderDetail",
+    "pages/my/distributionOrderList/distributionOrderList",
+    "pages/my/my",
+    "pages/coupon/buycoupon/buycoupon",
+    "pages/coupon/coupon",
+    "pages/coupon/couponList/couponList",
+    "pages/store/actlife/actlife",
+    "pages/store/glspecial/glspecial",
+    "pages/home/search/imgstoresresult/imgstoresresult",
+    "pages/store/index",
+    "pages/cart/cart",
+    "pages/detail/goodsdetail",
+    "pages/home/chooseAddr/chooseAddr",
+    "pages/store/category/category",
+    "pages/store/goodlist/goodlist",
+    "pages/store/cart/cart",
+    "pages/store/storeinfo/storeinfo",
+    "pages/store/hslist/hslist",
+    "pages/home/search/result/result",
+    "pages/home/search/search",
+    "pages/home/moreclass/moreclass",
+    "pages/home/secondclass/secondclass",
+    "pages/home/themepage/themepage",
+    "pages/store/search/search",
+    "pages/home/search/resultforgood/resultforgood",
+    "pages/login/index/index",
+    "pages/login/bindPhone/bindPhone",
+    "pages/my/collectList/collectList",
+    "pages/my/mail/contract/contract",
+    "pages/my/mail/address2/address2",
+    "pages/my/mail/address2/location/location",
+    "pages/my/mail/consignee/consignee",
+    "pages/my/mail/sender/sender",
+    "pages/my/mail/coupon/coupon",
+    "pages/my/evaluate/evaluate",
+    "pages/my/site/site",
+    "pages/my/site/address3/address3",
+    "pages/my/mail/address/manage/manage",
+    "pages/my/mail/address/address",
+    "pages/my/mail/mail",
+    "pages/my/mail/address2/manage/manage",
+    "pages/store/my/my",
+    "pages/my/payment/payment",
+    "pages/my/orderList/orderList",
+    "pages/message/message",
+    "pages/temp/reasonInfo/reasonInfo",
+    "pages/temp/dialogBox/dialogBox",
+    "pages/detail/evaluate/evaluate",
+    "pages/my/order/order",
+    "pages/my/order/orderDetail/orderDetail",
+    "pages/newLogin/newLogin"
+  ],
+  "window": {
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#5DD9AB",
+    "navigationBarTitleText": "小龟快跑",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#5DD9AB",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home2/home2",
+        "iconPath": "image/store0.png",
+        "selectedIconPath": "image/store1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "image/cart0.png",
+        "selectedIconPath": "image/cart1.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "image/account0.png",
+        "selectedIconPath": "image/account1.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 60000,
+    "connectSocket": 10000,
+    "uploadFile": 60000,
+    "downloadFile": 60000
+  },
+  "debug": false
+}

@@ -1,0 +1,95 @@
+<view class='maskingf-kind' hidden='{{!checkAllHiden}}' bindtap='setMaskHidden'></view>
+<view class="fix1" style="">
+  <view class="categoryScrow" hidden="{{!checkAllHiden}}" style="border-bottom:1rpx solid #eee;font-size:28rpx;color:rgb(68,68,68);">
+    <view class="" style="padding:40rpx;padding-top:60rpx;">全部分类</view>
+  </view>
+  <!-- 顶部导航内容 start -->
+  <view style='border-bottom:1rpx solid #eee;display:flex;flex-direction:row;'>
+    <scroll-view hidden="{{checkAllHiden}}" scroll-x="true" wx:if="{{item.goodList.length!=0}}" scroll-x="false" class="categoryScrow" style="" scroll-into-view="{{targetId}}">
+      <view wx:for="{{allClass}}" id="i{{item2.gc_id}}" bindtap="chooseGoodClass" wx:for-item="item2" hover-class="hoverCategoryClass" style="height:168rpx;width:112rpx;margin-left:10rpx;display:inline-block;font-size:25rpx;text-align:center;">
+        <view class="" style="height:168rpx;width:142rpx;position:relative;top:-30rpx;">
+          <image src="{{item2.xin_gc_ico}}" style="height:82rpx;width:82rpx;display:block;margin-left:29rpx;margin-bottom:20rpx;"></image>
+          <view class="{{classId==item2.gc_id?'choose-color1':'choose-color0'}}" style="font-size:25rpx;width: 142rpx;text-align:center;font-size:25rpx;">{{item2.gc_name}}</view>
+        </view>
+      </view>
+      <view class="" style="width:20rpx;height:168rpx;display:inline-block;">
+      </view>
+    </scroll-view>
+    <!-- 顶部导航内容 end -->
+
+    <!-- 三角指向特效 start -->
+    <view class="" bindtap="moreClass" style="background:white;width:110rpx;height:168rpx;padding:10rpx 0px;z-index:10000;display:flex;flex-direction:row;">
+      <view class="eclipseColor"></view>
+      <view class="" style="height:168rpx;width:60rpx;position:relative;top:-12rpx;left:30rpx;background:white;z-index:10000;">
+        <view class="{{checkAllHiden?'sanjiao1':'sanjiao0'}}"></view>
+      </view>
+    </view>
+    <!-- 三角指向特效 end -->
+  </view>
+
+
+</view>
+<!-- 展开后的全部分类 start -->
+<view class="" hidden="{{!checkAllHiden}}" style="padding-top:10rpx;padding-bottom:20rpx;width:100%;background-color:white;z-index:1000;position:fixed;top:179rpx;left:0px;">
+  <!-- <block wx:for="{{arrs}}">
+    <view class="weui-flex" style="background-color:white;text-align:center;font-size:24.6rpx;padding-bottom:10rpx;">
+      <block wx:for="{{item}}" wx:for-item="item2">
+        <view bindtap='chooseGoodClass' id="i{{item2.gc_id}}">
+          <view class="weui-flex__item">
+            <view>
+              <image src="{{item2.xin_gc_ico}}" style="height:82rpx;width:82rpx;"></image>
+            </view>
+            <view class="{{classId==item2.gc_id?'choose-color1':'choose-color0'}}">{{item2.gc_name}}</view>
+          </view>
+          <view class="{{classId==item2.gc_id?'choose1':'choose0'}}" style=''></view>
+        </view>
+      </block>
+    </view>
+  </block> -->
+  <block wx:for="{{arrs}}">
+    <view class="weui-flex label-container">
+      <block wx:for="{{item}}" wx:for-item="item2">
+        <view id="i{{item2.gc_id}}" bindtap="{{item2==null?'':'chooseGoodClass'}}" class="weui-flex__item" hover-class="{{item2==null?'':'press-style'}}">
+          <view>
+            <image src="{{item2.xin_gc_ico}}" mode='aspectFill' class='label-icon'></image>
+          </view>
+          <view>{{item2.gc_name}}</view>
+          <view class="{{classId==item2.gc_id?'choose1':'choose0'}}" style=''></view>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+<view class="" style="height:188rpx;"></view>
+<!-- 展开后的全部分类 end -->
+
+<view class="" wx:for="{{classes}}" style="clear:both;">
+  <!-- 文字标题 start -->
+  <view class="" style="margin:auto;width:350rpx;margin-top:30rpx;">
+    <view class="" style="height:1rpx;width:80rpx;background:rgb(68,68,68);float:left;margin-right:15rpx;margin-top:25rpx;"></view>
+    <view class="" style="font-size:30rpx;color:rgb(68,68,68);float:left;height:50rpx;line-height:50rpx;width:140rpx;text-align:center;">{{item.shopncGoodsClass.gc_name}}</view>
+    <view class="" style="height:1rpx;width:80rpx;background:rgb(68,68,68);float:left;margin-left:15rpx;margin-top:25rpx;"></view>
+  </view>
+  <view class="" style="height:35rpx;"></view>
+  <!-- 文字标题 end-->
+
+  <!-- 三级分类 start -->
+  <view class="" style="clear:both;width:701rpx;margin-left:25rpx;margin-top:35rpx;">
+    <block wx:for="{{item.goodsClassList}}" wx:for-item="item2">
+      <view hover-class='press-style' class="thirdClass0" id="{{item2.gc_id}}" bindtap='checkClassGoods' wx:if="{{index==0}}" style="">
+        <image src="{{item2.xin_gc_ico}}" style="display:block;height:120rpx;width:120rpx;margin-left:22rpx;margin-top:20rpx;"></image>
+        <view class="" style="width:120rpx;margin-left:22rpx;margin-top:15rpx;text-align:center;font-size:25rpx;color:rgb(51,51,51);">{{item2.gc_name}}</view>
+      </view>
+      <view hover-class='press-style' class="thirdClass0" id="{{item2.gc_id}}" bindtap='checkClassGoods' wx:if="{{index%3!=0}}" style="">
+        <image src="{{item2.xin_gc_ico}}" style="display:block;height:120rpx;width:120rpx;margin-left:22rpx;margin-top:20rpx;"></image>
+        <view class="" style="width:120rpx;margin-left:22rpx;margin-top:15rpx;text-align:center;font-size:25rpx;color:rgb(51,51,51);">{{item2.gc_name}}</view>
+      </view>
+      <view hover-class='press-style' class="thirdClass1" id="{{item2.gc_id}}" bindtap='checkClassGoods' wx:if="{{index%3==0&&index!=0}}" style="">
+        <image src="{{item2.xin_gc_ico}}" style="display:block;height:120rpx;width:120rpx;margin-left:22rpx;margin-top:20rpx;"></image>
+        <view class="" style="width:120rpx;margin-left:22rpx;margin-top:15rpx;text-align:center;font-size:25rpx;color:rgb(51,51,51);">{{item2.gc_name}}</view>
+      </view>
+    </block>
+    <view class="" style="height:50rpx;"></view>
+  </view>
+  <!-- 三级分类 end -->
+</view>

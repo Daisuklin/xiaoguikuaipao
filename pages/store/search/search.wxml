@@ -1,0 +1,14 @@
+<view class="search-container">
+  <icon type="search" size="14" class='icon-search'></icon>
+  <input type="text" placeholder="搜索" value='{{value}}' bindinput='setKeyWord' bindconfirm="search" class="input_class" />
+  <view bindtap="search" class='text-search'>搜索</view>
+</view>
+<view class='line'></view>
+<!-- <view class="hot-title">
+  热门搜索
+</view>
+<block wx:for="{{tags}}">
+  <view class="hot-text">
+    {{item}}
+  </view>
+</block> -->

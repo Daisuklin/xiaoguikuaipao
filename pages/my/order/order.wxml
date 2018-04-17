@@ -1,0 +1,331 @@
+<view class="weui_orderpage" style="{{hasMask?'position:fixed':''}}">
+  <!-- 地址 -->
+  <form bindsubmit='onSubmitOrder' report-submit='true'>
+    <view class="redio_box">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio">
+          <view class="address_box border_radius15 {{isShow != 0 ? 'hiddenAddress': ''}}">
+            <view class="radio_top">
+              <text class="text_title">小龟配送</text>
+              <radio value="0" checked />
+              <image src="{{isShow==0 ? icon.icon_sel2:icon.icon_sel1}}" class="radio_img"></image>
+            </view>
+            <view class="pagesorder_address" hover-class="weui-cell_active" bindtap="gotoaddress">
+              <view class="address_l">
+                <view class="address_img">
+                  <image src="{{icon.icon_location}}"></image>
+                </view>
+                <view class="address_text" wx:if="{{address_info!=null}}">
+                  <text class="addr_txt1"><!--{{address_info.addr}}-->{{address_info.addr}}{{address_info.roomNo}}</text>
+                  <text class="addr_txt2">{{address_info.contactName}}   {{address_info.contactNumber}}</text>
+                </view>
+                <view class="address_text" wx:if="{{address_info == null}}" style="padding-bottom:0rpx;font-size:4vw;color:#999;">请选择地址</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:26rpx;">
+              </view>
+            </view>
+            <view class="pagesorder_distribution weui-cell__ft_in-access" bindtap="showChoiceTime">
+              <view class="pagesorder_img">
+                <image src="{{icon.icon_appoint}}"></image>
+              </view>
+              <view class="pagesorder_text">{{monthday==0 && chioceHoursParent==0?'立即配送':'指定配送'}}
+                <text>{{monthday == '' && chioceHoursParent==0?'( 预约配送': '( ' + monthday}} {{chioceHoursParent==0 ? ''+' )':selectHam +'送达 )'}}</text>
+              </view>
+              <!-- <view class="pagesorder_text">指定时间 <text>19:30</text></view> -->
+            </view>
+          </view>
+        </label>
+        <!-- 快速购物begin -->
+        <block wx:if="{{orderMas.speediness!=0}}">
+          <label class="radio">
+            <view class="address_box border_radius15">
+              <view class="radio_top">
+                <view class="radio_top_l">
+                  <text class="text_title">快速购物</text>
+                  <text class="text_con">无需排队付款，自提商品按提示指引，快速通行</text>
+                </view>
+
+                <radio value="1" />
+                <image src="{{isShow==1 ? icon.icon_sel2:icon.icon_sel1}}" class="radio_img"></image>
+              </view>
+            </view>
+          </label>
+        </block>
+        <!-- 快速购物end -->
+        <block wx:if="{{orderMas.up_door!=0}}">
+          <label class="radio">
+            <view class="address_box border_radius15 {{isShow == 2 ? '': 'hiddenAddress'}}">
+              <view class="radio_top">
+                <view class="radio_top_l">
+                  <text class="text_title">上门自提</text>
+                  <text class="text_con">无需排队付款，带商家接单备货完成，自助提取</text>
+                </view>
+                <radio value="2" />
+                <image src="{{isShow==2 ? icon.icon_sel2:icon.icon_sel1}}" class="radio_img"></image>
+              </view>
+              <view class="pagesorder_address">
+                <view class="address_l">
+                  <view class="address_img">
+                    <image src="{{icon.icon_location}}"></image>
+                  </view>
+                  <view class="address_text">
+                    <text class="addr_txt1">{{orderMas.oneselfTakeAddress.address}}</text>
+                    <text class="addr_txt2">{{orderMas.oneselfTakeAddress.store_name}}</text>
+                  </view>
+                </view>
+                <!-- <view class="weui-cell__ft weui-cell__ft_in-access" style="margin-right:26rpx;">
+            </view> -->
+              </view>
+              <view class="pagesorder_distribution">
+                <view class="pagesorder_img">
+                  <image src="{{icon.icon_call}}" style="width:2.8vw;height:3.86667vw;"></image>
+                </view>
+                <view class="pagesorder_text">自取手机：{{orderMas.oneselfTakeAddress.mob_phone}}</view>
+              </view>
+            </view>
+          </label>
+        </block>
+      </radio-group>
+    </view>
+
+
+    <!-- 配送信息 -->
+    <view class="order_content" wx:for="{{store_cart_list}}">
+      <view class="order_distribution border_radius15">
+        <view style="padding:0px 3.3333vw;">
+          <view class="order_shop_box">
+            <view class="order_shop" id="{{item.store_id}}">
+              <view class="ordershop__hd">
+                <image src="{{item.store_avatar!=null?item.store_avatar:icon.storetop}}"></image>
+              </view>
+              <view class="ordershop__bd">{{item.store_name}}</view>
+            </view>
+            <text class="text_r1" wx:if="{{since_hand == 0}}">小龟配送</text>
+            <text class="text_r2" wx:if="{{since_hand == 1}}">快速购物</text>
+            <text class="text_r2" wx:if="{{since_hand == 2}}">上门自提</text>
+          </view>
+
+          <!--  -->
+          <view class="order_pro_box" bindtap="" wx:for="{{item.goods_list}}" wx:for-item="items">
+            <view class="order_pro">
+              <view class="order_pro__hd" id="{{items.goods_id}}">{{items.goods_name}}</view>
+              <view class="order_pro__bd">
+                <text class="order_pro_text1">x{{items.goods_num}}</text>
+                <text class="order_pro_price">￥{{items.newDiscountPrice}}</text>
+              </view>
+            </view>
+            <view class="order_pro_bot">
+              <view class="order_bot__hd">{{items.spec ==''||items.spec==null?'':items.spec}}</view>
+              <view class="order_bot__bd">
+                <text class="order_bot_text1">￥{{items.newGoodsPrice}}</text>
+              </view>
+            </view>
+          </view>
+          <block wx:if="{{item.additional_info.length>0}}">
+            <view class="order_pro_box pad-top20">
+              <view class="order_pro" wx:for="{{item.additional_info}}" wx:for-item="additional">
+                <view class="order_pro__hd">{{additional.name}}
+                  <image src="{{icon.icon_qusition}}" class="img_ques" bindtap="getServiceFee" wx:if="{{additional.name =='夜间服务费'}}"></image>
+                </view>
+                <view class="order_pro__bd">
+                  <text class="order_pro_price">{{additional.price}}</text>
+                </view>
+              </view>
+
+            </view>
+          </block>
+          <!--  -->
+        </view>
+        <view class="">
+          <view class="order_total">
+          {{item.coupon_info.length>0?'共':'实付'}}￥
+            <text class="txt1">{{item.store_totle}}</text>
+            <text class="txt2">共{{item.store_total_num}}件商品</text>
+          </view>
+          <block wx:if="{{item.coupon_info.length>0}}">
+            <view class="order_avorable_Price">
+              <view class="order_avorable_discount" wx:for="{{item.coupon_info}}" wx:for-item="coupon_info">
+                <view>
+                  <image src="{{coupon_info.ico}}"></image>
+                  <text class="avo_txtl"> {{coupon_info.name}}</text>
+                </view>
+                <text class="avo_txt2">{{coupon_info.price}}</text>
+              </view>
+            </view>
+            <view class="order_actual_payment">
+              实付
+              <text style="color:rgb(224, 6, 20);font-weight:bold;">￥</text>
+              <text class="txt1">{{item.store_amount}}</text>
+              <text class="txt2">已优惠{{item.coupon_total}}元</text>
+            </view>
+          </block>
+
+        </view>
+      </view>
+      <view class="payment_method border_radius15">
+        <view bindtap="" class="weui-cell weui-cell_access border_bot" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">支付方式</view>
+          <view class="weui-cell__ft" style="color:#444;font-size:3.6vw;">在线支付</view>
+        </view>
+        <view bindtap="bindButtonTap" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">备注</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="flex:6">
+            <input id="{{item.store_id}}" placeholder="口味、偏好等要求" bindinput="userNeedInput" value="" class="input_msg" focus="{{focus}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="order_bot_sub">
+      <view class="bot_box">
+        <view class="order_bot_l">已优惠￥{{coupon}}</view>
+        <view class="order_bot_c">实付
+          <text>￥{{order_amount}}</text>
+          <button class="order_btn" plain="true" style="{{cantClick?'background:#999;':''}}" hover-class="order_btn_select" form-type="{{cantClick?'':'submit'}}">提交订单</button>
+        </view>
+
+      </view>
+    </view>
+    <!-- 选择预约时间begin -->
+    <view class="goods_park" hidden="{{!gotoBuy}}"></view>
+    <view class="goods_park_box" hidden="{{!gotoBuy}}">
+      <!-- 左右滑动主要内容begin -->
+      <view class="park_scroll_box">
+        <!-- 左滑动begin -->
+        <scroll-view scroll-y="true" style="height: 550rpx" class="park_scaroll_l">
+          <block>
+            <view class="{{ isIndexNu == 0 ? 'selectlet' : ''}}" bindtap="changeIndex" id="0" data-mouthday="0">今天(周{{day}})</view>
+          </block>
+          <block wx:for="{{getDateArr}}">
+            <view bindtap="changeIndex" id="{{index+1}}" data-mouthday="{{item}}" class="{{ isIndexNu == (index+1) ? 'selectlet' : ''}}">{{item}}</view>
+          </block>
+        </scroll-view>
+        <!-- 左滑动end -->
+
+        <!-- 右滑动begin -->
+        <scroll-view scroll-y="true" style="height: 550rpx" class="park_scaroll_r">
+          <block>
+            <view hidden="{{isIndexNu != 0}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view bindtap="radioChangepake" data-value="{{item.time}}" class="park_radio_label {{ monthdayParent=='' && chioceHours==0 ? 'select_label' : ''}}" wx:if="{{index==0}}">
+                    <text wx:if="{{index==0}}">立即配送</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+                <block wx:for="{{arr}}">
+                  <view bindtap="radioChangepake" data-value="{{item.time}}" class="park_radio_label {{isSelectClass == item.time && chioceHours!=0 ? 'select_label' : ''}}" wx:if="{{nowHours < item.time && nowHourMin < item.time && index!=0}}">
+                    <text wx:if="{{index!=0}}">{{item.time}}<!--{{nowHours < item.time}}{{nowHourMin < item.time}}--></text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 1}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==1&& isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 2}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==2&&isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 3}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==3&&isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 4}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==4&&isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 5}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==5&&isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <block>
+            <view wx:for-item="itembox" hidden="{{isIndexNu != 6}}">
+              <view class="park_radiogroup">
+                <block wx:for="{{arr}}">
+                  <view class="park_radio_label {{isIndexNuChild==6&&isSelectClass == item.time && monthdayParent!=0 && chioceHours!=0 ? 'select_label' : ''}}" bindtap="radioChangepake" data-value="{{item.time}}">
+                    <text>{{item.time}}</text>
+                    <image src="{{icon.icon_select}}"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+        </scroll-view>
+        <!-- 右滑动end -->
+      </view>
+      <!-- 左右滑动主要内容begin -->
+
+      <view class="cart_buttongroup">
+        <button type="default" bindtap="canselChoiceTime" class="add_cart">取消</button>
+        <button type="default" bindtap="getDetermine" class="add_settlementt" data-ifcartid="0">确定</button>
+        <!--直接去结算-->
+      </view>
+    </view>
+    <!-- 选择预约时间end -->
+    <!-- 夜间服务费begin -->
+    <view class="park_contents" hidden="{{!showNight}}"></view>
+    <view class="park_content_main" hidden="{{!showNight}}">
+      <text class="content_top">- 夜间服务费 -</text>
+      <block wx:for="{{nightInfo}}" wx:if="{{nightInfo!=''}}">
+        <view class="txt_con_view">
+          <text class="txt_con">{{item.key}}</text>
+          <text class="txt_con">{{item.value}}</text>
+        </view>
+      </block>
+      <text class="btn_close" bindtap="closeServiceFee">确定</text>
+    </view>
+    <!-- 夜间服务费end -->
+  </form>
+</view>
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box_park" wx:if="{{box_park}}"></view>
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

@@ -1,0 +1,33 @@
+<!-- <view class='head'>
+  <view class='title-container' bindtap='setAtNowAddr'>
+    <input class='searchInput' bindinput='searchAddr' placeholder='可输入搜索地址'></input>
+  </view>
+  <view class='around-addr'>
+    <label>
+      <image src='../../../image/loc3.png' class='loc-icon'></image>
+    </label>
+    <label class='loc-text'>定位到当前位置</label>
+   
+  </view>
+</view> -->
+<view class='head'>
+  <view class='title-container2'>
+    <input class='searchInput2' bindinput='searchAddr' placeholder='可输入搜索地址'>
+    </input>
+  </view>
+  <view class='around-addr2' bindtap='setAtNowAddr'>
+    <label>
+      <image src='../../../image/loc2.png' style='opacity:{{opacity}};' class='loc-icon2'></image>
+    </label>
+    <label class='loc-text2'>定位到当前位置</label>
+
+  </view>
+</view>
+<view class='addrs-container'>
+  <block wx:for="{{poi}}">
+    <view class='addr' bindtap='checkAddr' hover-class='press-style'  data-my='{{item}}'>
+    {{item.name}}
+    <label class='distict' wx:if="{{item.district!=null}}">({{item.district}})</label>
+    </view>
+  </block>
+</view>

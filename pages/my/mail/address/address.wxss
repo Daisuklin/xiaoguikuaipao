@@ -1,0 +1,88 @@
+/* pages/my/mail/address/address.wxss */
+
+Page {
+  background: white;
+}
+
+.add-ship {
+  font-size: 4vw;
+  line-height: 12vw;
+  padding-left: 4.1vw;
+  color: #000;
+}
+
+.add-input {
+  width: 79vw;
+  float: right;
+  margin: 1.7vh 0 0 1vw;
+  font-size: 3.6vw;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.add-ship_image {
+  width: 3.0666vw;
+  height: 3.6vw;
+  margin-top: -.3vw;
+  margin-right: 1.2vw;
+}
+
+.add-ship_imagexiao {
+  width: 1.73333vw;
+  height: 2.93333vw;
+  float: right;
+  margin-right: 1.4223vw;
+  margin-top: 3vh;
+}
+
+.add-input1 {
+  width: 62.6223vw;
+  float: right;
+  margin-top: 1.7vh;
+  font-size: 3.6vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.add-textarea {
+  width: 90vw;
+  height: 13vh;
+  font-size: 4vw;
+  margin-top: 2.8vh;
+  padding-left: 4.1vw;
+}
+
+.add-button {
+  background: #5dd9ab;
+  width: 94.6666vw;
+  border-radius: 10rpx;
+  color: white;
+  line-height: 6.5vh;
+  font-size: 4.85vw;
+  margin-top: 8.3vh;
+}
+
+.xian {
+  border-bottom: 1px solid rgb(246, 246, 246);
+  width: 95.9vw;
+  float: right;
+}
+
+.xian1 {
+  border: 7px solid rgb(246, 246, 246);
+}
+
+.add-default {
+  font-size: 4vw;
+  color: #4d4d4d;
+  padding: 1.35vh 0 1.35vh 4.23vw;
+  line-height: 4.5vh;
+}
+
+.body-view {
+  float: right;
+  margin-top: -.3vh;
+}

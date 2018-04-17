@@ -1,0 +1,10 @@
+/* pages/my/mail/coupon/coupon.wxss */
+Page{
+  background: white;
+  text-align: center;
+}
+.text-head{
+  color: #919EA8;
+  font-size: 4vw;
+  line-height: 25vh;
+}

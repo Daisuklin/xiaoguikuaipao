@@ -1,0 +1,39 @@
+<import src="/pages/temp/lrh/store/store.wxml" />
+<view>
+  <image src="{{banner}}" class="head-img" mode='aspectFill'></image>
+  <view class='stores-container' style='padding:' hidden='{{!isStoreType}}'>
+    <block wx:for="{{stores}}">
+      <template is="store4" data="{{item}}" />
+    </block>
+  </view>
+  <view class='goods-container' hidden='{{isStoreType}}'>
+    <block wx:for="{{goodsList}}">
+      <view class='product-container'>
+        <view class='product-left' id="{{item.left.goods_id}}" bindtap='checkProduct'>
+          <image class='product-img-list' mode='aspectFill' src='{{item.left.goods_image}}'></image>
+          <view class='product-name-list'>{{item.left.goods_name}}</view>
+          <view class='product-storge-list'>库存 {{item.left.goods_storage}}</view>
+          <view class='product-price-buy-list-container'>
+            <view>
+              <view class='zhekoujia'>￥{{item.left.discountPriceStr==null?item.left.goodsPriceStr:item.left.discountPriceStr}}</view>
+              <view class='yuanjia' wx:if="{{item.left.discountPriceStr!=null}}">￥{{item.left.goodsPriceStr}}</view>
+            </view>
+            <view class='product-buy-list'>立即购买</view>
+          </view>
+        </view>
+        <view class='product-right' id="{{item.right.goods_id}}" bindtap='checkProduct' wx:if="{{item.right!=undefined}}">
+          <image class='product-img-list' mode='aspectFill' src='{{item.right.goods_image}}'></image>
+          <view class='product-name-list'>{{item.right.goods_name}}</view>
+          <view class='product-storge-list'>库存 {{item.right.goods_storage}}</view>
+          <view class='product-price-buy-list-container'>
+            <view>
+              <view class='zhekoujia'>￥{{item.right.discountPriceStr==null?item.right.goodsPriceStr:item.right.discountPriceStr}}</view>
+              <view class='yuanjia' wx:if="{{item.right.discountPriceStr!=null}}">￥{{item.right.goodsPriceStr}}</view>
+            </view>
+            <view class='product-buy-list'>立即购买</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<view url="" class="weui-cell" hover-class="{{storeInfo==-1?'':'weui-cell_active'}}" data-jumptype="{{storeInfo.store_show_type}}"  bindtap="{{storeInfo==-1?'':'checkStore'}}" id="{{storeInfo.storeId}}">
+  <view class="weui-cell__hd">
+    <image src="{{storeInfo.store_avatar}}" style="margin-right: 5px;vertical-align: middle;width:10.6666vw; height:10.6666vw;"></image>
+  </view>
+  <view class="weui-cell__bd" style='font-size:4vw;'>{{storeInfo.store_name}}</view>
+  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+</view>
+<view class='line'></view>
+<rich-text nodes="{{nodes}}" class="rich_textcon"></rich-text>
+<block wx:for="{{goodsInfo}}">
+  <image src='{{item.goods_image}}' wx:if="{{item!=null}}" class='show-product-img' mode='aspectFill'>
+    <view class='show-product-name' wx:if="{{item!=null}}"  id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goods_price}} | 查看详情</view>
+  </image>
+</block>

@@ -1,0 +1,108 @@
+/* pages/my/orderList/orderList.wxss */
+.fltL {
+  float: left;
+}
+.fltR {
+  /* float: right; */
+}
+.g-clr:after {
+  width: 100%;
+  clear: both;
+  content: '';
+  zoom: 1;
+  display: block;
+}
+button::after{border: none;}
+Page{
+   
+  background: white;
+  font-family: STHeitiK-Light;
+}
+.orderList{
+ height: 10.66vw;
+ /* border-top:1px solid #EFEFEF; */
+ border-bottom:1px solid #EFEFEF;
+
+}
+.orderList-navigation{
+  font-size: 30rpx;
+  line-height: 10.66vw;
+  color: #5DD9AB;
+  font-family: 'STHeitiK-Light';
+  float: left;
+  width:33.333vw;
+  text-align: center; 
+  position: relative;
+}
+
+.normal{
+  line-height: 10.66vw;
+  font-size: 30rpx;
+  color: rgb(68 68 68);
+  font-family: 'STHeitiK-Light';
+  float: left;
+  width:33.333vw;
+  text-align: center; 
+  position: relative;
+}
+.orderList-navigation::after{
+  content: " ";
+  left: 50%;
+  bottom: 0;
+  position: absolute;
+  width:4.7vw;
+  margin-left: -2.35vw;
+  border-bottom: .5vw solid #5DDAAC;
+}
+.normal::after,.normal1::after,.normal2::after{
+  content: " ";
+  left: 50%;
+  bottom: 0;
+  position: absolute;
+  width:4.7vw;
+  margin-left: -2.35vw;
+  border-bottom: 1vw solid transparent;
+}
+ 
+
+.orderLis-itmes{width:100vw; min-height:82vh;  margin-top:10.66vw; background: rgba(248,248,248,1); padding-bottom: 15vw; }
+.orderLis-itmes .orderLis-itme{width:96vw; padding-left: 4vw; height: auto; margin-bottom:2.66vw; background: #fff;}
+.orderLis-itmes .orderItem_title{width: 96vw; overflow: hidden; clear:both; border-bottom: 1px solid #EEEEEE; height: 12vw; line-height: 12vw;}
+.orderLis-itmes .orderItem_title text{line-height: 12vw;float: left;font-size:4vw; }
+.orderLis-itmes .orderItem_title .img{width: 9.333vw;height: 12vw; line-height: 12vw; float: left}
+.orderLis-itmes .orderItem_title .img image{width: 9.333vw; height: 9.333vw; vertical-align: middle; border-radius: 50%; }
+.orderLis-itmes .orderItem_title .name{width:67vw; line-height:12vw;
+height:12vw; display: block; color: #222222; text-indent: 40rpx; }
+.orderLis-itmes .orderItem_title .name .go{float: none; text-align: right; display: inline-block; width: 7vw; height: auto;}
+.orderLis-itmes .orderItem_title .order_state{width: 16.466vw; display: block;line-height:12vw; text-align:right; color:#999999 ;
+height:12vw;padding-right:3vw;
+ 
+}
+.showMoreBtn{margin-top:2.666vw;}
+.orderItemGoods{ width:85.3333vw;padding:2vw 0; margin: 0; padding-left: 10vw; border-bottom: 1px solid #EEEEEE;}
+.orderItemGoods .gooditme{clear: both; line-height: 8vw; height: 8vw; }
+.orderItemGoods .gooditme .name{ white-space:nowrap;text-overflow:ellipsis;overflow:hidden;float: left; line-height: 8vw; height: 8vw; display: block; font-size: 3.6vw;max-width: 55vw; }
+.orderItemGoods .gooditme .size{padding-left:2vw;color:#999999; float: left; line-height:8vw; height:8vw; display: block;font-size: 3.6vw;text-overflow:ellipsis;white-space: nowrap;overflow: hidden;width:20vw;}
+.orderItemGoods .gooditme .num{ color:#999999;line-height: 8vw; height:8vw; display: block; font-size: 3.6vw; float: right; padding-right: 
+3vw;}
+
+.showMoreBtn text{width:17.33vw;  font-size:3.6vw; height:6.66vw;line-height:6.66vw; border: 1px solid #999999 ;display: block; border-radius: 10px; text-align: center; color: #999999 ;}
+
+.orderBookInfo{padding-top:2vw; position: relative;}
+.orderBookInfo .booktime{font-size:3.6vw; border: 1px solid #999999;  border-radius: 5px;line-height:5vw; text-align: center; margin-bottom:2.66vw;display:inline-block;padding:1vw 3vw; }
+.orderBookInfo .ziti{position: absolute; bottom: 0;left: 0; font-size:3.2vw; color: #5DD9AB; border: 1px solid #5DD9AB; width: 20vw;line-height:6.66vw;text-align: center;margin-bottom:0.66vw;  border-radius: 1vw; }
+.orderBookInfo .showOrderMoney{font-size:3.2vw;text-align: right;padding-right:4vw; line-height: 9.8vw; }
+.orderBookInfo .showOrderMoney .goodCount{font-size:3.2vw; color: #999999; padding-left: 2vw; }
+.orderBookInfo .booktime.payMoney{ color:#fff;background: #5DD9AB; border: none;}
+.orderLis-itme .btn_Box{  text-align: right;padding: 2.6vw; padding-right: 4vw;}
+.orderLis-itme .btn_Box .btns{ width: 20vw; line-height:6.66vw;  display:inline-block; font-size: 3.6vw; padding: 0;margin: 0; vertical-align: middle; margin-left: 4vw; background: #fff; border:1px solid #999999; color: #444444;}
+.orderLis-itme .btn_Box .btns.payMoney{ color:#fff;background: #5DD9AB; border:#5DD9AB;}
+
+
+.navsBox{position: fixed;width: 100vw; height:12.8vw;  bottom: 0; left: 0; background: #fff; border-top: none;box-shadow: 1px 1px 12px 0px  #eee}
+.navsBox .navitem{width: 50vw;  height:12.8vw; float: left; text-align: center; line-height: 17.8vw; position: relative;
+font-size:3.2vw; color:#999;
+}
+.navsBox .navitem .icon{width: 10.66vw;  height:10.66vw;  text-align: center; line-height: 10.66vw; position: absolute; top: -5.33vw; left: 50%;margin-left: -5.33vw;}
+.navsBox .navitem .icon image{width: 10.66vw;  height:10.66vw;}
+.orderLis-itmes .orderLis-itme.press-style{background: #ECECEC}

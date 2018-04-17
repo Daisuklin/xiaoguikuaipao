@@ -1,0 +1,319 @@
+/****************************************** ldy begin**************************************** */
+
+.weui-flex__item {
+  padding: 4vw 0rpx 5rpx;
+}
+
+/* 每日推荐 */
+
+.box_recommendation .recommendation_title {
+  height: 8vw;
+  line-height: 8vw;
+  width: 94vw;
+  padding: 0vw 3vw;
+  color: #e5004f;
+  font-size: 5.3333vw;
+  font-weight: bold;
+  font-family: PingFang-SC-Heavy;
+}
+
+.box_recommendation .recommendation_scroll {
+  display: flex;
+  flex-direction: row;
+  padding: 2.666vw 0.666vw 0vw 0rpx;
+  white-space: nowrap;
+}
+
+.recommendation_scroll .recommendation_list {
+  border: 1rpx solid #eee;
+  width: 42.6666vw;
+  display: inline-block;
+  margin-right: 2vw;
+}
+.recommendation_scroll .recommendation_list:first-child{margin-left: 2.666vw}
+.recommendation_scroll .recommendation_list:last-child{margin-right: 2.666vw;}
+.recommendation_scroll .recommendation_list .text_imgbg {
+  width: 42.6666vw;
+  height: 26.6666vw;
+}
+
+.recommendation_scroll .recommendation_list .text_box {
+  height: 10.666vw;
+  display: flex;
+}
+
+.recommendation_scroll .recommendation_list .text_box .text_imglogo {
+  width: 12vw;
+  height: 12vw;
+  position: relative;
+  top: -6vw;
+  padding-left: 2.666vw;
+}
+
+.recommendation_scroll .recommendation_list .text_box text {
+  color: #222;
+  font-size: 4vw;
+  padding-left: 1.8vw;
+    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 1.8vw;
+}
+
+/* 商品活动页 */
+
+/*------------------模板1---------------------  */
+
+.box_activepage {
+  overflow: hidden;
+  width: 100vw;
+}
+
+/* .box_activepage .activepage_content {
+  overflow: hidden;
+  width: 100.535vw;
+  position: relative;
+  right: 2rpx;
+}
+
+.activepage_content .activepageimg_list {
+  float: left;
+  border-bottom: 1px solid #eee;
+  border-left: 1rpx solid #eee;
+}
+
+.activepage_content .activepageimg_list image {
+  width: 49.86667vw;
+}
+
+.activepage_content .activepageimg_list .img_big {
+
+  height: 46.73vw;
+}
+
+.activepage_content .activepageimg_list .img_normal {
+  height: 23.27vw;
+}
+
+.activepage_content .activepageimg_list:last-child {
+  border-bottom: none;
+}
+
+.activepage_content .activepageimg_list:nth-last-child(2) {
+  border-bottom: none;
+} */
+
+/*-------------------------模板1-------------------------------  */
+
+.activepage_content_top {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activepage_content_top  .img_big {
+  /* height: 46.76vw; *//* height:  46.78vw; */
+  /* height: 46.885vw; */
+   height: 47vw;
+}
+
+.activepage_content_top .activepageimg_list_alline {
+  display: flex;
+}
+
+.activepage_content_top .activepageimg_list_alline .img_normal:last-child {
+  border-top: none;
+}
+
+.activepage_content_top .activepageimg_list_alline .img_normal:first-child {
+  border-left: none;
+}
+
+.activepage_content_top  .img_normal {
+  border-top: 1rpx solid #eee;
+  border-left: 1rpx solid #eee;
+}
+
+/*------------------模板2--------------------  */
+
+.activepage_content_bottom {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activepage_content_top  .img_normal:first-child {
+  border-top: none;
+}
+
+.activepage_content_bottom .activepageimg_list .img_normal {
+  border-top: 1rpx solid #eee;
+  border-right: 1rpx solid #eee;
+}
+
+.activepage_content_bottom .activepageimg_list:nth-of-type(even) .img_normal {
+  border-right: none;
+}
+
+.activepage_content_top  image,
+.activepage_content_bottom .activepageimg_list image {
+  width: 49.86vw;
+}
+
+.activepage_content_bottom .activepageimg_list,
+.activepage_content_top .activepageimg_list {
+  display: inline-block;
+}
+
+.activepage_content_bottom .activepageimg_list .img_normal,
+.activepage_content_top  .img_normal {
+  /* height: 23.27vw; */
+  /* height: 23.38vw; */
+  height: 23.41vw;
+}
+.activepage_content_bottom .activepageimg_list:first-child .img_normal,.activepage_content_bottom .activepageimg_list:nth-child(2) .img_normal{
+  border-top: none;
+}
+.activepage_content_bottom .activepageimg_list:last-child .img_normal,
+.activepage_content_bottom .activepageimg_list:nth-last-child(2) .img_normal {
+  border-bottom: none;
+}
+
+/* ------------------------模板3-------------------------- */
+
+.box_activepage2 {
+}
+
+.box_activepage2 .activepage_content2 {
+  display: flex;
+  width: 100vw;
+}
+
+.activepage_content2 .imgcontent_l {
+  width: 40vw;
+}
+
+.activepage_content2 .imgcontent_l image {
+  /* height: 378rpx; */
+  height: 50.65vw;
+  width: 40vw;
+}
+
+.activepage_content2 .imgcontent_r {
+  width: 60vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activepage_content2 .imgcontent_r image {
+  width: 29.7vw;
+  /* height: 190rpx; */
+  height: 25.25vw;
+  border-left: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+}
+
+.activepage_content2 .imgcontent_r image:last-child,
+.activepage_content2 .imgcontent_r image:nth-last-child(2) {
+  border-bottom: none;
+}
+
+/* 兼容 --当模式图左侧大图不存在时 begin*/
+
+.activepage_content2 .imgcontent_r_alline {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activepage_content2 .imgcontent_r_alline image {
+  width: 49.8vw;
+  /* height: 190rpx; */
+  /* height: 25.22vw; */
+  height: 25.25vw;
+  border-left: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+}
+
+.activepage_content2 .imgcontent_r_alline image:last-child,
+.activepage_content2 .imgcontent_r_alline image:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.activepage_content2 .imgcontent_r_alline image:nth-of-type(odd) {
+  border-left: none;
+}
+
+/*-----------------兼容 --当模式图左侧大图不存在时 end-----------------------  */
+
+.box_activepage2 .activepage_parallel {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box_activepage2 .activepage_parallel .parallel_img {
+  display: inline-block;
+}
+
+.box_activepage2 .activepage_parallel .parallel_img image {
+  width: 49.85vw;
+  height: 23.27vw;
+  border-top: 1rpx solid #eee;
+  border-right: 1rpx solid #eee;
+}
+
+.box_activepage2 .activepage_parallel .parallel_img:last-child image,
+.box_activepage2 .activepage_parallel .parallel_img:nth-of-type(even) image {
+  border-right: none;
+}
+
+/* 兼容iphone5 */
+
+@media screen and (max-width:340px) {
+  .activepage_content2 .imgcontent_r image {
+    width: 29.692vw;
+  }
+
+  .activepage_content2 .imgcontent_r_alline image {
+    width: 49.692vw;
+  }
+
+  .box_activepage2 .activepage_parallel .parallel_img image {
+    width: 49.848vw;
+  }
+
+  .activepage_content_top .activepageimg_list image,
+  .activepage_content_bottom .activepageimg_list image {
+    width: 49.845vw;
+  }
+  .activepage_content_top .activepageimg_list_alline image {
+    width: 49.845vw;
+  }
+}
+
+/* 品牌好店 */
+
+.box_goodstore .goodstore_title image {
+  width: 100vw;
+  height: 10.6666vw;
+}
+
+.box_goodstore  .goodstore_scroll {
+  padding: 5rpx 0.666vw 2.66667vw 0rpx;
+  white-space: nowrap;
+  background: #f8f8f8;
+}
+
+.box_goodstore  .goodstore_scroll .goodstore_imglist {
+  width: 82.6666vw;
+  height: 34.6666vw;
+  display: inline-block;
+  /* margin-right: 2vw; */
+}
+.box_goodstore  .goodstore_scroll  .goodstore_imglist:first-child{margin-left: 1.3333vw;}
+.box_goodstore  .goodstore_scroll  .goodstore_imglist:last-child{margin-right: 1.3333vw;}
+.box_goodstore  .goodstore_scroll .stroreimg {
+  width: 82.6666vw;
+  height: 34.6666vw;
+}
+
+/****************************************** ldy end**************************************** */

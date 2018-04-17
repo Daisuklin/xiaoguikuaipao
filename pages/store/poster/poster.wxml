@@ -1,0 +1,2 @@
+<canvas style="width:100vw; height:100vh;" canvas-id="firstCanvas"></canvas>
+<cover-view bindtap='save' class='btm' hover-class='press-style'>保存到本地,分享朋友圈</cover-view>

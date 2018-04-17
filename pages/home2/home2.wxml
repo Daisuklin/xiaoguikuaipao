@@ -1,0 +1,20 @@
+<!--pages/home2/index.wxml-->
+<import src="/pages/temp/lrh/store/store.wxml" />
+<!-- <template is="loading" data="" /> -->
+<view class="home_box" hidden='{{!isInServerArea}}'>
+  <include src="./top/top.wxml" />
+  <include src="./center/center.wxml" />
+  <include src="./bottom/bottom.wxml" />
+</view>
+<view hidden='{{isInServerArea}}'>
+  <view>
+    <image class='no-server-img' src='https://qnimg.xiaoguikuaipao.com/bcAW6TwzgWwl7140b4c6a0953a227d04376'></image>
+  </view>
+  <view class='on-server-tip'>尊敬的客户，该地区暂无入驻商家</view>
+  <view class='on-server-tip'>小龟正在努力铺设市场中，敬请期待！</view>
+  <view class='on-server-tip'>如有合作意向请联系客服</view>
+  <view class='contact-and-changeaddr'>
+    <view bindtap='call' class='on-server-contact'>联系客服</view>
+    <view  bindtap='chooseAddr' class='on-server-change'>切换地址</view>
+  </view>
+</view>

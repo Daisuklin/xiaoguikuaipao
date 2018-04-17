@@ -1,0 +1,29 @@
+<view>
+    <image src='/image/login/login_bg.jpg' class='backgroundImg'></image>
+
+    <view class='bindPhoneContent'>
+        <view class='g-clr  bindPhonemessage'>
+            <text  class='fltL bindPhoneTitle'>绑定手机</text>
+        </view>
+        <view class='bindPhoneForm'>
+            <form>
+                <view class="g-clr">
+                  <text class='fltL'>手机号码</text>
+                  <input id="phone" class='fltL' bindinput='setInputPhon' value='{{phone}}' name="input" placeholder="请输入手机号码" type='text' />
+                  <button class='fltL btn_yzm' disabled='{{disabled}}' bindtap='sendMessage'>{{sendBtntext}}</button> 
+                </view>
+                <view class="g-clr">
+                  <text class='fltL'>验证码</text>
+                  <input type='text' value='{{validateCode}}' bindinput='setInputValidateCode' class='fltL yzmInput' name="input" placeholder="请输入验证码" />
+                </view>
+            </form>
+        </view>
+        <view class="g-clr submitView">
+          <button class='subbtn' bindtap='sumbitValidate'>提交申请</button>
+          <text>
+            如果你是第一次绑定手机号
+我们将为您创建小龟账号
+          </text>
+        </view>
+    </view>
+</view>

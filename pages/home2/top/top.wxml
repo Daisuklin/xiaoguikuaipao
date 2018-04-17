@@ -1,0 +1,36 @@
+<view class="box_banner">
+  <view class="search-container" style="position:{{positionFlag?'fixed':'absolute'}};background:{{positionFlag?'rgb(93,217,171)':'none'}};top:{{positionFlag?0:20}}rpx;opacity:{{opacity}};{{positionFlag?'padding-top:30rpx':''}}">
+    <view class="icon-addr-container" bindtap='chooseAddr'>
+      <image src="../../image/location.png" class='icon-addr'></image>
+    </view>
+    <view class="addr" bindtap='chooseAddr'>{{addrName}}</view>
+    <!-- <view class="" style="height:10rpx;width:406rpx;background-color:white;"></view> -->
+    <view class="index-input" style='opacity: {{positionFlag?1:0.9}};' bindtap="toSearch" >搜索</view>
+    <!-- <input class="index-input" style='opacity: {{positionFlag?1:0.9}};' placeholder="搜索" bindfocus="toSearch" placeholder-class="input-placeholder" /> -->
+  </view>
+  <view class="">
+    <swiper class='swiper' indicator-dots="true" indicator-color="white" indicator-active-color="#5DD9AB" autoplay="true">
+      <block wx:for="{{activityList}}">
+        <swiper-item>
+          <image bindtap='checkBanner' data-my="{{item}}" class='banner-img' src="{{item.themeLoge}}" mode='aspectFill' data-url="{{item.themeLoge}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
+<!-- 分类 -->
+<view class="box_classification">
+  <block wx:for="{{arrs}}">
+    <view class="weui-flex label-container">
+      <block wx:for="{{item}}" wx:for-item="item2">
+        <view id="{{item2.gc_id}}" data-catName="{{item2.gc_name}}" bindtap="checkGoodClass" class="weui-flex__item" hover-class='press-style'>
+          <view>
+            <image src="{{item2.xin_gc_ico}}" mode='aspectFill' class='label-icon'></image>
+          </view>
+          <view>{{item2.gc_name}}</view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <view class="height_40"></view>
+</view>

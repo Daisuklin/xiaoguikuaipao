@@ -1,0 +1,432 @@
+<action-sheet type="default" hidden="{{shareChoiceHidden}}">
+  <action-sheet-item style="padding:0px;margin:0px;border-bottom:1px solid white;">
+    <button open-type="share" type="default" style="margin-bottom:-2px;margin-right:-10px;margin-left:-10px;background-color:white;height:100%:width:100%;">分享给好友</button>
+  </action-sheet-item>
+  <action-sheet-item id="1" bindtap="shareChoice">
+    生成海报分享到朋友圈
+  </action-sheet-item>
+  <action-sheet-item id="2" bindtap="shareChoice">
+    取消
+  </action-sheet-item>
+</action-sheet>
+<view class='allContainer'>
+  <!-- capture-bind:touchend="touchend" capture-bind:touchstart="touchstart" -->
+  <view>
+    <view class='head-info'>
+      <!-- <view class='store-info'>
+        <view class='info-container' bindtap='checkStoreInfo'>
+          <image src='../../image/store/info.png' class='info-img'></image>
+          商家信息
+        </view>
+      </view> -->
+      <view class='head-fav-info icon-text'>
+        <view class='fav-container' data-my="{{focusonFlag}}" bindtap='focusStore'>
+          <image src="{{focusonFlag?'../../image/store/fav1.png':'../../image/store/fav.png'}}" class='fav-img'></image>
+          收藏
+        </view>
+        <!-- <view class='info-container' bindtap='toShare'>
+          <image src='../../image/store/share.png' class='share-img'></image>
+          分享
+        </view> -->
+        <view class='info-container' bindtap='checkStoreInfo'>
+          <image src='../../image/store/info.png' class='info-img'></image>
+          商家信息
+        </view>
+      </view>
+      <view class='info-logo-container'>
+        <image src='{{storeData.store_avatar}}' mode='aspectFill' class='info-logo'></image>
+      </view>
+      <view class='star-container' wx:if="{{stars.length!=0}}">
+        <block wx:for="{{stars}}">
+          <image src='../../image/store/star1.png' class='icon-star'></image>
+        </block>
+        <label class='score'>{{storeData.store_credit==0?'暂无评分':storeData.store_credit}} {{storeData.store_credit==0?"":".0"}}
+        </label>
+      </view>
+      <view class='store-name'>{{storeData.store_name}}</view>
+      <view class='store-sales-favs'>月售{{storeData.store_sales}}丨收藏数 {{storeData.fansNum}}</view>
+      <view class="activities" wx:if="{{storeData.isPackageMallStr!=null&&storeData.isPackageMallStr!=''}}">
+        <label class="label2">{{storeData.isPackageMallStr}}</label>
+      </view>
+      <view class="activities" wx:if="{{storeData.firstOrderYouhuiStr!=null&&storeData.firstOrderYouhuiStr!=''}}">
+        <label class="label2">{{storeData.firstOrderYouhuiStr}}</label>
+      </view>
+      <view class="activities" wx:if="{{storeData.mansongStr!=null&&storeData.mansongStr!=''}}">
+        <label class="label2">{{storeData.mansongStr}}</label>
+      </view>
+    </view>
+    <view class="">
+      <image src="{{storeData.store_bg_Url}}" mode='aspectFill' class='headImg'></image>
+    </view>
+    <!--中部导航 begin-->
+    <view class="{{fixStyle?'':''}}">
+      <view class="tar_container">
+        <view class="single_tar">
+          <block wx:for="{{tab}}">
+            <view id="{{index}}" bindtap='chooseTar' style='display:inline-block;width:25%;'>
+              <view class="tar_name {{selectIndex==index?'textcolor':''}}">
+                {{item.tabname}}
+              </view>
+              <view class="{{selectIndex==index?'tarSelected':'tarUnSelected'}}"></view>
+            </view>
+          </block>
+        </view>
+        <view class="search_container" bindtap='storeSearch'>
+          <image src='../../image/store/searchSpecial.png' class='search_img'></image>
+        </view>
+      </view>
+    </view>
+    <!--中部导航 begin-->
+    <view>
+
+    </view>
+    <swiper bindchange="changeIndex" class='content-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" duration="{{duration}}" current="{{selectIndex}}">
+      <swiper-item class='content-scrow'>
+        <scroll-view scroll-y class='content-scrow' bindscrolltolower="getMoreData">
+          <!--店铺首页 begin-->
+          <view style='margin-bottom:170rpx;' class="show-class1">
+            <!-- 主题活动 start -->
+            <block wx:for="{{specialList}}">
+              <!-- 关联单个商品 start -->
+              <view class='storehome' data-my="{{item}}" bindtap='skip' wx:if="{{item.shopncGoodsAndUrlInfo.length<=1}}">
+                <image src='{{item.shopncStoreSpecial.store_avatar}}' class='storeImg' mode="aspectFill"></image>
+                <view class='storeright'>
+                  <view class='store_title_container'>
+                    <image hidden='true' src='../../image/tmp/te.png' class='store_title_img'></image>
+                    <view class='store_theme_title'>{{item.shopncStoreSpecial.special_name}}</view>
+                  </view>
+                  <view class='theme-desc'>
+                    {{item.shopncStoreSpecial.special_dsc}}
+                  </view>
+                  <image src='{{item.shopncStoreSpecial.special_image}}' class='advertisement' mode="aspectFill"></image>
+
+                  <view class="product-container" style='margin-top:20rpx;' wx:if="{{item.shopncGoodsAndUrlInfo.length!=0}}">
+                    <image src="{{item.shopncGoodsAndUrlInfo[0].goods_image}}" class='single-product-img' mode="aspectFill"></image>
+                    <view class='product-right'>
+                      <view class='product-name'>{{item.shopncGoodsAndUrlInfo[0].goods_name}}</view>
+                      <view class='product-sales'>月售 {{item.shopncGoodsAndUrlInfo[0].goods_salenum}}</view>
+                      <view>
+                        <label class='product-price1'>￥{{item.shopncGoodsAndUrlInfo[0].goods_price}}</label>
+                        <label class='product-price0'>￥{{item.shopncGoodsAndUrlInfo[0].goods_marketprice}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <!-- 关联单个商品 end -->
+
+              <!-- 关联多个商品 start -->
+              <view class='storehome' data-my="{{item}}" bindtap='skip' wx:if="{{item.shopncGoodsAndUrlInfo.length>1}}">
+                <image src='{{item.shopncStoreSpecial.store_avatar}}' class='storeImg' mode="aspectFill"></image>
+                <view class='storeright'>
+                  <view class='store_title_container'>
+                    <image hidden="true" src='../../image/tmp/te.png' class='store_title_img' mode="aspectFill"></image>
+                    <view class='store_theme_title'>{{item.shopncStoreSpecial.special_name}}</view>
+                  </view>
+                  <view class='theme-desc'>
+                    {{item.shopncStoreSpecial.special_dsc}}
+                  </view>
+                  <image src='{{item.shopncStoreSpecial.special_image}}' class='advertisement' mode="aspectFill"></image>
+                  <view class='product-imgs-container'>
+                    <block wx:for="{{item.shopncGoodsAndUrlInfo}}" wx:for-item="item2">
+                      <image src='{{item2.goods_image}}' wx:if="{{index<2}}" class='product-imgs' mode="aspectFill" style='margin-right:10rpx;'></image>
+                      <image src='{{item2.goods_image}}' wx:if="{{index==2}}" class='product-imgs' mode="aspectFill"></image>
+                    </block>
+                  </view>
+                </view>
+              </view>
+              <!-- 关联多个商品 end -->
+            </block>
+            <!-- 主题活动 end -->
+
+            <!-- 商品列表展示 start -->
+            <block wx:for="{{goodsList}}">
+              <!-- 单个商品 start -->
+              <view class='storehome' id="{{item.goods_id}}" bindtap='checkProduct' wx:if="{{item.infoList.length==1}}">
+                <image src='{{item.goods_image}}' class='storeImg'></image>
+                <view class='storeright'>
+                  <view class='store_title_container'>
+                    <image hidden='true' src='../../image/tmp/te.png' class='store_title_img' mode="aspectFill"></image>
+                    <view class='store_theme_title'>{{item.goods_name}}</view>
+                  </view>
+                  <view class='theme-desc' wx:if="{{item.goods_jingle!=null}}" style='padding-bottom:20rpx;'>
+                    {{item.goods_jingle}}
+                  </view>
+                  <view class="product-container">
+                    <image src="{{item.goods_image}}" class='single-product-img' mode="aspectFill"></image>
+                    <view class='product-right'>
+                      <view class='product-name'>{{item.goods_name}}</view>
+                      <view class='product-sales'>月售 {{item.goods_salenum}}</view>
+                      <view>
+                        <label class='product-price1'>￥{{item.discountPrice}}</label>
+                        <label class='product-price0'>￥{{item.goodsPriceStr}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <!-- 单个商品 end -->
+              <!-- 多个商品 start -->
+              <view class='storehome' id="{{item.goods_id}}" bindtap='checkProduct' wx:if="{{item.infoList.length>1}}">
+                <image src='{{item.goods_image}}' class='storeImg'></image>
+                <view class='storeright'>
+                  <view class='store_title_container'>
+                    <image hidden='true' src='../../image/tmp/te.png' class='store_title_img' mode="aspectFill"></image>
+                    <view class='store_theme_title'>{{item.goods_name}}</view>
+                  </view>
+                  <view class='theme-desc' wx:if="{{item.goods_jingle!=null}}" style='padding-bottom:20rpx;'>
+                    {{item.goods_jingle}}
+                  </view>
+                  <view class='product-imgs-container'>
+                    <image src='{{item.infoList[0].goods_image_video}}' class='product-imgs' mode="aspectFill" style='margin-right:10rpx;'></image>
+                    <image src='{{item.infoList[1].goods_image_video}}' class='product-imgs' mode="aspectFill" style='margin-right:10rpx;'></image>
+                    <image src='{{item.infoList[3].goods_image_video}}' class='product-imgs' mode="aspectFill"></image>
+                  </view>
+                  <view class="product-container">
+                    <image src="{{item.goods_image}}" class='single-product-img' mode="aspectFill"></image>
+                    <view class='product-right'>
+                      <view class='product-name'>{{item.goods_name}}</view>
+                      <view class='product-sales'>月售 {{item.goods_salenum}}</view>
+                      <view>
+                        <label class='product-price1'>￥{{item.discountPriceStr}}</label>
+                        <label class='product-price0'>￥{{item.goodsPriceStr}}</label>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <!-- 多个商品 end -->
+            </block>
+            <!-- 商品列表展示 end-->
+          </view>
+          <!--店铺首页 end-->
+        </scroll-view>
+      </swiper-item>
+      <swiper-item class='content-scrow'>
+        <scroll-view scroll-y class='content-scrow' bindscrolltolower="getMoreData">
+          <!--全部商品 begin-->
+          <view class="show-class1">
+            <block wx:for="{{allgoods}}">
+              <view class='new-product-container-left' wx:if="{{index%2==0}}">
+                <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+                <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>{{item.goods_name}}</view>
+                <view>
+                  <label class='new-product-sales-name' id="{{item.goods_id}}" bindtap='checkProduct'>销量</label>
+                  <label class='new-product-sales-value' id="{{item.goods_id}}" bindtap='checkProduct'>{{item.goods_salenum}}</label>
+                </view>
+                <view style='position:relative;top:-25rpx;padding-left:13rpx;'>
+                  <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.discountPriceStr}}</label>
+                  <label class='product-price0' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goodsPriceStr}}</label>
+                  <label>
+                    <image src='../../image/store/dot1.png' class='new-product-dotimg' id="{{item.goods_id}}" bindtap='checkCellectGood'></image>
+                  </label>
+                </view>
+                <view class='collect-mask' hidden='{{item.isTapCollected?false:true}}' id="{{item.goods_id}}" bindtap="cancelMask">
+                  <view class='collect-state' id="{{item.goods_id}}" catchtap="setGoodCollect">{{item.collect?'已收藏':'收藏'}}</view>
+                </view>
+              </view>
+              <view class='new-product-container-right' wx:if="{{index%2==1}}">
+                <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+                <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>{{item.goods_name}}</view>
+                <view id="{{item.goods_id}}" bindtap='checkProduct'>
+                  <label class='new-product-sales-name'>销量</label>
+                  <label class='new-product-sales-value'>{{item.goods_salenum}}</label>
+                </view>
+                <view style='position:relative;top:-25rpx;padding-left:13rpx;'>
+                  <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.discountPrice}}</label>
+                  <label class='product-price0' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goodsPriceStr}}</label>
+                  <label>
+                    <image src='../../image/store/dot1.png' class='new-product-dotimg' id="{{item.goods_id}}" bindtap='checkCellectGood'></image>
+                  </label>
+                </view>
+                <view class='collect-mask' hidden='{{item.isTapCollected?false:true}}' id="{{item.goods_id}}" bindtap="cancelMask">
+                  <view class='collect-state' id="{{item.goods_id}}" catchtap="setGoodCollect">{{item.collect?'已收藏':'收藏'}}</view>
+                </view>
+              </view>
+            </block>
+            <view class='pull-text' wx:if='{{allGoodsLen!=allgoods.length}}'>上拉加载更多</view>
+            <view class='pull-text' wx:if='{{allGoodsLen==allgoods.length}}'>没有更多啦</view>
+            <view style='clear:both;height:170px;'></view>
+          </view>
+          <!--全部商品 end-->
+        </scroll-view>
+      </swiper-item>
+      <swiper-item class='content-scrow'>
+        <scroll-view scroll-y class='content-scrow' bindscrolltolower="getMoreData">
+          <!--新品上架 begin-->
+          <view class="show-class1">
+            <block wx:for="{{newGoods}}">
+              <view class='new-product-container-left' wx:if="{{index%2==0}}">
+                <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+                <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>{{item.goods_name}}</view>
+                <view id="{{item.goods_id}}" bindtap='checkProduct'>
+                  <label class='new-product-sales-name'>销量</label>
+                  <label class='new-product-sales-value'>{{item.goods_salenum}}</label>
+                </view>
+                <view style='position:relative;top:-25rpx;padding-left:13rpx;'>
+                  <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goods_price}}</label>
+                  <label class='product-price0' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goods_marketprice}}</label>
+                  <label>
+                    <image src='../../image/store/dot1.png' class='new-product-dotimg' id="{{item.goods_id}}" bindtap='checkCellectGoodNewGood'></image>
+                  </label>
+                </view>
+                <view class='collect-mask' hidden='{{item.isTapCollected?false:true}}' id="{{item.goods_id}}" bindtap="cancelMaskNewGood">
+                  <view class='collect-state' id="{{item.goods_id}}" catchtap="setGoodCollectNewGood">{{item.collect?'已收藏':'收藏'}}</view>
+                </view>
+              </view>
+              <view class='new-product-container-right' wx:if="{{index%2==1}}">
+                <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+                <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>{{item.goods_name}}</view>
+                <view id="{{item.goods_id}}" bindtap='checkProduct'>
+                  <label class='new-product-sales-name'>销量</label>
+                  <label class='new-product-sales-value'>{{item.goods_salenum}}</label>
+                </view>
+                <view style='position:relative;top:-25rpx;padding-left:13rpx;'>
+                  <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.discountPriceStr}}</label>
+                  <label class='product-price0' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goodsPriceStr}}</label>
+                  <label>
+                    <image src='../../image/store/dot1.png' class='new-product-dotimg' id="{{item.goods_id}}" bindtap='checkCellectGoodNewGood'></image>
+                  </label>
+                </view>
+                <view class='collect-mask' hidden='{{item.isTapCollected?false:true}}' id="{{item.goods_id}}" bindtap="cancelMaskNewGood">
+                  <view class='collect-state' id="{{item.goods_id}}" catchtap="setGoodCollectNewGood">{{item.collect?'已收藏':'收藏'}}</view>
+                </view>
+              </view>
+            </block>
+            <view class='pull-text' wx:if='{{newGoodsLen!=newGoods.length}}'>上拉加载更多</view>
+            <view class='pull-text' wx:if='{{newGoodsLen==newGoods.length}}'>没有更多啦</view>
+            <view style='clear:both;height:170px;'></view>
+          </view>
+          <!--新品上架 end-->
+        </scroll-view>
+      </swiper-item>
+      <swiper-item class='content-scrow'>
+        <scroll-view scroll-y class='content-scrow' bindscrolltolower="getMoreData">
+          <!--动态生活 begin-->
+          <view style="{{actLifes.length==0?'':'background:white;padding-bottom:109rpx;'}}" class="show-class1">
+            <view class="goods_comment_list">
+              <block wx:for="{{actLifes}}">
+                <view class="comment_list_content pad_30">
+                  <div class="comment_list_l" id="{{item.geval_id}}" bindtap='checkActLife'>
+                    <image src="{{item.member_avatar}}" class="border-radius50" mode="aspectFill"></image>
+                  </div>
+                  <div class="comment_list_r">
+                    <div class="comment_list_top" id="{{item.geval_id}}" bindtap='checkActLife'>
+                      <text class="txt_tel">{{item.member_name}}</text>
+                      <text class="txt_data">{{item.geval_addtime}}</text>
+                    </div>
+                    <div class="comment_list_introduce" id="{{item.geval_id}}" bindtap='checkActLife'>{{item.geval_content}}</div>
+                    <view style='padding-top: 20rpx;width:600rpx;' id="{{item.geval_id}}" bindtap='checkActLife'>
+                      <image wx:for="{{item.geval_image}}" src="{{item}}" class='life-img0' bindtap="previewImage" mode="aspectFill"></image>
+                    </view>
+                    <view class='know-praise-container'>
+                      <view class='know-details' id="{{item.geval_id}}" bindtap='checkActLife'>
+                        <view class='know-text'>
+                          了解详情
+                        </view>
+                      </view>
+                      <!-- 还没有点赞的 -->
+                      <view class='praise-container' bindtap="setRaise" id="{{item.geval_id}}" wx:if='{{item.thumbUp==0}}'>
+                        <image src='../../image/store/praise.png' class='praise-icon'></image>
+                        <view class='praise-text'>点赞</view>
+                      </view>
+
+                      <!-- 已经点赞的 -->
+                      <view class='praise-container1' bindtap="setRaise" id="{{item.geval_id}}" wx:if='{{item.thumbUp!=0}}'>
+                        <image src='../../image/store/praise1.png' class='praise-icon'></image>
+                        <view class='praise-text1'>点赞</view>
+                      </view>
+                    </view>
+                  </div>
+                </view>
+                <view style='height:20rpx;background:#f8f8f8;'></view>
+              </block>
+              <view class='pull-text' wx:if='{{actLifes.length==0}}'>没有更多啦</view>
+            </view>
+          </view>
+          <!--动态生活 end-->
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+    <view>
+    </view>
+  </view>
+
+  <!-- <view class="bottomBar">
+    <view id="0" catchtap="bindtapBar" class="page_ontainer1">
+      <view class="icon_container">
+        <image src="../../image/store/search0.png" class="icon_common icon1"></image>
+      </view>
+      <view class="page_name">分类</view>
+    </view>
+    <view class="page_ontainer2" bindtap='havaScan'>
+      <view class="have_scan_icon_container">
+        <image src="../../image/store/message0.png" class="icon_common icon2"></image>
+      </view>
+      <view class="haveScan">已扫商品</view>
+    </view>
+    <view class="page_ontainer5" bindtap='scan'>
+      <view class="icon_container">
+        <image src="../../image/store/scan.png" class="icon_common icon5"></image>
+      </view>
+      <view class="page_name" style="width:100rpx;padding-top:15rpx;">扫码购物</view>
+    </view>
+
+    <view class="page_ontainer4" bindtap='my'>
+      <view class="icon_container">
+        <image src="../../image/store/my0.png" class="icon_common icon4"></image>
+      </view>
+      <view class="page_name">我的</view>
+    </view>
+    <view class="page_ontainer3" bindtap='checkCard'>
+      <view class="icon_container" style="width:75rpx;">
+        <image src="../../image/store/cart0.png" class="icon_common icon3"></image>
+      </view>
+      <view class="page_name" style="width:75rpx;">购物车</view>
+    </view>
+  </view> -->
+  <view class="bottomBar">
+    <view class='bottom-container'>
+      <view id="0" catchtap="bindtapBar" class="page_ontainer">
+        <view class="icon_container">
+          <image src="../../image/store/search0.png" class="icon_common icon1"></image>
+        </view>
+        <view class="page_name">分类</view>
+
+      </view>
+      <view class="page_ontainer" bindtap='havaScan' hidden='{{storeData.speediness==0}}'>
+        <view class="have_scan_icon_container">
+          <image src="../../image/store/message0.png" class="icon_common icon2"></image>
+        </view>
+        <view class="haveScan">已扫商品</view>
+      </view>
+      <view class="page_ontainer" bindtap='scan' hidden='{{storeData.speediness==0}}'>
+        <view class="icon_container">
+          <image src="../../image/store/scan.png" class="icon_common icon5"></image>
+        </view>
+        <view class="page_name" style="width:100rpx;padding-top:8rpx;">扫码购物</view>
+      </view>
+      <view class="page_ontainer" bindtap='checkCard'>
+        <view class="icon_container" style="width:75rpx;">
+          <image src="../../image/store/cart0.png" class="icon_common icon3"></image>
+        </view>
+        <view class="page_name" style="width:75rpx;">购物车</view>
+      </view>
+      <view class="page_ontainer" bindtap='my'>
+        <view class="icon_container">
+          <image src="../../image/store/my0.png" class="icon_common icon4"></image>
+        </view>
+        <view class="page_name">我的</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

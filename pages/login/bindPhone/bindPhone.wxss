@@ -1,0 +1,45 @@
+/* pages/login/bindPhone/bindPhone.wxss */
+.fltL {
+  float: left;
+}
+.fltR {
+  float: right;
+}
+.g-clr:after {
+  width: 100%;
+  clear: both;
+  content: '';
+  zoom: 1;
+  display: block;
+}
+page{background: #fff;font-family:FZLTZHK--GBK1-0;height: 100vh;width: 100vw;overflow: hidden;}
+.backgroundImg{height: 100vh;width: 100vw;overflow: hidden;}
+.bindPhoneContent{overflow: hidden; position: absolute; top:50%; left: 50%; margin-left:-40vw; margin-top:-46.13vw; background: #fff; width: 80vw;height: 92.26vw; border-radius: 5px;}
+.bindPhonemessage{height:8.8vw; width:100%; margin: 10.13vw auto 7vw; text-align: center}
+
+.bindPhonemessage .bindPhoneTitle{height:8.8vw;
+line-height:8.8vw;
+color:rgba(93,217,171,1);font-size:9.33vw; display: block; text-align: center;width:100% }
+
+
+
+.bindPhoneForm{ margin-bottom:6.66vw; }
+.bindPhoneForm view{border-bottom: 1px solid rgba(238,238,238,1); width:90%; margin: 0 auto;margin-top: 1vw; }
+.bindPhoneForm text{color:#444444;font-size:3.5vw; height:12.93vw;line-height:12.93vw; display: block;width:15.6vw; text-align: left;  }
+.bindPhoneForm input{color:#444444;font-size:3.5vw;height:12.93vw;line-height:12.93vw;display: block;  width:34.93vw; border: 1px solid transparent;  }
+.bindPhoneForm .yzmInput{width: 51.333vw;}
+.bindPhoneForm .btn_yzm{ 
+  margin:2vw 0;
+width:20vw;
+font-size:2.6vw;
+height:10vw;
+line-height:10vw;
+padding:0;
+
+}
+.submitView{border-bottom:none; height: 12vw; }
+.submitView .subbtn{width:90%; line-height: 12vw; background:rgba(93,217,171,1);
+border-radius: 10px ; color:rgba(255,255,255,1);font-size:3.5vw;}
+.submitView text{width:65.666vw; font-size:3.2vw;color:#999999; margin: 0 auto;display:block; text-align: center;
+ }
+

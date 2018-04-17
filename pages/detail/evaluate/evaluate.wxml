@@ -1,0 +1,51 @@
+<!--pages/detail/evaluate/evaluate.wxml-->
+<view class="evalute_box">
+  <view class="goods_comment mar_top_20">
+
+    <view class="goods_comment_list ">
+      <!-- 评论begin -->
+      <view class="comment_list_content pad_30" wx:for="{{shopncEvaluate}}" wx:for-item="evalu">
+        <view class="comment_list_l">
+          <image src="{{evalu.member_avatar!=null?evalu.member_avatar:icon.geval_member}}" class="border-radius50"></image>
+        </view>
+        <view class="comment_list_r">
+          <view class="comment_list_top">
+            <text class="txt_tel">{{evalu.geval_frommembername}}</text>
+            <text class="txt_data">{{evalu.geval_addtime}}</text>
+          </view>
+          <view class="comment_list_distribution">商品：
+            <image src="{{evalu.geval_scores > 1 ? icon.satisfied:icon.dissatisfied}}"></image>
+            <text wx:if="{{evalu.geval_scores==1}}">吐槽</text>
+            <text wx:if="{{evalu.geval_scores==2}}">一般</text>
+            <text wx:if="{{evalu.geval_scores==3}}">满意</text>
+            <text wx:if="{{evalu.geval_scores==4}}">非常满意</text>
+            <text wx:if="{{evalu.geval_scores==5}}">无可挑剔</text>
+            <block wx:if="{{evalu.logistics_geval_scores!=0}}">
+              | 配送服务：
+              <image src="{{evalu.logistics_geval_scores > 1 ? icon.satisfied:icon.dissatisfied}}"></image>
+              <text wx:if="{{evalu.logistics_geval_scores==1}}">吐槽</text>
+              <text wx:if="{{evalu.logistics_geval_scores==2}}">一般</text>
+              <text wx:if="{{evalu.logistics_geval_scores==3}}">满意</text>
+              <text wx:if="{{evalu.logistics_geval_scores==4}}">非常满意</text>
+              <text wx:if="{{evalu.logistics_geval_scores==5}}">无可挑剔</text>
+            </block>
+          </view>
+          <block wx:if="{{evalu.geval_goods_spec_keyValue!=null}}">
+            <text class="comment_list_specifications">规格：{{evalu.geval_goods_spec_keyValue}}</text>
+          </block>
+          <!-- <text class="comment_list_specifications">规格：{{evalu.geval_goods_spec_keyValue}}</text> -->
+          <view class="comment_list_introduce">{{evalu.geval_content}}</view>
+          <view class="comment_list_reviewmap">
+            <image wx:for="{{evalu.geval_image_arr}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewImg" mode='aspectFill'></image>
+          </view>
+          <view class="business_reply" wx:if="{{evalu.geval_explain!=null}}">
+            <text>商家回复：{{evalu.geval_explain}}</text>
+          </view>
+        </view>
+      </view>
+      <!-- 评论end -->
+    </view>
+    <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+    <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+  </view>
+</view>

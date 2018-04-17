@@ -1,0 +1,38 @@
+<view>
+  <image src='/image/coupon/coupon.jpg' class='head-img' mode='aspectFill'></image>
+</view>
+<view class='head'>
+  <view class='head-price-container'>
+    <label class='head-price-danwei'>￥</label>
+    <label class='head-price'>{{money}}</label>
+  </view>
+  <view class='head-tip'>
+    仅抵扣寄件支付金额
+  </view>
+  <view class='head-buy-btn' bindtap='toBuy'  hover-class='press-style'>
+    购买抵扣券
+  </view>
+</view>
+
+<view class='middle-action'>
+  <view class='middel-tip'>默认抵扣支付</view>
+  <view class='middle-btn'>
+    <switch checked='{{wechatPay==1?true:false}}' bindchange="changeStatePay"></switch>
+  </view>
+</view>
+
+<view style='margin-bottom:100rpx;'>
+  <view class='history-tip'>
+    余额明细
+  </view>
+  <view class='history' wx:for="{{histories}}">
+    <view style='width: 60%;'>
+      <view class='history-id'>{{item.payWayType}}</view>
+      <view class='history-date'>{{item.updateAtStr}}</view>
+    </view>
+    <view class='history-num'>
+      <view class='history-money' style='color:{{item.color}}'>{{item.money}}元</view>
+      <view class='history-content' style='color:{{item.color}}' wx:if="{{item.content!=null}}">{{item.content}}</view>
+    </view>
+  </view>
+</view>

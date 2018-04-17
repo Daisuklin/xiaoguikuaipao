@@ -1,0 +1,286 @@
+/* pages/store/goodlist/goodlist.wxss */
+.collect-mask {
+  width: 750rpx;
+  height: 250rpx;
+  line-height: 85.4667vw;
+  background: rgba(43, 43, 43,0.5);
+  border-radius: 5rpx;
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.collect-state {
+  width: 14.4vw;
+  height: 14.4vw;
+  background: rgb(93, 217, 171);
+  opacity: 1;
+  border-radius: 50%;
+  color: white;
+  z-index: 120;
+  font-size: 27rpx;
+  font-family: STHeiti;
+  text-align: center;
+  line-height:14.4vw;
+  margin-left: 42.8vw;
+  margin-top: 9.4667vw;
+}
+Page {
+  height: 100%;
+  width: 100%;
+  background: #eee;
+}
+
+.products-container {
+  background: white;
+}
+.pull-text {
+  clear: both;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 40rpx;
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+}
+
+/* ********************************************************************************************商品样式 */
+
+.style2-product-name {
+  font-size: 3.6vw;
+  height: 12vw;
+  line-height: 6vw;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(0, 0, 0, 1);
+}
+
+.style2-right-container {
+  width: 450rpx;
+  height: 250rpx;
+  margin-left: 25rpx;
+  border-top: 1rpx solid #eee;
+  padding-top: 20rpx;
+}
+
+.style2-product-img {
+  display: inline-block;
+  height: 250rpx;
+  width: 250rpx;
+}
+
+.style2-product-container {
+  display: flex;
+  flex-direction: row;
+  width: 750rpx;
+  height: 250rpx;
+  margin-bottom: 10rpx;
+  background: white;
+  position: relative;
+}
+
+.product-price1 {
+  font-size:4.53333vw;
+  font-family: MicrosoftYaHei;
+  color: rgba(229, 0, 79, 1);
+  position: relative;
+  top: -8rpx;
+  font-weight: bold;
+}
+
+.product-price0 {
+  font-size:3.2vw;
+  font-family: STHeiti;
+  color: rgba(153, 153, 153, 1);
+  position: relative;
+  top: -8rpx;
+  margin-left: 10rpx;
+  text-decoration: line-through;
+}
+.new-product-dotimg {
+  display: inline-block;
+  height: 10rpx;
+  width: 42rpx;
+  float: right;
+  padding-right: 20rpx;
+  padding-top: 18rpx;
+}
+
+.new-product-sales-name {
+  display: inline-block;
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  position: relative;
+  top: -22rpx;
+  margin-left: 19rpx;
+}
+
+.new-product-sales-value {
+  display: inline-block;
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  margin-left: 10rpx;
+  position: relative;
+  top: -22rpx;
+}
+
+.new-product-title {
+  width: 332rpx;
+  font-size: 36rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 19rpx 19rpx;
+}
+
+.new-product-img {
+  display: block;
+  width: 370rpx;
+  height: 520rpx;
+}
+
+.new-product-container-left {
+  width: 370rpx;
+  height: 700rpx;
+  background: white;
+  float: left;
+  margin-bottom: 10rpx;
+  border-radius: 5rpx;
+}
+
+.interval {
+  margin-left: 10rpx;
+}
+
+.new-product-container-right {
+  width: 370rpx;
+  height: 700rpx;
+  background: white;
+  float: left;
+  margin-left: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 5rpx;
+}
+
+.product-imgs {
+  display: inline-block;
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 5rpx;
+}
+
+.product-imgs-container {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 620rpx;
+  height: 150rpx;
+  background-color: white;
+}
+
+.goodlist-container {
+  margin-top: 105rpx;
+}
+
+/* ********************************************************************************************中部导航栏样式 */
+
+.theme-desc {
+  width: 620rpx;
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  line-height: 36rpx;
+}
+
+.tarfixed {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
+
+.tarnofixed {
+}
+
+.tar_container {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #eee;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 100000;
+  opacity: 1;
+}
+
+.single_tar {
+  display: inline-block;
+  width: 600rpx;
+  height: 105rpx;
+  background: white;
+}
+
+.tar_name {
+  height: 100rpx;
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #444;
+  line-height: 100rpx;
+}
+
+.double-triangle-img {
+  display: inline-block;
+  width: 11rpx;
+  height: 22rpx;
+  margin-left: 8rpx;
+}
+
+.tarSelected {
+  height: 7rpx;
+  width: 100%;
+  background: #5dd9ab;
+}
+
+.textcolor {
+  color: #5dd9ab;
+}
+
+.search_container {
+  display: inline-block;
+  width: 84rpx;
+  height: 105rpx;
+  background: white;
+}
+
+.change_container {
+  display: inline-block;
+  width: 66rpx;
+  height: 105rpx;
+  background: white;
+}
+
+.search_img {
+  display: block;
+  height: 28rpx;
+  width: 23rpx;
+  margin-left: 20rpx;
+  margin-top: 36rpx;
+}
+
+.change_img {
+  display: block;
+  height: 29rpx;
+  width: 29rpx;
+  margin-left: 10rpx;
+  margin-top: 36rpx;
+}
+
+.tarUnSelected {
+  height: 6rpx;
+  width: 100%;
+  background: white;
+}

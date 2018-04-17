@@ -1,0 +1,42 @@
+/* pages/newLogin/newLogin.wxss */
+page{background: #fff;}
+.loginBox{text-align: center; width: 86.533vw; margin: 0 auto; overflow: hidden;}
+.logo{width:17.33vw;height:17.33vw; margin: 10.8vw auto 0; }
+.logo image{width:17.33vw;height:17.33vw; }
+.logo_title{height:13.066vw; padding-bottom:4.9vw ; line-height:13.066vw;  border-bottom: 1px solid #EEEEEE ; color: #000; font-size:5.3333vw;  }
+
+.dl{
+text-align: left;
+margin-top:6vw;
+}
+.dt{
+line-height: 10vw;
+font-size: 4vw;
+}
+.dd{
+line-height: 7vw;
+font-size: 3.6vw;
+color:#999999;
+}
+
+.ul{
+  margin-top:11.33vw;
+}
+.li{
+ width: 40vw;float: left
+}
+.li button{
+   color:#fff;
+  background: #C4C4C4;
+ width: 40vw; box-shadow: none;  
+ height: 12vw;line-height: 12vw;text-align: center;
+ font-size: 4.6667vw;
+ /* border:1px solid #999999; */
+}
+.li:last-child button{
+ margin-left:4vw;
+background:#5DD9AB;
+line-height: 12vw;text-align: center;
+font-size: 4.6667vw;
+/* border:1px solid #5DD9AB;  */
+}

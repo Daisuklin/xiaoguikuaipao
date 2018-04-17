@@ -1,0 +1,137 @@
+/* pages/my/payment/payment.wxss */
+
+.page {
+  background: #f8f8f8;
+}
+
+.payment-time {
+  width: 100vw;
+  height: 18.1vw;
+  padding-top: 2.3vw;
+  background: #fff;
+  text-align: center;
+  color: #444;
+}
+
+.payment-time_text {
+  font-size: 4.6668vw;
+}
+
+.payment-time_view {
+  font-size: 4vw;
+}
+
+.payment-way {
+  width: 100vw;
+  height: 9.3333vw;
+}
+
+.payment-way_select {
+  color: #999;
+  font-size: 3.6vw;
+  line-height: 10.5vw;
+  margin-left: 4vw;
+}
+
+.payment-check {
+  width: 95.7333vw;
+  height: 29.3333vw;
+  background: #fff;
+  padding-left: 4.2667vw;
+}
+
+.payment-check_deduction {
+  width: 95.7333vw;
+  height: 14.6667vw;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-check_font {
+  float: left;
+  color: #444;
+  font-size: 4vw;
+  margin-left: 6.5333vw;
+  margin-top: 4vw;
+}
+
+.payment-check_text {
+  color: #999;
+  margin-left: 2vw;
+}
+
+.payment-button {
+  width: 68vw;
+  height: 13.3333vw;
+  background: #5dd9ab;
+  border-radius: 1.5vw;
+  color: #fff;
+  font-size: 4.6667vw;
+  padding-left: 24vw;
+  margin-left: 4vw;
+  line-height: 13.3333vw;
+}
+
+.payment-button_text {
+  font-size: 6.6667vw;
+  margin-left: 2.5444vw;
+  float: left;
+}
+
+/* 蒙版部分 */
+
+.payment-masking {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  opacity: 0.3;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+.payment-masking_interface {
+  width: 69.3333vw;
+  height: 35.0667vw;
+  background: #fff;
+  border-radius: 1.5vw;
+  position: fixed;
+  left: 15.2vw;
+  top: 44.9333vw;
+  z-index: 99999;
+}
+
+.payment-masking_view {
+  width: 69.3333vw;
+  height: 24.4vw;
+  color: #444;
+  font-size: 4.6667vw;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  line-height: 24.4vw;
+}
+
+.payment-masking_big {
+  width: 69.3333vw;
+  height: 10.4vw;
+  font-size: 4vw;
+  line-height: 10.4vw;
+}
+
+.payment-masking_font {
+  width: 34.6vw;
+  height: 10.4vw;
+  text-align: center;
+  color: #444;
+  float: left;
+  border-right: 1px solid #eee;
+}
+
+.payment-masking_text {
+  width: 34.4vw;
+  height: 10.4vw;
+  text-align: center;
+  color: #5dd9ab;
+  float: right;
+}

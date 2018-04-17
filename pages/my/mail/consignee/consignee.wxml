@@ -1,0 +1,5 @@
+<!--pages/my/mail/consignee/consignee.wxml-->
+<image src="../../../../image/mail/site.png" class="consignee-site"></image>
+<view class="consignee-site_mail">您还没有添加收货地址</view>
+<view class="consignee-site_shop">正确填写常用的地址方便购物</view>
+<button class="consignee-site_button" bindtap="consignee">添加新地址</button>

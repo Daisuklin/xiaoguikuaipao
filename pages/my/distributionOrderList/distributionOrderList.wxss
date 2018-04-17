@@ -1,0 +1,104 @@
+
+.fltL {
+  float: left;
+}
+.fltR {
+  float: right;
+}
+.g-clr:after {
+  width: 100%;
+  clear: both;
+  content: '';
+  zoom: 1;
+  display: block;
+}
+button::after{border: none;}
+Page{
+   
+  background: white;
+  font-family: STHeitiK-Light;
+}
+.orderList{
+ height: 10.66vw;
+ /* border-top:1px solid #EFEFEF; */
+ border-bottom:1px solid #EFEFEF;
+
+}
+.orderList-navigation{
+  font-size: 30rpx;
+  line-height: 10.66vw;
+  color: #5DD9AB;
+  font-family: 'STHeitiK-Light';
+  float: left;
+  width:33.333vw;
+  text-align: center; 
+  position: relative;
+}
+
+.normal{
+  line-height: 10.66vw;
+  font-size: 30rpx;
+  color: rgb(68 68 68);
+  font-family: 'STHeitiK-Light';
+  float: left;
+  width:33.333vw;
+  text-align: center; 
+  position: relative;
+}
+.orderList-navigation::after{
+  content: " ";
+  left: 50%;
+  bottom: 0;
+  position: absolute;
+  width:4.7vw;
+  margin-left: -2.35vw;
+  border-bottom: .5vw solid #5DDAAC;
+}
+.normal::after,.normal1::after,.normal2::after{
+  content: " ";
+  left: 50%;
+  bottom: 0;
+  position: absolute;
+  width:4.7vw;
+  margin-left: -2.35vw;
+  border-bottom: 1vw solid transparent;
+}
+ 
+
+.navsBox{position: fixed;width: 100vw; height:12.8vw;  bottom: 0; left: 0; background: #fff; border-top: none;box-shadow: 1px 1px 12px 0px  #eee}
+.navsBox .navitem{width: 50vw;  height:12.8vw; float: left; text-align: center; line-height: 17.8vw; position: relative;
+font-size:3.2vw; color:#999;
+}
+.navsBox .navitem .icon{width: 10.66vw;  height:10.66vw;  text-align: center; line-height: 10.66vw; position: absolute; top: -5.33vw; left: 50%;margin-left: -5.33vw;}
+.navsBox .navitem .icon image{width: 10.66vw;  height:10.66vw;}
+
+
+
+.orderLis-itmes{overflow: hidden; width:100vw; min-height:82vh;   margin-top:10.66vw; background: rgba(248,248,248,1); padding-bottom: 15vw; }
+.orderLis-itmes .item{width:94.666vw; margin: 2vw auto; background: #fff; border-radius: 1vw;} 
+.orderLis-itmes .item .item_title{width:89.333vw; margin: 0 auto; border-bottom: 1px solid #EEEEEE;} 
+.orderLis-itmes .item .item_title text{text-align: center; display:inline-block;height: 9.2vw; line-height: 9.2vw;} 
+.orderLis-itmes .item .item_title text{color:#999999; width: auto; font-size:3.6vw;} 
+.orderLis-itmes .item .item_title text:nth-child(1){padding-right:5vw; width: auto; font-size: 4vw;} 
+.orderLis-itmes .item .item_title .elmApp{padding-right:5vw; width: auto; font-size: 3.6vw; border-radius:3.266vw; color: #fff; display: inline-block;background: #1287FF;line-height:4.5vw;padding: .5vw 1.5vw .5vw 0; margin-top:2vw;} 
+
+.orderLis-itmes .item .item_title .elmApp text{height:4.5vw;line-height:4.5vw; display:initial; color:#fff; } 
+.orderLis-itmes .item .item_title .elmApp image{ width:4.533333vw;height:4.533333vw; margin-left: 1vw; vertical-align: sub; } 
+
+
+.orderLis-itmes .item .item_title .xiaoguiApp{padding-right:5vw; width: auto; font-size: 3.6vw; border-radius:3.266vw; color: #fff; display: inline-block;background: #5DD9AB;line-height:4.5vw;padding: .5vw 1.5vw .5vw 0; margin-top:2vw;} 
+
+.orderLis-itmes .item .item_title .xiaoguiApp text{height:4.5vw;line-height:4.5vw; display:initial; color:#fff; } 
+.orderLis-itmes .item .item_title .xiaoguiApp image{ width:4.533333vw;height:4.533333vw; margin-left: 1vw; vertical-align: sub; } 
+
+
+
+.orderLis-itmes .item .item_title .mtApp{padding-right:5vw; width: auto; font-size: 3.6vw; border-radius:3.266vw; color: #fff; display: inline-block;background: #FFAD29;line-height:4.5vw;padding: .5vw 1.5vw .5vw 0; margin-top:2vw;} 
+
+.orderLis-itmes .item .item_title .mtApp text{height:4.5vw;line-height:4.5vw; display:initial;  color:#fff;} 
+.orderLis-itmes .item .item_title .mtApp image{ width:4.533333vw;height:4.533333vw; margin-left: 1vw; vertical-align: sub; }
+.orderLis-itmes .item .item_title text:nth-child(2).xgApp{background: #1287FF;} 
+
+.orderLis-itmes .ul{width:89.333vw; margin: 0 auto; font-size: 3.2vw; padding:2vw 0;  }
+.orderLis-itmes .ul .li{min-height:9.2vw; line-height: 9.2vw; color:#777777;font-size: 3.8vw;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.orderLis-itmes .ul .li image{width: 6vw; height:6vw; vertical-align: middle; margin:0 3vw 0 0; margin-top: -1vw;}

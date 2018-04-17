@@ -1,0 +1,25 @@
+/* 公共样式 */
+
+Page {
+  background-color: #fff;
+  width: 100%;
+  max-height: 100%;
+}
+
+.all_image {
+  margin: 0rpx;
+  padding: 0rpx;
+  display: block;
+}
+
+.height_40 {
+  height: 5.3333vw;
+}
+
+.height_20_bgf8 {
+  height: 2.6666vw;
+  background: #f8f8f8;
+}
+@import 'top/top.wxss';
+@import 'center/center.wxss';
+@import 'bottom/bottom.wxss';

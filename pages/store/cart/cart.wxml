@@ -1,0 +1,74 @@
+<view wx:if="{{cart.length!=0}}">
+  <view class='top-bar' bindtap="{{tipText=='编辑'?'edit':'finished'}}">
+    {{tipText}}</view>
+  <view class='cart-content'>
+    <block wx:for="{{cart}}">
+      <view class="{{calHidden?'store2':'store'}}" wx:if="{{item.cartList.length!=0}}">
+        <view class='store-title-img' hover-class='press-style'>
+          <image hidden='{{!calHidden}}' src="{{item.isCheck?'../../../image/cart/check1.png':'../../../image/cart/check0.png'}}" id="{{item.store_id}}" bindtap='tapSingleStore' class='store-title-icon-circle'></image>
+          <image wx:if="{{item.businessFlag}}" hidden='{{calHidden}}' src="{{item.isCheck?'../../../image/cart/check1.png':'../../../image/cart/check0.png'}}" id="{{item.store_id}}" bindtap='tapSingleStore' class='store-title-icon-circle'></image>
+          <image wx:if="{{!item.businessFlag}}" hidden='{{calHidden}}' src="{{'../../../image/cart/xiu.png'}}" id="{{item.store_id}}" class='store-title-icon-circle'></image>
+          <image src='{{item.store_avatar}}' class='store-logo' id="{{item.store_id}}" data-jumptype="{{item.store_show_type}}" bindtap='checkStore'></image>
+          <label class='store-name' id="{{item.store_id}}" data-jumptype="{{item.store_show_type}}" bindtap='checkStore'>{{item.store_name}}</label>
+          <label style='display: inline-block;height: 114rpx;width:200rpx;' id="{{item.store_id}}" bindtap='checkStore'></label>
+          <label class='triangle'></label>
+        </view>
+        <block wx:for="{{item.cartList}}" wx:for-item="item2" wx:for-index="index2">
+          <view class='good' hover-class='press-style'>
+            <image wx:if="{{!item2.delFlag}}" hidden='{{!calHidden}}' src="{{item2.isCheck?'../../../image/cart/check1.png':'../../../image/cart/check0.png'}}" id="{{item2.cart_id}}" bindtap='tapSingleGood' data-storeid="{{item2.store_id}}" class='good-icon-circle'></image>
+            <!-- 单选 -->
+            <image wx:if="{{item.businessFlag&&!item2.delFlag}}" hidden='{{calHidden}}' src="{{item2.isCheck?'../../../image/cart/check1.png':'../../../image/cart/check0.png'}}" id="{{item2.cart_id}}" bindtap='tapSingleGood' data-storeid="{{item2.store_id}}" class='good-icon-circle'></image>
+            <!-- 单选 -->
+
+            <!-- 失效 -->
+            <image wx:if="{{item2.delFlag}}" src="../../../image/pubic/delFlag.png" class='good-icon-circle'></image>
+            <!-- 失效 -->
+            <image wx:if="{{!item.businessFlag&&!item2.delFlag}}" hidden='{{calHidden}}' src="" id="{{item2.cart_id}}" data-storeid="{{item2.store_id}}" class='good-icon-circle'></image>
+            <image src='{{item2.goods_image}}' mode='aspectFill' bindtap='checkProduct' id="{{item2.goods_id}}" class='good-img'></image>
+            <view class='product-name-price-num-style'>
+              <view class='product-name' bindtap='checkProduct' id="{{item2.goods_id}}">{{item2.goods_name}}</view>
+              <view class='row-container'>
+                <view class='style-price' bindtap='checkProduct' id="{{item2.goods_id}}">
+                  <view class='product-style'>规格：{{item2.spec_key_value}}</view>
+                  <view>
+                    <label class='product-price0'>￥{{item2.goodsPriceStr}}</label>
+                    <!-- <label class='product-price1'>￥{{item2.goods_price}}</label> -->
+                    <label class='product-price1'>￥{{item2.discountPriceStr}}</label>
+                  </view>
+                </view>
+                <view class='change-num-container'>
+                  <image  src='../../../image/cart/subtract.png' class='icon-subtract' data-flag="subtract" id="{{item2.cart_id}}" bindtap='changeNum'></image>
+                  <label  class='choose-product-num'>{{item2.goods_num}}</label>
+                  <image  src='../../../image/cart/add.png' class='icon-add' data-flag="add" id="{{item2.cart_id}}" bindtap='changeNum'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='good-line' wx:if="{{index2!=item.cartList.length-1}}"></view>
+        </block>
+      </view>
+      <view class='bottom-bar2' hidden='{{calHidden}}' wx:if="{{item.cartList.length!=0}}">
+        <label class='chooseAllText2'>合计</label>
+        <view class="{{tatal_price!=0?'calculateText':'calculateText2'}}" bindtap="{{tatal_price!=0?'toPay':''}}">去结算</view>
+        <view class='num-container'>
+          <label class='total-num' wx:if="{{tatal_price!=0}}">￥{{tatal_price}}</label>
+          <label class='total-num' wx:if="{{tatal_price==0}}">￥0</label>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='bottom-bar' hidden='{{delHidden}}'>
+    <image src="{{ischeckAll?'../../../image/cart/check1.png':'../../../image/cart/check0.png'}}" class='icon-circle' bindtap='checkAll'></image>
+    <label class='chooseAllText' bindtap='checkAll'>全选</label>
+    <view class='delText' bindtap='del'>删除</view>
+  </view>
+</view>
+<view wx:if="{{cart.length==0}}">
+  <image src='/image/null-cart.png' style='display:block;width:334rpx;height:261rpx;margin-left:208rpx;margin-top:300rpx;'></image>
+  <view style='font-size:27rpx;color:#6B6B6B;width:100%;text-align:center;margin-top:30rpx;'>
+  不用看了，真的是空的~
+  </view>
+  <view bindtap='goShop' style='width:200rpx;margin-left:275rpx;margin-top:33rpx;height:60rpx;line-height:60rpx;background:rgba(93,217,171,1);border-radius:5rpx;width:89px;text-align:center;font-size:30rpx;font-family:FZLTHJW--GB1-0;color:rgba(255,255,255,1);'>
+    去逛逛
+  </view>
+</view>

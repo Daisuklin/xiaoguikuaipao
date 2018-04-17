@@ -1,0 +1,169 @@
+<!--pages/my/evaluate/evaluate.wxml-->
+<view style='overflow: hidden;'>
+  <view class='evaluate-head_template' wx:if='{{profileId}}'>
+    <!-- 小龟配送 -->
+    <view style='overflow: hidden;'>
+      <view class='evaluate-head_turtlet'>
+        <image src='{{glans == "null" || glans == ""?"../../../image/detail/peisong.png":glans}}' class='evaluate-head_image'></image>
+        <view style='float:left;margin: -.9vh 0 0 2.6666vw;'>
+          <text class='evaluate-head_font'>{{distribution}}</text>
+          <view class='evaluate-head_font1'>{{quantum}}</view>
+        </view>
+      </view>
+      <!-- 配送服务点评 -->
+      <text wx:if='{{isShow==1}}' class='evaluate-head_satisfaction'>“吐槽”</text>
+      <text wx:if='{{isShow==2}}' class='evaluate-head_satisfaction'>“一般”</text>
+      <text wx:if='{{isShow==3}}' class='evaluate-head_satisfaction'>“满意”</text>
+      <text wx:if='{{isShow==4}}' class='evaluate-head_satisfaction'>“非常满意”</text>
+      <text wx:if='{{isShow==5}}' class='evaluate-head_satisfaction'>“无可挑剔”</text>
+      <!-- 配送笑脸 -->
+      <view style='margin:2.4vw 0 2vh 20.1333vw'>
+        <image id='1' src='{{isShow==1?smile[1]:smile[0] && isShow>1?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press'></image>
+        <image id='2' src='{{isShow>=2?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press'></image>
+        <image id='3' src='{{isShow>=3?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press'></image>
+        <image id='4' src='{{isShow>=4?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press'></image>
+        <image id='5' src='{{isShow>=5?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press'></image>
+      </view>
+      <!-- 对配送员的评价 -->
+      <textarea show-confirm-bar="false" bindinput="bindTextAreaChange" value="{{info}}" maxlength="{{noteMaxLen}}" class='evaluate-head_text' maxlength="250" placeholder-class="Forms" placeholder='您的评价让小龟做的更好。（您的意见，将匿名延迟告知配送员）'></textarea>
+      <view class="number-limit">
+        <view class="fr">{{noteNowLen}}/{{noteMaxLen}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小龟快餐店 -->
+  <view class='evaluate-head_template'>
+    <view class='evaluate-middle_turtlet'>
+      <image src='{{glans1}}' class='evaluate-middle_image'></image>
+      <view style='float:left;margin: .46vh 0 0 2.6666vw;'>
+        <text class='evaluate-middle_font'>{{snack}}</text>
+      </view>
+    </view>
+    <!-- 小店点评 -->
+    <text wx:if='{{isHide==1}}' class='evaluate-head_satisfaction'>“吐槽”</text>
+    <text wx:if='{{isHide==2}}' class='evaluate-head_satisfaction'>“一般”</text>
+    <text wx:if='{{isHide==3}}' class='evaluate-head_satisfaction'>“满意”</text>
+    <text wx:if='{{isHide==4}}' class='evaluate-head_satisfaction'>“非常满意”</text>
+    <text wx:if='{{isHide==5}}' class='evaluate-head_satisfaction'>“无可挑剔”</text>
+    <!-- 小店笑脸 -->
+    <view style='margin:2.4vw 0 2vh 20.1333vw'>
+      <image id='1' src='{{isHide==1?smile[1]:smile[0] && isHide>1?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press1'></image>
+      <image id='2' src='{{isHide>=2?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press1'></image>
+      <image id='3' src='{{isHide>=3?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press1'></image>
+      <image id='4' src='{{isHide>=4?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press1'></image>
+      <image id='5' src='{{isHide>=5?smile[2]:smile[0]}}' class='evaluate-head_image1' bindtap='press1'></image>
+    </view>
+
+
+
+    <!-- 小店描述 -->
+    <view wx:if='{{isHide <= 5 && isHide > 0}}'>
+      <view class='evaluate-middle_font1'>描述相符</view>
+      <view style='margin-bottom:4vw;'>
+        <image id='1' src='{{isOk>=1?stars[0]:stars[1]}}' class='evaluate-head_image1' bindtap='press2'></image>
+        <image id='2' src='{{isOk>=2?stars[0]:stars[1]}}' class='evaluate-head_image1' bindtap='press2'></image>
+        <image id='3' src='{{isOk>=3?stars[0]:stars[1]}}' class='evaluate-head_image1' bindtap='press2'></image>
+        <image id='4' src='{{isOk>=4?stars[0]:stars[1]}}' class='evaluate-head_image1' bindtap='press2'></image>
+        <image id='5' src='{{isOk>=5?stars[0]:stars[1]}}' class='evaluate-head_image1' bindtap='press2'></image>
+      </view>
+    </view>
+  </view>
+
+  <block wx:for='{{commodity}}'>
+    <!-- 菜单 -->
+    <view class='evaluate-head_template'>
+      <view class='evaluate-bottom_turtlet'>
+        <image src='{{item.goods_image}}' style='width: 13.3333vw; height: 13.3333vw;float: left;margin-right:3.2vw;'></image>
+          <view style='margin: -.7vh 0 0 0;'>
+            <text class='evaluate-bottom_font'>{{item.goods_name}}</text>
+        </view>
+        <view style='margin: 0.9vh 0 0 0;'>
+          <image bindtap='setStar' data-rec_id="{{item.rec_id}}" id="1" src="{{item.starNum>=1?stars[0]:stars[1]}}" class='evaluate-head_image1'></image>
+          <image bindtap='setStar' data-rec_id="{{item.rec_id}}" id="2" src="{{item.starNum>=2?stars[0]:stars[1]}}" class='evaluate-head_image1'></image>
+          <image bindtap='setStar' data-rec_id="{{item.rec_id}}" id="3" src="{{item.starNum>=3?stars[0]:stars[1]}}" class='evaluate-head_image1'></image>
+          <image bindtap='setStar' data-rec_id="{{item.rec_id}}" id="4" src="{{item.starNum>=4?stars[0]:stars[1]}}" class='evaluate-head_image1'></image>
+          <image bindtap='setStar' data-rec_id="{{item.rec_id}}" id="5" src="{{item.starNum>=5?stars[0]:stars[1]}}" class='evaluate-head_image1'></image>
+
+          <view wx:if="{{item.starNum==1}}" class='evaluate-bottom_font1'>吐槽</view>
+          <view wx:if="{{item.starNum==2}}" class='evaluate-bottom_font1'>一般</view>
+          <view wx:if="{{item.starNum==3}}" class='evaluate-bottom_font1'>满意</view>
+          <view wx:if="{{item.starNum==4}}" class='evaluate-bottom_font1'>非常满意</view>
+          <view wx:if="{{item.starNum==5}}" class='evaluate-bottom_font1'>无可挑剔</view>
+        </view>
+      </view>
+      
+      <!-- 吐槽 -->
+      <textarea show-confirm-bar="false" id='{{item.goods_id}}' bindinput="bindTextAreaChange1"  maxlength="{{noteMaxLen}}" class='evaluate-head_text' maxlength="250" placeholder-class="Forms" placeholder='亲，对商品感觉如何，还满意吗？'></textarea>
+
+      <view class="number-limit">
+         <view class="fr">{{item.len}}/{{noteMaxLen}}</view> 
+      </view>
+
+
+      <!-- 拍照上传 -->
+      <view style='float:left;margin: 0 0 4vw 4vw;'>
+        <view class='evaluate-bottom_image' bindtap='photograph' hidden='{{item.material==1?true:false}}' id='1' data-rec_id="{{item.rec_id}}">
+          <image src='../../../image/evaluate/camera.png' class='evaluate-bottom_image1'></image>
+          <view class="number-limit1">
+            <view class="fr1">添加图片</view>
+          </view>
+        </view>
+
+        <view style='float:left' wx:if="{{item.material==1}}">
+          <!-- 保存后的图片 -->
+          <image src='{{item.picture}}' class='evaluate-bottom1_image'></image>
+          <!-- 删除图标 -->
+          <image src='../../../image/evaluate/fork.png' class='evaluate-bottom1_image1' bindtap='icon' id='2' data-rec_id="{{item.rec_id}}"></image>
+        </view>
+
+
+        <view class='evaluate-bottom_image' bindtap='photograph1' hidden='{{!item.material || item.piss==3?true:false}}' id='3' data-rec_id="{{item.rec_id}}">
+          <image src='../../../image/evaluate/camera.png' class='evaluate-bottom_image1'></image>
+          <view class="number-limit1">
+            <view class="fr1">1/3</view>
+          </view>
+        </view>
+
+
+        <view wx:if="{{item.piss==3}}" style='float:left'>
+          <!-- 保存后的图片 -->
+          <image src='{{item.graphic}}' class='evaluate-bottom1_image'></image>
+          <!-- 删除图标 -->
+          <image src='../../../image/evaluate/fork.png' class='evaluate-bottom1_image1' bindtap='icon1' id='4' data-rec_id="{{item.rec_id}}"></image>
+        </view>
+
+
+        <view class='evaluate-bottom_image' bindtap='photograph2' hidden='{{!item.piss  || item.medicine==5?true:false}}' id='5' data-rec_id="{{item.rec_id}}">
+          <image src='../../../image/evaluate/camera.png' class='evaluate-bottom_image1'></image>
+          <view class="number-limit1">
+            <view class="fr1">2/3</view>
+          </view>
+        </view>
+
+        <view wx:if="{{item.medicine==5}}" style='float:left'>
+          <!-- 保存后的图片 -->
+          <image src='{{item.print}}' class='evaluate-bottom1_image'></image>
+          <!-- 删除图标 -->
+          <image src='../../../image/evaluate/fork.png' class='evaluate-bottom1_image1' bindtap='icon2' id='6' data-rec_id="{{item.rec_id}}"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+
+
+
+<!-- 底部匿名 -->
+<view class='evaluate-bottom_blank'>
+  <image id="{{click}}" hidden='{{isBug}}' src='{{tick}}' class='evaluate-bottom_tick' bindtap='dot'></image>
+  <image id='{{click}}' hidden='{{isBug1}}' src='{{circle}}' class='evaluate-bottom_tick' bindtap='dot1'></image>
+  <view style=' float: left;margin: -.55vh 0 0 2.6666vw;'>
+    <view class='evaluate-bottom_text'>匿名评价</view>
+    <view class='evaluate-bottom_text1'>匿名评价不会对外公开您的头像，昵称给其他用户和商家。</view>
+  </view>
+</view>
+
+<!-- 底部按钮 -->
+<view id='{{id}}' class='evaluate-bottom_buttom' bindtap='evaluate'>提交</view>

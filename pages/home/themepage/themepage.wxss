@@ -1,0 +1,285 @@
+/* pages/home/themepage/themepage.wxss */
+
+.product-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16rpx;
+}
+
+.goods-container {
+  width: 718rpx;
+  padding-left: 16rpx;
+  padding-top: 16rpx;
+  padding-right: 16rpx;
+  background: #eee;
+  padding-bottom: 16rpx;
+}
+
+.product-left {
+  width: 351rpx;
+  height: 525rpx;
+  background-color: white;
+  border-radius: 5rpx;
+}
+
+.product-img-list {
+  width: 331rpx;
+  height: 360rpx;
+  display: block;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  background: burlywood;
+}
+
+.product-name-list {
+  font-size: 32rpx;
+  color: black;
+  width: 331rpx;
+  margin-top: 5rpx;
+  margin-left: 10rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.product-storge-list{
+  color: #666;
+  font-size: 24rpx;
+  padding-left: 10rpx;
+}
+.product-storge-list{
+  color: #666;
+  font-size: 24rpx;
+  padding-left: 10rpx;
+}
+.product-price-buy-list-container{
+
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+.yuanjia{
+  color: #666;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  height: 20rpx;
+  line-height: 20rpx;
+  padding-left: 12rpx;
+}
+.zhekoujia{
+  color: #E5004F;
+  font-size: 32rpx;
+  font-weight: bold;
+  height: 40rpx;
+  line-height: 30rpx;
+  padding-left: 10rpx;
+}
+.product-buy-list{
+  height:40rpx;
+  width:150rpx;
+  background:#E5004F;
+  padding: 10rpx 20rpx;
+  border-radius: 5rpx;
+  color: white;
+  float: right;
+  text-align: center;
+  line-height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.product-right {
+  width: 351rpx;
+  height: 525rpx;
+  background-color: white;
+  margin-left: 16rpx;
+  border-radius: 5rpx;
+}
+
+/**********************************************/
+
+.head-img {
+  display: block;
+  height: 400rpx;
+  width: 100%;
+}
+
+.myweui-cell {
+  padding: 20rpx 15rpx;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.stores-container {
+  padding: 20rpx 20rpx;
+  background: rgb(188, 215, 79);
+}
+
+.store {
+  display: block;
+  background-color: white;
+  margin-bottom: 20rpx;
+  border-radius: 5rpx;
+}
+
+.store-name {
+  font-size: 32rpx;
+  margin-top: -8rpx;
+}
+
+.store-sales {
+  font-size: 24rpx;
+  color: rgba(102, 102, 102, 1);
+  padding-top: 5rpx;
+}
+
+.store-image {
+  display: block;
+  vertical-align: middle;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 5rpx;
+}
+
+.send-inventory {
+  color: rgba(102, 102, 102, 1);
+  font-size: 22rpx;
+  padding-top: 10rpx;
+}
+
+.send {
+  padding-right: 10rpx;
+  border-right: 1rpx solid rgba(102, 102, 102, 1);
+}
+
+.activity-container {
+  clear: both;
+  margin-left: 160rpx;
+  margin-top: -10rpx;
+}
+
+.activity-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.shangjai_free {
+  display: inline-block;
+  width: 100rpx;
+  height: 30rpx;
+  background: white;
+  border-radius: 5rpx;
+  font-size: 20rpx;
+  color: #f94400;
+  text-align: center;
+  line-height: 30rpx;
+  border: 1rpx solid #f94400;
+  margin-left: 10rpx;
+}
+
+.shangjia_post {
+  display: inline-block;
+  width: 88rpx;
+  height: 32rpx;
+  background: rgba(249, 68, 0, 1);
+  border-radius: 16rpx 0px 16rpx 0px;
+  font-size: 20rpx;
+  color: white;
+  text-align: center;
+  line-height: 30rpx;
+}
+
+.label2 {
+  display: inline-block;
+  width: 500rpx;
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 9rpx;
+  margin-bottom: -6rpx;
+}
+
+.scrow-style {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  width: 100%;
+  height: 310rpx;
+  background-color: white;
+  white-space: nowrap;
+}
+
+.good-container {
+  width: 220rpx;
+  height: 310rpx;
+  margin-left: 10rpx;
+  display: inline-block;
+}
+
+.command-good-img {
+  display: block;
+  height: 221rpx;
+  width: 220rpx;
+  border-radius: 5rpx;
+}
+
+.command-good-name {
+  width: 210rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  padding: 0px 5rpx;
+}
+
+.scrow-product-name {
+  width: 210rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  padding: 0px 5rpx;
+}
+
+.product-price-container {
+  width: 100%;
+  height: 50rpx;
+  line-height: 30rpx;
+}
+
+.price3-container {
+  width: 100%;
+  height: 50rpx;
+  line-height: 30rpx;
+}
+
+.price0 {
+  color: #f50;
+  font-size: 31rpx;
+}
+
+.price1 {
+  text-decoration: line-through;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 63rpx;
+  margin-left: 9rpx;
+}
+
+.price3 {
+  color: #f50;
+  font-size: 31rpx;
+}
+
+.hidden_class {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.press-style{
+  background: #ECECEC;
+}

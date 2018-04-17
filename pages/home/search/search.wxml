@@ -1,0 +1,37 @@
+<!-- <view class="" style="background-color:rgb(93,217,171);width:100%;">
+  <icon type="search" size="14" style="display:inline-block;position:relative;left:110rpx;top:-35rpx;z-index:1000;height:10rpx;width:10rpx;"></icon>
+  <input type="text" placeholder="搜索" value='{{value}}' style="" bindinput='setKeyWords' class="input_class" />
+  <view bindtap="search" style="display:inline-block;color:white;font-size:34rpx;position:relative;top:-16rpx;width:80rpx;text-algin:left;padding-left:30rpx;">搜索</view>
+</view> -->
+<view class="search-container">
+  <icon type="search" size="14" class='icon-search'></icon>
+  <input type="text" placeholder="搜索" value='{{value}}' bindinput='setKeyWords' bindconfirm="search" class="input_class" />
+  <view bindtap="search" class='text-search'>搜索</view>
+</view>
+<view class='line'></view>
+<view class="" style="padding-left:26rpx;padding-top:21rpx;color:rgb(119,119,119);font-size:30rpx;">
+  热门搜索
+</view>
+<block wx:for="{{tags}}">
+  <view class="" id="{{item.keyWord}}" bindtap='setKeyWord' style="margin-left:26rpx;margin-top:15rpx;float:left;background-color:#e8e8e8;display:inline-block;font-size:26rpx;height:36rpx;border-radius:28rpx;padding:10rpx 20rpx;">
+    {{item.keyWord}}
+  </view>
+</block>
+<view style='clear:both;' wx:if="{{history.length!=0}}">
+  <view class="">
+    <view style="float:left;margin-left:26rpx;padding-top:21rpx;color:rgb(119,119,119);font-size:30rpx;">
+      历史记录
+    </view>
+    <view style='height:28rpx;width:25rpx;float:right;margin-right:26rpx;padding-top:21rpx;'>
+      <image src='../../../image/search/del.png' bindtap='clearHistory' style='height:28rpx;width:25rpx;'></image>
+    </view>
+  </view>
+  <view style='clear:both;'>
+    <block wx:for="{{history}}">
+    <view class="" id="{{item}}" bindtap='setKeyWord' style="margin-left:26rpx;margin-top:15rpx;float:left;background-color:#e8e8e8;display:inline-block;font-size:26rpx;height:36rpx;border-radius:28rpx;padding:10rpx 20rpx;">
+      {{item}}
+    </view>
+  </block>
+  </view>
+  
+</view>

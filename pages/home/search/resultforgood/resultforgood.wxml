@@ -1,0 +1,93 @@
+<view class="g-clr" style="background-color:rgb(93,217,171);width:100vw;height:11vw; position:fixed;top:0px;left:0px;z-index:1000;">
+  <view style='position:relative; width:70vw;  margin:0 0 0 7.5vw ; height:8.8vw; float:left;'>
+    <icon type="search" size="14" style="display:block;position:absolute;left:2.4vw;top:2.5vw;height:1.6vw;width:1.6vw;"></icon>
+    <input type="text" bindinput='setKeyWord' bindconfirm="searchTap" placeholder="搜索" style="margin-left:0;text-indent:1vw;" value='{{keyword}}' class="input_class" />
+  </view>
+  
+  <view bindtap='searchTap' style="color:white;font-size:4.5333vw;width:10.6667vw;text-algin:left;padding-left:4vw;float:left; margin-top:1vw;">搜索</view>
+</view>
+<!-- 顶部搜索 end -->
+
+<!-- 中部导航 start -->
+<view class="{{fixStyle?'tarfixed':''}}">
+  <view class="tar_container">
+    <view class="single_tar">
+      <block wx:for="{{tab}}">
+        <view id="{{index}}" bindtap='chooseTar' style='display:inline-block;width:25%;'>
+          <view class="tar_name {{activeIndex==index?'textcolor':''}} ">
+            {{item.tabname}}
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="" style="width:100%;background-color:white;position:fixed;top:178rpx;left:0rpx;z-index:1000;font-size:34rpx;" wx:if="{{activeIndex==0}}">
+  <!-- 中部导航 end -->
+  <!-- 中部导航子内容 start -->
+  <view class="{{allOrderHiddenIndex==0?'orderStyle1':'orderStyle0'}}" style="border-bottom:1rpx solid #D9D9D9;" id="0" bindtap="setallOrderHiddenIndex">
+    <image wx:if="{{allOrderHiddenIndex==0}}" src="../../../../image/search/search.png" style="height:16rpx;width:24rpx;margin-left:21rpx;position:relative;top:-6rpx;"></image>
+    <label style="padding-left:{{allOrderHiddenIndex==0?'29':'74'}}rpx;">离我最近</label>
+  </view>
+  <view class="{{allOrderHiddenIndex==1?'orderStyle1':'orderStyle0'}}" style="border-bottom:1rpx solid #D9D9D9;" id="1" bindtap="setallOrderHiddenIndex">
+    <image wx:if="{{allOrderHiddenIndex==1}}" src="../../../../image/search/search.png" style="height:16rpx;width:24rpx;margin-left:21rpx;position:relative;top:-6rpx;"></image>
+    <label style="padding-left:{{allOrderHiddenIndex==1?'29':'74'}}rpx;">销量最高</label>
+  </view>
+  <view class="{{allOrderHiddenIndex==2?'orderStyle1':'orderStyle0'}}" id="2" bindtap="setallOrderHiddenIndex">
+    <image wx:if="{{allOrderHiddenIndex==2}}" src="../../../../image/search/search.png" style="height:16rpx;width:24rpx;margin-left:21rpx;position:relative;top:-6rpx;"></image>
+    <label style="padding-left:{{allOrderHiddenIndex==2?'29':'74'}}rpx;">价格从低到高</label>
+  </view>
+</view>
+
+<view class="" style="padding-bottom:15rpx;width:100%;background-color:white;position:fixed;top:178rpx;left:0rpx;z-index:1000;font-size:34rpx;border-top:1rpx solid #eee;;" wx:if="{{activeIndex==3}}">
+  <view class='price-distance'>
+    <label class='price-text'>价格区间（元）</label>
+    <view class='prices-container'>
+      <label>
+        <input placeholder='最低价' data-my="lower" bindinput='setPrice' class='price-input'></input>
+      </label>
+      <label class='content-line'>---</label>
+      <label>
+        <input placeholder='最高价' data-my="heighter" bindinput='setPrice' class='price-input'></input>
+      </label>
+    </view>
+  </view>
+  <view class="" style="">
+    <view class="" style="font-size:32rpx;color:#666;padding-left:20rpx;padding-top:20rpx;">优惠活动（单选）</view>
+    <block wx:for="{{discounts}}">
+      <view class="{{discountHiddenIndex==index?'discount1':'discount0'}}" id="{{index}}" bindtap="chooseDiscount">{{item}}</view>
+    </block>
+    <view class="" style="clear:both;border-top:1rpx solid #eee;;padding-top:14rpx;">
+      <view class="clearChoice" bindtap='clearChoices' style="float:left;">清空筛选</view>
+      <view class="finish" bindtap='finishFilter' style="">完成</view>
+    </view>
+  </view>
+</view>
+<!-- 中部导航子内容 end-->
+<view class="" style="height:195rpx;"></view>
+
+
+<block wx:for="{{goodsList}}">
+  <view class='new-product-container-left' hover-class='press-style' wx:if="{{index%2==0}}">
+    <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+    <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>
+      <label style='color:black;' class='new-product-name'>{{item.goods_name}}</label>
+      <label style='float:right;'>{{item.distance}}</label>
+    </view>
+    <view class='new-product-price-sales'>
+      <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goods_price}}</label>
+      <label class='have-sales'>已售{{item.goods_salenum}}</label>
+    </view>
+  </view>
+  <view class='new-product-container-right' hover-class='press-style' wx:if="{{index%2==1}}">
+    <image src='{{item.goods_image}}' id="{{item.goods_id}}" bindtap='checkProduct' class='new-product-img' mode="aspectFill"></image>
+    <view class='new-product-title' id="{{item.goods_id}}" bindtap='checkProduct'>
+      <label style='color:black;' class='new-product-name'>{{item.goods_name}}</label>
+      <label style='float:right;'>{{item.distance}}</label>
+    </view>
+    <view class='new-product-price-sales'>
+      <label class='product-price1' id="{{item.goods_id}}" bindtap='checkProduct'>￥{{item.goods_price}}</label>
+      <label class='have-sales'>已售{{item.goods_salenum}}</label>
+    </view>
+  </view>
+</block>

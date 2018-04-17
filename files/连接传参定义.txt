@@ -1,0 +1,117 @@
+
+"pages/home/search/imgstoresresult/imgstoresresult",
+"pages/home/themepage/themepage",  
+
+/api/v1/selectShopnStoreComplexToStore
+新版标签店铺综合查询 代替之前的selectShopnStoreZhongheToStorePageToliuFeng接口
+
+/api/v1/selectStoreByThemeId
+新版获取主题活动对应得店铺 代替之前的selectShopncStoreByThemeIdActicity接口
+返回的数据和搜索的一样
+
+https://qnimg.xiaoguikuaipao.com/SXd7IRXAHEw6cc59f435de0983fc2f19f9b
+https://qnimg.xiaoguikuaipao.com/0AgChgg9B3DIc2f1c8dfa64338b3f52b4e6
+https://qnimg.xiaoguikuaipao.com/QewXAsydlvDS4da25040aa866568fe8fa09
+https://qnimg.xiaoguikuaipao.com/UAWUu0MuySCUe878d094e38d5c018960d82
+https://qnimg.xiaoguikuaipao.com/OFLGMvFfPzWjf0f56bbd414215470e40e56
+https://qnimg.xiaoguikuaipao.com/vmtXQ3HFDl5C5cb2fef4af820777d53f216
+
+
+selectShopnStoreComplex  selectShopnStoreComplexToStore
+selectStoreByThemeId 这几个接口都多返回了一个参数 business 是否营业 true营业 false不在营业
+
+<template name="store">
+  <view style="display:block;clear:both;background-color:white; margin-bottom:10rpx;border-radius:5rpx;">
+    <view id="{{item.store_id}}" hover-class='press-style' data-jumptype="{{item.store_show_type}}" bindtap='checkStore' style='display:flex;flex-direction:row;height:128rpx;padding-top:15rpx;padding-bottom:20rpx;'>
+      <view>
+        <image src="{{item.store_avatar}}" mode='aspectFill' style="margin-left:15rpx;display:block;vertical-align: middle;width:128rpx;height:128rpx;border-radius:5rpx;"></image>
+      </view>
+      <view style='margin-left:20rpx;width:567rpx;margin-bottom:10rpx;'>
+        <view class="" style="font-size:32rpx;margin-top:-3rpx;;">{{item.store_name}}</view>
+        <view class="" style="font-size:24rpx;color:rgba(102,102,102,1);padding-top:5rpx">
+          <label>销量{{item.store_sales}}</label>
+          <label class="shangjai_free" style="float:right;margin-left:15rpx;">小龟配送</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.flagPackageMall==0}}">平台包邮</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.packageMall==true&&item.flagPackageMall==1}}">商家包邮</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.flagPackageMall==2}}">不包邮</label>
+        </view>
+        <view class="" style="color:rgba(102,102,102,1);font-size:22rpx;padding-top:10rpx;">
+          <label style="padding-right:10rpx;border-right:1rpx solid rgba(102,102,102,1);">起送￥{{item.sendPrice}}</label>
+          <label style="margin-left:10rpx;">商品{{item.goodsNum}}</label>
+          <label style="font-size:24rpx;color:rgba(102,102,102,1);float:right;">{{item.distance}}</label>
+        </view>
+      </view>
+    </view>
+    <block wx:for="{{item.youhuiList}}" wx:for-item="item2">
+      <view class="" style="clear:both;margin-left:160rpx;margin-bottom:25rpx;">
+        <view class="">
+          <label class="" style="">
+            <image src="{{item2.activityLogo}}" mode='aspectFill' style="diplay:block;width:28rpx;height:28rpx;float:left;margin-top:0.3667vw;"></image>
+          </label>
+          <label class="" style='display: inline-block;width: 500rpx;font-size: 22rpx;font-family: PingFang-SC-Medium;color: rgba(153, 153, 153, 1);overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left: 10rpx;float:left;'>{{item2.activityStrInfo}}</label>
+        </view>
+      </view>
+    </block>
+    <scroll-view scroll-x="true" scroll-x="false" style="clear:both;padding-top:10rpx;padding-bottom:10rpx;width:100%;height:315rpx;background-color:white;white-space: nowrap;">
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" id="{{item2.goods_id}}" bindtap='checkProduct' hover-class='press-style' style="width:220rpx;margin-left:10rpx;display:inline-block; ">
+        <image src="{{item2.goods_image}}" mode='aspectFill' style="display:block;height:221rpx;width:220rpx;border-radius:5rpx;"></image>
+        <view style="margin-top:8rpx;width:210rpx;font-size:3.2vw;padding:0px 5rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+          {{item2.goods_name}}
+        </view>
+        <view class="" style='margin-top:5rpx;padding:0;-webkit-box-pack: left; -ms-flex-pack: left;-webkit-justify-content: left;justify-content: left;-webkit-box-align: left;-ms-flex-align: left;-webkit-align-items: left;align-items: left;'>
+          <label wx:if="{{item2.goodsPriceStr!=null}}" style="overflow:hidden;text-decoration:line-through;font-size:3.7333vw;color:#999;float:left;margin-top:4rpx;margin-left:5rpx;">￥{{item2.goodsPriceStr}}</label>
+          <label wx:if="{{item2.discountPriceStr!=null}}" style="overflow:hidden;color:#FF5500;font-size:4.1333vw;float:right;margin-right:5rpx;">￥{{item2.discountPriceStr}}</label>
+        </view>
+      </view>
+    </scroll-view>
+    <view style='height:1rpx;width:100%;'></view>
+  </view>
+</template>
+<template name="store2">
+  <view style="display:block;clear:both;background-color:white; margin-bottom:10rpx;border-radius:5rpx;">
+    <view id="{{item.store_id}}" hover-class='press-style' data-jumptype="{{item.store_show_type}}" bindtap='checkStore' style='display:flex;flex-direction:row;height:128rpx;padding-top:15rpx;padding-bottom:20rpx;'>
+      <view>
+        <image src="{{item.store_avatar}}" mode='aspectFill' style="margin-left:15rpx;display:block;vertical-align: middle;width:128rpx;height:128rpx;border-radius:5rpx;"></image>
+      </view>
+      <view style='margin-left:20rpx;width:527rpx;margin-bottom:10rpx;'>
+        <view class="" style="font-size:32rpx;margin-top:-3rpx;;">{{item.store_name}}</view>
+        <view class="" style="font-size:24rpx;color:rgba(102,102,102,1);padding-top:5rpx">
+          <label>销量{{item.store_sales}}</label>
+          <label class="shangjai_free" style="float:right;margin-left:15rpx;">小龟配送</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.flagPackageMall==0}}">平台包邮</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.packageMall==true&&item.flagPackageMall==1}}">商家包邮</label>
+          <label class="shangjia_post" style="float:right;margin-left:15rpx;" wx:if="{{item.flagPackageMall==2}}">不包邮</label>
+
+        </view>
+        <view class="" style="color:rgba(102,102,102,1);font-size:22rpx;padding-top:10rpx;">
+          <label style="padding-right:10rpx;border-right:1rpx solid rgba(102,102,102,1);">起送￥{{item.sendPrice}}</label>
+          <label style="margin-left:10rpx;">商品{{item.goodsNum}}</label>
+          <label style="font-size:24rpx;color:rgba(102,102,102,1);float:right;">{{item.distance}}</label>
+        </view>
+      </view>
+    </view>
+    <block wx:for="{{item.youhuiList}}" wx:for-item="item2">
+      <view class="" style="clear:both;margin-left:160rpx;margin-bottom:25rpx;">
+        <view class="">
+          <label class="" style="">
+            <image src="{{item2.activityLogo}}" mode='aspectFill' style="diplay:block;width:28rpx;height:28rpx;float:left;margin-top:0.3667vw;"></image>
+          </label>
+          <label class="" style='display: inline-block;width: 500rpx;font-size: 22rpx;font-family: PingFang-SC-Medium;color: rgba(153, 153, 153, 1);overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-left: 10rpx;float:left;'>{{item2.activityStrInfo}}</label>
+        </view>
+      </view>
+    </block>
+    <scroll-view scroll-x="true" scroll-x="false" style="clear:both;padding-top:10rpx;padding-bottom:10rpx;width:100%;height:315rpx;background-color:white;white-space: nowrap;">
+      <view wx:for="{{item.commendGood}}" wx:for-item="item2" id="{{item2.goods_id}}" bindtap='checkProduct' hover-class='press-style' style="width:220rpx;margin-left:10rpx;display:inline-block;">
+        <image src="{{item2.goods_image}}" mode='aspectFill' style="display:block;height:221rpx;width:220rpx;border-radius:5rpx;"></image>
+        <view style="margin-top:8rpx;width:210rpx;font-size:24rpx;padding:0px 5rpx;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+          {{item2.goods_name}}
+        </view>
+        <view class="" style='margin-top:5rpx;padding:0;-webkit-box-pack: left; -ms-flex-pack: left;-webkit-justify-content: left;justify-content: left;-webkit-box-align: left;-ms-flex-align: left;-webkit-align-items: left;align-items: left;'>
+          <label wx:if="{{item2.goodsPriceStr!=null}}" style="overflow:hidden;text-decoration:line-through;font-size:28rpx;color:#999;float:left;margin-top:4rpx;margin-left:5rpx;">￥{{item2.goodsPriceStr}}</label>
+          <label wx:if="{{item2.discountPriceStr!=null}}" style="overflow:hidden;color:#FF5500;font-size:31rpx;float:right;margin-right:5rpx;">￥{{item2.discountPriceStr}}</label>
+        </view>
+      </view>
+    </scroll-view>
+    <view style='height:1rpx;width:100%;'></view>
+  </view>
+</template>
