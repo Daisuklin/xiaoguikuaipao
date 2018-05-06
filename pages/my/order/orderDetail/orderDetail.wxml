@@ -248,7 +248,12 @@
       </view>
     </view>
   </block>
-
+  <!-- 订单广告图 -->
+  <block>
+    <view class='order_banner_img'>
+      <image src="{{orderDetail.order_banner}}" class='order_ad_img'></image>
+    </view>
+  </block>
 
   <!-- 店铺、商品信息begin -->
   <view class="order_distribution_content">
@@ -270,7 +275,7 @@
         <view class="pro_list {{ifmore ? '' : 'order_fath'}}">
           <view class="production_list_box" wx:for="{{extend_order_goods}}" wx:for-item="items" bindtap="goToTheGoodsDetail" id='{{items.goods_id}}'>
             <view class='goods_Image'>
-              <image src="{{items.goods_image}}" class="paypro_img" mode="aspectFill" ></image>
+              <image src="{{items.goods_image}}" class="paypro_img" mode="aspectFill"></image>
             </view>
             <view class="production_list">
               <view class="order_pro">
@@ -409,18 +414,18 @@
     </view>
   </view>
   <!-- 夜间服务费begin -->
-    <view class="park_contents" hidden="{{!showNight}}"></view>
-    <view class="park_content_main" hidden="{{!showNight}}">
-      <text class="content_top">- 夜间服务费 -</text>
-      <block wx:for="{{nightInfo}}" wx:if="{{nightInfo!=''}}">
-        <view class="txt_con_view">
-          <text class="txt_con">{{item.key}}</text>
-          <text class="txt_con">{{item.value}}</text>
-        </view>
-      </block>
-      <text class="btn_close" bindtap="closeServiceFee">确定</text>
-    </view>
-    <!-- 夜间服务费end -->
+  <view class="park_contents" hidden="{{!showNight}}"></view>
+  <view class="park_content_main" hidden="{{!showNight}}">
+    <text class="content_top">- 夜间服务费 -</text>
+    <block wx:for="{{nightInfo}}" wx:if="{{nightInfo!=''}}">
+      <view class="txt_con_view">
+        <text class="txt_con">{{item.key}}</text>
+        <text class="txt_con">{{item.value}}</text>
+      </view>
+    </block>
+    <text class="btn_close" bindtap="closeServiceFee">确定</text>
+  </view>
+  <!-- 夜间服务费end -->
   <view class="height200"></view>
 </view>
 <view style='height:100vh;z-index:9999; width:100vw; background:rgba(0, 0, 0, 0.67);position:fixed;left:0;top:0;' wx:if='{{refundReasonInfo.isShow}}'>
@@ -428,7 +433,7 @@
 </view>
 <!-- 提示弹窗 -->
 
-<block wx:if="{{isPrompt}}">
+<block wx:if="{{orderDetail.isPrompt}}">
   <view class="box_prompt_box">
     <view class="box_prompt">
       <text>{{promptTit}}</text>
@@ -439,6 +444,32 @@
 <view style='height:100vh;z-index:9999; width:100vw; background:rgba(0, 0, 0, 0.2);position:fixed;left:0;top:0;' wx:if='{{refundDialogBox.isDialogShow}}'>
   <template is="showDialogBox" data="{{refundDialogBox}}" />
 </view>
+<!-- 支付完成后有积分弹窗 -->
+<view class="dialog_box_park" wx:if="{{isIntegral==1}}"></view>
+<view class='Integral_park' wx:if="{{isIntegral==1}}">
+  <view class='Integral_park_bg' style="background: url(https://qnimg.xiaoguikuaipao.com/w3EL81XcMdPP0bb011040957d54b75e2eb0) no-repeat center center / 100% 100%;">
+    <view class='Integral_park_l'></view>
+    <view class='Integral_park_r'>
+      <view class='content_top'>
+        <text>+{{orderDetail.gain_point}}</text>龟米
+      </view>
+      <text class='span_text'>订单确认完成后</text>
+      <text class='span_text'>龟米将自动打入账户</text>
+    </view>
+  </view>
+  <view class='Integral_close'>
+    <image src="{{icon_orderDetail.icon_showIntegral_close}}" bindtap='getIntegralClose'></image>
+  </view>
+</view>
+<!-- 支付完成没有得到积分弹窗 -->
+<view class='park_noIntegral' wx:if="{{isIntegral==2}}">
+  <view class='park_noIntegral_content'>
+    <image src='{{icon_orderDetail.icon_payment_completion}}'></image>
+    <text class='txt1'>下单成功</text>
+    <text class='txt2'>请耐心等候商家接单</text>
+  </view>
+</view>
+
 <!-- <block>
 <view class="dialog_box_park" wx:if="{{isDialogShow}}"></view>
   <view class="dialog_box" wx:if="{{isDialogShow}}">

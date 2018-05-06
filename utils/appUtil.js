@@ -1,12 +1,14 @@
-
-
 const requestUrlList = () => {
-  var logisticsUrl = "https://logistics.xiaoguikuaipao.com";
-  var requestUrl = 'https://api.xiaoguikuaipao.com';
-  var devrequestUrl = "https://api.xiaoguikuaipao.com"
-  // var devrequestUrl = "https://dev-api.xiaoguikuaipao.com"
-  // var logisticsUrl = "https://dev-logistics.xiaoguikuaipao.com";
-  // var requestUrl = 'https://dev-api.xiaoguikuaipao.com';
+  var isTest = true
+  if (!isTest) {
+    var logisticsUrl = "https://logistics.xiaoguikuaipao.com";
+    var requestUrl = 'https://api.xiaoguikuaipao.com';
+    var devrequestUrl = "https://api.xiaoguikuaipao.com"
+  } else {
+    var devrequestUrl = "https://dev-api.xiaoguikuaipao.com"
+    var logisticsUrl = "https://dev-logistics.xiaoguikuaipao.com";
+    var requestUrl = 'https://dev-api.xiaoguikuaipao.com';
+  }
   var requestUrlt = requestUrl//'http://112.74.28.99:8080'; //测试服务器
   var requestTXM = requestUrl;//"http://112.74.28.99:8080"
   var requestUrl3 = requestUrl;//'https://api.xiaoguikuaipao.com/api/v1/';
@@ -77,7 +79,6 @@ const requestUrlList = () => {
   var getCouponById = logisticsUrl + "/api/v1/areaGiveRule/getGiveRule/"
   var getSpecByTXM = requestTXM + "/api/v1/searchStoreGoodsBarcode"//根据条形码获取商品
   var delCartsNew = requestUrl + "/api/v1/deleteShopncCart"
-  
   var getPopularStores = devrequestUrl + "/api/v1/selectStoreByPopular";
   //林锐宏 end
 
@@ -127,6 +128,7 @@ const requestUrlList = () => {
   var insertBuyerReturns = requestUrl + "/api/v1/shopMc/insertBuyerReturns" //退货接口
   var searchStoreGoodsBarcode = requestUrl + "/api/v1/searchStoreGoodsBarcode" //扫描条形码处理接口 "store_id":4895,arcode":"5435345345345"
   var selectShopncStoreByCommendVersion3 = devrequestUrl + '/api/v1/selectStoreByCommend' //新版首页接口 参数:areaCode、memberId
+  var getaddresses = logisticsUrl + '/api/v1/addresses/' //得到地址id后重新处理地址接口 +addressId
   // 林德有 end
 
   //曹智攀 begin
@@ -213,8 +215,8 @@ const requestUrlList = () => {
     getCouponById: getCouponById,
     getSpecByTXM: getSpecByTXM,
     delCartsNew: delCartsNew,
-	
-	getPopularStores:getPopularStores,
+
+    getPopularStores: getPopularStores,
     //林锐宏 end
 
     // 林德有begin
@@ -236,6 +238,7 @@ const requestUrlList = () => {
     insertBuyerReturns: insertBuyerReturns,
     searchStoreGoodsBarcode: searchStoreGoodsBarcode,
     frontPageInterface: selectShopncStoreByCommendVersion3,
+    getaddresses: getaddresses,
     //林德有end
     //星星start
     removeUrl: removeUrl,
@@ -318,7 +321,22 @@ const lrhMethods = {
 }
 const controllerUtil = {
   // 林德有begin
-  getFrontPageInterface: (paras, callback)=>{//新版首页接口
+  getaddresses: (addressId, paras, callback)=>{//根据地址id重新处理地址信息
+    wx.request({
+      url: requestUrlList().getaddresses + addressId,
+      data: paras,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 退货
+        'Authorization': appUtils.getTokenData(),
+        'api': 'web',
+      },
+      success: function (data) {
+        callback(data);
+      }
+    })
+  },
+  getFrontPageInterface: (paras, callback) => {//新版首页接口
     wx.request({
       url: requestUrlList().frontPageInterface,
       data: paras,

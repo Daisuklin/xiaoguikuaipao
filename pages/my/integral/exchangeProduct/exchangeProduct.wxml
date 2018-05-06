@@ -1,0 +1,35 @@
+<view class="top">
+  <image class='top-img' src='{{item.imgUrl}}' mode='aspectFill'></image>
+</view>
+<view class='content1'>
+  <view class='text1'>{{item.name}} - 全品类</view>
+  <view class='text2-cotainer'>
+    <label>
+      <image src='{{icons.integral}}' class='integral-icon'></image>
+    </label>
+    <label class='text2'>{{item.point}}</label>
+  </view>
+  <view class='text3-4-container'>
+    <label class='text3'>库存：</label>
+    <label class='text4'>{{item.stock}}</label>
+  </view>
+</view>
+<view class='details'>
+  <view class='details-text5'>图文详情</view>
+  <rich-text nodes="{{nodes}}" class="rich_textcon" ></rich-text>
+</view>
+<view class='content2'>
+  <view class='text5'>温馨提示</view>
+  <view class='text6-container'>
+    <view class='text6'>
+      <label class='dot'></label>兑换后自动放入【我的-优惠券】</view>
+    <view class='text6'>
+      <label class='dot'></label>优惠券不可叠加使用，每个订单可使用一张</view>
+    <view class='text6'>
+      <label class='dot'></label>龟米一经兑出不予退换</view>
+    <view class='text6'>
+      <label class='dot'></label>了解更多详情，查看【我的-优惠券-优惠券使用说明】</view>
+  </view>
+</view>
+<view style='height:60rpx;width:100vw;'></view>
+<view bindtap='commit' style='position:fixed;bottom:0px;left:0px;height:98rpx;width:100vw;text-align:center;line-height:98rpx;font-size:35rpx;background:#5DD9AB;color:white;'>确定兑换</view>

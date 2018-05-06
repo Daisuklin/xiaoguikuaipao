@@ -1,0 +1,61 @@
+/* pages/my/integral/ordersexchange/ordersexchange.wxss */
+
+.container {
+  margin-top: 20rpx;
+  width: 100vw;
+  background-color: white;
+  padding: 0px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  width: 720rpx;
+  height: 120rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.product-img-name{
+  display: flex;
+}
+.product-img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.text1-2-container {
+  padding-left: 31rpx;
+}
+
+.text1 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 30rpx;
+  padding-bottom: 20rpx;
+  padding-top: 5rpx;
+}
+
+.text2 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 24rpx;
+}
+.text3 {
+  display: flex;
+  align-items: center;
+  width: 26rpx;
+  line-height: 30rpx;
+  height: 100rpx;
+  flex-wrap: wrap-reverse;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Regular;
+  color: rgba(93, 217, 171, 1);
+  border-left: 1rpx solid #eee;
+  padding-left: 36rpx;
+  padding-right: 57rpx;
+  margin-top: 10rpx;
+}

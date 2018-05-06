@@ -1,0 +1,106 @@
+/* pages/my/wallet/recordReceipts/recordReceipts.wxss */
+
+Page {
+  background: #f8f8f8;
+}
+
+.contain_receipts_date {
+  text-align: right;
+  padding: 2vw 4vw;
+  height: 6.133vw;
+}
+
+.contain_receipts_date image {
+  width: 6.133vw;
+  height: 6.133vw;
+}
+/*list  */
+.incomestatistics_list{margin-bottom: 4vw;}
+.incomestatistics_list .list_box {
+  background: #fff;
+}
+
+.incomestatistics_list .list_date {
+  font-size: 3.6vw;
+  color: #666;
+  height: 6.67vw;
+  background: #eee;
+  padding-left: 4.3vw;
+  line-height: 6.67vw;
+}
+
+.incomestatistics_list .list_child {
+  display: flex;
+  align-items: center;
+  height: 16vw;
+}
+
+.incomestatistics_list .list_child .list_con {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.incomestatistics_list .list_child .list_con .list_con_tit {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.incomestatistics_list .list_child .list_con .list_con_txt {
+  font-size: 4vw;
+  color: #222;
+}
+
+.color_yellow {
+  color: #fe751a !important;
+}
+
+/*list_childlit  */
+
+.border-bot {
+  border-bottom: 1rpx solid #eee;
+}
+
+.list_childlit {
+  display: flex;
+  align-items: center;
+  height: 12vw;
+  border-bottom: 1px solid #eee;
+}
+
+.list_childlit:last-child {
+  border-bottom: none;
+}
+
+.list_childlit .childlit_cont {
+  flex: 1;
+  text-align: center;
+}
+
+.list_childlit .childlit_first {
+  display: flex;
+  height: 12vw;
+  align-items: center;
+}
+
+.list_childlit .childlit_cont .txt {
+  color: #999;
+  font-size: 3.6vw;
+}
+
+.list_childlit .childlit_cont .childlit_cont_l {
+  color: #999;
+  font-size: 3.6vw;
+  padding: 0rpx 4vw;
+}
+
+.list_childlit .childlit_cont .childlit_cont_r {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_childlit .childlit_cont .childlit_cont_r .txt2 {
+  color: #5dd9ab;
+  font-size: 3.2vw;
+}

@@ -1,0 +1,363 @@
+/* pages/my/integral/integral.wxss */
+
+/*顶部start*/
+
+Page {
+}
+
+.top {
+  height: 490rpx;
+  width: 100vw;
+  background: linear-gradient(to right, #87eff6, #5dd9ab); /* 标准的语法 */
+}
+
+.text1-container {
+  width: 720rpx;
+  padding-right: 30rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 0px;
+  line-height: 30rpx;
+  padding-top: 26rpx;
+}
+
+.text1 {
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(255, 255, 255, 1);
+}
+
+.why-icon {
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 7rpx;
+  display: inline-block;
+}
+
+.text3 {
+  width: 100vw;
+  text-align: center;
+  font-size: 120rpx;
+  font-family: Impact;
+  color: rgba(255, 255, 255, 1);
+  line-height: 99rpx;
+  padding-top: 20rpx;
+}
+
+.tip-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 25rpx;
+}
+
+.tip {
+  position: relative;
+  width: 222rpx;
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+}
+
+.tip:after, .tip:before {
+  /* background: white; */
+  content: "";
+  height: 1px;
+  position: absolute;
+  width: 74rpx;
+  border-bottom: 1px dashed white;
+}
+
+.tip:before {
+  left: -80rpx;
+  top: 20rpx;
+}
+
+.tip:after {
+  right: -75rpx;
+  top: 20rpx;
+}
+
+.send-order-container {
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  width: 690rpx;
+  height: 150rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+  box-shadow: 0px 0px 16rpx rgba(199, 200, 201, 0.36);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.text4-contaier {
+  width: 95rpx;
+  text-align: center;
+}
+
+.text4-icon-container {
+  width: 95rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-icon {
+  width: 69rpx;
+  height: 69rpx;
+  display: block;
+}
+
+.items-icon {
+  width: 56rpx;
+  height: 68rpx;
+  display: block;
+}
+
+.text4 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  padding-top: 15rpx;
+}
+
+.triangle-up {
+  position: absolute;
+  left: 325rpx;
+  top: -15rpx;
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid transparent;
+  border-right: 20rpx solid transparent;
+  border-bottom: 20rpx solid white;
+}
+
+/*顶部end***********************************************/
+
+.banner {
+  width: 710rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+  margin-top: 17rpx;
+  margin-bottom: 20rpx;
+}
+
+.banner-img {
+  width: 710rpx;
+  height: 200rpx;
+  display: block;
+}
+
+/*优惠券专区start*/
+
+.vouchers-area {
+  width: 100vw;
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  line-height: 33rpx;
+  align-items: center;
+  margin-bottom: 17rpx;
+}
+
+.title-area {
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+}
+
+.more {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+}
+
+.triangle {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 6rpx 6rpx 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  margin-left: 16rpx;
+}
+
+.vouchers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.voucher {
+  width: 250rpx;
+  height: 368rpx;
+  padding: 0px;
+  padding-top: 10rpx;
+}
+
+.voucher-top {
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 45rpx;
+  border-radius: 10rpx;
+  position: relative;
+  z-index: 100;
+  text-align: center;
+}
+
+.voucher-icon-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.voucher-content {
+  padding-left: 30rpx;
+}
+
+.voucher-icon {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+}
+
+.voucher-text1 {
+  display: inline-block;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(254, 254, 254, 1);
+  line-height: 10rpx;
+}
+
+.voucher-text2 {
+  display: inline-block;
+  font-size: 50rpx;
+  font-family: FZLTCHJW--GB1-0;
+  color: rgba(254, 254, 254, 1);
+  line-height: 40rpx;
+}
+
+.voucher-text3 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(254, 254, 254, 1);
+  line-height: 24rpx;
+}
+
+.voucher-text4 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 30rpx;
+  padding-top: 22rpx;
+}
+
+.voucher-text5 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 25rpx;
+  padding-top: 12rpx;
+}
+
+.integral-icon {
+  width: 20rpx;
+  height: 21rpx;
+  display: inline-block;
+}
+
+.text6-container {
+  line-height: 17rpx;
+  padding-top: 16rpx;
+}
+
+.voucher-text6 {
+  padding-left: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(93, 217, 171, 1);
+}
+
+.voucher-bottom {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left: 50rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 20rpx;
+}
+
+/*优惠专区 end*******************************************/
+
+/*礼品专区 start*/
+
+.voucher2 {
+  width: 250rpx;
+  height: 350rpx;
+  padding: 0px;
+  padding-top: 10rpx;
+}
+
+.voucher-bottom2 {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left: 50rpx;
+  background: #ddd;
+  border-radius: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 20rpx;
+}
+
+/* .gift-top {
+  width: 250rpx;
+  height: 178rpx;
+  border-radius: 10rpx;
+  z-index: 100;
+  text-align: center;
+}
+
+.gift-img {
+  width: 250rpx;
+  height: 178rpx;
+  display: block;
+} */
+.gift-top {
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 45rpx;
+  border-radius: 10rpx;
+  position: relative;
+  z-index: 100;
+  text-align: center;
+}
+
+.gift-img {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+}
+
+.press-style {
+  background: #ececec;
+}

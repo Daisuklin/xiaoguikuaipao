@@ -1,0 +1,229 @@
+/* pages/my/vouchers/vouchers.wxss */
+
+.ischeck-img {
+  height: 66rpx;
+  width: 66rpx;
+  display: block;
+}
+
+.toUse {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(239, 11, 60, 1);
+  line-height: 24rpx;
+}
+
+.is-check-contaienr {
+  height: 66rpx;
+  width: 66rpx;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+
+.vouchers {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 30rpx;
+}
+
+.voucher-container {
+}
+
+.voucher-box {
+  margin-bottom: 20rpx;
+}
+
+.voucher {
+  width: 627rpx;
+  height: 197rpx;
+  padding-top: 33rpx;
+  /* background: rgba(255, 255, 255, 1); 
+  box-shadow: 0px 0px 5rpx rgba(150, 150, 150, 0.2); */
+  background-color: none;
+  padding-left: 30rpx;
+  padding-right: 33rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.voucher-bgimg-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 230rpx;
+  width: 690rpx;
+  display: inline-block;
+  z-index: -1;
+}
+
+.voucher-bgimg {
+  height: 230rpx;
+  width: 690rpx;
+  display: block;
+}
+
+.voucher-content1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.voucher-content2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.voucher-value-container {
+  display: flex;
+  align-items: flex-start;
+  padding-right: 30rpx;
+}
+
+.voucher-type {
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  font-weight: bold;
+}
+
+.voucher-time {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+}
+
+.voucher-content-right {
+  text-align: center;
+}
+
+.voucher-yuan {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(239, 11, 60, 1);
+}
+
+.voucher-yuan2 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #999;
+}
+
+.voucher-value {
+  font-size: 50rpx;
+  font-family: FZLTCHJW--GB1-0;
+  color: rgba(239, 11, 60, 1);
+  padding: 0px;
+  line-height: 42rpx;
+}
+
+.voucher-value2 {
+  font-size: 50rpx;
+  font-family: FZLTCHJW--GB1-0;
+  color: #999;
+  padding: 0px;
+  line-height: 42rpx;
+}
+
+.voucher-condition1 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: #999;
+}
+
+.voucher-conditions {
+  width: 627rpx;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(102, 102, 102, 1);
+  position: absolute;
+  bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voucher-reasons-top {
+  padding-left: 31rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  width: 640rpx;
+  padding-right: 20rpx;
+  background: rgba(238, 238, 238, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voucher-reasons-title {
+  font-size: 22rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(239, 11, 60, 1);
+}
+
+.voucher-reasons-triangle {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 0px 6rpx 6rpx 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+
+.voucher-reason-content {
+  padding-left: 31rpx;
+  width: 659rpx;
+  padding-bottom: 17rpx;
+  background: rgba(238, 238, 238, 1);
+}
+
+.reason {
+  font-size: 22rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: #999;
+  line-height: 32rpx;
+}
+
+.no-icon {
+  width: 310rpx;
+  height: 252rpx;
+  margin-left: 220rpx;
+  margin-top: 274rpx;
+}
+
+.tips {
+  height: 20rpx;
+  width: 100vw;
+  text-align: center;
+  margin-bottom: 250rpx;
+}
+
+.tip {
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(102, 102, 102, 1);
+  line-height: 48rpx;
+}
+
+.bottom-btn {
+  font-size: 35rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(102, 102, 102, 1);
+  width: 750rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  background: white;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  border-top: 1rpx solid #eee;
+  z-index: 1000;
+}
+
+.press-style {
+  background: #ececec;
+}

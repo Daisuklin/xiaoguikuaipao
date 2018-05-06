@@ -1,0 +1,25 @@
+<!--pages/my/securitycenter/securitycenter.wxml 安全中心-->
+<view class="secirotucenter_box">
+  <!-- 登录密码 -->
+  <!-- <view class="secirotucenter_list">
+    <view class='login_password weui-cell__ft_in-access'>
+      <view class='login_l'>
+        <text class='login_name'>登录密码</text>
+        <input password type="number" class='login_name_input' placeholder="用于登录使用" />
+      </view>
+      <view class='login_r' wx:if="{{isLogin}}" bindtap='gotoAddPassword' data-showcontent='1'>未设置</view>
+      <view class='login_r' wx:else bindtap='gotoUpdatePassword'>修改密码</view>
+    </view>
+  </view> -->
+  <view class="secirotucenter_list">
+    <!-- 安全密码 -->
+    <view class='login_password weui-cell__ft_in-access'>
+      <view class='login_l'>
+        <text class='login_name'>安全密码</text>
+        <input password type="number" class='login_name_input' disabled placeholder="用于提现，龟米兑换" />
+      </view>
+      <view class='login_r' wx:if="{{!havaPassword}}" bindtap='gotoAddPassword' data-showcontent='2'>未设置</view>
+      <view class='login_r' wx:if="{{havaPassword}}" bindtap='gotoUpdatePassword' data-showcontent='1'>修改密码</view>
+    </view>
+  </view>
+</view>

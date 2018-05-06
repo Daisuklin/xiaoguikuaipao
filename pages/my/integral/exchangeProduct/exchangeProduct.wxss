@@ -1,0 +1,114 @@
+.top {
+  width: 750rpx;
+  height: 400rpx;
+  background: rgba(238, 238, 238, 1);
+}
+.rich_textcon p{width: 95vw; margin:0 auto;}
+.rich_textcon img{width: 100%;}
+.content1 {
+  background: white;
+  margin-bottom: 20rpx;
+  padding-left: 30rpx;
+  padding-top: 22rpx;
+  padding-bottom: 20rpx;
+}
+
+.text1 {
+  font-size: 40rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 40rpx;
+  padding-bottom: 43rpx;
+}
+
+.text2-cotainer {
+  line-height: 40rpx;
+  padding-bottom: 48rpx;
+}
+
+.text2 {
+  font-size: 50rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(93, 217, 171, 1);
+  padding-left: 10rpx;
+}
+
+.text3-4-container {
+  line-height: 27rpx;
+}
+
+.text3 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 27rpx;
+}
+
+.text4 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: #222;
+  line-height: 27rpx;
+}
+
+.integral-icon {
+  width: 20rpx;
+  height: 21rpx;
+  display: inline-block;
+}
+
+.top-img {
+  width: 750rpx;
+  height: 400rpx;
+  display: block;
+}
+
+.content2 {
+  background: white;
+  font-size: 27rpx;
+  margin-bottom: 200rpx;
+}
+
+.text5 {
+  padding: 22rpx 0px;
+  border-bottom: 1rpx solid #eee;
+  padding-left: 30rpx;
+}
+
+.text6-container {
+  padding-top: 33rpx;
+  padding-left: 30rpx;
+  padding-bottom: 23rpx;
+}
+
+.text6 {
+  padding-bottom: 10rpx;
+}
+
+.dot {
+  display: inline-block;
+  height: 20rpx;
+  background-color: #222;
+  width: 20rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+
+/*商品详情start--------------------------------------*/
+
+.details {
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.details-text5 {
+  padding: 22rpx 0px;
+  border-bottom: 1rpx solid #eee;
+  padding-left: 30rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+}
+
+/*商品详情end*****************************************/
+

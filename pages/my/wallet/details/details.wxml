@@ -1,0 +1,57 @@
+<!--pages/my/wallet/details/details.wxml-->
+<!-- 账单正常完成状态 -->
+<view class='content2' wx:if="{{index==1}}">
+  <view class="item2">
+    <view class='common tixian'>
+      <view class='item2-text1'>实收金额</view>
+      <view class='item2-text2'>
+        <text>￥</text>{{detailsdata.money}}</view>
+    </view>
+    <view class='common common2 text-top'>
+      <view class='item2-text1'>订单金额</view>
+      <view class='item2-text3'>{{detailsdata.totalMoney}}</view>
+    </view>
+    <view class='common common2'>
+      <view class='item2-text1'>订单编号</view>
+      <view class='item2-text3'>{{detailsdata.profileId}}</view>
+    </view>
+    <view class='common common2'>
+      <view class='item2-text1'>时 间</view>
+      <view class='item2-text3'>{{createAt}}</view>
+    </view>
+    <!-- <view class='common common2'> 
+      <view class='item2-text1'>进        度</view>
+      <view class='item2-text3'>审核中</view>
+    </view> -->
+  </view>
+</view>
+<!-- 账单状态为 等待到账状态 -->
+<view class='content2' wx:if="{{index==0}}">
+  <view class="item2">
+    <view class='common tixian'>
+      <view class='item2-text1'>实收金额</view>
+      <view class='item2-text2'>
+        <text>￥</text>{{detailsdata.money}}</view>
+    </view>
+    <view class='common common2 text-top'>
+      <view class='item2-text1'>订单金额</view>
+      <view class='item2-text3'>￥{{detailsdata.totalMoney}}</view>
+    </view>
+    <view class='common common2'>
+      <view class='item2-text1'>订单编号</view>
+      <view class='item2-text3'>{{detailsdata.profileId}}</view>
+    </view>
+    <view class='common common2'>
+      <view class='item2-text1'>时 间</view>
+      <view class='item2-text3'>{{createAt}}</view>
+    </view>
+     <view class='common common2'>
+      <view class='item2-text1'>状      态</view>
+      <view class='item2-text3'>等待到账</view>
+    </view>
+    <!-- <view class='common common2'> 
+      <view class='item2-text1'>进        度</view>
+      <view class='item2-text3'>审核中</view>
+    </view> -->
+  </view>
+</view>

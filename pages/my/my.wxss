@@ -6,13 +6,167 @@ Page {
   background-color: #f8f8f8;
 }
 
+/*积分新增样式start********************************************/
+
+.voucher-integral-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12rpx;
+  margin-bottom: 12rpx;
+  color: white;
+}
+
+.bg-img-container {
+  width: 360rpx;
+  height: 195rpx;
+  position: absolute;
+  z-index: -1;
+  left: 0px;
+  top: 0px;
+}
+
+.bg-img {
+  width: 360rpx;
+  height: 195rpx;
+}
+
+.voucher-container {
+  width: 330rpx;
+  height: 195rpx;
+  border-radius: 10rpx;
+  position: relative;
+  padding-left: 30rpx;
+}
+
+.integral-container {
+  width: 330rpx;
+  height: 195rpx;
+  border-radius: 10rpx;
+  position: relative;
+  padding-left: 30rpx;
+}
+
+.fun-container {
+  width: 712rpx;
+  margin-left: 19rpx;
+  background: white;
+  border-radius: 10rpx;
+  justify-content: space-around;
+  padding-bottom: 21rpx;
+}
+
+.funs {
+  width: 712rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.new-text1 {
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(255, 255, 255, 1);
+  line-height: 35rpx;
+  padding-top: 30rpx;
+}
+
+.new-text2 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  line-height: 27rpx;
+  padding-top: 9rpx;
+}
+
+.new-text3 {
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(255, 255, 255, 1);
+  line-height: 35rpx;
+  padding-top: 30rpx;
+}
+
+.new-text4 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  line-height: 27rpx;
+  padding-top: 9rpx;
+  padding-bottom: 40rpx;
+}
+
+.new-text5 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  line-height: 24rpx;
+}
+
+.new-text6 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 30rpx;
+  padding-top: 20rpx;
+  padding-left: 30rpx;
+  padding-bottom: 20rpx;
+}
+
+.new-text7 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 24rpx;
+  padding-top: 38rpx;
+}
+
+.fun-single-container {
+  width: 178rpx;
+  text-align: center;
+  margin-top: 34rpx;
+  padding:20rpx 0px;
+}
+.totop{
+
+}
+.new-icon1 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+.new-icon2 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+.new-icon3 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+.new-icon4 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+.new-icon5 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+.new-icon6 {
+  width: 62rpx;
+  height: 56rpx;
+}
+
+/*积分新增样式end**********************************************/
+
 .head-news {
   width: 92vw;
   height: 40vw;
   background: #fff;
   border-radius: 3vw;
   margin-left: 4vw;
-  margin-top: 20.9333vw;
+  margin-top:12.9333vw;
 }
 
 .head-portraits {
@@ -52,8 +206,8 @@ Page {
 }
 
 .right {
-  border-right:1px solid #EEEEEE ;
-   height: 10.6667vw;
+  border-right: 1px solid #eee;
+  height: 10.6667vw;
 }
 
 .weui-cell:before {
@@ -208,4 +362,7 @@ Page {
 
 .my-style {
   background: rgba(255, 255, 255, 1);
+}
+.press-style{
+  background: #ECECEC;
 }

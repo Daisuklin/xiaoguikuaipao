@@ -1,0 +1,169 @@
+/*优惠券专区start*/
+
+.vouchers-area {
+  width: 100vw;
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+.voucher-bottom2 {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left: 50rpx;
+  background: #ddd;
+  border-radius: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 20rpx;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  line-height: 33rpx;
+  align-items: center;
+  margin-bottom: 17rpx;
+}
+
+.title-area {
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+}
+
+.more {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+}
+
+.triangle {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 6rpx 6rpx 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  margin-left: 16rpx;
+}
+
+.vouchers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.voucher {
+  width: 250rpx;
+  height: 368rpx;
+  padding: 0px;
+  padding-top: 10rpx;
+}
+
+.voucher-top {
+  width: 160rpx;
+  height: 160rpx;
+  margin-left: 45rpx;
+  border-radius: 10rpx;
+  position: relative;
+  z-index: 100;
+  text-align: center;
+}
+
+.voucher-icon-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.voucher-content {
+  padding-left: 30rpx;
+}
+
+.voucher-icon {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+}
+
+.voucher-text1 {
+  display: inline-block;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(254, 254, 254, 1);
+  line-height: 10rpx;
+}
+
+.voucher-text2 {
+  display: inline-block;
+  font-size: 50rpx;
+  font-family: FZLTCHJW--GB1-0;
+  color: rgba(254, 254, 254, 1);
+  line-height: 40rpx;
+}
+
+.voucher-text3 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(254, 254, 254, 1);
+  line-height: 24rpx;
+}
+
+.voucher-text4 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 30rpx;
+  padding-top: 22rpx;
+}
+
+.voucher-text5 {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 25rpx;
+  padding-top: 12rpx;
+}
+
+.integral-icon {
+  width: 20rpx;
+  height: 21rpx;
+  display: inline-block;
+}
+
+.text6-container {
+  line-height: 17rpx;
+  padding-top: 16rpx;
+}
+
+.voucher-text6 {
+  padding-left: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(93, 217, 171, 1);
+}
+
+.voucher-bottom {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-left: 50rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 5rpx;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 20rpx;
+}
+
+/*优惠专区 end*******************************************/
+
+.no-more {
+  width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;
+}

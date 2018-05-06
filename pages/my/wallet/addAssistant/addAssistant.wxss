@@ -1,0 +1,164 @@
+/* pages/my/wallet/addAssistant/addAssistant.wxss */
+
+Page {
+  background: #f8f8f8;
+}
+
+.addassistant_box {
+  padding: 2.93vw 2.67vw;
+}
+
+.addassistant_box .addassistant_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.addassistant_box .addassistant_top .addassistant_storename {
+  font-size: 5.333vw;
+  color: #222;
+  padding: 7.4667vw 0rpx 4.27vw;
+}
+
+.addassistant_box .addassistant_top .addassistant_prompt {
+  color: #222;
+  font-size: 4vw;
+}
+
+.addassistant_box .addassistant_top image {
+  width: 39.2vw;
+  height: 39.2vw;
+  padding: 8vw 0rpx 10.67vw;
+}
+
+.addassistant_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vw;
+  padding: 0rpx 2vw;
+}
+
+.addassistant_content .addassistant_content_l {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.addassistant_content .addassistant_content_r {
+  font-size: 3.6vw;
+  color: #5dd9ab;
+}
+
+.addassistant_bottom {
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.addassistant_bottom .add_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 16vw;
+  border-bottom: 1px solid #eee;
+}
+
+.addassistant_bottom .add_list:last-child {
+  border: none;
+}
+
+.addassistant_bottom .add_list .add_list_l {
+  display: flex;
+  align-items: center;
+}
+
+.addassistant_bottom .add_list .add_list_l image {
+  width: 10.67vw;
+  height: 10.67vw;
+}
+
+.addassistant_bottom .add_list .add_list_l text {
+  color: #222;
+  font-size: 3.6vw;
+  padding-left: 3.467vw;
+}
+
+.addassistant_bottom .add_list .add_list_r {
+}
+
+.addassistant_bottom .add_list .add_list_r text {
+  color: #222;
+  font-size: 3.6vw;
+  padding-right: 4vw;
+}
+
+/*弹窗备注  */
+
+.park_bg {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 105vw;
+  height: 105vh;
+  z-index: 100;
+}
+
+.park_content_box {
+  position: fixed;
+  top: 40vh;
+  z-index: 101;
+  width: 100vw;
+}
+
+.park_content_box .park_content {
+  background: #fff;
+  width: 69.34vw;
+  height: 40vw;
+  border-radius: 20rpx;
+  margin: 0px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.park_content .park_title {
+  font-size: 4.67vw;
+  color: #222;
+  height: 12vw;
+  line-height: 12vw;
+}
+
+.park_content .park_con {
+  text-align: center;
+  padding-bottom: 5.33vw;
+}
+
+.park_content .park_con input {
+  font-size: 4.67vw;
+  color: #222;
+  width: 53.33vw;
+  height: 10.67vw;
+  text-align: center;
+  margin: 0px auto;
+  background: #ddd;
+  border-radius: 10rpx;
+}
+
+.park_content .park_bottom {
+    height: 12vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.park_content .park_bottom text {
+    height: 12vw;
+  line-height: 12vw;
+  width: 34.66vw;
+
+}

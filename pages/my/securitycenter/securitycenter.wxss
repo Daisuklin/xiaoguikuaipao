@@ -1,0 +1,43 @@
+/* pages/my/securitycenter/securitycenter.wxss */
+
+Page {
+  background-color: #f8f8f8;
+}
+
+.secirotucenter_box .secirotucenter_list {
+  background: #fff;
+  margin-top: 2.7vw;
+}
+
+.secirotucenter_list .login_password {
+  display: flex;
+  justify-content: space-between;
+  padding: 4vw 0vw 4vw 4vw;
+  margin-right: 4vw;
+  align-items: center;
+}
+
+.secirotucenter_list .login_password .login_l {
+  display: flex;
+}
+
+.secirotucenter_list .login_password .login_l .login_name {
+  color: #222;
+  font-size: 4vw;
+}
+
+.login_l .login_name_input {
+  font-size: 3.2vw;
+  color: #999;
+  width: 50vw;
+  padding-left: 20rpx;
+}
+.login_l .login_name_input:focus{
+  font-size: 3.2vw;
+  color: #999;
+}
+.secirotucenter_list .login_password .login_r {
+  font-size: 3.6vw;
+  color: #999;
+  padding-right: 4vw;
+}

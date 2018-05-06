@@ -1,0 +1,62 @@
+<view class='container'>
+  <view class="content1">
+    <view class='content1-text1'>{{ods.statusName}}</view>
+    <view class='content1-text2'>{{ods.statusMemo}}</view>
+    <view class='content1-text3-container'>
+      <view class='content1-text3 right-padding' bindtap='comfirmGetOrder' wx:if="{{ods.statusName=='已发货'}}">确认收货</view>
+      <view class='content1-text3' bindtap='call'>联系客服</view>
+    </view>
+  </view>
+  <view class='content2'>
+    <view class='content2-text1-container'>
+      <label>
+        <image mode='aspectFill' src='{{icons.logo}}' class='itegral-icon'></image>
+      </label>
+      <label class='content2-text1'>礼品专区</label>
+    </view>
+    <view class='content2-text2-3-4-container'>
+      <view class='content2-text2'>{{ods.goodsName}}</view>
+      <view>
+        <label class='content2-text3'>x1</label>
+        <label>
+          <image src='{{icons.integral}}' class='integral-icon'></image>
+        </label>
+        <label class='content2-text4'>{{ods.pointStr}}</label>
+      </view>
+    </view>
+    <view class='content2-text5-6-container'>
+      <label class='content2-text5'>支付</label>
+      <label class='content2-text6'>{{ods.pointStr}}</label>
+      <label class='content2-text5'>积分</label>
+    </view>
+  </view>
+  <view class="content3">
+    <view class='content3-text-container'>
+      <label class='content3-text1'>收货人</label>
+      <label class='content3-text2'>{{ods.receiveName}} {{ods.receiveMobile}}</label>
+    </view>
+    <view class='content3-text-container'>
+      <label class='content3-text1'>配送地址</label>
+      <label class='content3-text2'>{{ods.receiveAddress}}
+      </label>
+    </view>
+    <view class='content3-text-container'>
+      <label class='content3-text1'>配送服务</label>
+      <label class='content3-text2'>由小龟快跑提供配送服务</label>
+    </view>
+  </view>
+  <view class="content4">
+    <view class='content4-text-container'>
+      <label class='content4-text1'>订单编号</label>
+      <label class='content4-text2'>{{ods.orderSn}}</label>
+    </view>
+    <view class='content4-text-container'>
+      <label class='content4-text1'>订单时间</label>
+      <label class='content4-text2'>{{ods.createdTime}}</label>
+    </view>
+    <view class='content4-text-container'>
+      <label class='content4-text1'>支付方式</label>
+      <label class='content4-text2'>{{ods.payType}}</label>
+    </view>
+  </view>
+</view>

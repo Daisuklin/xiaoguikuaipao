@@ -1,0 +1,76 @@
+<view class='container'>
+  <view class='content1'>
+    <view class='content1-text1'>小龟配送</view>
+    <block wx:if="{{addressData!=''}}">
+      <view class='content1-text3-4-5-container'  bindtap='chooseAddr'>
+        <view>
+          <image mode='aspectFill' src='{{icons.loc}}' class='loc-icon'></image>
+        </view>
+        <view style='padding-left:30rpx;'>
+          <view class='content1-text3'>{{addressData.addr}}</view>
+          <view style='padding:0px;line-height: 30rpx;padding-top:27rpx;'>
+            <view class='content1-text4'>{{addressData.contactName}}</view>
+            <view class='content1-text5'>{{addressData.contactNumber}}</view>
+          </view>
+        </view>
+        <view class='triangle'></view>
+      </view>
+    </block>
+    <block wx:else>
+    <view bindtap='chooseAddr' >
+      <label>
+        <image mode='aspectFill' src='{{icons.loc}}' class='loc-icon'></image>
+      </label>
+      <label class='content1-text2'>请输入地址</label>
+    </view>
+    </block>
+
+  </view>
+  <view class='content2'>
+    <view class='content2-text1-container'>
+      <label>
+        <image mode='aspectFill' src='{{icons.logo}}' class='itegral-icon'></image>
+      </label>
+      <label class='content2-text1'>礼品专区</label>
+    </view>
+    <view class='content2-text2-3-4-container'>
+      <view class='content2-text2'>{{good.name}}</view>
+      <view>
+        <label class='content2-text3'>x1</label>
+        <label>
+          <image src='{{icons.integral}}' class='integral-icon'></image>
+        </label>
+        <label class='content2-text4'>{{good.point}}</label>
+      </view>
+    </view>
+    <view class='content2-text5-6-container'>
+      <label class='content2-text5'>支付</label>
+      <label class='content2-text6'>{{good.point}}</label>
+      <label class='content2-text5'>积分</label>
+    </view>
+  </view>
+  <view class='comfirm-btm' bindtap='commit'>确定兑换</view>
+</view>
+
+
+
+<view class='input-secret-container' hidden='{{!focus}}'>
+  <view class='secret-title'>请输入安全密码</view>
+  <view class='secret-text1'>当前龟米{{good.viewPointNum}}</view>
+  <view class='secret-text2-3-container'>
+    <view class='secret-text2'>龟米</view>
+    <view class='secret-text3'>{{good.point}}</view>
+  </view>
+
+  <view class="pwdInputStyle">
+    <input class="pas_input" type="number" maxlength="6" focus="{{focus}}" bindinput="onChangeInput" adjust-position="{{adjust_position}}"></input>
+    <block wx:for="{{[0,1,2,3,4,5]}}">
+      <view class="{{index==0?'itemStyle0':'itemStyle'}}">
+        <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
+      </view>
+    </block>
+  </view>
+
+  <view class='secret-text4' bindtap='forgetPassword'>忘记密码？</view>
+</view>
+<view class='mask-view' bindtap='tapMask' hidden='{{!focus}}'></view>

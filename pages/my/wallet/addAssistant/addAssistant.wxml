@@ -1,0 +1,48 @@
+<!--pages/my/wallet/addAssistant/addAssistant.wxml-->
+<view class='addassistant_box'>
+  <view class='addassistant_top'>
+    <text class='addassistant_storename'>{{getUserStoreData.store_name}}</text>
+    <text class='addassistant_prompt'>让店员扫下方二维码接收你的收款通知</text>
+    <image src="{{codeImg}}"></image>
+  </view>
+  <view class='addassistant_content'>
+    <text class='addassistant_content_l'>已添加({{adssistantsList.length}}/50）</text>
+    <text class='addassistant_content_r' bindtap='getRefresh'>刷新列表</text>
+  </view>
+  <view class='addassistant_bottom'>
+    <!-- list -->
+    <view class='add_list' wx:for="{{adssistantsList}}">
+      <view class='add_list_l'>
+        <image src="{{item.avatar}}"></image>
+        <text>{{item.remarkName}}</text>
+      </view>
+      <view class='add_list_r'>
+      <block wx:if="{{item.state=='complete'}}">
+        <text bindtap='addremarks' data-items="{{item}}">备注</text>
+        <text bindtap='getDelectAssistant' id="{{item.id}}">删除</text>
+        </block>
+        <block wx:if="{{item.state=='todo'}}">
+         <text bindtap='getemployeeAdd' id="{{item.id}}">确认添加</text> 
+         </block>
+         <block wx:if="{{item.state=='fail'}}">
+         <text style='color:#f00;'>添加失败</text> 
+         </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--备注弹窗  -->
+<view class='park_bg' wx:if="{{remarks}}"></view>
+<view class='park_content_box' wx:if="{{remarks}}">
+  <view class='park_content'>
+    <text class='park_title'>备注</text>
+    <view class='park_con'>
+      <input type='text' placeholder='最多6个字' bindinput='inputvlaue'></input>
+    </view>
+    <view class='park_bottom'>
+      <text class='btn_cancel' bindtap='closeRemarks'>取消</text>
+      <text class='btn_determine' bindtap='confirmRemarks'>确认</text>
+    </view>
+  </view>
+</view>

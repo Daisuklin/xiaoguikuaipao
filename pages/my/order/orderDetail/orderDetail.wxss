@@ -8,6 +8,9 @@ Page{
 .pad-top20{padding-top: 20rpx;}
 .border_radius15{border-radius: 15rpx;-webkit-border-radius:15rpx;-moz-border-radius:15rpx;-ms-border-radius:15rpx;-o-border-radius:15rpx;}
 .order_fath{max-height: 62vw;overflow: hidden;}
+/* order banner */
+.order_banner_img{text-align: center;height: 24vw;margin-bottom: 2.67vw;}
+.order_banner_img .order_ad_img{width: 94.67vw;height: 24vw;border-radius: 10rpx;}
 
 /* 店铺、商品信息 */
 .order_distribution_content .order_distribution{background: #fff;margin: 20rpx;}
@@ -127,10 +130,32 @@ bottom:10rpx;}
 .box_prompt_box{position: fixed;top: 45vh;display: flex;align-items: center;width: 100vw;margin-top: -5.3334vw;z-index: 999999;justify-content: center;}
 .box_prompt{ background: rgba(0,0,0,0.5);height: 10.6667vw;line-height: 9.6667vw;padding: 0vw 5vw;border-radius:2vw;}
 .box_prompt text{color: #fff;font-size: 4vw;}
-
-
 .goods_Image{margin-right:30rpx;}
-
 .order_distribution_content .production_list_box .paypro_img{
   margin-right: 0rpx;
 }
+/* 支付完成后有积分弹窗 */
+.Integral_park_box_park{width:105vw;height:105vh;background:rgb(43, 43, 43);
+opacity:0.5;position:fixed;top:-1rpx;left:-1rpx;z-index:10009;}
+.Integral_park{position: fixed;top: 30vh;z-index: 10010;width: 100vw;}
+.Integral_park .Integral_park_bg{
+  width: 86.7vw;height: 33.3vw;margin: 0rpx auto;border-radius: 10rpx;
+display: flex;
+}
+.Integral_park .Integral_park_l{width: 43.466vw;}
+.Integral_park .Integral_park_r{width: 43.2vw;padding: 5vw 2vw 8vw 6.67vw;text-align: center;display: flex;flex-direction: column;
+}
+.Integral_park .Integral_park_r .content_top{font-size: 4vw;color: #FFB241;height:8vw;
+line-height:8vw;padding: 2.7vw;
+}
+.Integral_park .Integral_park_r .content_top text{font-size: 9.333vw;}
+.Integral_park .Integral_park_r .span_text{font-size: 3.2vw;color: #999;}
+.Integral_park .Integral_close{text-align: center;padding-top: 3.2vw;}
+.Integral_park .Integral_close image{width: 8vw;height: 8vw;}
+/* 支付完成后没有积分 */
+.park_noIntegral{position: fixed;top: 30vh;z-index: 10010;width: 100vw;}
+.park_noIntegral .park_noIntegral_content{width: 46.7vw;height: 36vw;margin: 0rpx auto;
+background: rgba(0,0,0,0.5); border-radius: 10rpx;display: flex;flex-direction: column;justify-content: center;align-items: center;}
+.park_noIntegral .park_noIntegral_content image{width: 10vw;height: 11.6vw;}
+.park_noIntegral .park_noIntegral_content .txt1{font-size: 4.7vw;color: #fff;padding-top: 15rpx;}
+.park_noIntegral .park_noIntegral_content .txt2{font-size: 3.6vw;color: #fff;}

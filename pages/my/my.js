@@ -1,6 +1,7 @@
 
 var appUtil = require("../../utils/appUtil.js")
-
+var iconsUtils = require("../../image/icons.js");
+var integralUtil = require("../../utils/integralUtil.js");
 Page({
   data: {
     icon: {
@@ -17,9 +18,40 @@ Page({
     avatarUrl: '../../image/head.png',
     nickName: '登录/注册',
     userInfo: '',
-    isSeller:true
+    isSeller: true,
+    VaI: {
+      packetNum: 0,
+      pointNum: 0
+    }
   },
+  checkWallet: function () {
+    wx.navigateTo({
+      url: '/pages/my/wallet/wallet',
+    })
+  },
+  securitycenter: function () {
+    var blackUserInfo = wx.getStorageSync("blackUserInfo");
+    console.log(blackUserInfo);
+    if (blackUserInfo != undefined) {
+      var havaPassword = blackUserInfo.commonData.safePasswordFlag;
+      wx.navigateTo({
+        url: '/pages/my/securitycenter/securitycenter?havaPassword=' + havaPassword,
+      })
+    } else {
 
+    }
+
+  },
+  checkVouchers: function () {
+    wx.navigateTo({
+      url: '/pages/my/vouchers/vouchers?showType=1',
+    })
+  },
+  checkIntagrals: function () {
+    wx.navigateTo({
+      url: '/pages/my/integral/integral',
+    })
+  },
   //封装登录态提示语和点击确定时的操作
   packaging: function () {
     var that = this;
@@ -78,6 +110,8 @@ Page({
                         //未绑定
                         //平台用户信息
                         appUtil.appUtils.setBlackUser(data.data.data);
+                        that.checkIsSeller();
+                        that.getUserVaI();
                         wx.navigateTo({
                           url: '/pages/login/bindPhone/bindPhone'
                         })
@@ -93,6 +127,8 @@ Page({
 
                           //平台用户信息
                           appUtil.appUtils.setBlackUser(data.data.data);
+                          that.checkIsSeller();
+                          that.getUserVaI();
                         } else {
                           wx.showToast({
                             title: data.data.data.errorMesg,
@@ -168,12 +204,12 @@ Page({
     */
   checkIsSeller: function () {
     var blackUserInfo = wx.getStorageSync('blackUserInfo');
-    if ('undefined' != typeof (wx.getStorageSync("blackUserInfo")) && wx.getStorageSync("blackUserInfo") != null && 'undefined' != typeof (wx.getStorageSync("blackUserInfo").isSeller) && null != wx.getStorageSync("blackUserInfo").isSeller){
-      this.setData({ isSeller: wx.getStorageSync("blackUserInfo").isSeller});
+    if ('undefined' != typeof (wx.getStorageSync("blackUserInfo")) && wx.getStorageSync("blackUserInfo") != null && 'undefined' != typeof (wx.getStorageSync("blackUserInfo").isSeller) && null != wx.getStorageSync("blackUserInfo").isSeller) {
+      this.setData({ isSeller: wx.getStorageSync("blackUserInfo").isSeller });
     }
   },
   onLoad: function (options) {
-
+    this.setData({ icons: iconsUtils.getIcons().myPage });
     if (appUtil.appUtils.getTokenData()) {
       var user = appUtil.appUtils.getStorageUser()
       this.setData({
@@ -219,7 +255,24 @@ Page({
       })
     }
   },
+  getUserVaI: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this;
+    integralUtil.controllerUtil.getUserVaI({
 
+    }, function (res) {
+      console.info("获取到用户：", res);
+      that.setData({ VaI: res.data.data });
+      wx.setStorageSync("viewPointNum", res.data.data.pointNum);
+      wx.hideLoading();
+    }, function (res) {
+      wx.hideLoading();
+    }, function (res) {
+      wx.hideLoading();
+    });
+  },
   onShow: function () {
     if (appUtil.appUtils.getTokenData() == null || appUtil.appUtils.getTokenData() == "") {
       this.setData({ avatarUrl: '../../image/head.png', });
@@ -244,6 +297,7 @@ Page({
       }
     })
     this.checkIsSeller();
+    this.getUserVaI();
   },
   onHide: function () {
 
@@ -306,6 +360,8 @@ Page({
               //未绑定
               //平台用户信息
               appUtil.appUtils.setBlackUser(data.data.data);
+              that.checkIsSeller();
+              that.getUserVaI();
               wx.navigateTo({
                 url: '/pages/login/bindPhone/bindPhone'
               })
@@ -321,6 +377,8 @@ Page({
 
                 //平台用户信息
                 appUtil.appUtils.setBlackUser(data.data.data);
+                that.checkIsSeller();
+                that.getUserVaI();
               } else {
                 wx.showToast({
                   title: data.data.data.errorMesg,
@@ -353,6 +411,12 @@ Page({
     wx.removeStorageSync("addresseeId")
     this.setData({ avatarUrl: '../../image/head.png' });
     this.setData({ nickName: '登录/注册' })
+    this.setData({
+      VaI: {
+        packetNum: 0,
+        pointNum: 0
+      }
+    });
     wx.hideLoading();
   },
   onReachBottom: function () {

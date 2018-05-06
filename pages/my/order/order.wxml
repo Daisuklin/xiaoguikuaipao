@@ -104,7 +104,6 @@
             <text class="text_r2" wx:if="{{since_hand == 1}}">快速购物</text>
             <text class="text_r2" wx:if="{{since_hand == 2}}">上门自提</text>
           </view>
-
           <!--  -->
           <view class="order_pro_box" bindtap="" wx:for="{{item.goods_list}}" wx:for-item="items">
             <view class="order_pro">
@@ -138,19 +137,45 @@
         </view>
         <view class="">
           <view class="order_total">
-          {{item.coupon_info.length>0?'共':'实付'}}￥
+            <!-- {{item.coupon_info.length>0?'共':'实付'}}￥ -->
+            共￥
             <text class="txt1">{{item.store_totle}}</text>
             <text class="txt2">共{{item.store_total_num}}件商品</text>
           </view>
-          <block wx:if="{{item.coupon_info.length>0}}">
+          <block>
             <view class="order_avorable_Price">
-              <view class="order_avorable_discount" wx:for="{{item.coupon_info}}" wx:for-item="coupon_info">
-                <view>
-                  <image src="{{coupon_info.ico}}"></image>
-                  <text class="avo_txtl"> {{coupon_info.name}}</text>
+              <block wx:if="{{item.coupon_info.length>0}}">
+                <view class="order_avorable_discount" wx:for="{{item.coupon_info}}" wx:for-item="coupon_info">
+                  <view>
+                    <image src="{{coupon_info.ico}}"></image>
+                    <text class="avo_txtl"> {{coupon_info.name}}</text>
+                  </view>
+                  <text class="avo_txt2">{{coupon_info.price}}</text>
                 </view>
-                <text class="avo_txt2">{{coupon_info.price}}</text>
+              </block>
+              <!-- 优惠券&积分begin -->
+              <view class="order_avorable_discount weui-cell__ft_in-access" hover-class="weui-cell_active" bindtap="{{redPacketNum==0?'':'gotovouchers'}}">
+                <view>
+                  <image src="https://qnimg.xiaoguikuaipao.com/o5Al6vPtfddX951d31528d4ac61a7dbf4b6"></image>
+                  <!--https://qnimg.xiaoguikuaipao.com/ktQP9wkoWVRT4ac53054f96e2722b8a5cf7  -->
+                  <text class="avo_txtl"> 小龟优惠券</text>
+                </view>
+                <text class="avo_txt2" style="{{redPacketNum==0?'color:#999;':''}}">{{redPacketNum==0?'暂无券可用' : (discountPrice==''?redPacketNum+'张可用':'-￥'+discountPrice)}}
+                </text>
               </view>
+              <view class="order_avorable_discount">
+                <view>
+                  <image src="https://qnimg.xiaoguikuaipao.com/ktQP9wkoWVRT4ac53054f96e2722b8a5cf7"></image>
+                  <text class="avo_txtl"> 龟米优惠 <text style="color:#999;">(余额{{orderMas.viewPoint}})</text></text>
+                </view>
+                <view class="section_input">
+                  <!-- <input type="number" bindinput='getintegrals' value="{{integralsValue}}" placeholder="{{integralchecked?0:'0'}}" disabled="{{!integralchecked}}" /> -->
+                  <text class="avo_txt2" style="color:{{integralchecked?'rgb(224, 6, 20)':'#999'}}">-￥{{integralchecked?(integralsValue==''?0:integralsValue):0}}</text>
+                  <checkbox checked="{{integralchecked}}" />
+                  <image src="{{integralchecked? icon.icon_sel2:icon.icon_sel1}}" class="radio_img" bindtap='bingChangeChecked'></image>
+                </view>
+              </view>
+              <!-- 优惠券&积分end -->
             </view>
             <view class="order_actual_payment">
               实付

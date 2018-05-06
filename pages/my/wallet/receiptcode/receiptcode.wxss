@@ -1,0 +1,83 @@
+/* pages/my/wallet/receiptcode/receiptcode.wxss */
+
+.receipt_code {
+}
+
+.receipt_code .receipt_code_main {
+  background: #4d993a;
+}
+
+.receipt_code .receipt_code_main {
+  text-align: center;
+}
+
+.receipt_code .receipt_code_main .code_title {
+  font-size: 12.4vw;
+  color: #fff;
+  padding: 5.8vw 0rpx 0rpx;
+  line-height: 15vw;
+}
+
+.receipt_code .receipt_code_main .code_txt {
+  font-size: 4.533vw;
+  color: #fff;
+  Letter-spacing: 2.2vw;
+}
+
+.receipt_code .receipt_code_main .code_icon_img {
+  display: flex;
+  justify-content: center;
+  padding-top: 8.6vw;
+}
+
+.receipt_code .code_icon_img .code_icon_vie {
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt_code .code_icon_img .code_icon_vie text {
+  font-size: 3.47vw;
+  color: #fff;
+  padding-top: 2.4vw;
+}
+
+.receipt_code .receipt_code_main .code_icon_img image {
+  width: 10.6vw;
+  height: 10.6vw;
+}
+
+.receipt_code .receipt_code_main .code_icon_img .code_icon_vie:first-child {
+  margin-right: 5.33vw;
+}
+
+.receipt_code .receipt_code_main .code_qr {
+  padding: 9.5vw 0px 15.73vw;
+}
+
+.receipt_code .receipt_code_main .code_qr image {
+  width: 49.2vw;
+  height: 49.2vw;
+}
+
+.receipt_code .receipt_code_main .code_xiaoguilogo {
+  height: 26.667vw;
+}
+
+.receipt_code .receipt_code_main .code_xiaoguilogo image {
+  width: 100vw;
+  height: 26.667vw;
+}
+
+.receipt_code .receipt_code_main .code_btn {
+   height: 12vw;
+}
+
+.receipt_code .receipt_code_main .code_btn button {
+  background: #5dd9ab;
+  color: #fff;
+  height: 12vw;
+  width: 100vw;
+  border: none;
+  border-radius: 0rpx;
+}
+.receipt_code .receipt_code_main .code_btn button::after{border: none;}

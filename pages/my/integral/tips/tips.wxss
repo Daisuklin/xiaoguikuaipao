@@ -1,0 +1,92 @@
+/* pages/my/integral/tips/tips.wxss */
+
+.top2 {
+  height: 484rpx;
+  width: 100vw;
+  background: linear-gradient(to right, #87eff6, #5dd9ab); /* 标准的语法 */
+  text-align: center;
+}
+
+.ok-icon {
+  width: 64rpx;
+  height: 64rpx;
+  position: relative;
+  bottom: -6rpx;
+}
+
+.top2-text1 {
+  font-size: 60rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+  line-height: 60rpx;
+  padding-top: 86rpx;
+  padding-bottom: 38rpx;
+}
+
+.top2-text2-1 {
+  font-size: 30rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+  line-height: 30rpx;
+  padding-bottom: 23rpx;
+}
+
+.top2-text2-2 {
+  font-size: 30rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+  line-height: 30rpx;
+  padding-bottom: 91rpx;
+}
+
+.top2-text3-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.top2-text3 {
+  width: 329rpx;
+  height: 77rpx;
+  line-height: 77rpx;
+  border-radius: 39rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  border: 1rpx solid white;
+}
+
+.top1 {
+  height: 484rpx;
+  width: 100vw;
+  background: linear-gradient(to right, #87eff6, #5dd9ab); /* 标准的语法 */
+  text-align: center;
+}
+
+.top1-text1 {
+  font-size: 60rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+  line-height: 60rpx;
+  padding-top: 86rpx;
+  padding-bottom: 38rpx;
+}
+
+.top1-text2 {
+  font-size: 30rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+  line-height: 30rpx;
+  padding-bottom: 143rpx;
+}
+
+.top1-text3 {
+  width: 329rpx;
+  margin-left: 210rpx;
+  height: 77rpx;
+  line-height: 77rpx;
+  border-radius: 39rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(255, 255, 255, 1);
+  border: 1rpx solid white;
+}

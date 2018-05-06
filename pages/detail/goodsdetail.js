@@ -49,7 +49,6 @@ Page({
     animationData: {}
   },
   onShareAppMessage: function () {
-    // 测试
     var that = this;
     var goodsdata = this.data.goodsdetail;
     return {

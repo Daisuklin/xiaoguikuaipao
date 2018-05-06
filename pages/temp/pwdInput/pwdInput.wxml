@@ -1,0 +1,20 @@
+<template name="pwdInput">
+  <view class="pwdInputStyle">
+      <input class="pas_input" type="number" maxlength="6" focus="true" bindinput="onChangeInput" />
+      <block wx:for="{{[0,1,2,3,4,5]}}">
+        <view class="itemStyle flex_Center">
+          <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
+        </view>
+      </block>
+    </view>
+</template>
+<template name="pwdInput2">
+  <view class="pwdInputStyle">
+      <input class="pas_input" type="number" maxlength="6" focus="{{focus}}" bindinput="onChangeInput"></input>
+      <block wx:for="{{[0,1,2,3,4,5]}}">
+        <view class="{{index==0?'itemStyle0':'itemStyle'}}">
+          <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
+        </view>
+      </block>
+    </view>
+</template>

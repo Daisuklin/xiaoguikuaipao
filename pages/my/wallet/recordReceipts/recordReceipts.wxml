@@ -1,0 +1,45 @@
+<!--pages/my/wallet/recordReceipts/recordReceipts.wxml 收款记录详情-->
+<view class='contain_receipts'>
+  <view class='contain_receipts_date'>
+    <image src='{{icons.icon_date}}' bindtap='getFindReceipts'></image>
+  </view>
+  <view class='incomestatistics_list'>
+    <view class='list_box' wx:for="{{recordReceiptsList}}" wx:for-item="listItem">
+      <view class='list_date'>{{listItem.date}}</view>
+      <view class='list_child border-bot'>
+        <view class='list_con'>
+          <text class='list_con_tit'>收款笔数</text>
+          <text class='list_con_txt'>{{listItem.countNumber}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>订单总额</text>
+          <text class='list_con_txt'>￥{{listItem.sumTotalMoney}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>实收</text>
+          <text class='list_con_txt color_yellow'>￥{{listItem.sumIncomeMoney}}</text>
+        </view>
+      </view>
+      <!-- #1 -->
+      <block wx:for="{{listItem.itemList}}" wx:for-item="childitem">
+      <view class='list_childlit'  bindtap='gotorecordReceiptsdetail'  id="{{childitem.id}}" data-realTimeIncome="{{childitem.realTimeIncome}}">
+        <view class='childlit_cont childlit_first'>
+          <text class='childlit_cont_l'>#{{childitem.seq}}</text>
+          <view class='childlit_cont_r'>
+          <text class='txt'>{{childitem.time}}</text>
+          <block wx:if="{{childitem.realTimeIncome==0}}">
+           <text class='txt2'>等待到账</text> 
+          </block>
+          </view>
+        </view>
+        <view class='childlit_cont'>
+          <text class='txt'>{{childitem.totalMoney}}</text>
+        </view>
+        <view class='childlit_cont'>
+          <text class='txt'>{{childitem.incomeMoney}}</text>
+        </view>
+      </view>
+      </block>
+    </view>
+  </view>
+</view>

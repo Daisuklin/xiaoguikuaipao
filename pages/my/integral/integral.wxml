@@ -1,0 +1,106 @@
+<view class="top">
+  <view class='text1-container' bindtap='checkInstructions'>
+    <label class='text1'>龟米说明</label>
+    <label>
+      <image src='{{icons.why}}' class='why-icon'></image>
+    </label>
+  </view>
+  <view class='text1-container'>
+    <label class='text1' bindtap='checkDetails'>使用明细</label>
+    <label>
+      <image src='{{icons.s}}' class='why-icon'></image>
+    </label>
+  </view>
+  <view class='text3'>
+    {{viewPoint}}
+  </view>
+  <view class='tip-container'>
+    <view class='tip'>{{freezePoint}}龟米在途中</view>
+  </view>
+  <view class='send-order-container'>
+    <view class='triangle-up'></view>
+    <view class='text4-contaier' bindtap='sendIntegral'>
+      <view class='text4-icon-container'>
+        <image src="{{icons.logo}}" class='logo-icon'></image>
+      </view>
+      <view class='text4'>龟米赠送</view>
+    </view>
+    <view class='text4-contaier' bindtap='exchangeOrders'>
+      <view class='text4-icon-container'>
+        <image src="{{icons.items}}" class='items-icon'></image>
+      </view>
+      <view class='text4'>兑换订单</view>
+    </view>
+  </view>
+</view>
+<view class='banner'>
+  <image  mode='aspectFill' src="{{midImageUrl}}" class='banner-img'></image>
+</view>
+<view class='vouchers-area'>
+  <view class='title' hover-class='press-style' bindtap='checkVoucher'>
+    <view class='title-area'>优惠券专区</view>
+    <view>
+      <label class='more'>更多</label>
+      <label class='triangle'></label>
+    </view>
+  </view>
+  <view class='vouchers'>
+    <block wx:for="{{redPacketList}}">
+      <view class='voucher'  wx:if="{{index<6}}" data-my="{{item}}" bindtap="{{viewPointNum>=item.point?'exchangerVoucher':''}}" hover-class='press-style'>
+        <view class='voucher-top'>
+          <view style='padding-top:55rpx;'>
+            <label class='voucher-text1'>￥</label>
+            <label class='voucher-text2'>{{item.priceStr}}</label>
+          </view>
+          <view class='voucher-text3'>满{{item.priceStr}}可用</view>
+          <view class='voucher-icon-container'>
+            <image src='{{icons.voucher}}' class='voucher-icon'></image>
+          </view>
+        </view>
+        <view class='voucher-content'>
+          <view class='voucher-text4'>{{item.context}}</view>
+          <view class='voucher-text5'>{{item.targetName}}</view>
+          <view class='text6-container'>
+            <label>
+              <image src='{{icons.integral}}' class='integral-icon'></image>
+            </label>
+            <label class='voucher-text6'>{{item.pointStr}}</label>
+          </view>
+        </view>
+        <view class='voucher-bottom' hover-stop-propagation="true" wx:if="{{viewPointNum>=item.point}}">立即兑换</view>
+        <view class='voucher-bottom2' hover-stop-propagation="true" wx:if="{{viewPointNum<item.point}}">龟米不足</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='vouchers-area'>
+  <view class='title' hover-class='press-style' bindtap='checGifts'>
+    <view class='title-area'>礼品专区</view>
+    <view>
+      <label class='more'>更多</label>
+      <label class='triangle'></label>
+    </view>
+  </view>
+  <view class='vouchers'>
+    <block wx:for="{{goodsList}}">
+      <view class='voucher2' wx:if="{{index<6}}" hover-class='press-style' data-my="{{item}}"  bindtap="{{viewPointNum>=item.point?'exchageProduct':''}}">
+        <view class='gift-top'>
+          <image src='{{item.imgUrl}}'  mode='aspectFill' class='gift-img'></image>
+        </view>
+        <view class='voucher-content'>
+          <view class='voucher-text4'>{{item.name}}</view>
+          <view class='voucher-text5'></view>
+          <view class='text6-container'>
+            <label>
+              <image src='{{icons.integral}}' class='integral-icon'></image>
+            </label>
+            <label class='voucher-text6'>{{item.pointStr}}</label>
+          </view>
+        </view>
+        <view class='voucher-bottom' hover-stop-propagation="true" wx:if="{{viewPointNum>=item.point}}">立即兑换</view>
+        <view class='voucher-bottom2' hover-stop-propagation="true" wx:if="{{viewPointNum<item.point}}">龟米不足</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view style='display:block;height:200rpx;width:100vw;'></view>

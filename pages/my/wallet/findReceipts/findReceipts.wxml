@@ -1,0 +1,75 @@
+<!--pages/my/wallet/findReceipts/findReceipts.wxml-->
+<view class='contain_findReceipts'>
+  <view class='findReceipts_data'>
+    <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='1'>
+      <text class='text_l'>开始时间 </text>
+      <text class='text_r'>{{beginTime}}</text>
+    </view>
+    <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='2'>
+      <text class='text_l'>截止时间 </text>
+      <text class='text_r'>{{endTime}}</text>
+    </view>
+    <view class='findReceipts_data_btn'>
+      <button bindtap='geFindTreceiptsList'>查询</button>
+    </view>
+  </view>
+  <!--list  -->
+  <view class='incomestatistics_list'>
+    <view class='list_box' wx:for="{{recordReceiptsList}}" wx:for-item="listparent">
+      <view class='list_child border-bot'>
+        <view class='list_con'>
+          <text class='list_con_tit'>收款笔数</text>
+          <text class='list_con_txt'>{{listparent.countNumber}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>订单总额</text>
+          <text class='list_con_txt'>￥{{listparent.sumTotalMoney}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>实收</text>
+          <text class='list_con_txt color_yellow'>￥{{listparent.sumIncomeMoney}}</text>
+        </view>
+      </view>
+      <!-- #1 -->
+      <view class='list_childlit' wx:for="{{listparent.itemList}}" wx:for-item="listchild">
+        <view class='childlit_cont childlit_first'>
+          <text class='childlit_cont_l'>#{{listchild.seq}}</text>
+          <view class='childlit_cont_r'>
+            <text class='txt'>{{listchild.time}}</text>
+            <block wx:if="{{listchild.realTimeIncome==0}}">
+             <text class='txt2'>等待到账</text> 
+            </block>
+          </view>
+        </view>
+        <view class='childlit_cont'>
+          <text class='txt'>{{listchild.totalMoney}}</text>
+        </view>
+        <view class='childlit_cont'>
+          <text class='txt'>{{listchild.incomeMoney}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 时间选择 -->
+<view class='park_bg'  wx:if="{{isshowtime}}"></view>
+<view class='datachoice_box' wx:if="{{isshowtime}}">
+  <view class='datachoice_conten'>
+    <picker-view indicator-style="height: 50px;" class='picker_view' style="width: 92vw; height: 36vw;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column class="picker_view_child border-radius-top-bot-left">
+        <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column class="picker_view_child">
+        <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column class="picker_view_child border-radius-top-bot-right">
+        <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+      </picker-view-column>
+    </picker-view>
+    <view class='btn_box'>
+      <button bindtap='getCancel'>取消</button>
+      <button style='border-left:1rpx solid #eee;' bindtap='getDetermine' id="{{judgmentnum}}">确定</button>
+    </view>
+  </view>
+</view>

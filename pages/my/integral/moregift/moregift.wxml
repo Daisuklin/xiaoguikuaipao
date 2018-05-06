@@ -1,0 +1,25 @@
+<view class='vouchers-area'>
+  <view class='vouchers'>
+    <block wx:for="{{gifts}}">
+            <view class='voucher2' hover-class='press-style' data-my="{{item}}"  bindtap="{{viewPointNum>=item.point?'exchageProduct':''}}">
+        <view class='gift-top'>
+          <image src='{{item.imgUrl}}'  mode='aspectFill' class='gift-img'></image>
+        </view>
+        <view class='voucher-content'>
+          <view class='voucher-text4'>{{item.name}}</view>
+          <view class='voucher-text5'></view>
+          <view class='text6-container'>
+            <label>
+              <image src='{{icons.integral}}' class='integral-icon'></image>
+            </label>
+            <label class='voucher-text6'>{{item.pointStr}}</label>
+          </view>
+        </view>
+        <view class='voucher-bottom' hover-stop-propagation="true" wx:if="{{viewPointNum>=item.point}}">立即兑换</view>
+        <view class='voucher-bottom2' hover-stop-propagation="true" wx:if="{{viewPointNum<item.point}}">龟米不足</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view wx:if="{{len==gifts.length}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>没有更多了~</view>
+<view wx:if="{{gifts.length<len}}"  style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>下拉加载更多</view>

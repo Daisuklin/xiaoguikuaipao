@@ -1,0 +1,33 @@
+.content1 {
+  width: 100vw;
+  background: white;
+  margin-top: 20rpx;
+}
+
+.item1 {
+  border-bottom: 1rpx solid #eee;
+  padding: 17rpx 23rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.item1-text1 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  font-weight: bold;
+}
+
+.item1-text2 {
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+}
+
+.item1-text3 {
+  font-size: 30rpx;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(34, 34, 34, 1);
+}

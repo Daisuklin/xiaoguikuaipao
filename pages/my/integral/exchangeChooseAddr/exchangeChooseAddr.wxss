@@ -1,0 +1,324 @@
+/* pages/my/integral/exchangeChooseAddr/exchangeChooseAddr.wxss */
+
+.container {
+  padding: 20rpx 20rpx;
+}
+
+.content1 {
+  background: white;
+  width: 660rpx;
+  padding: 33rpx 25rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+
+.content1-text1 {
+  font-size: 35rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  line-height: 35rpx;
+  margin-bottom: 54rpx;
+}
+
+.loc-icon {
+  width: 24rpx;
+  height: 29rpx;
+}
+
+.content1-text2 {
+  font-size: 34rpx;
+  color: #999;
+  padding-left: 30rpx;
+}
+
+.content1-text3-4-5-container {
+  display: flex;
+  line-height: 80rpx;
+  align-items:center;
+}
+
+.content1-text3 {
+  font-size: 32rpx;
+  font-family: FZLTZHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+  line-height: 32rpx;
+  width:550rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content1-text4 {
+  display: inline-block;
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  line-height: 30rpx;
+  padding-right: 30rpx;
+}
+
+.content1-text5 {
+  display: inline-block;
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+  line-height: 30rpx;
+}
+
+.triangle {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 6rpx 6rpx 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  margin-left: 20rpx;
+}
+
+
+.content2 {
+  background: white;
+  width: 685rpx;
+  padding-left: 25rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 32rpx;
+}
+
+.content2-text1-container {
+  line-height: 60rpx;
+  display: flex;
+  align-items: center;
+  padding-bottom: 11rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.itegral-icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.content2-text1 {
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(68, 68, 68, 1);
+  padding-left: 28rpx;
+}
+
+.content2-text2-3-4-container {
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35rpx 0px;
+  border-bottom: 1rpx solid #eee;
+}
+
+.content2-text2 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(68, 68, 68, 1);
+  line-height: 30rpx;
+}
+
+.content2-text3 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 30px;
+  padding-right: 40rpx;
+}
+
+.content2-text4 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(68, 68, 68, 1);
+  line-height: 30rpx;
+  padding-left: 12rpx;
+  padding-right: 25rpx;
+}
+
+.integral-icon {
+  width: 20rpx;
+  height: 21rpx;
+  display: inline-block;
+}
+
+.content2-text5-6-container {
+  line-height: 40rpx;
+  text-align: center;
+  padding-top: 33rpx;
+}
+
+.content2-text5 {
+  font-size: 27rpx;
+  color: #222;
+}
+
+.content2-text6 {
+  font-size: 40rpx;
+  color: #5dd9ab;
+  padding: 0px 10rpx;
+}
+
+.comfirm-btm {
+  width: 710rpx;
+  height: 98rpx;
+  background: rgba(93, 217, 171, 1);
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  text-align: center;
+  line-height: 98rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(255, 255, 255, 1);
+}
+
+/*密码输入start--------------------------------------*/
+
+.input-secret-container {
+  width: 610rpx;
+  background-color: white;
+  height: 420rpx;
+  z-index: 1200;
+  position: fixed;
+  left: 70rpx;
+  top: 186rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.secret-title {
+  width: 610rpx;
+  height: 90rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  font-weight: bold;
+  border-bottom: 1rpx solid #eee;
+}
+
+.secret-text1 {
+  width: 610rpx;
+  text-align: center;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 25rpx;
+  padding-top: 23rpx;
+  padding-bottom: 40rpx;
+}
+
+.secret-text2-3-container {
+  width: 610rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 54rpx;
+  padding-bottom: 31rpx;
+}
+
+.secret-text2 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 25rpx;
+}
+
+.secret-text3 {
+  font-size: 70rpx;
+  font-family: Impact;
+  color: rgba(34, 34, 34, 1);
+  line-height: 54rpx;
+  padding-left: 15rpx;
+}
+
+.secret-text4 {
+  width: 610rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  padding-top: 15rpx;
+}
+
+.pwdInputStyle {
+  /*整个组件盒子*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 540rpx;
+  border: 1rpx solid #999;
+  border-radius: 5rpx;
+  position: relative;
+  margin-left: 35rpx;
+}
+
+.itemStyle0 {
+  /*单独密码包含框样式*/
+  width: 12vw;
+  height: 12vw;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemStyle {
+  /*单独密码包含框样式*/
+  width: 12vw;
+  height: 12vw;
+  background: white;
+  border-left: 1rpx solid #dadada;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pas_input {
+  /*输入框样式*/
+  border: 0;
+  color: #fff;
+  font-size: 5rpx;
+  text-align: left;
+  height: 12vw;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 8;
+  width: 100vw;
+  left: -250rpx;
+}
+
+.PwdStyle {
+  /*黑点样式*/
+  width: 20rpx;
+  height: 20rpx;
+  background: black;
+  border-radius: 10rpx;
+}
+
+/*密码输入end*********************************888*/
+
+.mask-view {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1100;
+}

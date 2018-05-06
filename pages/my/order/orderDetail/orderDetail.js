@@ -1,5 +1,6 @@
 // pages/my/order/orderDetail/orderDetail.js
 var appUtil = require("../../../../utils/appUtil.js");
+var iconsUtils = require("../../../../image/icons.js");
 Page({
 
   /**
@@ -26,7 +27,6 @@ Page({
       order_fail: '../../../../image/detail/order_suc1.png',
       order_peisong: '../../../../image/detail/peisong.png',
       storetop: '../../../../image/detail/store.png'
-
     },
     refundReasonInfo: {
       isShow: false,
@@ -586,6 +586,9 @@ Page({
   },
   getOrderDetail: function (options) {//获取订单详情信息
     var that = this;
+    var isShowIntegral = options.isShowIntegral;//弹出获取积分的遮罩1是弹出，0是不弹出
+    var icon_orderDetail = iconsUtils.getIcons().orderDetail;//获取积分弹出图标
+    console.info("icon_orderDetail", icon_orderDetail)
     appUtil.controllerUtil.getselectOrderDetails({
       order_id: options.orderId,//options.orderId'1539'
       map: 'amap',
@@ -616,6 +619,7 @@ Page({
         } else {
           that.getParkse(res.data.message.descript);
         }
+        return
       }
       if (res.data.data != null) {
         var orderDetail = res.data.data;
@@ -629,6 +633,7 @@ Page({
         var seller_time = that.getNowTiem(orderDetail.extend_order_common.seller_time);//申请退款/退货成功（失败）时间
         var selleradmin_time = that.getNowTiem(orderDetail.extend_order_common.admin_time);//仲裁结果时间
         that.getResidualPaymentTime(orderDetail.surplusTime)
+        that.getShowIntegral(orderDetail, isShowIntegral);//积分弹窗
         console.log(orderDetail);
         that.setData({
           orderDetail: orderDetail,
@@ -646,6 +651,7 @@ Page({
           seller_time: seller_time.substring(11, 16),//申请退款/退货成功（失败）时间
           selleradmin_time: selleradmin_time.substring(11, 16),//仲裁结果时间
           orderPrice: (orderDetail.order_amount + orderDetail.extend_order_common.favorablePrice).toFixed(2),//共付价格
+          icon_orderDetail: icon_orderDetail,
         })
         wx.hideLoading();
       }
@@ -705,7 +711,36 @@ Page({
     }
 
   },
-
+  // 支付完成后弹窗
+  getShowIntegral: function (orderDetail, isShowIntegral) {
+    let that = this;
+    if (isShowIntegral == 1) {
+      if (orderDetail.gain_point > 0) {
+        // 所得积分大于0
+        that.setData({
+          isIntegral: 1
+        })
+      } else {
+        that.setData({
+          isIntegral: 2
+        })
+        setTimeout(function () {
+          that.getIntegralClose();
+        }, 2000)
+      }
+    } else {
+      that.setData({
+        isIntegral: 0,
+      })
+    }
+  },
+  // 关闭获取积分弹窗
+  getIntegralClose: function () {
+    let that = this;
+    that.setData({
+      isIntegral: 0,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

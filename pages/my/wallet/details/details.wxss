@@ -1,0 +1,128 @@
+/* pages/my/wallet/details/details.wxss */
+
+Page {
+  padding-top: 20rpx;
+}
+
+.top {
+  height: 80rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  padding-top: 20rpx;
+  justify-content: space-around;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: #f8f8f8;
+  z-index: 10000;
+  opacity: 1;
+}
+
+.choosed {
+  width: 330rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10rpx 10rpx 0 0;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(93, 217, 171, 1);
+}
+
+.nochoosed {
+  width: 330rpx;
+  height: 80rpx;
+  background: rgba(238, 238, 238, 1);
+  border-radius: 10rpx 10rpx 0 0;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+}
+
+.content1 {
+  width: 100vw;
+  background: white;
+  margin-bottom: 500rpx;
+}
+
+.item1 {
+  border-bottom: 1rpx solid #eee;
+  padding: 17rpx 23rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.item1-text1 {
+  font-size: 27rpx;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.item1-text2 {
+  font-size: 24rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+}
+
+.item1-text3 {
+  font-size: 30rpx;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+}
+
+.content2 {
+  margin-bottom: 500rpx;
+  width: 100vw;
+  background: white;
+}
+
+.item2 {
+  height: 453rpx;
+  width: 100vw;
+  margin-bottom: 20rpx;
+  border-bottom: 20rpx solid #f8f8f8;
+  padding-top: 0px;
+}
+
+.common {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 31rpx;
+}
+.tixian{
+  padding-top: 52rpx;
+  padding-bottom: 48rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.text-top{
+  padding-top: 49rpx;
+}
+.item2-text1 {
+  font-size: 27rpx;
+  font-family: FZLTHJW--GB1-0;
+  color: rgba(153, 153, 153, 1);
+}
+
+.item2-text2 {
+  font-size: 70rpx;
+  font-family: FZLTCHJW--GB1-0;
+  color: #FE751A;
+  line-height: 54rpx;
+}
+.item2-text2 text{font-size: 4vw;}
+.common2{
+  padding-bottom: 20rpx;
+}
+.item2-text3 {
+  font-size: 27rpx;
+  font-family: FZLTZHUNHK--GBK1-0;
+  color: rgba(68, 68, 68, 1);
+}

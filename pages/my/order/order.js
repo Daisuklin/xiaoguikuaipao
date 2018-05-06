@@ -34,7 +34,9 @@ Page({
     monthday: '',
     selectHam: '',
     box_park: false,
-    isClickBind: false
+    isClickBind: false,
+    integralchecked: true,//默认不选择龟米抵扣
+    integralsValue: '',//默认积分为0
   },
   // 备注获取焦点
   bindButtonTap: function () {
@@ -42,7 +44,6 @@ Page({
       focus: true
     })
   },
-
   //去详情页、
   // gotoGoodsDetail: function (e) {
   //   console.log(e)
@@ -383,6 +384,7 @@ Page({
   getAddressInfoAgain: function (addressId) {
     var that = this;
     var booking_times = that.data.appointmentTime + that.data.selectHam;
+
     console.log("booking_times:" + booking_times)
     appUtil.controllerUtil.getSelectDownOrders({
       goods: this.data.goods_id,
@@ -395,28 +397,31 @@ Page({
       booking_time: this.data.chioceHours == 0 ? '' : booking_times,//预约时间
       // pintuan_num: 0,
     }, function (res) {
-      if (res.data.succeeded == true){
-        if (res.data.data.is_freight != null && res.data.data.is_freight != ''){
-          that.setData({ isPrompt: !that.data.isPrompt, promptTit: res.data.data.is_freight ,cantClick:true})
+      if (res.data.succeeded == true) {
+        if (res.data.data.is_freight != null && res.data.data.is_freight != '') {
+          that.setData({ isPrompt: !that.data.isPrompt, promptTit: res.data.data.is_freight, cantClick: true })
           setTimeout(function () {
             that.setData({
               isPrompt: !that.data.isPrompt,
               isClickBind: false,//支付失败之后还原点击事件
             })
           }, 2000)
-        //  return;
-        }else{
+          //  return;
+        } else {
           that.setData({
             cantClick: false
           })
         }
-        console.info("is_freight为空", res.data.data.is_freight)
+        var oldstore_amount = that.data.oldstore_amount;//原始实付价格
+        var oldcoupon_total = that.data.oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+        console.info("is_freight为空===", res.data.data)
+        that.getAmountOfCalculation(res.data.data, res.data.data.store_cart_list[0].store_amount, res.data.data.couponStr);//计算减去优惠券、积分之后的价格
         that.setData({
-          address_info: res.data.data.address_info == null || res.data.data.address_info==''?'':res.data.data.address_info,
-          store_cart_list: res.data.data.store_cart_list,
-          order_amount: res.data.data.order_amount,
+          address_info: res.data.data.address_info == null || res.data.data.address_info == '' ? '' : res.data.data.address_info,
+          // store_cart_list: res.data.data.store_cart_list,
+          // order_amount: res.data.data.order_amount,
           is_freight: res.data.data.is_freight,
-          coupon: res.data.data.coupon,
+          // coupon: res.data.data.coupon,
           isClickBind: false,//还原点击事件
         })
         console.log("再次刷新")
@@ -475,11 +480,17 @@ Page({
           var isIndexNu = 0, isSelectClass = 1;
           that.getDataTime();
           console.log(order)
+          // let oldstore_amount = orderMas.store_cart_list[0].store_amount;//原始实付价格
+          // let oldcoupon_total = orderMas.store_cart_list[0].coupon_total;//原始优惠数量（即优惠了coupon_total）
+          orderMas.store_cart_list[0].oldstore_amount = orderMas.store_cart_list[0].store_amount;//原始实付价格
+          orderMas.store_cart_list[0].oldcoupon_total = orderMas.store_cart_list[0].coupon_total;//原始优惠数量（即优惠了coupon_total）
+          let oldstore_amount = orderMas.store_cart_list[0].oldstore_amount;//原始实付价格
+          let oldcoupon_total = orderMas.store_cart_list[0].oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+          that.getAmountOfCalculation(orderMas, oldstore_amount, oldcoupon_total);//计算减去优惠券、积分之后的价格
           that.setData({
             orderMas: orderMas,
-            coupon: orderMas.coupon,
-            order_amount: orderMas.order_amount,
-            orderData: order.data,
+            // coupon: orderMas.coupon,
+            // order_amount: orderMas.order_amount,
             address_info: orderMas.address_info,
             carriage: order.data.carriage_type,
             store_cart_list: orderMas.store_cart_list,
@@ -497,7 +508,12 @@ Page({
             chioceHoursParent: 0,
             appointmentTime: that.data.nowTime,
             isShow: 0,
-            is_freight: orderMas.is_freight
+            is_freight: orderMas.is_freight,
+            // redPacketNum: orderMas.redPacketNum,//优惠券可用
+            redPacketNum: 1,//优惠券可用
+            discountPrice: '',//优惠券价格
+            oldstore_amount: oldstore_amount,//原始实付价格
+            oldcoupon_total: oldcoupon_total,//原始优惠数量（即优惠了coupon_total）
           })
         }
       }
@@ -506,7 +522,85 @@ Page({
       }, 2000)
       //*******************token无效时提醒 end******************* */
     })
-
+  },
+  // 计算龟米抵扣值
+  // getintegrals: function (orderMas) {
+  //   let that = this;
+  //   // let integralsVal = e.detail.value;
+  //   let totalPrice = parseFloat(orderMas.store_cart_list[0].store_totle);//共需付的价格
+  //   let viewPoint = parseFloat(that.data.orderMas.viewPoint);//剩余积分总数
+  //   let coupon_total = parseFloat(orderMas.store_cart_list[0].coupon_total)//后台已计算的优惠价格
+  //   let discountPrice = parseFloat(wx.getStorageSync('couponPrice') == '' ? 0 : wx.getStorageSync('couponPrice'));//需要扣除的优惠券金额
+  //   //共需付总价-已经优惠价-优惠券=龟米积分值
+  //   let integralsVal = parseFloat(totalPrice - coupon_total - discountPrice);
+  //   console.info("integralsVal----", integralsVal)
+  //   if (integralsVal > viewPoint) {
+  //     // 当你输入的积分数大于总积分数
+  //     integralsVal = viewPoint;
+  //   }
+  //   that.setData({
+  //     integralsValue: integralsVal,//龟米积分抵扣值
+  //   })
+  //   that.getAmountOfCalculation(that.data.orderMas);//计算减去优惠券、积分之后的价格
+  // },
+  // 是否选择龟米抵扣
+  bingChangeChecked: function () {
+    let that = this;
+    let oldstore_amount = that.data.oldstore_amount;//原始实付价格
+    let oldcoupon_total = that.data.oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+    that.setData({
+      integralchecked: !that.data.integralchecked
+    })
+    that.getAmountOfCalculation(that.data.orderMas, oldstore_amount, oldcoupon_total);//计算减去优惠券、积分之后的价格
+  },
+  // 实付金额扣除积分
+  getAmountOfCalculation: function (orderMas, oldstore_amount, oldcoupon_total) {
+    let that = this;
+    let store_cart_list = orderMas.store_cart_list;
+    let couponPrice = wx.getStorageSync('couponPrice') == '' ? '' : wx.getStorageSync('couponPrice');
+    console.info("couponPrice", couponPrice)
+    let discountPrice = parseFloat(couponPrice == '' || couponPrice.discountStr == '' ? 0 : couponPrice.discountStr);//需要扣除的优惠券金额
+    console.info("discountPrice----", discountPrice)
+    var integralPrice = 0;//需要扣除的积分数
+    var oldstore_amount = parseFloat(oldstore_amount == '' ? 0 : oldstore_amount);//原始优惠后的实付价格
+    var oldcoupon_total = parseFloat(oldcoupon_total == '' ? 0 : oldcoupon_total);//原始已优惠价格
+    // 选择积分参与支付
+    if (that.data.integralchecked) {
+      // -----------------计算需要多少积分 begin--------------------
+      let totalPrice = parseFloat(orderMas.store_cart_list[0].store_totle);//共需付的价格
+      let viewPoint = parseFloat(orderMas.viewPoint);//剩余积分总数
+      let coupon_total = parseFloat(orderMas.store_cart_list[0].coupon_total)//后台已计算的优惠价格
+      //共需付总价-已经优惠价-优惠券=龟米积分值
+      let integralsVal = parseFloat(oldstore_amount - discountPrice);
+      console.info("integralsVal----", integralsVal)
+      if (integralsVal > viewPoint) {
+        // 当你输入的积分数大于总积分数
+        integralsVal = viewPoint;
+      }
+      // -----------------计算需要多少积分 end--------------------
+      integralPrice = integralsVal;
+      // integralPrice = parseFloat(that.data.integralsValue == '' ? 0 : that.data.integralsValue);
+    }
+    store_cart_list[0].store_amount = parseFloat(oldstore_amount - integralPrice - discountPrice);//满减包邮下的实付
+    store_cart_list[0].coupon_total = parseFloat(oldcoupon_total + integralPrice + discountPrice);//满减包邮下的优惠
+    console.info("store_cart_list", store_cart_list)
+    that.setData({
+      integralsValue: integralPrice,//龟米积分抵扣值
+      store_cart_list: store_cart_list,
+      order_amount: store_cart_list[0].store_amount,//提交订单的实付
+      coupon: store_cart_list[0].coupon_total,
+      discountPrice: discountPrice
+    })
+  },
+  // 选择优惠券
+  gotovouchers: function (e) {
+    let that = this;
+    let ifManSong = that.data.orderMas.ifManSong;
+    let ifPackageMall = that.data.orderMas.ifPackageMall;
+    let order_amount = that.data.order_amount;//实付总金额
+    wx.navigateTo({
+      url: '/pages/my/vouchers/vouchers?order_amount=' + order_amount + '&ifManSong=' + ifManSong + '&ifPackageMall=' + ifPackageMall +'&showType=2',
+    })
   },
   onSubmitOrder: function (e) {//提交订单
     var selfpages = this;
@@ -548,6 +642,13 @@ Page({
       return;
     }
     console.log("booking_times:" + booking_times)
+    // 获取红包信息
+    var couponPrice = wx.getStorageSync('couponPrice') == '' ? '' : wx.getStorageSync('couponPrice');
+    console.info("couponPrice---", couponPrice)
+    let red_packetId = couponPrice.packetId;
+    let red_discount = couponPrice.discountStr;
+    let red_storeId = couponPrice.storeId;
+    let red_use_point = selfpages.data.integralsValue;
     appUtil.controllerUtil.onSubmitOrder({
       goods: selfpages.data.goods_id,
       pintuan: '0',//0不是拼团 1是拼团
@@ -560,8 +661,23 @@ Page({
       booking_time: this.data.chioceHours == 0 ? '' : booking_times,//预约时间
       since_hand: selfpages.data.since_hand,//是否自提0配送，1自提
       order_from: 3,//订单来源 1web 2手机 3小程序
-      formId: e.detail.formId
+      formId: e.detail.formId,
+      red_packet_id: couponPrice == '' || couponPrice == null || typeof (couponPrice) == 'undefined' ? 0 : red_packetId,   // 红包id   对应订单确认页的  packetId 
+      red_packet_price: couponPrice == '' || couponPrice == null || typeof (couponPrice) == 'undefined' ? 0 : red_discount, 		// 红包金额  对应订单确认页的  discount 
+      red_packet_source: couponPrice == '' || couponPrice == null || typeof (couponPrice) == 'undefined' ? 0 : red_storeId, 	// 红包来源  对应订单确认页的  storeId 
+      use_point: red_use_point == "" || red_use_point == null || typeof (red_use_point) == 'undefined' ? 0 : red_use_point,		//用户使用多少积分
     }, function (submitData) {
+      // 判断是否要调用支付接口（当实付金额为0时不调用支付接口）
+      if (selfpages.data.order_amount==0) {
+        // 不调用支付接口
+        console.info("submitData---", submitData.data.data)
+        var submitOrder = submitData.data.data;
+        var orderId = submitOrder.suborder_list[0].order_id;
+        wx.redirectTo({
+          url: '/pages/my/order/orderDetail/orderDetail?orderId=' + orderId + '&isShowIntegral=1',
+        })
+        return
+      }
       // ***********提交订单----调用支付***************
       selfpages.gotoApplyPay(submitData); // 提交订单----调用支付
       // *************提交订单----调用支付*************
@@ -577,7 +693,6 @@ Page({
       //调用提交订单接口成功
       var submitOrder = submitData.data.data;
       var orderId = submitOrder.suborder_list[0].order_id;
-      console.log(submitOrder)
       var orderIdArr = [];
       for (var o = 0; o < submitOrder.suborder_list.length; o++) {
         orderIdArr.push(submitOrder.suborder_list[o].order_id);
@@ -591,7 +706,7 @@ Page({
         payType: 'wxa',
         openid: appUtil.appUtils.getOpenIdData(),
         type: 1,
-        order_id: orderIdArr.join(',')
+        order_id: orderIdArr.join(','),
       }, function (gotoApplyPayData) {
         if (gotoApplyPayData.data.succeeded == true) {
           // ************提交订单----调用微信支付***************
@@ -662,8 +777,8 @@ Page({
           icon: 'success',
           duration: 2000
         })
-        wx.redirectTo({//关闭当前页面，跳到订单列表
-          url: '/pages/my/order/orderDetail/orderDetail?orderId=' + orderId,
+        wx.redirectTo({//关闭当前页面，跳到订单详情
+          url: '/pages/my/order/orderDetail/orderDetail?orderId=' + orderId + '&isShowIntegral=1',
         })
         selfpages.setData({ isClickBind: false });//支付成功之后还原点击事件
         console.log("支付成功");
@@ -712,6 +827,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setStorageSync('couponPrice', '');//将优惠券价格缓存到本地的值给清空
     wx.showLoading({
       title: '加载中',
       mask: true,
@@ -759,7 +875,7 @@ Page({
     console.log(typeof (this.data.cart_id) == 'undefined')
     //*********支付失败后对价格进行重新渲染*****************
     if (this.data.since_hand == 0) {//选择配送后进行重新渲染
-      var getDefaltId = appUtil.appUtils.getDefaltId();
+      var getDefaltId = appUtil.appUtils.getDefaltId();//选择地址之后返回的地址id
       // var defaultAddress = appUtil.appUtils.getMemberIdData().userData.defaultAddress;
       var defaultAddress = (appUtil.appUtils.getMemberIdData().userData == null) ? '' : appUtil.appUtils.getMemberIdData().userData.defaultAddress;
       if (typeof (this.data.cart_id) != 'undefined' || typeof (this.data.goods) != 'undefined' || typeof (this.data.spec_key) != 'undefined' || typeof (this.data.ifcart) != 'undefined') {
@@ -776,6 +892,15 @@ Page({
       this.getAddressInfoAgain(addressId)
     }
     //*********支付失败后对价格进行重新渲染 end*****************
+    // 选择优惠券之后重新计算价格
+    if (wx.getStorageSync('couponPrice') != '' && wx.getStorageSync('couponPrice') != null) {
+      console.info("couponPrice-----show")
+      let oldstore_amount = this.data.oldstore_amount;//原始实付价格
+      let oldcoupon_total = this.data.oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+      this.getAmountOfCalculation(this.data.orderMas, oldstore_amount, oldcoupon_total);//计算减去优惠券、积分之后的价格
+      // this.getintegrals(this.data.orderMas)
+    }
+
   },
 
   /**

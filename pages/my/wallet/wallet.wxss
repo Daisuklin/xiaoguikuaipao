@@ -1,0 +1,204 @@
+/* pages/my/wallet/wallet.wxss */
+
+.top {
+  height: 383rpx;
+  width: 100vw;
+  text-align: center;
+}
+
+.text1 {
+  padding-top: 80rpx;
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  line-height: 35rpx;
+  font-weight: bold;
+}
+
+.text2-3-container {
+  line-height: 30rpx;
+  padding-top: 40rpx;
+  padding-bottom: 30rpx;
+}
+
+.text2 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 30rpx;
+}
+
+.text3 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: #5dd9ab;
+  line-height: 30rpx;
+  font-weight: bold;
+  padding: 0px 10rpx;
+}
+
+.text4-5-container {
+  line-height: 70rpx;
+}
+
+.text4 {
+  font-size: 40rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(254, 117, 26, 1);
+  line-height: 40rpx;
+  display: inline-block;
+}
+
+.text5 {
+  font-size: 80rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(254, 117, 26, 1);
+  line-height: 70rpx;
+  display: inline-block;
+}
+
+.center {
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 30rpx;
+}
+
+.text6-7-container {
+  line-height: 40rpx;
+}
+
+.border {
+  border-bottom: 1rpx solid #eee;
+}
+
+.his-icon {
+  width: 34rpx;
+  height: 40rpx;
+}
+
+.get-icon {
+  width: 40rpx;
+  height: 36rpx;
+}
+
+.text6 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(68, 68, 68, 1);
+  display: inline-block;
+  line-height: 30rpx;
+  padding-left: 28rpx;
+}
+
+.text7 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(68, 68, 68, 1);
+  display: inline-block;
+  line-height: 30rpx;
+  padding-left: 28rpx;
+}
+
+.text8 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 27rpx;
+  padding: 32rpx 32rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.text8-9-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.text9 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(68, 68, 68, 1);
+  line-height: 30rpx;
+}
+
+.text {
+}
+
+.code-icon {
+  width: 50rpx;
+  height: 60rpx;
+  margin-top: 100rpx;
+}
+
+.message-icon {
+  width: 60rpx;
+  height: 55rpx;
+  margin-top: 100rpx;
+}
+
+.code-container {
+  border-right: 1rpx solid #eee;
+  width: 374rpx;
+  text-align: center;
+  height: 300rpx;
+}
+
+.message-container {
+  width: 375rpx;
+  text-align: center;
+  height: 300rpx;
+}
+
+.bottom {
+  background-color: white;
+}
+
+.triangle {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 6rpx 6rpx 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  margin-left: 12rpx;
+}
+
+/* 扫描授权通知 */
+
+.receipt_notice {
+  
+}
+
+.receipt_notice .receipt_notice_center {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 2.67vw;
+  justify-content: center;
+  align-items: center;
+  padding: 10.67vw 0rpx 27.067vw;
+}
+
+.receipt_notice .receipt_notice_center image {
+  width: 16vw;
+  height: 16vw;
+}
+
+.receipt_notice .receipt_notice_center .text_title {
+  color: #222;
+  font-size: 4vw;
+  padding: 5.33vw 0vw;
+}
+.receipt_notice .receipt_notice_center .text_cont {
+  color: #999;
+  font-size: 3.6vw;
+}

@@ -1,0 +1,71 @@
+<view  wx:if="{{vouchers.length!=0}}">
+  <view class="vouchers">
+    <view class='voucher-container'>
+      <view class='voucher-box' wx:for="{{vouchers}}" wx:for-item="item">
+        <view class='voucher' bindtap="{{showType==2?'getReturn':''}}" data-item='{{item}}'>
+          <view class='voucher-content'>
+            <view class='voucher-content1'>
+              <view class='voucher-type'>{{item.targetName}}</view>
+              <view class='voucher-value-container'>
+                <label class="{{showType==3?'voucher-yuan2':'voucher-yuan'}}">￥</label>
+                <label class="{{showType==3?'voucher-value2':'voucher-value'}}">{{item.discountStr}}</label>
+              </view>
+            </view>
+            <view class='voucher-content2'>
+              <view class='voucher-time'>{{item.timeContext}}</view>
+              <view class='voucher-condition1'>{{item.priceContext}}</view>
+            </view>
+          </view>
+          <view class='voucher-conditions'>
+            <view>{{item.context}}</view>
+            <view class='toUse' bindtap='toUse' wx:if="{{showType==1}}">去使用>></view>
+          </view>
+          <view class="voucher-bgimg-container">
+            <image class="voucher-bgimg" src="{{showType==3?icons.bg2:icons.bg1}}"></image>
+          </view>
+          <view class='is-check-contaienr' wx:if="{{item.ifAvailable}}">
+            <image wx:if="{{showType==1&&index==0}}" src='{{icons.xin}}' class='ischeck-img'></image>
+            <image wx:if='{{showType==2}}' src='{{icons.check}}' class='ischeck-img'></image>
+          </view>
+        </view>
+        <view class='voucher-reasons-container' hidden='true' wx:if="{{item.unavailable!=null}}">
+          <view class='voucher-reasons-top'>
+            <view class='voucher-reasons-title'>不可用原因</view>
+            <view class='voucher-reasons-triangle'></view>
+          </view>
+          <view class='voucher-reason-content' wx:for="{{item.unavailable}}" wx:for-item="item2" wx:for-index="index2">
+            <view class='reason'>{{item2}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tips" wx:if="{{showType==1}}">
+    <view wx:if="{{len==vouchers.length}}" class='tip'>没有更多有效券了~</view>
+    <view wx:if="{{vouchers.length<len}}" class='tip'>下拉加载更多</view>
+    <view class='tip'><label bindtap='voucherIntru'> 优惠券使用说明丨</label>
+      <label bindtap='checkOutDateVoucher'>查看过期券 >></label>
+    </view>
+  </view>
+  <view class="tips" wx:if="{{showType==2}}">
+    <view class='tip'>
+      <label wx:if="{{len==vouchers.length}}">没有更多有效券了</label>
+      <label wx:if="{{vouchers.length<len}}">下拉加载更多</label><label bindtap='voucherIntru'>| 优惠券使用说明</label></view>
+  </view>
+  <view class="tips" wx:if="{{showType==3}}">
+    <view wx:if="{{len==vouchers.length}}" class='tip'>没有更多有效券了~</view>
+    <view wx:if="{{vouchers.length<len}}" class='tip'>下拉加载更多</view>
+  </view>
+  <view hover-class='press-style' class='bottom-btn' wx:if="{{showType==2}}">不使用优惠券</view>
+</view>
+<view wx:if="{{vouchers.length==0}}">
+  <view>
+    <image src='{{icons.no}}' class='no-icon'></image>
+  </view>
+  <view class="tips">
+    <view class='tip'>一张优惠券都不给我~</view>
+    <view class='tip' hidden='{{showType==3}}'><label bindtap='voucherIntru'> 优惠券使用说明丨</label>
+      <label bindtap='checkOutDateVoucher'>查看过期券 >></label>
+    </view>
+  </view>
+</view>

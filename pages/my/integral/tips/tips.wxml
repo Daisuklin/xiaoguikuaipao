@@ -1,0 +1,28 @@
+<view class='top1' wx:if="{{id==1}}">
+  <view class='top1-text1'>
+  <image src='{{icons.ok}}' class='ok-icon'></image>
+  赠送成功</view>
+  <view class='top1-text2'>剩余龟米{{viewPointNum}}</view>
+  <view class='top1-text3' bindtap='back'>返回</view>
+</view>
+
+<view class='top2' wx:if="{{id==2}}">
+  <view class='top2-text1'>兑换成功</view>
+  <view class='top2-text2-1'>{{context}}优惠券已到账！</view>
+  <view class='top2-text2-2'>您可以在“我的 - 优惠券”中查看</view>
+  <view class='top2-text3-container'>
+    <view class='top2-text3' bindtap='back2'>继续兑换</view>
+    <view class='top2-text3' bindtap='toUse'>去使用</view>
+  </view>
+</view>
+<view class='top2' wx:if="{{id==3}}">
+  <view class='top2-text1'>
+  <label><image src='{{icons.ok}}' class='ok-icon'></image></label>
+  兑换成功</view>
+  <view class='top2-text2-1'>订单已提交至后台处理，请耐心等候！</view>
+  <view class='top2-text2-2'>您可以在“我的 - 龟米商城 - 兑换订单”中查看</view>
+  <view class='top2-text3-container'>
+    <view class='top2-text3' bindtap='back3'>继续兑换</view>
+    <view class='top2-text3' bindtap='checkOrder'>查看订单</view>
+  </view>
+</view>

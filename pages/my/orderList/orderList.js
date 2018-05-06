@@ -221,7 +221,7 @@ Page({
     var orderId = e.currentTarget.dataset.orderid;
     var sincehand = e.currentTarget.dataset.sincehand;
     wx.navigateTo({
-      url: "/pages/my/order/orderDetail/orderDetail?orderId=" + orderId,
+      url: "/pages/my/order/orderDetail/orderDetail?orderId=" + orderId + '&isShowIntegral=0',
     })
 
   },
@@ -350,7 +350,7 @@ Page({
       case "qzf": //去支付  可能跳转订单详情
         wx.navigateTo({
           //url: '/pages/my/order/notpay/notpaym?orderId=' + orderid,
-          url: "/pages/my/order/orderDetail/orderDetail?orderId=" + orderid,
+          url: "/pages/my/order/orderDetail/orderDetail?orderId=" + orderid + '&isShowIntegral=0',
         })
         break;
       case "cxgm"://重新购买  

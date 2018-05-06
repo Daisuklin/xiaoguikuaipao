@@ -1,0 +1,180 @@
+/* pages/my/wallet/findReceipts/findReceipts.wxss */
+
+Page {
+  background: #f8f8f8;
+}
+
+.findReceipts_data {
+  margin: 2.67vw 0px;
+  background: #fff;
+}
+
+.findReceipts_data .findReceipts_data_list {
+  display: flex;
+  justify-content: space-between;
+  height: 16vw;
+  align-items: center;
+  margin: 0rpx 4.27vw;
+}
+
+.findReceipts_data .findReceipts_data_list .text_l {
+  font-size: 4vw;
+  color: #444;
+}
+
+.findReceipts_data .findReceipts_data_list .text_r {
+  font-size: 3.6vw;
+  color: #222;
+  padding-right: 2.67vw;
+}
+
+.findReceipts_data .findReceipts_data_btn {
+  height: 12vw;
+}
+
+.findReceipts_data .findReceipts_data_btn button {
+  background: #fff;
+  color: #002;
+  font-size: 4vw;
+  height: 12vw;
+  border: none;
+}
+
+.findReceipts_data .findReceipts_data_btn button::after {
+  border: none;
+}
+
+/*list  */
+.incomestatistics_list{margin-bottom: 4vw;}
+.incomestatistics_list .list_box {
+  background: #fff;
+}
+
+.incomestatistics_list .list_child {
+  display: flex;
+  align-items: center;
+  height: 16vw;
+}
+
+.incomestatistics_list .list_child .list_con {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.incomestatistics_list .list_child .list_con .list_con_tit {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.incomestatistics_list .list_child .list_con .list_con_txt {
+  font-size: 4vw;
+  color: #222;
+}
+
+.color_yellow {
+  color: #fe751a !important;
+}
+
+/*list_childlit  */
+
+.border-bot {
+  border-bottom: 1rpx solid #eee;
+}
+
+.list_childlit {
+  display: flex;
+  align-items: center;
+  height: 12vw;
+  border-bottom: 1px solid #eee;
+}
+
+.list_childlit:last-child {
+  border-bottom: none;
+}
+
+.list_childlit .childlit_cont {
+  flex: 1;
+  text-align: center;
+}
+
+.list_childlit .childlit_first {
+  display: flex;
+  height: 12vw;
+  align-items: center;
+}
+
+.list_childlit .childlit_cont .txt {
+  color: #999;
+  font-size: 3.6vw;
+}
+
+.list_childlit .childlit_cont .childlit_cont_l {
+  color: #999;
+  font-size: 3.6vw;
+  padding: 0rpx 4vw;
+}
+
+.list_childlit .childlit_cont .childlit_cont_r {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_childlit .childlit_cont .childlit_cont_r .txt2 {
+  color: #5dd9ab;
+  font-size: 3.2vw;
+}
+
+/* 时间选择器 */
+
+.park_bg {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 105vw;
+  height: 105vh;
+}
+
+.datachoice_box {
+  position: fixed;
+  top: 40vw;
+  width: 100vw;
+  /* background: #fff; */
+}
+
+.datachoice_box .datachoice_conten {
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 0px auto;
+  width: 92vw;padding-top: 10rpx;
+}
+.datachoice_box .picker_view{ border-top-right-radius: 10rpx;border-top-left-radius: 10rpx;}
+.border-radius-top-bot-left {
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+
+.border-radius-top-bot-right {
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.datachoice_box .picker_view .picker_view_child view {
+  text-align: center;
+}
+
+.datachoice_box .btn_box {
+  display: flex;
+  padding-top: 10rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.datachoice_box .btn_box button {
+  flex: 1;
+  height: 12vw;
+  border: none;
+  background: none;
+}
+.datachoice_box .btn_box button::after{border: none;}

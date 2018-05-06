@@ -1,0 +1,77 @@
+<!--pages/my/wallet/incomestatistics/incomestatistics.wxml 收入统计-->
+<view class='contain_incomestatistics'>
+  <view class='toptab border-bot'>
+    <view class="tabchild {{indexid==1?'active':''}}" id="1" bindtap='chooseTar'>
+      <text>日报</text>
+    </view>
+    <view class="tabchild {{indexid==2?'active':''}}" id="2" bindtap='chooseTar'>
+      <text>月报</text>
+    </view>
+  </view>
+  <!-- main -->
+  <view class='incomestatistics_content'>
+    <view class='content_data'>
+      <text bindtap='bindthetimes' id="{{indexid}}">{{choicetime}}</text>
+      <image src='{{icons.icon_date}}' bindtap='bindthetimes' id="{{indexid}}"></image>
+    </view>
+    <view class='content_receipts'>
+      <text class='span_txt'>实收</text>
+      <view class='span_sprice'>￥
+        <text>{{recordReceiptsList.sumIncomeMoney}}</text>
+      </view>
+    </view>
+    <view class='content_detail'>
+      <view class='detail_list'>
+        <text class='span_top'>收款笔数</text>
+        <text class='span_num'>{{recordReceiptsList.countNumber}}</text>
+      </view>
+      <view class='detail_list border-left'>
+        <text class='span_top'>订单总额</text>
+        <text class='span_num'>￥{{recordReceiptsList.sumTotalMoney}}</text>
+      </view>
+    </view>
+    <view class='content_bot'>收入明细</view>
+  </view>
+  <!-- 明细 -->
+  <view class='incomestatistics_list'>
+    <view class='list_box' wx:for="{{recordReceiptsList.itemList}}">
+      <view class='list_date'>{{item.time}}</view>
+      <view class='list_child'>
+        <view class='list_con'>
+          <text class='list_con_tit'>收款笔数</text>
+          <text class='list_con_txt'>{{item.countNumber}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>订单总额</text>
+          <text class='list_con_txt'>￥{{item.sumTotalMoney}}</text>
+        </view>
+        <view class='list_con'>
+          <text class='list_con_tit'>实收</text>
+          <text class='list_con_txt color_yellow'>￥{{item.sumIncomeMoney}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 时间选择 -->
+<view class='park_bg'  wx:if="{{isshowtime}}"></view>
+<view class='datachoice_box' wx:if="{{isshowtime}}">
+  <view class='datachoice_conten'>
+    <picker-view indicator-style="height: 50px;" class='picker_view' style="width: 92vw; height: 36vw;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column class="picker_view_child border-radius-top-bot-left">
+        <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column class="picker_view_child">
+        <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column class="picker_view_child border-radius-top-bot-right" wx:if="{{indexid==1}}">
+        <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+      </picker-view-column>
+    </picker-view>
+    <view class='btn_box'>
+      <button bindtap='getCancel'>取消</button>
+      <button style='border-left:1rpx solid #eee;' bindtap='getDetermine' id="{{judgmentnum}}">确定</button>
+    </view>
+  </view>
+</view>

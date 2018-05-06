@@ -1,0 +1,43 @@
+<import src="../../../temp/pwdInput/pwdInput.wxml" />
+<view class='container'>
+  <view class='title'>
+    <label class='title-text1'>对方账号</label>
+    <label class='title-text2'>
+      <input class='input-phone' type="number" focus='{{focus3}}' placeholder='手机号码' placeholder-class='no-input-phone' bindinput='setPhone' value="{{phone}}"></input>
+    </label>
+  </view>
+  <view style='height:1rpx;width:570rpx;border-bottom:1rpx solid #eee;'></view>
+  <view class='money-title'>赠送龟米</view>
+  <view class='input-container'>
+    <label>
+      <input placeholder='输入龟米' type="number" focus="{{focus2}}" class="input-num1" placeholder-class='no-input' bindinput='setIntegral' value='{{integralV}}'></input>
+    </label>
+  </view>
+  <view style='height:1rpx;width:570rpx;border-bottom:1rpx solid #eee;'></view>
+  <view class='canget-money' hidden='{{isOver}}'>当前龟米{{viewPointNum}}</view>
+  
+  <view class='canget-money2' hidden='{{!isOver}}'>超出当前龟米</view>
+  <view class="{{isOk?'tixian-btn2':'tixian-btn'}}" bindtap="{{isOk?'commit':''}}">提交</view>
+  <view class='money-tip'>赠送龟米不能低于1</view>
+</view>
+
+<view class='input-secret-container' hidden='{{!focus}}'>
+  <view class='secret-title'>请输入安全密码</view>
+  <view class='secret-text1'>当前龟米{{viewPointNum}}</view>
+  <view class='secret-text2-3-container'>
+    <view class='secret-text2'>龟米</view>
+    <view class='secret-text3'>{{integralV}}</view>
+  </view>
+
+  <view class="pwdInputStyle">
+    <input class="pas_input" type="number" value="{{passWord}}" maxlength="6" focus="{{focus}}" bindinput="onChangeInput" adjust-position="{{adjust_position}}"></input>
+    <block wx:for="{{[0,1,2,3,4,5]}}">
+      <view class="{{index==0?'itemStyle0':'itemStyle'}}">
+        <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
+      </view>
+    </block>
+  </view>
+
+  <view class='secret-text4' bindtap='forgetPassword'>忘记密码？</view>
+</view>
+<view class='mask-view' bindtap='tapMask' hidden='{{!focus}}'></view>

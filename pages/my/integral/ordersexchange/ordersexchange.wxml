@@ -1,0 +1,16 @@
+<view class="container">
+  <view class='item' wx:for="{{orders}}" data-my="{{item}}" bindtap='checkOrder'>
+    <view class='product-img-name'>
+      <view>
+        <image src='{{item.imgUrl}}' class='product-img' mode='aspectFill'></image>
+      </view>
+      <view class='text1-2-container'>
+        <view class='text1'>{{item.receiveName}}</view>
+        <view class='text2'>{{item.pointStr}}积分</view>
+      </view>
+    </view>
+    <view class='text3'>{{item.statusName}}</view>
+  </view>
+</view>
+<view wx:if="{{len==orders.length}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>没有更多了~</view>
+<view wx:if="{{orders.length<len}}"  style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>下拉加载更多</view>

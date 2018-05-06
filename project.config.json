@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.1",
+	"libVersion": "1.6.4",
 	"appid": "wx0156fc8fcb812dbf",
 	"projectname": "%E5%B0%8F%E9%BE%9FtestDemo",
 	"svr": "",
@@ -34,55 +34,109 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 12,
 			"list": [
 				{
-					"id": 1,
-					"name": "左右模板",
-					"pathName": "pages/store/glspecial/glspecial",
-					"query": "storeId=802"
-				},
-				{
-					"id": 2,
-					"name": "上下模板",
-					"pathName": "pages/store/index",
-					"query": "storeId=5947"
+					"id": 0,
+					"name": "评价",
+					"pathName": "pages/my/evaluate/evaluate",
+					"query": "orderId=266954"
 				},
 				{
 					"id": -1,
-					"name": "寄件",
-					"pathName": "pages/my/mail/mail",
-					"query": "transmitId=1"
+					"name": "设置安全密码",
+					"pathName": "pages/my/securitycenter/addPassword/addPassword",
+					"query": "showcontent=2"
+				},
+				{
+					"id": -1,
+					"name": "安全中心",
+					"pathName": "pages/my/securitycenter/securitycenter",
+					"query": ""
 				},
 				{
 					"id": 3,
-					"name": "新版首页",
-					"pathName": "pages/home2/home2",
-					"query": ""
+					"name": "修改密码",
+					"pathName": "pages/my/securitycenter/updatePassword/updatePassword",
+					"query": "showcontent=2"
 				},
 				{
-					"id": -1,
-					"name": "二级分类",
-					"pathName": "pages/home/moreclass/moreclass",
-					"query": ""
+					"id": 4,
+					"name": "确认订单",
+					"pathName": "pages/my/order/order",
+					"query": "goodId=&spaecKey=&cartId=6724, 6725, 6726, 6727, 6728, 6729"
 				},
 				{
-					"id": -1,
-					"name": "海报",
-					"pathName": "pages/store/poster/poster",
-					"query": ""
+					"id": 5,
+					"name": "订单详情",
+					"pathName": "pages/my/order/orderDetail/orderDetail",
+					"query": "orderId=267158"
 				},
 				{
-					"id": -1,
-					"name": "主题",
-					"pathName": "pages/home/themepage/themepage",
-					"query": "banner=https://qnimg.xiaoguikuaipao.com/FoXFISEzJshzvZr6lLHZQWV_H_0z&themeId=435&isStoreType=0"
+					"id": 6,
+					"name": "确认订单优惠券",
+					"pathName": "pages/my/vouchers/vouchers",
+					"query": "gcId=0&money=168.74&ifManSong=true&ifPackageMall=false"
 				},
 				{
-					"id": -1,
-					"name": "详情",
+					"id": 7,
+					"name": "兑换商品",
+					"pathName": "pages/my/integral/exchangeProduct/exchangeProduct",
+					"query": "goodID=18"
+				},
+				{
+					"id": 8,
+					"name": "商品详情",
 					"pathName": "pages/detail/goodsdetail",
-					"query": "goodId=32274"
+					"query": "goodId=109347"
+				},
+				{
+					"id": -1,
+					"name": "收款码",
+					"pathName": "pages/my/wallet/receiptcode/receiptcode",
+					"query": "goodId=109347"
+				},
+				{
+					"id": 10,
+					"name": "添加店员",
+					"pathName": "pages/my/wallet/addAssistant/addAssistant",
+					"query": "goodId=109347"
+				},
+				{
+					"id": -1,
+					"name": "收款详情",
+					"pathName": "pages/my/wallet/details/details",
+					"query": "goodId=109347"
+				},
+				{
+					"id": -1,
+					"name": "收账本首页",
+					"pathName": "pages/my/wallet/wallet",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收账本-店铺添加店员",
+					"pathName": "pages/my/wallet/addAssistant/addAssistant",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收账本-收款记录",
+					"pathName": "pages/my/wallet/recordReceipts/recordReceipts",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收账本-收款记录查询",
+					"pathName": "pages/my/wallet/findReceipts/findReceipts",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收入统计",
+					"pathName": "pages/my/wallet/incomestatistics/incomestatistics",
+					"query": ""
 				}
 			]
 		}

@@ -1,0 +1,279 @@
+/* pages/my/integral/sendintegral/sendintegral.wxss */
+
+/* pages/my/wallet/towechat/towechat.wxss */
+
+.container {
+  width: 690rpx;
+  height: 690rpx;
+  background-color: white;
+  margin-left: 30rpx;
+  margin-top: 38rpx;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+  padding-top: 0px;
+}
+
+.title {
+  width: 100%;
+  text-align: left;
+  padding: 60rpx;
+  line-height: 38rpx;
+  display: flex;
+  align-items: center;
+}
+
+.no-input-phone {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+}
+
+.title-text1 {
+  width: 118rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(0, 0, 0, 1);
+}
+
+.input-phone {
+  display: inline-block;
+  width: 420rpx;
+  height: 38rpx;
+  padding-left: 30rpx;
+}
+
+.title-text2 {
+}
+
+.money-title {
+  font-size: 30rpx;
+  font-family: STHeitiJ-Light;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 1);
+  width: 100%;
+  text-align: left;
+  padding-top: 43rpx;
+  padding-bottom: 23rpx;
+  line-height: 38rpx;
+}
+
+.input-num1 {
+  display: inline-block;
+  width: 570rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 90rpx;
+  font-family: Impact;
+  color: rgba(0, 0, 0, 1);
+}
+
+.no-input {
+  display: block;
+  width: 570rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 35rpx;
+  text-align: center;
+  font-family: Impact;
+}
+
+/* .input-num1 {
+  display: inline-block;
+  width: 570rpx;
+  height: 100rpx;
+  font-size: 35rpx;
+  font-family: Impact;
+  color: rgba(0, 0, 0, 1);
+} */
+
+.canget-money {
+  width: 100%;
+  text-align: left;
+  font-size: 27rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(153, 153, 153, 1);
+  padding-top: 43rpx;
+}
+.canget-money2 {
+  width: 100%;
+  text-align: left;
+  font-size: 27rpx;
+  font-family: STHeitiK-Light;
+  color:#E5004F;
+  padding-top: 43rpx;
+}
+
+.tixian-btn {
+  width: 570rpx;
+  height: 90rpx;
+  background: rgba(153, 153, 153, 1);
+  border-radius: 10rpx;
+  color: white;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 70rpx;
+}
+.tixian-btn2 {
+  width: 570rpx;
+  height: 90rpx;
+  background: #5DD9AB;
+  border-radius: 10rpx;
+  color: white;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 70rpx;
+}
+.money-tip {
+  width: 100%;
+  text-align: center;
+  font-size: 27rpx;
+  font-family: STHeitiK-Light;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 31rpx;
+}
+
+/*密码输入start--------------------------------------*/
+
+.input-secret-container {
+  width: 610rpx;
+  background-color: white;
+  height: 420rpx;
+  z-index: 1200;
+  position: fixed;
+  left: 70rpx;
+  top: 186rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.secret-title {
+  width: 610rpx;
+  height: 90rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  font-weight: bold;
+  border-bottom: 1rpx solid #eee;
+}
+
+.secret-text1 {
+  width: 610rpx;
+  text-align: center;
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 25rpx;
+  padding-top: 23rpx;
+  padding-bottom: 40rpx;
+}
+
+.secret-text2-3-container {
+  width: 610rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 54rpx;
+  padding-bottom: 31rpx;
+}
+
+.secret-text2 {
+  font-size: 27rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(34, 34, 34, 1);
+  line-height: 25rpx;
+}
+
+.secret-text3 {
+  font-size: 70rpx;
+  font-family: Impact;
+  color: rgba(34, 34, 34, 1);
+  line-height: 54rpx;
+  padding-left: 15rpx;
+}
+
+.secret-text4 {
+  width: 610rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  padding-top: 15rpx;
+}
+
+.pwdInputStyle {
+  /*整个组件盒子*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12vw;
+  width: 540rpx;
+  border: 1rpx solid #999;
+  border-radius: 5rpx;
+  position: relative;
+  margin-left: 35rpx;
+}
+
+.itemStyle0 {
+  /*单独密码包含框样式*/
+  width: 12vw;
+  height: 12vw;
+  background: white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemStyle {
+  /*单独密码包含框样式*/
+  width: 12vw;
+  height: 12vw;
+  background: white;
+  border-left: 1rpx solid #dadada;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pas_input {
+  /*输入框样式*/
+  border: 0;
+  color: #fff;
+  font-size: 5rpx;
+  text-align: left;
+  height: 12vw;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 8;
+  width: 100vw;
+  left: -250rpx;
+}
+
+.PwdStyle {
+  /*黑点样式*/
+  width: 20rpx;
+  height: 20rpx;
+  background: black;
+  border-radius: 10rpx;
+}
+
+/*密码输入end*********************************888*/
+
+.mask-view {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(43, 43, 43);
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1100;
+}

@@ -67,7 +67,7 @@
     </view>
   </view>
   <view class='navitem'>
-    配送订单
+    寄件订单
     <view class='icon'>
       <image src='/image/orderList/motorcycle.png'></image>
     </view>

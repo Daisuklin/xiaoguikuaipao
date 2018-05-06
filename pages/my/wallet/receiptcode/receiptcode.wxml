@@ -1,0 +1,26 @@
+<!--pages/my/wallet/receiptcode/receiptcode.wxml-->
+<view class='receipt_code'>
+  <view class='receipt_code_main'>
+    <view class='code_title'>在此扫码付款</view>
+    <text class='code_txt'>支付送龟米｜龟米当钱花</text>
+    <view class='code_icon_img'>
+      <view class='code_icon_vie'>
+        <image src="{{icons.icon_logo_zhifubao}}"></image>
+        <text>支付宝</text>
+      </view>
+      <view class='code_icon_vie'>
+        <image src="{{icons.icon_logo_weixin}}"></image>
+        <text>微信</text>
+      </view>
+    </view>
+    <view class='code_qr'>
+      <image src="{{imgurl}}"></image>
+    </view>
+    <view class='code_xiaoguilogo'>
+      <image src="{{icons.icon_logo_xiaogui}}"></image>
+    </view>
+    <view class='code_btn'>
+      <button bindtap='getSaveCodeimg'>保存收款二维码</button>
+    </view>
+  </view>
+</view>

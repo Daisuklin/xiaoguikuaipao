@@ -1,0 +1,60 @@
+<view class="top">
+  <view class='voucher-top'>
+    <view style='padding-top:90rpx;'>
+      <label class='voucher-text1'>￥</label>
+      <label class='voucher-text2'>{{item.pointStr}}</label>
+    </view>
+    <view class='voucher-text3'>满{{item.pointStr}}可用</view>
+    <view class='voucher-icon-container'>
+      <image src='{{icons.voucher}}' class='voucher-icon'></image>
+    </view>
+  </view>
+</view>
+<view class='content1'>
+  <view class='text1'>{{item.context}} - {{item.targetName}}</view>
+  <view class='text2-cotainer'>
+    <label>
+      <image src='{{icons.integral}}' class='integral-icon'></image>
+    </label>
+    <label class='text2'>{{item.pointStr}}</label>
+  </view>
+  <view class='text3-4-container'>
+    <label class='text3'>有效期：</label>
+    <label class='text4'>{{item.timeContext}}</label>
+  </view>
+</view>
+<view class='content2'>
+  <view class='text5'>温馨提示</view>
+  <view class='text6-container'>
+    <view class='text6'>
+      <label class='dot'></label>兑换后自动放入【我的-优惠券】</view>
+    <view class='text6'>
+      <label class='dot'></label>优惠券不可叠加使用，每个订单可使用一张</view>
+    <view class='text6'>
+      <label class='dot'></label>龟米一经兑出不予退换</view>
+    <view class='text6'>
+      <label class='dot'></label>了解更多详情，查看【我的-优惠券-优惠券使用说明】</view>
+  </view>
+</view>
+<view bindtap='commit' style='position:fixed;bottom:0px;left:0px;height:98rpx;width:100vw;text-align:center;line-height:98rpx;font-size:35rpx;background:#5DD9AB;color:white;'>确定兑换</view>
+
+<view class='input-secret-container' hidden='{{!focus}}'>
+  <view class='secret-title'>请输入安全密码</view>
+  <view class='secret-text1'>当前龟米{{viewPointNum}}</view>
+  <view class='secret-text2-3-container'>
+    <view class='secret-text2'>龟米</view>
+    <view class='secret-text3'>{{item.pointStr}}</view>
+  </view>
+
+  <view class="pwdInputStyle">
+    <input class="pas_input" type="number" maxlength="6" focus="{{focus}}" bindinput="onChangeInput" adjust-position="{{adjust_position}}" value="{{passWord}}"></input>
+    <block wx:for="{{[0,1,2,3,4,5]}}">
+      <view class="{{index==0?'itemStyle0':'itemStyle'}}">
+        <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
+      </view>
+    </block>
+  </view>
+
+  <view class='secret-text4'  bindtap='forgetPassword'>忘记密码？</view>
+</view>
+<view class='mask-view' bindtap='tapMask' hidden='{{!focus}}'></view>

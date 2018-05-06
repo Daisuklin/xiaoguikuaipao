@@ -1,0 +1,59 @@
+<view class='box' style='display:none'>
+  <view class="top">
+    <view class='text1'>{{getUserStoreData.store_name}}</view>
+    <view class='text2-3-container'>
+      <label class='text2'>今日收款</label>
+      <label class='text3'>{{detailsData.countNumber}}</label>
+      <label class='text2'>笔，实收</label>
+    </view>
+    <view class='text4-5-container'>
+      <label class='text4'>￥</label>
+      <label class='text5'>{{detailsData.sumTotalMoney}}</label>
+    </view>
+  </view>
+  <view class='center'>
+    <view class='item-container border' hover-class='press-style' bindtap='gotorecordReceipts'>
+      <view class='text6-7-container'>
+        <label>
+          <image src='{{icons.icon_jilu}}' class='his-icon'></image>
+        </label>
+        <label class='text6'>收款记录</label>
+      </view>
+      <label class='triangle'></label>
+    </view>
+    <view class='item-container' hover-class='press-style' bindtap='gotoincomestatistics'>
+      <view class='text6-7-container'>
+        <label>
+          <image src='{{icons.icon_tongji}}' class='get-icon'></image>
+        </label>
+        <label class='text7'>收入统计</label>
+      </view>
+      <label class='triangle'></label>
+    </view>
+  </view>
+  <view class='bottom'>
+    <view class='text8'>更多功能</view>
+    <view class='text8-9-container'>
+      <view class='code-container' hover-class='press-style' bindtap='gotoReceiptcode'>
+        <view>
+          <image src='{{icons.icon_recode}}' class='code-icon'></image>
+        </view>
+        <view class='text9'>店铺收款码</view>
+      </view>
+      <view class='message-container' hover-class='press-style' bindtap='gotoaddAssistant'>
+        <view>
+          <image src='{{icons.icon_user}}' class='message-icon'></image>
+        </view>
+        <view class='text9'>添加店员收款通知</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 非店员通知 -->
+<view class='receipt_notice'>
+  <view class='receipt_notice_center'>
+  <image src="https://qnimg.xiaoguikuaipao.com/lLuAQcp9fPEQ826b95cf2b2226249a3f87e"></image>
+  <text class='text_title'>请扫描商家收款通知二维码</text>
+  <text class='text_cont'>当商家确认添加后，你即可接收他(她)的收款通知</text>
+  </view>
+</view>
