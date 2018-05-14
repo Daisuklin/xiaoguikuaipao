@@ -2,7 +2,7 @@
   <view class="vouchers">
     <view class='voucher-container'>
       <view class='voucher-box' wx:for="{{vouchers}}" wx:for-item="item">
-        <view class='voucher' bindtap="{{showType==2?'getReturn':''}}" data-item='{{item}}'>
+        <view class='voucher' bindtap="{{showType==2&&item.ifAvailable?'getReturn':''}}" data-item='{{item}}'>
           <view class='voucher-content'>
             <view class='voucher-content1'>
               <view class='voucher-type'>{{item.targetName}}</view>
@@ -20,8 +20,11 @@
             <view>{{item.context}}</view>
             <view class='toUse' bindtap='toUse' wx:if="{{showType==1}}">去使用>></view>
           </view>
-          <view class="voucher-bgimg-container">
+          <view class="voucher-bgimg-container" wx:if="{{showType==3}}">
             <image class="voucher-bgimg" src="{{showType==3?icons.bg2:icons.bg1}}"></image>
+          </view>
+          <view class="voucher-bgimg-container" wx:if="{{showType==2||showType==1}}">
+            <image class="voucher-bgimg" src="{{item.ifAvailable?icons.bg1:icons.bg3}}"></image>
           </view>
           <view class='is-check-contaienr' wx:if="{{item.ifAvailable}}">
             <image wx:if="{{showType==1&&index==0}}" src='{{icons.xin}}' class='ischeck-img'></image>
@@ -56,7 +59,7 @@
     <view wx:if="{{len==vouchers.length}}" class='tip'>没有更多有效券了~</view>
     <view wx:if="{{vouchers.length<len}}" class='tip'>下拉加载更多</view>
   </view>
-  <view hover-class='press-style' class='bottom-btn' wx:if="{{showType==2}}">不使用优惠券</view>
+  <view hover-class='press-style' class='bottom-btn' wx:if="{{showType==2}}" bindtap='getNoCoupons'>不使用优惠券</view>
 </view>
 <view wx:if="{{vouchers.length==0}}">
   <view>
@@ -68,4 +71,5 @@
       <label bindtap='checkOutDateVoucher'>查看过期券 >></label>
     </view>
   </view>
+  <view hover-class='press-style' class='bottom-btn' wx:if="{{showType==2}}" bindtap='getNoCoupons'>不使用优惠券</view>
 </view>

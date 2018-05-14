@@ -6,12 +6,14 @@ Page({
     imgs:[],
     storeList:[]
   },
+  //查看二级分类
   checkSecondClass:function(e){
     var id = e.currentTarget.id;
     wx.navigateTo({
       url: '/pages/home/search/imgstoresresult/imgstoresresult?classId=' + id,
     })
   },
+  //查看商品详情
   checkProduct: function (e) {
     if (!appUtil.lrhMethods.checkPageState()) {
       return;
@@ -21,6 +23,7 @@ Page({
       url: '/pages/detail/goodsdetail?goodId=' + id,
     })
   },
+  //查看店铺详情
   checkStore: function (e) {
     if (!appUtil.lrhMethods.checkPageState()) {
       return;
@@ -45,6 +48,7 @@ Page({
       url: '/pages/home/search/resultforgood/resultforgood?classId='+id,
     })
   },
+  //处理从服务器返回的数据
   transDataFromServer: function (data, secondClassIndex){
     console.log(secondClassIndex + "标记--------" + isNaN(secondClassIndex));
 
@@ -64,6 +68,7 @@ Page({
     }
     wx.hideLoading();
   },
+  //获取类里面的内容
   getClassContent: function () {
     var that = this;
     wx.showLoading({
@@ -114,6 +119,7 @@ Page({
       }
     })
   },
+  //点击更多
   moreClass: function () {
     var classId = this.data.classId;
     wx.navigateTo({

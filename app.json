@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/home2/home2",
     "pages/my/my",
     "pages/my/wallet/findReceipts/findReceipts",
     "pages/my/wallet/recordReceipts/recordReceipts",
     "pages/my/wallet/incomestatistics/incomestatistics",
     "pages/my/wallet/details/details",
-    "pages/home2/home2",
     "pages/my/wallet/receiptcode/receiptcode",
     "pages/my/wallet/addAssistant/addAssistant",
     "pages/my/wallet/wallet",

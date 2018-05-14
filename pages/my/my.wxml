@@ -105,7 +105,7 @@
         <view class='new-text7'>寄件抵扣券</view>
       </view>
       <!-- 用户钱包 -->
-      <view class='fun-single-container' bindtap='checkWallet' hover-class='press-style'>
+      <view class='fun-single-container' bindtap='checkWallet' hover-class='press-style' wx:if="{{onePayFlag}}">
         <view class='new-icon-container'>
           <image src='{{icons.wallet}}' class='new-icon2'></image>
         </view>

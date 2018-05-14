@@ -30,6 +30,7 @@ Page({
 
     this.setData({ stores: stores });
   },
+  //获取水果类的店铺
   getFruitStores: function () {
     var that = this;
     wx.showLoading({
@@ -74,6 +75,7 @@ Page({
       }
     })
   },
+  //获取热门店铺
   getHotStores: function () {
     var that = this;
     wx.showLoading({
@@ -117,6 +119,7 @@ Page({
       }
     })
   },
+  //获取商品列表
   getGoodList: function () {
     var that = this;
     wx.showLoading({

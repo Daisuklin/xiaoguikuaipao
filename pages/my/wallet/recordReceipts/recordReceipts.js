@@ -21,11 +21,14 @@ Page({
     console.info("e",e)
     let realTimeIncome = e.currentTarget.dataset.realtimeincome;
     wx.navigateTo({
-      url: '/pages/my/wallet/details/details?orderId=' + e.currentTarget.id + '&realTimeIncome=' + realTimeIncome,
+      url: '/pages/my/wallet/details/details?orderId=' + e.currentTarget.id +"&isfromfather=1"
     })
   },
   // 收款记录列表
   getreceiptslist:function(){
+    wx.showLoading({
+      title: '加载中',
+    })
     let that = this;
     walletUtil.controllerUtil.receiptslist({
       current:1
@@ -36,6 +39,7 @@ Page({
           that.setData({
             recordReceiptsList: sucData.data.data
           })
+          wx.hideLoading()
         }
       }, function (failData) {
       }, function (comData) {

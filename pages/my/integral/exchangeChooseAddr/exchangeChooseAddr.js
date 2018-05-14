@@ -11,22 +11,27 @@ Page({
     adjust_position: true,
     addressData:''
   },
+  //忘记密码
   forgetPassword: function () {
     wx.navigateTo({
       url: '/pages/my/securitycenter/addPassword/addPassword',
     })
   },
+  
   commit: function () {
     this.setData({ focus: true });
   },
+  //点击灰蒙层
   tapMask: function () {
     this.setData({ focus: false });
   },
+  //选择地址
   chooseAddr: function () {
     wx.navigateTo({
       url: '/pages/my/site/site?transmitId=' + '15626199190',//来自确认订单页的入口
     })
   },
+  //弹起反馈窗口
   showToast: function (res) {
     console.info("成功", res);
     var that = this;
@@ -66,6 +71,7 @@ Page({
     }
 
   },
+  //向服务器发送下单请求
   exchangeProduct: function () {
     this.setData({ focus: false });
     wx.showLoading({
@@ -90,6 +96,7 @@ Page({
       wx.hideLoading();
     });
   },
+  //监听输入密码
   onChangeInput: function (e) {
     let that = this;
     if (e.detail.value.length > that.data.passWord.length) {

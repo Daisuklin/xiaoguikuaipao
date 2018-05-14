@@ -407,7 +407,8 @@
         <view class="page_name" style="width:100rpx;padding-top:8rpx;">扫码购物</view>
       </view>
       <view class="page_ontainer" bindtap='checkCard'>
-        <view class="icon_container" style="width:75rpx;">
+        <view class="icon_container" style="width:75rpx;position:relative;">
+          <label class='cart-num1' wx:if="{{allCartNum>0}}">{{allCartNum}}</label>
           <image src="../../image/store/cart0.png" class="icon_common icon3"></image>
         </view>
         <view class="page_name" style="width:75rpx;">购物车</view>

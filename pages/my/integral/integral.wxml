@@ -12,10 +12,10 @@
     </label>
   </view>
   <view class='text3'>
-    {{viewPoint}}
+    {{viewPoint==''||viewPoint==null?0:viewPoint}}
   </view>
   <view class='tip-container'>
-    <view class='tip'>{{freezePoint}}龟米在途中</view>
+    <view class='tip'>{{freezePoint==''||freezePoint==null?0:freezePoint}}龟米在途中</view>
   </view>
   <view class='send-order-container'>
     <view class='triangle-up'></view>
@@ -33,10 +33,10 @@
     </view>
   </view>
 </view>
-<view class='banner'>
+<view class='banner' wx:if="{{midImageUrl!=null&&midImageUrl!=''}}">
   <image  mode='aspectFill' src="{{midImageUrl}}" class='banner-img'></image>
 </view>
-<view class='vouchers-area'>
+<view class='vouchers-area' style='margin-top:20rpx;'>
   <view class='title' hover-class='press-style' bindtap='checkVoucher'>
     <view class='title-area'>优惠券专区</view>
     <view>
@@ -103,4 +103,7 @@
     </block>
   </view>
 </view>
-<view style='display:block;height:200rpx;width:100vw;'></view>
+<view style='display:block;height:40rpx;width:100vw;'></view>
+<view class='comebackhome' hover-class="weui-cell_active" wx:if="{{isfromfather!=1}}">
+  <button class='btn_back' bindtap='getbackhomes'>回到首页</button>
+</view>

@@ -53,17 +53,20 @@ Page({
       phoneNumber: '400-660-9727',
     })
   },
+  //点击搜索
   toSearch: function () {
     wx.navigateTo({
       url: '../home/search/search',
     })
   },
+  //切换地址
   chooseAddr: function () {
     wx.setStorageSync("changeAddFlag", true);
     wx.navigateTo({
       url: '/pages/home/chooseAddr/chooseAddr',
     })
   },
+  //点击banner图
   checkBanner: function (e) {
     console.log(e);
     var themeType = e.currentTarget.dataset.my.themeType;
@@ -114,6 +117,7 @@ Page({
       })
     }
   },
+  //查看分类
   checkGoodClass: function (e) {
     console.log("查看分类");
     console.log(e);
@@ -133,6 +137,7 @@ Page({
     this.setData({ fixStyle: false, xsHidden: false });
     this.setAnimation2();
   },
+  //点击导航
   chooseTar: function (e) {
     console.log(e.currentTarget.id);
     if (e.currentTarget.id == 0) {//当重复点击时候
@@ -189,6 +194,7 @@ Page({
       }, 100);
     }
   },
+  //设置动画
   setAnimation1: function () {
     var duration = 500
 
@@ -203,6 +209,7 @@ Page({
       item1: item1
     })
   },
+  //设置动画
   setAnimation2: function () {
     var duration = 500
 
@@ -331,6 +338,7 @@ Page({
     console.info("标签", arrs);
     this.setData({ labelStores: arrs });
   },
+  //选择筛选标签
   chooseLabel: function (e) {
     console.log(e);
     var name = e.currentTarget.dataset.my;
@@ -424,6 +432,7 @@ Page({
       this.setData({ positionFlag: false });//相对在父盒子里面
     }
   },
+  //判断是否在服务地区
   ifNotLocation: function () {
     var latitude = wx.getStorageSync("latitude");
     var longitude = wx.getStorageSync("longitude");

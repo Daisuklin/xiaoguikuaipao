@@ -2074,7 +2074,7 @@ Page({
     if (this.data.showHideCart) {
       animation.translateY(-397).step()
     } else {
-      animation.translateY(0).step()
+      animation.translateY(20).step()
     }
     this.setData({
       animationData: animation.export()
@@ -2147,7 +2147,7 @@ Page({
       showHideCart: false
     });
     this.animation = animation;
-    animation.translateY(0).step()
+    animation.translateY(20).step()
     this.setData({
       animationData: animation.export()
     })

@@ -37,15 +37,18 @@ Page({
     salesList: [],
     filterList: []
   },
+  //点击搜索
   searchTap: function () {
     this.clearMyParam();
     this.setData({ distanceList: [], salesList: [], filterList: [] });
     this.getBydistance();
   },
+  //设置关键词
   setKeyWord: function (e) {
     var value = e.detail.value;
     this.setData({ keyword: value });
   },
+  //查看店铺详情
   checkStore: function (e) {
     var jumpType = e.currentTarget.dataset.jumptype;
     var storeId = e.currentTarget.id;
@@ -75,11 +78,13 @@ Page({
     this.setData({ longitude: longitude, latitude: latitude, areaCode: areaCode });
     this.getBydistance();
   },
+  //清楚分页参数
   clearMyParam: function () {
     wx.removeStorageSync("distanceIndexImgStores");
     wx.removeStorageSync("salesIndexImgStores");
     wx.removeStorageSync("filterIndexImgStores");
   },
+  //查看商品详情
   checkProduct: function (e) {
     var id = e.currentTarget.id;
     console.log(id);
@@ -87,6 +92,7 @@ Page({
       url: '/pages/detail/goodsdetail?goodId=' + id,
     })
   },
+  //点击导航
   chooseTar: function (e) {
     console.log(e.currentTarget.id);
     if (e.currentTarget.id == 0 && this.data.activeIndex == 0) {//当重复点击时候
@@ -129,6 +135,7 @@ Page({
       this.setData({ activeIndex: e.currentTarget.id, });
     }
   },
+  //按距离条件搜索
   getBydistance: function () {
     wx.showLoading({
       title: '加载中',
@@ -183,6 +190,7 @@ Page({
       }
     })
   },
+  //按销量搜索
   getBySales: function () {
     wx.showLoading({
       title: '加载中',
@@ -237,6 +245,7 @@ Page({
       }
     })
   },
+  //按搜索条件搜索
   getByFiter: function () {
     wx.showLoading({
       title: '加载中',
@@ -348,6 +357,7 @@ finishFilter: function () {
   this.setData({ activeIndex: -1, discountHiddenIndex: -1 });
   this.getByFiter();
 },
+//设置向服务器请求的参数
 setFilterParam: function (id) {
   if (id == 0) {
     this.setData({
@@ -387,6 +397,7 @@ setFilterParam: function (id) {
     });
   }
 },
+//清楚导航选择
 clearChoices: function () {
   this.setData({ discountHiddenIndex: -1 });
 },

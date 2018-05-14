@@ -5,6 +5,7 @@ Page({
     orders:[],
     pageIndex:1,
   },
+  //查看订单
   checkOrder: function (e) {
     console.log(e);
     var item = e.currentTarget.dataset.my;
@@ -20,6 +21,7 @@ Page({
     }
     this.setData({ orders: orders, len: res.data.totalNum});
   },
+  //获取兑换订单列表
   getExchangeOrders: function () {
     wx.showLoading({
       title: '加载中',
@@ -40,7 +42,8 @@ Page({
     });
   },
   onLoad: function (options) {
-    this.setData({ icons: iconsUtils.getIcons().integralIcons });
+    this.setData({ icons: iconsUtils.getIcons().integralIcons,
+      icons2: iconsUtils.getIcons().walletIcons });
     this.getExchangeOrders();
   },
   onReady: function () {

@@ -350,7 +350,54 @@ Page({
     }
 
   },
+  //获取购物车 
+  getCartData2: function () {
+    var that = this;
+    wx.showLoading({
+      title: '请求中',
+      mask: true,
+    })
+    wx.request({
+      //url: appUtil.ajaxUrls().getStoreCartData, //
+      url: appUtil.ajaxUrls().getStoreCartData + "/" + that.data.memberId + "/" + that.data.storeId,
+      data: {
 
+      },
+      method: "GET",
+      header: {
+        'content-type': 'application/json',
+        //'androidApi': '3.3.8'
+        'api': 'web',
+      },
+      success: function (res) {
+        console.log("得到店铺购物车返回");
+        console.log(res)
+        if (res.data.message.type == "success") {
+          var carts = res.data.data.cartList;
+          console.info("res.data.data.allCartNum", res.data.data.allCartNum)
+         that.setData({
+           allCartNum: res.data.data.allCartNum,
+         })
+        }
+
+      },
+      fail: function (res) {
+        console.log("请求失败返回");
+        console.log(res);
+        wx.hideLoading();
+
+        wx.showToast({
+          title: '服务器忙',
+          icon: "loading",
+          duration: 800
+        })
+
+      },
+      complete: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
 
   checkProduct: function (e) {
     var goodId = e.currentTarget.id;
@@ -402,6 +449,7 @@ Page({
 
   onShow: function () {
     this.setData({ haveCheckProduct: false });
+    this.getCartData2()
   },
   my: function () {
     wx.navigateTo({

@@ -11,9 +11,10 @@ Page({
     integralV: "",
     phone: "",
     isOk: false,
-    isOver: false
+    isOver: false,
+    isPrompt: false
   },
-  forgetPassword:function(){
+  forgetPassword: function () {
     wx.navigateTo({
       url: '/pages/my/securitycenter/addPassword/addPassword',
     })
@@ -23,11 +24,11 @@ Page({
     var havaPassword = blackUserInfo.commonData.safePasswordFlag;
     if (!havaPassword) {
       this.showPasswordTips();
-      return ;
+      return;
     }
     var integralV = this.data.integralV;
     var phone = this.data.phone;
-    if (phone == '' || phone.length != 11 || isNaN(phone)) {
+    if (phone == '' || phone.length > 11 || isNaN(phone)) {
       wx.showToast({
         icon: "loading",
         title: '请输入正确号码',
@@ -47,30 +48,47 @@ Page({
     this.setData({ focus: false });
   },
   setPhone: function (e) {//设置电话
+  let that = this;
     var value = e.detail.value;
     var integralV = this.data.integralV;
+   
     if (integralV != "" && integralV <= this.data.viewPointNum && integralV > 0 && value != '' && value.length == 11 && !isNaN(value)) {
       this.setData({ isOk: true });
     } else if (integralV == "" || integralV > this.data.viewPointNum || integralV <= 0 || value == '' || value.length != 11 || isNaN(value)) {
       this.setData({ isOk: false });
     }
-    this.setData({ phone: value });
+    if (value.length > 11) {
+      that.getPromptPark("请正确输入电话号码");
+      this.setData({ phone: that.data.phone });
+      return;
+    }else{
+      this.setData({ phone: value });
+    }
+    console.info("value", value, that.data.phone)
   },
+  
   setIntegral: function (e) {//设置积分
     var value = e.detail.value;
     var phone = this.data.phone;
-    if (value > this.data.viewPointNum) {
-      this.setData({ isOver: true });
-    } else if (value <= this.data.viewPointNum) {
-      this.setData({ isOver: false });
+    var viewPointNum = parseFloat(this.data.viewPointNum);
+    console.info("value", value, "viewPointNum", viewPointNum, value > viewPointNum)
+    if (value > viewPointNum) {
+      console.info("123")
+      this.setData({
+        isOver: true,
+        integralV: viewPointNum
+      });
+    } else if (value <= viewPointNum) {
+      this.setData({ isOver: false, integralV: value });
     }
-    if (value <= this.data.viewPointNum && value != 0 && phone != '' && phone.length == 11 && !isNaN(phone)) {
+    if (value <= viewPointNum && value != 0 && phone != '' && phone.length == 11 && !isNaN(phone)) {
       this.setData({ isOk: true });
-    } else if (value > this.data.viewPointNum || value <= 0 || value == "" || phone == '' || phone.length != 11 || isNaN(phone)) {
+    } else if (value > viewPointNum || value <= 0 || value == "" || phone == '' || phone.length != 11 || isNaN(phone)) {
       this.setData({ isOk: false });
     }
-    this.setData({ integralV: value });
+    // this.setData({ integralV: value });
   },
+  //赠送龟米给送回反馈提示
   showToast: function (res) {
     console.info("成功", res);
     var that = this;
@@ -89,6 +107,7 @@ Page({
         url: '/pages/my/integral/tips/tips?id=1&integralV=' + integralV,
       })
     } else if (!res.data.succeeded) {
+      // 赠送龟米失败
       this.setData({
         passWord: '',
         passWordArr: [],
@@ -97,27 +116,33 @@ Page({
         focus3: false,
         adjust_position: true
       });
-      wx.showModal({
-        title: '',
-        content: '密码错误，请重试',
-        cancelText: "忘记密码",
-        confirmText: "重试",
-        cancelColor: "#222222",
-        confirmColor: "#222222",
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            that.setData({ focus: true });
-          } else if (res.cancel) {
-            wx.navigateTo({
-              url: '/pages/my/securitycenter/addPassword/addPassword',
-            })
+      if (res.data.error.code == '1004' || res.data.message.descript =='安全密码错误,请重试'){
+        // 输入密码错误
+        wx.showModal({
+          title: '',
+          content: '密码错误，请重试',
+          cancelText: "忘记密码",
+          confirmText: "重试",
+          cancelColor: "#222222",
+          confirmColor: "#222222",
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              that.setData({ focus: true });
+            } else if (res.cancel) {
+              wx.navigateTo({
+                url: '/pages/my/securitycenter/addPassword/addPassword',
+              })
+            }
           }
-        }
-      })
+        })
+      }else{
+        // 其他错误类型
+        that.getPromptPark(res.data.message.descript);
+      }
     }
-
   },
+  //监听密码输入
   onChangeInput: function (e) {
     let that = this;
     if (e.detail.value.length > that.data.passWord.length) {
@@ -134,6 +159,7 @@ Page({
       return;
     }
   },
+  //向服务器请求赠送龟米
   sendIntagral: function () {
     wx.showLoading({
       title: '加载中',
@@ -158,6 +184,14 @@ Page({
       wx.hideLoading();
     });
   },
+  // 公共提示语
+  getPromptPark: function (promptTit) {
+    var that = this;
+    that.setData({ isPrompt: !that.data.isPrompt, promptTit: promptTit })
+    setTimeout(function () {
+      that.setData({ isPrompt: !that.data.isPrompt })
+    }, 1500)
+  },
   onLoad: function (options) {
     this.setData({
       icons: iconsUtils.getIcons().integralIcons,
@@ -167,6 +201,7 @@ Page({
   onReady: function () {
 
   },
+  //给用户提示是否设置安全密码
   showPasswordTips: function () {
     wx.showModal({
       title: '温馨提示',
@@ -191,7 +226,7 @@ Page({
     var blackUserInfo = wx.getStorageSync("blackUserInfo");
     var havaPassword = blackUserInfo.commonData.safePasswordFlag;
     if (!havaPassword) {
-      this.setData({ havaPassword: havaPassword});
+      this.setData({ havaPassword: havaPassword });
       this.showPasswordTips();
     }
 

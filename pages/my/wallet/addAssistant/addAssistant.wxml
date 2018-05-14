@@ -1,7 +1,7 @@
 <!--pages/my/wallet/addAssistant/addAssistant.wxml-->
 <view class='addassistant_box'>
   <view class='addassistant_top'>
-    <text class='addassistant_storename'>{{getUserStoreData.store_name}}</text>
+    <text class='addassistant_storename'>{{getUserStoreData.nickname}}</text>
     <text class='addassistant_prompt'>让店员扫下方二维码接收你的收款通知</text>
     <image src="{{codeImg}}"></image>
   </view>
@@ -17,16 +17,16 @@
         <text>{{item.remarkName}}</text>
       </view>
       <view class='add_list_r'>
-      <block wx:if="{{item.state=='complete'}}">
-        <text bindtap='addremarks' data-items="{{item}}">备注</text>
-        <text bindtap='getDelectAssistant' id="{{item.id}}">删除</text>
+        <block wx:if="{{item.state=='complete'}}">
+          <text bindtap='addremarks' data-items="{{item}}">备注</text>
+          <text bindtap='getDelectAssistant' id="{{item.id}}">删除</text>
         </block>
         <block wx:if="{{item.state=='todo'}}">
-         <text bindtap='getemployeeAdd' id="{{item.id}}">确认添加</text> 
-         </block>
-         <block wx:if="{{item.state=='fail'}}">
-         <text style='color:#f00;'>添加失败</text> 
-         </block>
+          <text bindtap='getemployeeAdd' id="{{item.id}}">确认添加</text>
+        </block>
+        <block wx:if="{{item.state=='fail'}}">
+          <text style='color:#f00;'>添加失败</text>
+        </block>
       </view>
     </view>
   </view>
@@ -38,11 +38,20 @@
   <view class='park_content'>
     <text class='park_title'>备注</text>
     <view class='park_con'>
-      <input type='text' placeholder='最多6个字' bindinput='inputvlaue'></input>
+      <input type='text' placeholder='最多6个字' bindinput='inputvlaue' maxlength='6'></input>
     </view>
     <view class='park_bottom'>
       <text class='btn_cancel' bindtap='closeRemarks'>取消</text>
       <text class='btn_determine' bindtap='confirmRemarks'>确认</text>
     </view>
   </view>
+</view>
+<!--删除弹窗  -->
+<view class='park_bg' wx:if="{{showDelect}}"></view>
+<view class='park_delectcontent_box' wx:if="{{showDelect}}">
+  <view class='park_top'>
+    <text class='park_title'>删除后，他(她)将不再接收你的收款通知</text>
+    <button class='btn_del' bindtap='getemployeeDelect'>确认删除</button>
+  </view>
+  <button class='btn_cancel' bindtap='getemployeecancel'>取消</button>
 </view>

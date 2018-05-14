@@ -141,15 +141,22 @@ opacity:0.5;position:fixed;top:-1rpx;left:-1rpx;z-index:10009;}
 .Integral_park .Integral_park_bg{
   width: 86.7vw;height: 33.3vw;margin: 0rpx auto;border-radius: 10rpx;
 display: flex;
+justify-content: space-between;
 }
-.Integral_park .Integral_park_l{width: 43.466vw;}
-.Integral_park .Integral_park_r{width: 43.2vw;padding: 5vw 2vw 8vw 6.67vw;text-align: center;display: flex;flex-direction: column;
+.Integral_park .Integral_park_l{
+  /* width: 43.466vw; */
+  }
+.Integral_park .Integral_park_r{
+  /* width: 58vw; */
+  padding: 5vw 2vw 8vw 0vw;
+  text-align: center;
+  display: flex;flex-direction: column;
 }
 .Integral_park .Integral_park_r .content_top{font-size: 4vw;color: #FFB241;height:8vw;
-line-height:8vw;padding: 2.7vw;
+line-height:8vw;padding:3vw 2vw 2.67vw 0vw;
 }
 .Integral_park .Integral_park_r .content_top text{font-size: 9.333vw;}
-.Integral_park .Integral_park_r .span_text{font-size: 3.2vw;color: #999;}
+.Integral_park .Integral_park_r .span_text{font-size: 3.2vw;color: #999;text-align:right;padding-right:5vw;}
 .Integral_park .Integral_close{text-align: center;padding-top: 3.2vw;}
 .Integral_park .Integral_close image{width: 8vw;height: 8vw;}
 /* 支付完成后没有积分 */

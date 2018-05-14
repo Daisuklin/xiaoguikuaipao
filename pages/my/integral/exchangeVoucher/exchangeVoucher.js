@@ -48,6 +48,7 @@ Page({
   tapMask: function () {
     this.setData({ focus: false });
   },
+  //点击兑换优惠券
   exchangeVoucher: function () {
     this.setData({ focus: false });
     wx.showLoading({
@@ -108,6 +109,7 @@ Page({
     }
 
   },
+  //监听密码输入
   onChangeInput: function (e) {
     let that = this;
     if (e.detail.value.length > that.data.passWord.length) {
@@ -128,6 +130,7 @@ Page({
     console.info("成功", res);
     this.setData({ item: res.data.data });
   },
+  //获取优惠券详情
   getVoucherDetails: function () {
     wx.showLoading({
       title: '加载中',

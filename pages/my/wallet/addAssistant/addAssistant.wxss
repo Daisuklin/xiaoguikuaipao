@@ -124,7 +124,6 @@ Page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .park_content .park_title {
@@ -151,14 +150,64 @@ Page {
 }
 
 .park_content .park_bottom {
-    height: 12vw;
-    display: flex;
-    justify-content: space-between;
+  height: 12vw;
+  display: flex;
+  justify-content: space-between;
 }
 
 .park_content .park_bottom text {
-    height: 12vw;
+  height: 12vw;
   line-height: 12vw;
   width: 34.66vw;
+}
 
+/* 删除备注 */
+
+.park_content_box {
+  position: fixed;
+  top: 40vh;
+  z-index: 101;
+  width: 100vw;
+}
+
+.park_delectcontent_box {
+  position: fixed;
+  bottom: 0vh;
+  z-index: 101;
+  width: 100vw;
+}
+
+.park_delectcontent_box .park_top {
+  background: #fff;
+}
+
+.park_delectcontent_box .park_top .park_title {
+  color: #666;
+  font-size: 3.6vw;
+  height: 13.33vw;
+  text-align: center;
+  display: block;
+  line-height: 13.33vw;
+  border-bottom: 1rpx solid #eee;
+}
+
+.park_delectcontent_box button {
+  border: none;
+  height: 13.33vw;
+  color: #222;
+  font-size: 4.67vw;
+  background: #fff;
+  border-radius: 0rpx;
+}
+
+.park_delectcontent_box button::after {
+  border: none;
+}
+
+.park_delectcontent_box button.btn_del {
+  color: #E5004F;
+  margin-bottom: 2.67vw;
+}
+
+.park_delectcontent_box button.btn_cancel {
 }

@@ -68,11 +68,11 @@
   height: 26.667vw;
 }
 
-.receipt_code .receipt_code_main .code_btn {
+.code_btn {
    height: 12vw;
 }
 
-.receipt_code .receipt_code_main .code_btn button {
+.code_btn button {
   background: #5dd9ab;
   color: #fff;
   height: 12vw;
@@ -80,4 +80,12 @@
   border: none;
   border-radius: 0rpx;
 }
-.receipt_code .receipt_code_main .code_btn button::after{border: none;}
+.code_btn button::after{border: none;}
+
+
+/* canvas画店铺二维码 */
+.receipt_code_box{background: #f8f8f8;}
+.press-style {
+  background: rgb(43, 43, 43);
+  opacity: 1;
+}

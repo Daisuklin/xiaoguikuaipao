@@ -1,1 +1,30 @@
 /* pages/my/integral/instructions/instructions.wxss */
+
+Page {
+  background: #f8f8f8;
+}
+
+.instruction_box {
+  margin : 2.67vw 0rpx;
+}
+
+.instruction_box .listcontent {
+  background: #ffffff;
+}
+
+.instruction_box .listcontent .list_title {
+  font-size: 4vw;
+  color: #222;
+  height: 9.4vw;
+  border-bottom: 1rpx solid #eee;
+  padding: 0rpx 4vw;
+  line-height: 9.4vw;
+}
+
+.instruction_box .listcontent .list_txt {
+  font-size: 3.2vw;
+  color: #999;
+  padding: 2.67vw 4vw;
+  line-height: 5vw;
+  border-bottom: 1rpx solid #eee;
+}

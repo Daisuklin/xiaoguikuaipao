@@ -1,5 +1,5 @@
 <!--pages/my/wallet/receiptcode/receiptcode.wxml-->
-<view class='receipt_code'>
+<!-- <view class='receipt_code' hidden='ture'>
   <view class='receipt_code_main'>
     <view class='code_title'>在此扫码付款</view>
     <text class='code_txt'>支付送龟米｜龟米当钱花</text>
@@ -23,4 +23,10 @@
       <button bindtap='getSaveCodeimg'>保存收款二维码</button>
     </view>
   </view>
+</view> -->
+<view class='receipt_code_box' >
+<canvas style="width:100vw; height:100vh;" canvas-id="firstCanvas" bindlongtap="getlongtapsaveimg"></canvas>
+<view class='code_btn'>
+      <button bindtap='getSaveCodeimg'>保存收款二维码</button>
+    </view>
 </view>

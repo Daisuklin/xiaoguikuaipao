@@ -22,24 +22,34 @@
       </view>
       <!-- #1 -->
       <block wx:for="{{listItem.itemList}}" wx:for-item="childitem">
-      <view class='list_childlit'  bindtap='gotorecordReceiptsdetail'  id="{{childitem.id}}" data-realTimeIncome="{{childitem.realTimeIncome}}">
-        <view class='childlit_cont childlit_first'>
-          <text class='childlit_cont_l'>#{{childitem.seq}}</text>
-          <view class='childlit_cont_r'>
-          <text class='txt'>{{childitem.time}}</text>
-          <block wx:if="{{childitem.realTimeIncome==0}}">
-           <text class='txt2'>等待到账</text> 
-          </block>
+        <view class='list_childlit' bindtap='gotorecordReceiptsdetail' id="{{childitem.id}}" data-realTimeIncome="{{childitem.realTimeIncome}}">
+          <view class='childlit_cont childlit_first'>
+            <text class='childlit_cont_l'>#{{childitem.seq}}</text>
+            <view class='childlit_cont_r'>
+              <text class='txt'>{{childitem.time}}</text>
+              <!-- <block wx:if="{{childitem.realTimeIncome==0}}">
+                <text class='txt2'>等待到账</text>
+              </block> -->
+            </view>
+          </view>
+          <view class='childlit_cont'>
+            <text class='txt'>{{childitem.totalMoney}}</text>
+          </view>
+          <view class='childlit_cont childlit_cont_income'>
+            <text class='txt'>{{childitem.incomeMoney}}</text>
+            <block wx:if="{{childitem.realTimeIncome==0}}">
+                <text class='txt2'>等待到账</text>
+              </block>
           </view>
         </view>
-        <view class='childlit_cont'>
-          <text class='txt'>{{childitem.totalMoney}}</text>
-        </view>
-        <view class='childlit_cont'>
-          <text class='txt'>{{childitem.incomeMoney}}</text>
-        </view>
-      </view>
       </block>
     </view>
   </view>
+</view>
+<view class='text_mesg' wx:if="{{recordReceiptsList.length>0}}">
+  <text>以上是全部收款记录 </text>
+</view>
+<view class='thatno_data' wx:else>
+  <image src="{{icons.icon_nodata}}"></image>
+  <text>暂无收款记录</text>
 </view>

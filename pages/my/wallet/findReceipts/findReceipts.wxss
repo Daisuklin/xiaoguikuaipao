@@ -45,7 +45,11 @@ Page {
 }
 
 /*list  */
-.incomestatistics_list{margin-bottom: 4vw;}
+
+.incomestatistics_list {
+  margin-bottom: 4vw;
+}
+
 .incomestatistics_list .list_box {
   background: #fff;
 }
@@ -122,10 +126,18 @@ Page {
 }
 
 .list_childlit .childlit_cont .childlit_cont_r .txt2 {
+  color: #999;
+  font-size: 3.2vw;
+}
+.list_childlit .childlit_cont .childlit_cont_r .txt{text-align: left;}
+.list_childlit .childlit_cont_income {
+  display: flex;
+  flex-direction: column;
+}
+.list_childlit .childlit_cont_income .txt2 {
   color: #5dd9ab;
   font-size: 3.2vw;
 }
-
 /* 时间选择器 */
 
 .park_bg {
@@ -148,9 +160,15 @@ Page {
   background: #fff;
   border-radius: 10rpx;
   margin: 0px auto;
-  width: 92vw;padding-top: 10rpx;
+  width: 92vw;
+  padding-top: 10rpx;
 }
-.datachoice_box .picker_view{ border-top-right-radius: 10rpx;border-top-left-radius: 10rpx;}
+
+.datachoice_box .picker_view {
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+}
+
 .border-radius-top-bot-left {
   border-top-left-radius: 10rpx;
   border-bottom-left-radius: 10rpx;
@@ -177,4 +195,48 @@ Page {
   border: none;
   background: none;
 }
-.datachoice_box .btn_box button::after{border: none;}
+
+.datachoice_box .btn_box button::after {
+  border: none;
+}
+
+/* 底部提示信息 */
+
+.text_mesg {
+  text-align: center;
+  padding-top: 2vw;
+  padding-bottom: 10rpx;
+}
+
+.text_mesg text {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+/*弹窗之提示信息  */
+
+.box_prompt_box {
+  position: fixed;
+  top: 0vh;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  margin-top: -5.3334vw;
+  z-index: 999999;
+  justify-content: center;
+  height: 105vh;
+}
+
+.box_prompt {
+  background: rgba(0, 0, 0, 0.5);
+  line-height: 4.6666vw;
+  padding: 2vw 5vw;
+  border-radius: 2vw;
+  max-width: 80vw;
+  font-size: 4vw;
+}
+
+.box_prompt text {
+  color: #fff;
+  font-size: 4vw;
+}

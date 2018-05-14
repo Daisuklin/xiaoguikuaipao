@@ -4,6 +4,7 @@ Page({
     times:1,
     opacity:1,
   },
+  //处理从服务器返回的数据
   transFromServer:function(data){
     var poiTmp = data.tips;
     var poi = [];
@@ -14,6 +15,7 @@ Page({
     }
     this.setData({poi:poi});
   },
+  //使图片有闪烁效果
   changeImagState:function(){
     var that = this;
     
@@ -27,6 +29,7 @@ Page({
       that.setData({times:times+1});
     }, 300);
   },
+  //设置当前位置
   setAtNowAddr:function(){
     //高德地图key
     this.changeImagState();
@@ -58,6 +61,7 @@ Page({
       }
     })
   },
+  //搜索地址
   searchAddr: function (e) {
     var key = 'd0063cd5d8e04b14dfe98eae69dc9617';
     var keywords = e.detail.value;
@@ -72,6 +76,7 @@ Page({
       }
     })
   },
+  //选择地址
   checkAddr: function (e) {
     console.log(e);
     var addr = e.currentTarget.dataset.my;

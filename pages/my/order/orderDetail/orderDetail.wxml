@@ -453,7 +453,7 @@
       <view class='content_top'>
         <text>+{{orderDetail.gain_point}}</text>龟米
       </view>
-      <text class='span_text'>订单确认完成后</text>
+      <text class='span_text' style='padding-right:7.8vw;'>订单确认完成后</text>
       <text class='span_text'>龟米将自动打入账户</text>
     </view>
   </view>

@@ -25,12 +25,13 @@ Page({
     years: years,
     year: date.getFullYear(),
     months: months,
-    month: 2,
+    // month: 2,
     days: days,
-    day: 2,
-    value: [9999, 1, 1],
+    // day: 2,
+    // value: [9999, 1, 1],
     // 时间选择器 end
     isshowtime: false,
+    isnewtime: false,//是否选择了新的时间
   },
   // -----------------------------------start
   // 时间选择器
@@ -40,7 +41,8 @@ Page({
     this.setData({
       year: this.data.years[val[0]],
       month: this.data.months[val[1]],
-      day: this.data.days[val[2]]
+      day: this.data.days[val[2]],
+      isnewtime: true
     })
   },
   // 选择时间-确定
@@ -53,57 +55,50 @@ Page({
     } else {
       months = months;
     }
-    let dayTime = that.data.year + '年' + months + "月" + that.data.day + '日';
+    let dataDay = typeof (that.data.day) == 'undefined' ? that.data.Dates : that.data.day;//获取day的数据
+    let dayTime = that.data.year + '年' + months + "月" + dataDay + '日';
     let monTime = that.data.year + '年' + months + "月";
-    let showTimes_day = that.data.year + '-' + months + "-" + that.data.day;
+    let showTimes_day = that.data.year + '-' + months + "-" + dataDay;
     let showTimes_month = that.data.year + '-' + months;
+    let defaultTime_day = that.data.defaultTime_day;//默认时间显示年月日
+    let defaultTime_month = that.data.defaultTime_mon;//默认时间显示年月
+    let defaultshow_day = that.data.defaultshowTimes_day;
+    let defaultshow_month = that.data.defaultshowTimes_month;
+    let isnewtime = that.data.isnewtime;
     if (num == 1) {
       //  1 day,
-      that.getreceipStatistics(showTimes_day, "day");//获取日报数据
+      that.getreceipStatistics(isnewtime == true ? showTimes_day : defaultshow_day, "day");//获取日报数据
       that.setData({
-        choicetime: dayTime,
+        choicetime: isnewtime == true ? dayTime : defaultTime_day,
         isshowtime: false,
-        showTimes: showTimes_day,//传到接口的时间
-        dayTime: dayTime,//显示时间
-        monTime: monTime,//显示时间
-        showTimes_day: showTimes_day,
-        showTimes_month: showTimes_month
+        showTimes: isnewtime == true ? showTimes_day : defaultshow_day,//传到接口的时间
+        dayTime: isnewtime == true ? dayTime : defaultTime_day,//显示时间默认
+        monTime: isnewtime == true ? monTime : defaultTime_month,//显示时间默认
+        showTimes_day: isnewtime == true ? showTimes_day : defaultshow_day,//传到接口默认
+        showTimes_month: isnewtime == true ? showTimes_month : defaultshow_month,//传到接口默认
       })
     } else {
       // month
-      that.getreceipStatistics(showTimes_month, "month");//获取月报数据
+      that.getreceipStatistics(isnewtime == true ? showTimes_month : defaultshow_month, "month");//获取月报数据
       that.setData({
-        choicetime: monTime,
+        choicetime: isnewtime == true ? monTime : defaultTime_month,
         isshowtime: false,
-        showTimes: showTimes_month,//传到接口的时间
+        showTimes: isnewtime == true ? showTimes_month : defaultshow_month,//传到接口的时间
         // dayTime: dayTime,//显示时间
-        monTime: monTime,//显示时间
         // showTimes_day: showTimes_day,
-        showTimes_month: showTimes_month
+        monTime: isnewtime == true ? monTime : defaultTime_month,//显示时间
+        showTimes_month: isnewtime == true ? showTimes_month : defaultshow_month
       })
     }
+    that.setData({ isnewtime: false })
   },
   // 选择时间-取消
   getCancel: function () {
     let that = this;
     that.setData({
-      // showTimes: that.data.showTimes == '' ? '' : that.data.showTimes,
       isshowtime: false,
+      isnewtime: false
     })
-    // if (that.data.judgmentnum == 1) {
-    //   //1 day,
-    //   that.setData({
-    //     showTimes: that.data.showTimes == '' ? '' : that.data.showTimes,
-    //     isshowtime: false,
-    //   })
-    // } else {
-    //   // 2 month
-    //   that.setData({
-    //     showTimes: that.data.showTimes == '' ? '' : that.data.showTimes,
-    //     isshowtime: false,
-    //   })
-    // }
-
   },
   //弹出时间选择器， 判断是开始时间还是截止时间,
   bindthetimes: function (e) {
@@ -180,27 +175,37 @@ Page({
     let monTime = Yeart + '年' + Mon + "月";
     let showTimes_day = Yeart + '-' + Mon + "-" + Dates;
     let showTimes_month = Yeart + '-' + Mon;
+    that.setData({
+      month: Mon,
+      day: Dates,
+      Dates: Dates,
+      defaultTime_day: dayTime,//默认显示
+      defaultTime_mon: monTime,//默认显示
+      defaultshowTimes_day: showTimes_day,//默认传值
+      defaultshowTimes_month: showTimes_month,//默认传值
+      value: [9999, Mon - 1, Dates - 1],//设置默认时间选择器默认时间
+    })
     if (that.data.indexid == 1) {
       //  1 day,
       that.getreceipStatistics(showTimes_day, "day");//获取日报数据
       that.setData({
         choicetime: dayTime,
-        showTimes: showTimes_day,//传到接口的时间
+        // showTimes: showTimes_day,//传到接口的时间
         dayTime: dayTime,//显示时间
         monTime: monTime,//显示时间
-        showTimes_day: showTimes_day,
-        showTimes_month: showTimes_month
+        showTimes_day: showTimes_day,//传到接口的时间
+        showTimes_month: showTimes_month//传到接口的时间
       })
     } else {
       // month
       that.getreceipStatistics(showTimes_month, "month");//获取月报数据
       that.setData({
         choicetime: monTime,
-        showTimes: showTimes_month,//传到接口的时间
+        // showTimes: showTimes_month,//传到接口的时间
         dayTime: dayTime,//显示时间
         monTime: monTime,//显示时间
-        showTimes_day: showTimes_day,
-        showTimes_month: showTimes_month
+        showTimes_day: showTimes_day,//传到接口的时间
+        showTimes_month: showTimes_month//传到接口的时间
       })
     }
   },
@@ -210,7 +215,9 @@ Page({
   onLoad: function (options) {
     // icon 图标
     console.info("图标", iconsUtils.getIcons().walletIcons);
-    this.setData({ icons: iconsUtils.getIcons().walletIcons });
+    this.setData({
+      icons: iconsUtils.getIcons().walletIcons,
+    });
     // this.getreceipStatistics();
     this.getDefaultDate();
   },

@@ -12,7 +12,7 @@ Page({
   // commit: function () {
   //   this.setData({ focus: true });
   // },
-
+  //给用户提示是够设置了安全密码
   showPasswordTips: function () {
     wx.showModal({
       title: '温馨提示',
@@ -33,6 +33,7 @@ Page({
       }
     })
   },
+  //点击兑换
   commit: function () {
     var blackUserInfo = wx.getStorageSync("blackUserInfo");
     var havaPassword = blackUserInfo.commonData.safePasswordFlag;
@@ -55,6 +56,7 @@ Page({
       url: '/pages/my/integral/exchangeChooseAddr/exchangeChooseAddr?obj=' + JSON.stringify(obj),
     })
   },
+  //
   myReplaceAll: function (str, mode, replace) {//处理富文本
     if (str != null) {
       while (str.indexOf(mode) != -1) {

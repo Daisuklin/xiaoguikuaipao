@@ -8,6 +8,7 @@ Page({
     },
     coupons:[]
   },
+  //点击选择优惠券
   tapCoupon:function(e){
     console.log(e);
     var coupon = e.currentTarget.dataset.my;

@@ -3,11 +3,11 @@
   <view class='findReceipts_data'>
     <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='1'>
       <text class='text_l'>开始时间 </text>
-      <text class='text_r'>{{beginTime}}</text>
+      <text class='text_r' style="{{beginTime==''?'color:#999':''}}">{{beginTime==""?'选择时间':beginTime}}</text>
     </view>
     <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='2'>
       <text class='text_l'>截止时间 </text>
-      <text class='text_r'>{{endTime}}</text>
+      <text class='text_r' style="{{endTime==''?'color:#999':''}}">{{endTime==''?'选择时间':endTime}}</text>
     </view>
     <view class='findReceipts_data_btn'>
       <button bindtap='geFindTreceiptsList'>查询</button>
@@ -31,29 +31,35 @@
         </view>
       </view>
       <!-- #1 -->
-      <view class='list_childlit' wx:for="{{listparent.itemList}}" wx:for-item="listchild">
+      <view class='list_childlit' wx:for="{{listparent.itemList}}" wx:for-item="listchild" bindtap='gotorecordReceiptsdetail' id="{{listchild.id}}">
         <view class='childlit_cont childlit_first'>
           <text class='childlit_cont_l'>#{{listchild.seq}}</text>
           <view class='childlit_cont_r'>
-            <text class='txt'>{{listchild.time}}</text>
-            <block wx:if="{{listchild.realTimeIncome==0}}">
-             <text class='txt2'>等待到账</text> 
+            <block>
+              <text class='txt2'>{{listchild.subDate}}</text>
             </block>
+            <text class='txt'>{{listchild.time}}</text>
           </view>
         </view>
         <view class='childlit_cont'>
           <text class='txt'>{{listchild.totalMoney}}</text>
         </view>
-        <view class='childlit_cont'>
+        <view class='childlit_cont childlit_cont_income'>
           <text class='txt'>{{listchild.incomeMoney}}</text>
+          <block wx:if="{{listchild.realTimeIncome==0}}">
+            <text class='txt2'>等待到账</text>
+          </block>
         </view>
       </view>
     </view>
   </view>
 </view>
-
+<view class='text_mesg'>
+  <text wx:if="{{recordReceiptsList.length>0}}">以上是全部数据 </text>
+  <text wx:else>暂无收款记录数据 </text>
+</view>
 <!-- 时间选择 -->
-<view class='park_bg'  wx:if="{{isshowtime}}"></view>
+<view class='park_bg' wx:if="{{isshowtime}}"></view>
 <view class='datachoice_box' wx:if="{{isshowtime}}">
   <view class='datachoice_conten'>
     <picker-view indicator-style="height: 50px;" class='picker_view' style="width: 92vw; height: 36vw;" value="{{value}}" bindchange="bindChange">
@@ -73,3 +79,12 @@
     </view>
   </view>
 </view>
+<!-- 提示弹窗 begin-->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>
+<!-- 提示弹窗 end-->

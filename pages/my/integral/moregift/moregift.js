@@ -5,6 +5,7 @@ Page({
     pageIndex: 1,
     gifts:[]
   },
+  //点击去兑换礼品
   exchageProduct: function (e) {
     var good = e.currentTarget.dataset.my;
     console.log(good);
@@ -21,6 +22,7 @@ Page({
     }
     this.setData({ gifts: gifts, len: res.data.totalNum});
   },
+  //获取礼品列表
   getGifts: function () {
     wx.showLoading({
       title: '加载中',

@@ -3,7 +3,7 @@
   <view class='title'>
     <label class='title-text1'>对方账号</label>
     <label class='title-text2'>
-      <input class='input-phone' type="number" focus='{{focus3}}' placeholder='手机号码' placeholder-class='no-input-phone' bindinput='setPhone' value="{{phone}}"></input>
+      <input class='input-phone' type="number" focus='{{focus3}}' placeholder='手机号码' placeholder-class='no-input-phone' bindinput='setPhone' value="{{phone}}" maxlength='11'></input>
     </label>
   </view>
   <view style='height:1rpx;width:570rpx;border-bottom:1rpx solid #eee;'></view>
@@ -41,3 +41,12 @@
   <view class='secret-text4' bindtap='forgetPassword'>忘记密码？</view>
 </view>
 <view class='mask-view' bindtap='tapMask' hidden='{{!focus}}'></view>
+<!-- 提示弹窗 begin-->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>
+<!-- 提示弹窗 end-->

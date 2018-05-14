@@ -6,6 +6,7 @@ Page({
     money: 0,
     historyIndex: 1
   },
+  //根据输入的条件改变去支付按钮的颜色
   changeStatePay: function (e) {
     console.log(e);
     var state = e.detail.value;
@@ -61,12 +62,14 @@ Page({
       }
     })
   },
+  //跳转到去购买页面
   toBuy: function () {
     var remainMoney = this.data.money;
     wx.navigateTo({
       url: '/pages/coupon/buycoupon/buycoupon?remainMoney=' + remainMoney,
     })
   },
+  //处理从服务器返回的数据
   transFromServer: function (histories) {
     var historiesArr = this.data.histories;
     for (var i = 0; i < histories.length; i++) {
@@ -81,6 +84,7 @@ Page({
 
     this.setData({ histories: historiesArr });
   },
+  //抵扣券交易记录
   getHistories: function () {
     var that = this;
     var historyIndex = this.data.historyIndex;
@@ -115,6 +119,7 @@ Page({
       }
     })
   },
+  //获取抵扣券明细
   getCouponDetail: function () {
     var that = this;
     wx.request({

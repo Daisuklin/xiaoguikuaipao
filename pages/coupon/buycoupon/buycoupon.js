@@ -21,6 +21,7 @@ Page({
     coupons:[],
     isToReback: -1
   },
+  //查看更多优惠券
   moreCoupons: function () {
     var coupons = this.data.coupons;
     var couponId = this.data.couponId;
@@ -77,6 +78,7 @@ Page({
       }
     })
   },
+  //点击购买按钮
   buy: function () {
     if (this.data.value > 50000) {
       wx.showToast({
@@ -127,9 +129,11 @@ Page({
     }
 
   },
+  //提交购买申请
   submitPay:function(){
     this.sendBuyToServer();
   },
+  //向服务器发送请求购买
   sendBuyToServer:function(){
     var that = this;
     var value = this.data.value;
@@ -202,7 +206,7 @@ Page({
       }
     })
   },
-
+  //设置购买金额
   setValue: function (e) {
     var value = e.detail.value;
     var numMax = parseFloat(value);
@@ -288,6 +292,7 @@ Page({
       }
     })
   },
+  //获取优惠券详情通过优惠券id
   getCouponById:function(couponId){
     var that = this;
     wx.request({

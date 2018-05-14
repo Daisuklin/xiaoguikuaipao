@@ -53,7 +53,8 @@ Page {
 
 .tip {
   position: relative;
-  width: 222rpx;
+  /* width: 222rpx; */
+  padding: 0px 10rpx;
   text-align: center;
   height: 40rpx;
   line-height: 40rpx;
@@ -96,7 +97,7 @@ Page {
 }
 
 .text4-contaier {
-  width: 95rpx;
+  width: 97rpx;
   text-align: center;
 }
 
@@ -143,7 +144,7 @@ Page {
   height: 200rpx;
   margin-left: 20rpx;
   margin-top: 17rpx;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
 }
 
 .banner-img {
@@ -361,3 +362,26 @@ Page {
 .press-style {
   background: #ececec;
 }
+/* 回首页按钮 */
+
+.comebackhome {
+  /* position: fixed;
+  bottom: 0rpx; */
+  width: 100vw;
+  height: 12vw;
+  background: #fff;
+}
+
+.comebackhome .btn_back {
+  width: 100vw;
+  height: 12vw;
+  color: #666;
+  background: none;
+  border: none;
+  border-radius: 0rpx;
+}
+
+.comebackhome .btn_back::after {
+  border: none;
+}
+.bg999{background: #999;}

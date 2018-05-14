@@ -1,6 +1,7 @@
 
 var appUtil = require("../../../utils/appUtil.js")
-
+var iconsUtils = require("../../../image/icons.js");
+var integralUtil = require("../../../utils/integralUtil.js");
 Page({
   data: {
     icon: {
@@ -17,8 +18,64 @@ Page({
     avatarUrl: '../../../image/head.png',
     nickName: '登录/注册',
     userInfo: '',
+    isSeller: true,
+    VaI: {
+      packetNum: 0,
+      pointNum: 0
+    }
   },
+  checkWallet: function () {
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else {
+      wx.navigateTo({
+        url: '/pages/my/wallet/wallet?isfromuser=1',
+      })
+    }
 
+  },
+  // 安全
+  securitycenter: function () {
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else {
+      var blackUserInfo = wx.getStorageSync("blackUserInfo");
+      console.log(blackUserInfo);
+      if (blackUserInfo != undefined) {
+        var havaPassword = blackUserInfo.commonData.safePasswordFlag;
+        wx.navigateTo({
+          url: '/pages/my/securitycenter/securitycenter?havaPassword=' + havaPassword,
+        })
+      } else {
+
+      }
+    }
+  },
+  // 去优惠券
+  checkVouchers: function () {
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else{
+      wx.navigateTo({
+        url: '/pages/my/vouchers/vouchers?showType=1',
+      })
+    }
+  
+  },
+  checkIntagrals: function () {
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else{
+      wx.navigateTo({
+        url: '/pages/my/integral/integral?&isfromfather=1',
+      })
+    }
+    
+  },
   //封装登录态提示语和点击确定时的操作
   packaging: function () {
     var that = this;
@@ -30,86 +87,93 @@ Page({
           console.log('用户点击确定')
           wx.getUserInfo({
             success: function (res) {
-             wx.showLoading({
-               title: '登录中',
-             })
-             //得到微信返回用户信息
-             if (res.userInfo) {
-               //缓存微信用户
-               appUtil.appUtils.setStorageUser(res.userInfo);
-               //缓存微信用户encryptedData
-               appUtil.appUtils.setEncryptedData(res.encryptedData)
+              wx.showLoading({
+                title: '登录中',
+              })
+              //得到微信返回用户信息
+              if (res.userInfo) {
+                //缓存微信用户
+                appUtil.appUtils.setStorageUser(res.userInfo);
+                //缓存微信用户encryptedData
+                appUtil.appUtils.setEncryptedData(res.encryptedData)
 
-               //解码encryptedData
-               appUtil.controllerUtil.getDemodifier({
-                 "encryptedData": res.encryptedData,
-                 "iv": res.iv,
-                 "sessionKey": appUtil.appUtils.getSessionkeyData()
-               }, function (data) {
-                 if ("undefined" == typeof (data.data.unionId)) {
-                   wx.hideLoading();
-                   console.log('获取用户unionId失败！');
-                   wx.showToast({
-                     title: '登录失败！错误码2001！',
-                   })
-                   return false;
-                 }
-
-                 appUtil.appUtils.setUnionIdData(data.data.unionId);
-
-                 //登陆    
-                 appUtil.controllerUtil.login(
-                   {
-                     "lngLat": {
-                       "latitude": wx.getStorageSync("latitude") == '' ? 0 : wx.getStorageSync("latitude"),
-                       "longitude": wx.getStorageSync("longitude") == '' ? 0 : wx.getStorageSync("latitude"),
-                     },
-                     "openId": appUtil.appUtils.getOpenIdData(),
-                     "type": "wechat",
-                     "client": "web",
-                     "sourceWechat": "wxapp",
-                     unionId: appUtil.appUtils.getUnionIdData(),
-                   }, function (data) {
-                     wx.hideLoading();
-                     //判断是否已经绑定过电话号码的用户
-                     if (data.data.succeeded == false && data.data.error.code == 1000) {
-
-                       //未绑定
-                       //平台用户信息
-                       appUtil.appUtils.setBlackUser(data.data.data);
-                       wx.navigateTo({
-                         url: '/pages/login/bindPhone/bindPhone'
-                       })
-                     } else {
-                       wx.hideLoading();
-                       if (data.data.succeeded == true) {
-                         that.setData({
-                           avatarUrl: res.userInfo.avatarUrl,
-                           nickName: res.userInfo.nickName,
-                         })
-                         //下面的取消按钮
-                         appUtil.appUtils.setTokenData(data.data.data.commonData.token);
-
-                         //平台用户信息
-                         appUtil.appUtils.setBlackUser(data.data.data);
-                       } else {
-                         wx.showToast({
-                           title: data.data.data.errorMesg,
-                         })
-                       }
-                     }
-                   }
-                 )
-               }, function (res) {
-                 wx.hideLoading();
-                 wx.showToast({
-                   title: '请检查完咯状态！',
-                 })
-                 console.info(res);
-               })
-             }
+                //解码encryptedData
+                appUtil.controllerUtil.getDemodifier({
+                  "encryptedData": res.encryptedData,
+                  "iv": res.iv,
+                  "sessionKey": appUtil.appUtils.getSessionkeyData()
+                }, function (data) {
+                  if ("undefined" == typeof (data.data.unionId)) {
+                    wx.hideLoading();
+                    console.log('获取用户unionId失败！');
+                    wx.showToast({
+                      title: '登录失败！错误码2001！',
+                    })
+                    return false;
+                  }
+                  appUtil.appUtils.setUnionIdData(data.data.unionId);
+                  //登陆    
+                  appUtil.controllerUtil.login(
+                    {
+                      "lngLat": {
+                        "latitude": wx.getStorageSync("latitude") == '' ? 0 : wx.getStorageSync("latitude"),
+                        "longitude": wx.getStorageSync("longitude") == '' ? 0 : wx.getStorageSync("latitude"),
+                      },
+                      "openId": appUtil.appUtils.getOpenIdData(),
+                      "type": "wechat",
+                      "client": "web",
+                      "sourceWechat": "wxapp",
+                      unionId: appUtil.appUtils.getUnionIdData(),
+                    }, function (data) {
+                      wx.hideLoading();
+                      //判断是否已经绑定过电话号码的用户
+                      if (data.data.succeeded == false && data.data.error.code == 1000) {
+                        //未绑定
+                        //平台用户信息
+                        appUtil.appUtils.setBlackUser(data.data.data);
+                        that.checkIsSeller();
+                        that.getUserVaI();
+                        wx.navigateTo({
+                          url: '/pages/login/bindPhone/bindPhone'
+                        })
+                      } else {
+                        wx.hideLoading();
+                        if (data.data.succeeded == true) {
+                          that.setData({
+                            avatarUrl: res.userInfo.avatarUrl,
+                            nickName: res.userInfo.nickName,
+                          })
+                          //下面的取消按钮
+                          appUtil.appUtils.setTokenData(data.data.data.commonData.token);
+                          //平台用户信息
+                          appUtil.appUtils.setBlackUser(data.data.data);
+                          that.checkIsSeller();
+                          that.getUserVaI();
+                          // 已登录
+                          let commonData = appUtil.appUtils.getMemberIdData().commonData;
+                          let onePayFlag = commonData.onePayFlag;//判断是否店员
+                          console.info("onePayFlag", onePayFlag)
+                          that.setData({
+                            onePayFlag: onePayFlag,//判断是否店员
+                          })
+                        } else {
+                          wx.showToast({
+                            title: data.data.data.errorMesg,
+                          })
+                        }
+                      }
+                    }
+                  )
+                }, function (res) {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '请检查完咯状态！',
+                  })
+                  console.info(res);
+                })
+              }
             }
-          })       
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -124,9 +188,9 @@ Page({
     if (token == 0) {
       this.packaging()
     } else {
-        wx.navigateTo({
-          url: '/pages/my/site/site?transmitId= ' + '14718597075',//判断来自店铺级的地址总列表入口
-        })
+      wx.navigateTo({
+        url: '/pages/my/site/site?transmitId= ' + '14718597075',//判断来自平台级的地址总列表入口
+      })
     }
   },
 
@@ -144,28 +208,35 @@ Page({
     if (token == 0) {
       this.packaging()
     } else {
-        wx.navigateTo({
-          url: '/pages/my/orderList/orderList',
-        })
+      wx.navigateTo({
+        url: '/pages/my/orderList/orderList',
+      })
     }
   },
 
-  //点击收藏功能跳转订单列表
+  // 点击收藏功能跳转订单列表
   collect() {
-    //获取用户的token值
+    //获取用户的token值 
     var token = appUtil.appUtils.getTokenData();
     if (token == 0) {
       this.packaging()
     } else {
       wx.navigateTo({
-        url: '/pages/my/collectList/collectList?transmitId= ' + '15626199190',//判断来自店铺级的收藏
+        url: '/pages/my/collectList/collectList?transmitId= ' + '14718597075',//判断来自平台级的入口
       })
     }
   },
   /**
     * 生命周期函数--监听页面加载
     */
+  checkIsSeller: function () {
+    var blackUserInfo = wx.getStorageSync('blackUserInfo');
+    if ('undefined' != typeof (wx.getStorageSync("blackUserInfo")) && wx.getStorageSync("blackUserInfo") != null && 'undefined' != typeof (wx.getStorageSync("blackUserInfo").isSeller) && null != wx.getStorageSync("blackUserInfo").isSeller) {
+      this.setData({ isSeller: wx.getStorageSync("blackUserInfo").isSeller });
+    }
+  },
   onLoad: function (options) {
+    this.setData({ icons: iconsUtils.getIcons().myPage });
     if (appUtil.appUtils.getTokenData()) {
       var user = appUtil.appUtils.getStorageUser()
       this.setData({
@@ -173,12 +244,27 @@ Page({
         avatarUrl: user.avatarUrl,
       })
     }
+    // 获取用户数据，判断是否显示小龟收账本
+    if (appUtil.appUtils.getTokenData() == null || appUtil.appUtils.getTokenData() == "") {
+      // 未登录
+      this.setData({
+        onePayFlag: false,//判断是否店员
+      })
+    } else {
+      // 已登录
+      let commonData = appUtil.appUtils.getMemberIdData().commonData;
+      let onePayFlag = commonData.onePayFlag;//判断是否店员
+      console.info("onePayFlag", onePayFlag)
+      this.setData({
+        onePayFlag: onePayFlag,//判断是否店员
+      })
+    }
   },
   onReady: function () {
 
   },
 
-//点击寄件功能跳转配送寄件
+  //点击寄件功能跳转配送寄件
   mail: function () {
     //获取用户的token值
     var token = appUtil.appUtils.getTokenData();
@@ -192,10 +278,10 @@ Page({
       //   wx.hideLoading();
       // }, 1500)
       //更新新功能（暂停寄件）
-         wx.navigateTo({
-           url: '/pages/my/mail/mail?transmitId= ' +'15626199190',//判断是店铺级的入口
-         })
-         wx.setStorageSync('assignment', '0753')
+      wx.navigateTo({
+        url: '/pages/my/mail/mail?transmitId=1',//判断是平台级的入口
+      })
+      wx.setStorageSync('assignment', '0753')
     }
   },
 
@@ -211,9 +297,28 @@ Page({
       })
     }
   },
-
+  getUserVaI: function () {
+    wx.showLoading({
+      title: '加载中',
+    })
+    var that = this;
+    integralUtil.controllerUtil.getUserVaI({
+    }, function (res) {
+      console.info("获取到用户：", res);
+      if (res.data.succeeded){
+        that.setData({ VaI: res.data.data });
+        wx.setStorageSync("viewPointNum", res.data.data == null || res.data.data == '' ? '' : res.data.data.pointNum);
+      }
+      
+      wx.hideLoading();
+    }, function (res) {
+      wx.hideLoading();
+    }, function (res) {
+      wx.hideLoading();
+    });
+  },
   onShow: function () {
-    if (appUtil.appUtils.getTokenData() == null || appUtil.appUtils.getTokenData() == ""){
+    if (appUtil.appUtils.getTokenData() == null || appUtil.appUtils.getTokenData() == "") {
       this.setData({ avatarUrl: '../../../image/head.png', });
       this.setData({ nickName: '登录/注册' })
     }
@@ -235,6 +340,8 @@ Page({
         console.info(JSON.stringify(res));
       }
     })
+    this.checkIsSeller();
+    this.getUserVaI();
   },
   onHide: function () {
 
@@ -259,7 +366,6 @@ Page({
       appUtil.appUtils.setStorageUser(e.detail.userInfo);
       //缓存微信用户encryptedData
       appUtil.appUtils.setEncryptedData(e.detail.encryptedData)
-
       //解码encryptedData
       appUtil.controllerUtil.getDemodifier({
         "encryptedData": e.detail.encryptedData,
@@ -274,15 +380,13 @@ Page({
           })
           return false;
         }
-
         appUtil.appUtils.setUnionIdData(data.data.unionId);
-
         //登陆    
         appUtil.controllerUtil.login(
           {
             "lngLat": {
               "latitude": wx.getStorageSync("latitude") == '' ? 0 : wx.getStorageSync("latitude"),
-              "longitude": wx.getStorageSync("longitude") == '' ? 0 : wx.getStorageSync("latitude"),
+              "longitude": wx.getStorageSync("longitude") == '' ? 0 : wx.getStorageSync("latitude")
             },
             "openId": appUtil.appUtils.getOpenIdData(),
             "type": "wechat",
@@ -293,10 +397,11 @@ Page({
             wx.hideLoading();
             //判断是否已经绑定过电话号码的用户
             if (data.data.succeeded == false && data.data.error.code == 1000) {
-
               //未绑定
               //平台用户信息
               appUtil.appUtils.setBlackUser(data.data.data);
+              that.checkIsSeller();
+              that.getUserVaI();
               wx.navigateTo({
                 url: '/pages/login/bindPhone/bindPhone'
               })
@@ -309,9 +414,17 @@ Page({
                 })
                 //下面的取消按钮
                 appUtil.appUtils.setTokenData(data.data.data.commonData.token);
-
                 //平台用户信息
                 appUtil.appUtils.setBlackUser(data.data.data);
+                that.checkIsSeller();
+                that.getUserVaI();
+                // 已登录
+                let commonData = appUtil.appUtils.getMemberIdData().commonData;
+                let onePayFlag = commonData.onePayFlag;//判断是否店员
+                console.info("onePayFlag", onePayFlag)
+                that.setData({
+                  onePayFlag: onePayFlag,//判断是否店员
+                })
               } else {
                 wx.showToast({
                   title: data.data.data.errorMesg,
@@ -329,7 +442,7 @@ Page({
       })
     }
   },
-  
+  // 退出登录
   quit: function () {
     wx.showLoading({
       title: '退出登录中',
@@ -342,8 +455,15 @@ Page({
     wx.removeStorageSync("optional")
     wx.removeStorageSync("mailId")
     wx.removeStorageSync("addresseeId")
-    this.setData({ avatarUrl: '../../../image/head.png', });
+    this.setData({ avatarUrl: '../../../image/head.png' });
     this.setData({ nickName: '登录/注册' })
+    this.setData({
+      VaI: {
+        packetNum: 0,
+        pointNum: 0
+      },
+      onePayFlag: false,//判断是否店员
+    });
     wx.hideLoading();
   },
   onReachBottom: function () {

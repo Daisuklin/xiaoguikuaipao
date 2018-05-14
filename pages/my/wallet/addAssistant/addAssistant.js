@@ -9,7 +9,8 @@ Page({
   data: {
     remarks: false,
     remarksitems: '',
-    remarkValue: ''
+    remarkValue: '',
+    showDelect: false
   },
   // 刷新列表
   getRefresh: function () {
@@ -67,33 +68,6 @@ Page({
       remarks: false
     })
   },
-  // 删除店员
-  getDelectAssistant: function (e) {
-    let that = this;
-    var employeeId = e.currentTarget.id;
-    wx.showActionSheet({
-      itemList: ['删除后，他(她)将不再接收你的收款通知', '确认删除'],
-      itemColor: "#666666",
-      success: function (res) {
-        console.log(res.tapIndex)
-        if (res.tapIndex == 1) {
-          // 确认删除
-          walletUtil.controllerUtil.getemployeeDel(employeeId, {
-          },
-            function (sucData) {
-              if (sucData.data.succeeded) {
-                that.getAddAssistants();
-              }
-            }, function (failData) {
-            }, function (comData) {
-            })
-        }
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
   // 获取店铺店员列表数据
   getAddAssistants: function () {
     wx.showLoading({
@@ -127,10 +101,20 @@ Page({
       }, function (comData) {
       })
   },
-  //添加店员--确认删除
+  // 删除店员
+  getDelectAssistant: function (e) {
+    let that = this;
+    var employeeId = e.currentTarget.id;
+    // 弹出删除层
+    that.setData({
+      employeeId: employeeId,
+      showDelect: true,
+    })
+  },
+  //删除店员--确认删除
   getemployeeDelect: function (e) {
     let that = this;
-    var employeeId = e.currentTarget.id
+    var employeeId = that.data.employeeId;
     walletUtil.controllerUtil.getemployeeDel(employeeId, {},
       function (sucData) {
         if (sucData.data.succeeded) {
@@ -140,8 +124,10 @@ Page({
             duration: 2000
           })
           that.setData({
-            adssistantsList: sucData.data.data
+            // adssistantsList: sucData.data.data,
+            showDelect: false,
           })
+          that.getAddAssistants();//重新刷新数据
         }
       }, function (failData) {
         wx.showToast({
@@ -152,6 +138,13 @@ Page({
       }, function (comData) {
       })
   },
+  //删除店员--取消删除
+  getemployeecancel: function () {
+    let that = this;
+    that.setData({
+      showDelect: false,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -160,13 +153,13 @@ Page({
     console.info("图标", iconsUtils.getIcons().walletIcons);
     this.setData({ icons: iconsUtils.getIcons().walletIcons });
     let getuserMessage = walletUtil.appUtils.getUserData();
-    let getUserStoreData = getuserMessage.mallData;//获取用户店铺信息
-    let courierData = getuserMessage.courierData;
+    let getUserStoreData = getuserMessage.userData;//获取用户店铺信息
+    let courierData = getuserMessage.userData;
     let types = 'employee';
-    let profileId = courierData.profileId;//获取user的profileId
+    let profileId = courierData.id;//获取user的profileId
     console.info("getuserMessage", getuserMessage, "profileId", profileId)
     // let profileId = 'f68c5359850c4e17bf181cad607719c6'
-    let url = walletUtil.logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId;//二维码链接
+    let url = walletUtil.requestUrlList().logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId;//二维码链接
     this.getAddAssistants();
     this.setData({
       codeImg: url,

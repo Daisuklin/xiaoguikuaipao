@@ -154,7 +154,7 @@
                 </view>
               </block>
               <!-- 优惠券&积分begin -->
-              <view class="order_avorable_discount weui-cell__ft_in-access" hover-class="weui-cell_active" bindtap="{{redPacketNum==0?'':'gotovouchers'}}">
+              <view class="order_avorable_discount weui-cell__ft_in-access" hover-class="weui-cell_active" bindtap="gotovouchers">
                 <view>
                   <image src="https://qnimg.xiaoguikuaipao.com/o5Al6vPtfddX951d31528d4ac61a7dbf4b6"></image>
                   <!--https://qnimg.xiaoguikuaipao.com/ktQP9wkoWVRT4ac53054f96e2722b8a5cf7  -->

@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -34,13 +34,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "评价",
 					"pathName": "pages/my/evaluate/evaluate",
-					"query": "orderId=266954"
+					"query": "orderId=272439"
 				},
 				{
 					"id": -1,
@@ -64,7 +64,7 @@
 					"id": 4,
 					"name": "确认订单",
 					"pathName": "pages/my/order/order",
-					"query": "goodId=&spaecKey=&cartId=6724, 6725, 6726, 6727, 6728, 6729"
+					"query": "goodId=109329|1&spaecKey=&cartId="
 				},
 				{
 					"id": 5,
@@ -103,10 +103,10 @@
 					"query": "goodId=109347"
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "收款详情",
 					"pathName": "pages/my/wallet/details/details",
-					"query": "goodId=109347"
+					"query": "orderId=298"
 				},
 				{
 					"id": -1,
@@ -137,6 +137,60 @@
 					"name": "收入统计",
 					"pathName": "pages/my/wallet/incomestatistics/incomestatistics",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新版首页",
+					"pathName": "pages/home2/home2",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "店铺级个人中心",
+					"pathName": "pages/store/my/my",
+					"query": "goodId=109329|1&spaecKey=&cartId="
+				},
+				{
+					"id": -1,
+					"name": "店铺收款码",
+					"pathName": "pages/my/wallet/receiptcode/receiptcode",
+					"query": "goodId=109329|1&spaecKey=&cartId="
+				},
+				{
+					"id": -1,
+					"name": "我的龟米",
+					"pathName": "pages/my/integral/integral",
+					"query": ""
+				},
+				{
+					"id": 21,
+					"name": "平台级个人中心",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的龟米-使用明细",
+					"pathName": "pages/my/integral/useddtails/useddtails",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "龟米赠送",
+					"pathName": "pages/my/integral/sendintegral/sendintegral",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "龟米说明",
+					"pathName": "pages/my/integral/instructions/instructions",
+					"query": "orderId=298"
+				},
+				{
+					"id": 25,
+					"name": "店铺分类",
+					"pathName": "pages/store/glspecial/glspecial",
+					"query": "isAgin=0&storeId=1166"
 				}
 			]
 		}

@@ -4,6 +4,7 @@ Page({
   data: {
 
   },
+  //确定收货
   comfirmGetOrder: function () {
     wx.showLoading({
       title: '确认中',
@@ -32,6 +33,7 @@ Page({
     res.data.data.createdTime = integralUtil.appUtils.getDateFormat(res.data.data.createdTime);
     this.setData({ ods: res.data.data });
   },
+  //获取订单详情
   getOrderDetails: function () {
     wx.showLoading({
       title: '加载中',

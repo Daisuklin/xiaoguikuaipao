@@ -9,11 +9,13 @@ Page({
 
     stop_propagation:true
   },
+  //去购物
   goShop: function () {
     wx.switchTab({
       url: '/pages/home2/home2',
     })
   },
+  //查看店铺
   checkStore: function (e) {
     if (!appUtil.lrhMethods.checkPageState()) {
       return;
@@ -31,6 +33,7 @@ Page({
       })
     }
   },
+  //去支付
   toPay: function () {
     var cart = this.data.cart;
     var cartStr = "";
@@ -65,6 +68,7 @@ Page({
     })
 
   },
+  //查看商品详情
   checkProduct: function (e) {
     if (!appUtil.lrhMethods.checkPageState()) {
       return;
@@ -74,6 +78,7 @@ Page({
       url: '/pages/detail/goodsdetail?goodId=' + goodId,
     })
   },
+  //全选
   checkAll: function () {
     var ischeckAll = !this.data.ischeckAll;
     var cart = this.data.cart;
@@ -88,6 +93,7 @@ Page({
     }
     this.setData({ cart: cart });
   },
+  //查看店铺
   tapSingleStore: function (e) {
     var id = e.currentTarget.id;
     var cart = this.data.cart;
@@ -141,6 +147,7 @@ Page({
     }
 
   },
+  //选择单个商品
   tapSingleGood: function (e) {
     var id = e.currentTarget.id;
     var cart = this.data.cart;
@@ -310,6 +317,7 @@ Page({
       }
     })
   },
+  //修改商品数量
   changeNum: function (e) {
     var id = e.currentTarget.id;
     var flag = e.currentTarget.dataset.flag;
@@ -360,6 +368,7 @@ Page({
     }
     this.setData({ cart: cart });
   },
+  //从服务器获取个人购物车数据
   getCartData: function () {
     var that = this;
     wx.showLoading({
@@ -398,6 +407,7 @@ Page({
       }
     })
   },
+  //点击修改完成
   finished: function () {
     var cart = this.data.cart;
     for (var i = 0; i < cart.length; i++) {
@@ -410,6 +420,7 @@ Page({
     this.setData({ cart: cart });
     this.setData({ delHidden: true, calHidden: false, tipText: "编辑", tatal_price: 0, ischeckAll: false });
   },
+  //点击编辑
   edit: function () {
     var cart = this.data.cart;
     for (var i = 0; i < cart.length; i++) {
@@ -422,6 +433,7 @@ Page({
     this.setData({ cart: cart });
     this.setData({ delHidden: false, calHidden: true, tipText: "取消", tatal_price: 0, ischeckAll: false });
   },
+  //点击删除
   del: function () {
     // var cart = this.data.cart;
     // for (var i = 0; i < cart.length; i++) {
@@ -451,6 +463,7 @@ Page({
     this.delFromServerNew(delCarts);
     this.setData({ cart: cart });
   },
+  //删除请求
   delFromServerNew: function (delCarts) {
     var that = this;
     wx.request({

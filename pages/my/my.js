@@ -25,32 +25,59 @@ Page({
     }
   },
   checkWallet: function () {
-    wx.navigateTo({
-      url: '/pages/my/wallet/wallet',
-    })
-  },
-  securitycenter: function () {
-    var blackUserInfo = wx.getStorageSync("blackUserInfo");
-    console.log(blackUserInfo);
-    if (blackUserInfo != undefined) {
-      var havaPassword = blackUserInfo.commonData.safePasswordFlag;
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    }else{
       wx.navigateTo({
-        url: '/pages/my/securitycenter/securitycenter?havaPassword=' + havaPassword,
+        url: '/pages/my/wallet/wallet?isfromuser=1',
       })
-    } else {
-
     }
+    
+  },
+  // 安全中心
+  securitycenter: function () {
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else{
+      // 已登录
+      var blackUserInfo = wx.getStorageSync("blackUserInfo");
+      console.log(blackUserInfo);
+      if (blackUserInfo != undefined) {
+        var havaPassword = blackUserInfo.commonData.safePasswordFlag;
+        wx.navigateTo({
+          url: '/pages/my/securitycenter/securitycenter?havaPassword=' + havaPassword,
+        })
+      } else {
 
+      }
+    }
   },
+  // 去优惠券
   checkVouchers: function () {
-    wx.navigateTo({
-      url: '/pages/my/vouchers/vouchers?showType=1',
-    })
+    //获取用户的token值
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else{
+      wx.navigateTo({
+        url: '/pages/my/vouchers/vouchers?showType=1',
+      })
+    }
   },
+  // 去我的龟米
   checkIntagrals: function () {
-    wx.navigateTo({
-      url: '/pages/my/integral/integral',
-    })
+    //获取用户的token值
+    var token = appUtil.appUtils.getTokenData();
+    if (token == 0) {
+      this.packaging()
+    } else{
+      wx.navigateTo({
+        url: '/pages/my/integral/integral?&isfromfather=1',
+      })
+    }
+  
   },
   //封装登录态提示语和点击确定时的操作
   packaging: function () {
@@ -87,9 +114,7 @@ Page({
                     })
                     return false;
                   }
-
                   appUtil.appUtils.setUnionIdData(data.data.unionId);
-
                   //登陆    
                   appUtil.controllerUtil.login(
                     {
@@ -106,7 +131,6 @@ Page({
                       wx.hideLoading();
                       //判断是否已经绑定过电话号码的用户
                       if (data.data.succeeded == false && data.data.error.code == 1000) {
-
                         //未绑定
                         //平台用户信息
                         appUtil.appUtils.setBlackUser(data.data.data);
@@ -124,11 +148,17 @@ Page({
                           })
                           //下面的取消按钮
                           appUtil.appUtils.setTokenData(data.data.data.commonData.token);
-
                           //平台用户信息
                           appUtil.appUtils.setBlackUser(data.data.data);
                           that.checkIsSeller();
                           that.getUserVaI();
+                          // 已登录
+                          let commonData = appUtil.appUtils.getMemberIdData().commonData;
+                          let onePayFlag = commonData.onePayFlag;//判断是否店员
+                          console.info("onePayFlag", onePayFlag)
+                          that.setData({
+                            onePayFlag: onePayFlag,//判断是否店员
+                          })
                         } else {
                           wx.showToast({
                             title: data.data.data.errorMesg,
@@ -217,6 +247,21 @@ Page({
         avatarUrl: user.avatarUrl,
       })
     }
+    // 获取用户数据，判断是否显示小龟收账本
+    if (appUtil.appUtils.getTokenData() == null || appUtil.appUtils.getTokenData() == "") {
+      // 未登录
+      this.setData({
+        onePayFlag: false,//判断是否店员
+      })
+    } else {
+      // 已登录
+      let commonData = appUtil.appUtils.getMemberIdData().commonData;
+      let onePayFlag = commonData.onePayFlag;//判断是否店员
+      console.info("onePayFlag", onePayFlag)
+      this.setData({
+        onePayFlag: onePayFlag,//判断是否店员
+      })
+    }
   },
   onReady: function () {
 
@@ -264,8 +309,10 @@ Page({
 
     }, function (res) {
       console.info("获取到用户：", res);
-      that.setData({ VaI: res.data.data });
-      wx.setStorageSync("viewPointNum", res.data.data.pointNum);
+      if (res.data.succeeded){
+        that.setData({ VaI: res.data.data });
+        wx.setStorageSync("viewPointNum", res.data.data == null || res.data.data == '' ? '' :res.data.data.pointNum);
+      }
       wx.hideLoading();
     }, function (res) {
       wx.hideLoading();
@@ -374,11 +421,17 @@ Page({
                 })
                 //下面的取消按钮
                 appUtil.appUtils.setTokenData(data.data.data.commonData.token);
-
                 //平台用户信息
                 appUtil.appUtils.setBlackUser(data.data.data);
                 that.checkIsSeller();
                 that.getUserVaI();
+                // 已登录
+                let commonData = appUtil.appUtils.getMemberIdData().commonData;
+                let onePayFlag = commonData.onePayFlag;//判断是否店员
+                console.info("onePayFlag", onePayFlag)
+                that.setData({
+                  onePayFlag: onePayFlag,//判断是否店员
+                })
               } else {
                 wx.showToast({
                   title: data.data.data.errorMesg,
@@ -415,7 +468,8 @@ Page({
       VaI: {
         packetNum: 0,
         pointNum: 0
-      }
+      },
+      onePayFlag: false,//判断是否店员
     });
     wx.hideLoading();
   },

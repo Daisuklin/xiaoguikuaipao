@@ -4,15 +4,17 @@ Page({
     oldPassword:"",
     newPassword:""
   },
-
+  //设置老密码
   setOldPassword:function(e){
     var value = e.detail.value;
     this.setData({oldPassword:value});
   },
+  //设置新密码
   setNewPassword: function (e) {
     var value = e.detail.value;
     this.setData({ newPassword: value });
   },
+  //点击提交
   commit:function(){
     var newPassword = this.data.newPassword;
     var oldPassword = this.data.oldPassword;
@@ -26,6 +28,7 @@ Page({
     }
     this.updePassword();
   },
+  //向服务器发送更新密码请求
   updePassword:function(){
     wx.showLoading({
       title: '提交中',
@@ -80,6 +83,7 @@ Page({
       that.setData({ isPrompt: !that.data.isPrompt })
     }, 1500)
   },
+  //点击忘记密码
   showForgetPassword:function(){
     wx.navigateTo({
       url: '/pages/my/securitycenter/addPassword/addPassword',

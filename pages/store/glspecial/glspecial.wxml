@@ -83,17 +83,20 @@
               <view class='new-product-info'>
                 <view class='new-product-name' bindtap='checkProduct' id="{{item.goods_id}}">{{item.goods_name}}</view>
                 <view class='new-product-sales' bindtap='checkProduct' id="{{item.goods_id}}">月售{{item.goods_salenum}}</view>
-                <view class='new-product-price-spec'>
+                <view class='new-product-price-spec' style="{{item.price_discount==0?'padding-top:2vw':'padding-top:1vw'}}">
                   <view class='new-product-price' bindtap='checkProduct' id="{{item.goods_id}}">
                     <label class='new-unit'>￥</label>
                     <label class='new-price'>{{item.discountPriceStr}}</label>
                     <label class='new-up' wx:if="{{item.goods_spec!=''&&item.goods_spec!=null}}">起</label>
+                    <label class='old_prices' wx:if="{{item.price_discount!=0}}">￥{{item.goodsPriceStr}}</label>
                   </view>
                   <view class='new-num-container' hover-stop-propagation="true">
                     <image src='../../../image/cart/subtract.png' wx:if="{{item.cartNum!=0}}" class='new-icon-subtract' data-flag="subtract" id="{{item.goods_id}}" bindtap='changeGLNum' mode='aspectFill'></image>
                     <label class='new-choose-product-num' wx:if="{{item.cartNum!=0}}">{{item.cartNum}}</label>
                     <image src='../../../image/cart/add.png' class='new-icon-add' data-flag="add" id="{{item.goods_id}}" bindtap='changeGLNum' mode='aspectFill'></image>
                   </view>
+                </view>
+                <view class='new-product-discut' wx:if="{{item.price_discount!=0}}">{{item.price_discount}}折
                 </view>
               </view>
             </view>

@@ -1,6 +1,7 @@
+var PE = require("./publicEnvironment");
 const requestUrlList = () => {
-  var isTest = true
-  if (!isTest) {
+  var isTest = PE.isTest
+  if (isTest) {
     var logisticsUrl = "https://logistics.xiaoguikuaipao.com";
     var requestUrl = 'https://api.xiaoguikuaipao.com';
     var devrequestUrl = "https://api.xiaoguikuaipao.com"
@@ -13,25 +14,19 @@ const requestUrlList = () => {
   var requestTXM = requestUrl;//"http://112.74.28.99:8080"
   var requestUrl3 = requestUrl;//'https://api.xiaoguikuaipao.com/api/v1/';
   var test = requestUrl;//'http://112.74.28.99:8081'; //测试服务器
-
-
   var login = logisticsUrl + "/api/v1/users/auth/unionLogin";  //登陆接口 post password username
   var loginUrl = logisticsUrl + "/api/v1/login/login"; //登陆接口 post password username
   var captcha = logisticsUrl + "/api/v1/captcha";  //短信验证码接口
   var bindMobile = logisticsUrl + "/api/v1/users/bind/mobile";  /*绑定手机接口 { "code": "string", "mobile": "string", "openId": "string","unionId": "string" }*/
 
-  // var loginUrl = requestUrl + "/api/v1/login/login"; //登陆接口 post password username
   var goodsList = requestUrl + "/api/v1/good/list"; //登陆商品列表接口 
-  //var captcha = requestUrl + "/api/v1/captcha"; //短信验证码接口
   var code2session = requestUrl + "/api/v1/wxapp/code2session"; //得到用户 unionid 
   var goodsDetail = requestUrl + "/api/v1/getGoodsByGoodId2";  //商品详情接口 goodsId 、latitude,   longitude,  memberId
 
   var userInfoByEncryptedDataUrl = requestUrl + "/api/v1/wxapp/userInfo";  //解密获取用户信息EncryptedData
   var tokenUrl = requestUrl + "/api/v1/shopMc/memberInfo";  //商店信息
-  // var login = requestUrl + "/api/v1/users/auth/unionLogin";  //登陆接口 post password username
   var goodsList = requestUrl + "/api/v1/good/list";  //登陆商品列表接口 
-  //var captcha = requestUrl + "/api/v1/captcha";  //短信验证码接口 
-  //var bindMobile = requestUrl + "/api/v1/users/bind/mobile";  /*绑定手机接口 { "code": "string", "mobile": "string", "openId": "string","unionId": "string" }*/
+
   var code2session = requestUrl + "/api/v1/wxapp/code2session";  //得到用户 unionid 
 
   //林锐宏 start

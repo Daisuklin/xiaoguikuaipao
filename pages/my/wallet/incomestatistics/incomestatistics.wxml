@@ -53,7 +53,10 @@
     </view>
   </view>
 </view>
-
+<view class='text_mesg'>
+    <text wx:if="{{recordReceiptsList.itemList.length>0}}">以上是全部收款统计</text>
+    <text wx:else>暂无收入统计数据 </text>
+</view>
 <!-- 时间选择 -->
 <view class='park_bg'  wx:if="{{isshowtime}}"></view>
 <view class='datachoice_box' wx:if="{{isshowtime}}">

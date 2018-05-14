@@ -5,6 +5,7 @@ Page({
      pageIndex:1,
      vouchers:[]
   },
+  //去兑换优惠券
   exchangerVoucher: function (e) {
     console.log(e);
     var voucher = e.currentTarget.dataset.my;
@@ -21,6 +22,7 @@ Page({
     }
     this.setData({ vouchers: vouchers, len:res.data.totalNum});
   },
+  //获取优惠券列表
   getVouchers:function(){
     wx.showLoading({
       title: '加载中',

@@ -13,7 +13,7 @@
     </view>
     <view class='common common2'>
       <view class='item2-text1'>订单编号</view>
-      <view class='item2-text3'>{{detailsdata.profileId}}</view>
+      <view class='item2-text3'>{{detailsdata.num}}</view>
     </view>
     <view class='common common2'>
       <view class='item2-text1'>时 间</view>
@@ -39,14 +39,14 @@
     </view>
     <view class='common common2'>
       <view class='item2-text1'>订单编号</view>
-      <view class='item2-text3'>{{detailsdata.profileId}}</view>
+      <view class='item2-text3'>{{detailsdata.num}}</view>
     </view>
     <view class='common common2'>
       <view class='item2-text1'>时 间</view>
       <view class='item2-text3'>{{createAt}}</view>
     </view>
-     <view class='common common2'>
-      <view class='item2-text1'>状      态</view>
+    <view class='common common2'>
+      <view class='item2-text1'>状 态</view>
       <view class='item2-text3'>等待到账</view>
     </view>
     <!-- <view class='common common2'> 
@@ -54,4 +54,7 @@
       <view class='item2-text3'>审核中</view>
     </view> -->
   </view>
+</view>
+<view class='comebackhome' hover-class="weui-cell_active" wx:if="{{isfromfather!=1}}">
+  <button class='btn_back' bindtap='getbackhomes'>回到首页</button>
 </view>

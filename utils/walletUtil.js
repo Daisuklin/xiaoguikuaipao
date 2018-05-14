@@ -1,10 +1,11 @@
+var PE = require("./publicEnvironment");
 /*
 *钱包专用接口文件
 */
 // 接口地址
 const requestUrlList = () => {
-  var isTest = true
-  if (!isTest) {
+  var isTest = PE.isTest
+  if (isTest) {
     var logisticsUrl = "https://logistics.xiaoguikuaipao.com";//寄件生产环境
     var requestUrl = 'https://api.xiaoguikuaipao.com';//商城生产环境
   } else {
@@ -27,6 +28,7 @@ const requestUrlList = () => {
     employeeUpdate: employeeUpdate,
     receiptslist: receiptslist,
     receipStatistics: receipStatistics,
+    logisticsUrl: logisticsUrl
   }
 }
 // 接口预调用
@@ -202,5 +204,6 @@ module.exports = {
   requestUrlList: requestUrlList,
   controllerUtil: controllerUtil,
   appUtils: appUtils,
-  logisticsUrl:'https://dev-logistics.xiaoguikuaipao.com'
+  // logisticsUrl:'https://dev-logistics.xiaoguikuaipao.com',
+  // logisticsUrl: 'https://logistics.xiaoguikuaipao.com'
 }

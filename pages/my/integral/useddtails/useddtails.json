@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "使用明细",
   "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
   "navigationBarBackgroundColor": "white"
 }

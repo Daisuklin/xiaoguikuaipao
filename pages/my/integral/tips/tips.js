@@ -5,27 +5,39 @@ Page({
     orderId:"",
     context:""
   },
+  //点击使用优惠券
   toUse:function(){
     wx.switchTab({
       url: '/pages/home2/home2',
     })
   },
+  //查看兑换订单详情
   checkOrder:function(e){
     var orderId = this.data.orderId;
+    // wx.redirectTo({
+    //   url: '/pages/my/wallet/details/details?orderId=' + orderId,
+    // })
+    var orderId = this.data.orderId;
+    var item = {
+      id: orderId
+    }
     wx.redirectTo({
-      url: '/pages/my/wallet/details/details?orderId=' + orderId,
+      url: '/pages/my/integral/ordersexchange/orderdetails/orderdetails?item='+JSON.stringify(item),
     })
   },
+  //返回的积分商城
   back3:function(){
     wx.navigateBack({
       delta: 3,
     })
   },
+  //返回赠送龟米
   back2:function(){
     wx.navigateBack({
       delta: 2,
     })
   },
+  //返回积分商城
   back:function(){
     wx.navigateBack({
       delta:2,
@@ -51,7 +63,7 @@ Page({
 
   },
   onShow: function () {
-    var viewPointNum = wx.getStorageSync("viewPointNum");
+    var viewPointNum = parseFloat(wx.getStorageSync("viewPointNum")).toFixed(2);
     this.setData({ viewPointNum: viewPointNum});
   },
   onHide: function () {

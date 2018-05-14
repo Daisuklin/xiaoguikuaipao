@@ -25,6 +25,7 @@ Page({
       url: '/pages/home/search/resultforgood/resultforgood?classId=' + id,
     })
   },
+  //选择二级分类
   chooseGoodClass:function(e){
     console.log(e);
     var id = e.currentTarget.id;
@@ -34,6 +35,7 @@ Page({
     this.setData({ classId: classId, targetId:id, checkAllHiden: false});
     this.getClassByBigClassId();
   },
+  //让灰蒙层关闭显示
   setMaskHidden:function(){
     this.setData({ checkAllHiden:false});
   },
@@ -45,6 +47,7 @@ Page({
     console.log(data);
     
   },
+  //获取三级分类标签
   getClassByBigClassId: function () {
     var that = this;
     wx.showLoading({
@@ -76,6 +79,7 @@ Page({
       }
     })
   },
+  ///处理从服务器返回的数据
   setAllClassStyle2Data: function (goodsClassList){
     var labLen = goodsClassList.length;
     var arrsSize = Math.ceil(labLen / 5);

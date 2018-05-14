@@ -9,6 +9,9 @@ Page({
     console.info("成功", res);
     var details = this.data.details;
     for (var i in res.data.data) {
+      //时间转换
+      res.data.data[i].createAt = integralUtil.appUtils.getDateTimes(res.data.data[i].createAt);
+     // console.info(integralUtil.appUtils.getDateTimes(res.data.data[i].createAt))
       details.push(res.data.data[i]);
     }
     this.setData({ details: details, len: res.data.totalNum});
@@ -23,6 +26,7 @@ Page({
       "pageIndex": pageIndex
     }, function (res) {
       that.transFromServer(res);
+      // 分页
       that.setData({ pageIndex: pageIndex + 1 });
       wx.hideLoading();
     }, function (res) {
@@ -49,9 +53,11 @@ Page({
 
   },
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
   },
   onReachBottom: function () {
+    // 下拉事件
+    console.info("下拉事件")
     this.getUserDetails();
   },
 })

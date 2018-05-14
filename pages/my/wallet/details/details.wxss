@@ -126,3 +126,26 @@ Page {
   font-family: FZLTZHUNHK--GBK1-0;
   color: rgba(68, 68, 68, 1);
 }
+/* 回首页按钮 */
+
+.comebackhome {
+  position: fixed;
+  bottom: 0rpx;
+  width: 100vw;
+  height: 12vw;
+  background: #fff;
+}
+
+.comebackhome .btn_back {
+  width: 100vw;
+  height: 12vw;
+  color: #666;
+  background: none;
+  border: none;
+  border-radius: 0rpx;
+}
+
+.comebackhome .btn_back::after {
+  border: none;
+}
+.bg999{background: #999;}

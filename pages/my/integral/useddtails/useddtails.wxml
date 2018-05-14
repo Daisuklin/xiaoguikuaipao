@@ -1,11 +1,12 @@
-<view class='content1'>
+<view class='content1' scroll-y="true"  bindscrolltolower="lower" bindscroll="scroll"  >
   <view class='item1' wx:for="{{details}}">
-    <view>
+    <view class=''>
       <view class='item1-text1'>{{item.memo}}</view>
       <view class='item1-text2'>{{item.createAt}}</view>
     </view>
-    <view class='item1-text3'>{{item.changePoint}}元</view>
+    <view class='item1-text3'>{{item.changePoint > 0?'+'+item.changePoint:item.changePoint}}</view>
   </view>
 </view>
 <view wx:if="{{len==details.length}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 30rpx;margin-bottom:30rpx;'>没有更多了~</view>
-<view wx:if="{{details.length<len}}"  style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 30rpx;margin-bottom:30rpx;'>下拉加载更多</view>
+<view wx:if="{{details.length<len}}"  style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 30rpx;margin-bottom:30rpx;'>上拉加载更多</view>
+<!-- <view wx:if="{{details==''||details==null}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);margin-bottom:30rpx;'>没有更多了~</view> -->

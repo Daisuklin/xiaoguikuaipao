@@ -174,7 +174,6 @@
 /* 扫描授权通知 */
 
 .receipt_notice {
-  
 }
 
 .receipt_notice .receipt_notice_center {
@@ -198,7 +197,32 @@
   font-size: 4vw;
   padding: 5.33vw 0vw;
 }
+
 .receipt_notice .receipt_notice_center .text_cont {
   color: #999;
   font-size: 3.6vw;
 }
+
+/* 回首页按钮 */
+
+.comebackhome {
+  position: fixed;
+  bottom: 0rpx;
+  width: 100vw;
+  height: 12vw;
+  background: #fff;
+}
+
+.comebackhome .btn_back {
+  width: 100vw;
+  height: 12vw;
+  color: #666;
+  background: none;
+  border: none;
+  border-radius: 0rpx;
+}
+
+.comebackhome .btn_back::after {
+  border: none;
+}
+.bg999{background: #999;}

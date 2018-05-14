@@ -12,5 +12,9 @@
     <view class='text3'>{{item.statusName}}</view>
   </view>
 </view>
-<view wx:if="{{len==orders.length}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>没有更多了~</view>
+<view wx:if="{{len==orders.length&&orders.length!=0}}" style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>没有更多了~</view>
 <view wx:if="{{orders.length<len}}"  style='width: 100vw;text-align: center;font-size: 27rpx;font-family: FZLTHJW--GB1-0;color: rgba(153, 153, 153, 1);padding-top: 10rpx;margin-bottom:30rpx;'>下拉加载更多</view>
+<view class='thatno_data' wx:if="{{orders.length==0}}">
+<image src="{{icons2.icon_nodata}}"></image>
+<text>暂无收款记录</text>
+</view>

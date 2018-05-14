@@ -1,31 +1,49 @@
+var PE=require("./publicEnvironment");
 const requestUrlList = () => {
-  var devrequestUrl = "https://dev-api.xiaoguikuaipao.com"
-  var logisticsUrl = "https://dev-logistics.xiaoguikuaipao.com";
-  var requestUrl = "http://112.74.28.99:9527";
-  var requestUrlWeiLiang = "http://112.74.28.99:9527";
-  var url = "http://112.74.28.99:8081"
-  var integralHome = requestUrlWeiLiang + "/api/pointGoods/pointHome"
-  var getVouchers = requestUrlWeiLiang + "/api/pointGoods/getRedPacketList"
-  var getGifts = requestUrlWeiLiang + "/api/pointGoods/getGoodsList"
-  var getUserDetails = requestUrlWeiLiang + "/api/userPoint/getUserPointLogList"
-  var getVoucherDetails = requestUrlWeiLiang + "/api/pointGoods/getRedPacket/"
-  var exchangeVoucher = requestUrlWeiLiang + "/api/userPacket/buyPacket"
-  var getGiftDetails = requestUrlWeiLiang + "/api/pointGoods/getGoods/"
-  var exchangeProduct = requestUrlWeiLiang + "/api/goodsOrder/createOrder"
-  var getExchangeOrders = requestUrlWeiLiang + "/api/goodsOrder/getOrderList"
-  var getOrderDetails = requestUrlWeiLiang + "/api/goodsOrder/getOrder/"
-  var sendIntagral = requestUrlWeiLiang + "/api/userPoint/shiftPoint"
+  var isTest = PE.isTest
+  if (isTest){
+    // 正式
+    var requestUrl = "https://attach.xiaoguikuaipao.com";
+    // var requestUrlWeiLiang = "https://attach.xiaoguikuaipao.com";
+    var logisticsUrl = "https://logistics.xiaoguikuaipao.com";
+    var url = "https://logistics.xiaoguikuaipao.com";
+    // 龟米说明
+    var guimi_explain ="https://new.xiaoguikuaipao.com/index/point_goods/Analysis"
+    var coupon_explain ="https://new.xiaoguikuaipao.com/index/point_goods/Coupon"
+  }else{
+    // 测试
+    var logisticsUrl = "https://dev-logistics.xiaoguikuaipao.com";
+    var requestUrl = "http://112.74.28.99:9527";//积分商城
+    // var requestUrlWeiLiang = "http://112.74.28.99:9527";
+    var url = "http://dev-logistics.xiaoguikuaipao.com"//配送接口
+    var guimi_explain = "http://dev.xiaoguikuaipao.com/index/point_goods/Analysis"
+    var coupon_explain = "http://dev.xiaoguikuaipao.com/index/point_goods/Coupon"
+  // var url = "http://112.74.28.99:8081"//配送接口
+  }
+  var requestUrlWeiLiang = requestUrl;
+  var integralHome = requestUrlWeiLiang + "/api/pointGoods/pointHome"//积分商城首页
+  var getVouchers = requestUrlWeiLiang + "/api/pointGoods/getRedPacketList"//获取优惠券专区
+  var getGifts = requestUrlWeiLiang + "/api/pointGoods/getGoodsList"//获取礼品专区
+  var getUserDetails = requestUrlWeiLiang + "/api/userPoint/getUserPointLogList"//获取用户积分数据
+  var getVoucherDetails = requestUrlWeiLiang + "/api/pointGoods/getRedPacket/"//获取优惠券详情
+  var exchangeVoucher = requestUrlWeiLiang + "/api/userPacket/buyPacket"//兑换优惠券
+  var getGiftDetails = requestUrlWeiLiang + "/api/pointGoods/getGoods/"//回去礼品详情
+  var exchangeProduct = requestUrlWeiLiang + "/api/goodsOrder/createOrder"//兑换礼品
+  var getExchangeOrders = requestUrlWeiLiang + "/api/goodsOrder/getOrderList"//获取兑换订单列表
+  var getOrderDetails = requestUrlWeiLiang + "/api/goodsOrder/getOrder/"//获取兑换订单详情
+  var sendIntagral = requestUrlWeiLiang + "/api/userPoint/shiftPoint"//赠送龟米
   var getStoreVouchers = requestUrl + "/api/userPacket/checkPacket"//获取优惠券
-  var getMyVouchers = requestUrl + "/api/userPacket"
+  var getMyVouchers = requestUrl + "/api/userPacket"//从平台进去查看优惠券列表
   var getMoney = requestUrl + ""
   var getAcountMoney = requestUrl + ""
-  var gerUserVaI = requestUrl + "/api/commons/v1/checkPacketPoint"
-  var addSafePassword = url + "/api/v1/profiles/auth/safePassword"
-  var getCodeFromServer = url + "/api/v1/captcha"
-  var comfirmGetGood = url + "/api/goodsOrder/sign4User/"
+  var gerUserVaI = requestUrl + "/api/commons/v1/checkPacketPoint"//获取用户的龟米和优惠券数量
+  var addSafePassword = url + "/api/v1/profiles/auth/safePassword"//设置安全密码
+  var getCodeFromServer = url + "/api/v1/captcha"//获取验证码
+  var comfirmGetGood = url + "/api/goodsOrder/sign4User/"//确认收货
   var comfirmGetGood = requestUrlWeiLiang + "/api/goodsOrder/sign4User/"
 
   var getAccountDetails = logisticsUrl + '/api/v1/onePayBalanceDetail/view/' //已到账详情 id
+  var getfindAnalysis = requestUrl + '/api/analysis/findAnalysis' //获取优惠卷和龟米说明文本 type =coupon(优惠卷说明),gold(龟米说明)
   return {
     integralHome: integralHome,
     getVouchers: getVouchers,
@@ -46,9 +64,34 @@ const requestUrlList = () => {
     addSafePassword: addSafePassword,
     getCodeFromServer: getCodeFromServer,
     getAccountDetails: getAccountDetails,
+    guimi_explain: guimi_explain,
+    coupon_explain: coupon_explain,
+    getfindAnalysis: getfindAnalysis
   }
 }
 const controllerUtil = {
+  // 获取优惠卷和龟米说明文本
+  getfindAnalysis: (paras, succuess, fail, complete) =>{
+    wx.request({
+      url: requestUrlList().getfindAnalysis,
+      data: paras,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+        // 'Authorization': appUtils.getTokenData(),
+        'api': 'web',
+      },
+      success: function (data) {
+        succuess(data);
+      },
+      fail: function (data) {
+        fail(data);
+      },
+      complete: function (data) {
+        complete(data);
+      }
+    })
+  },
   // 已到账详情
   getAccountDetails: (id, paras, succuess, fail, complete) => {
     wx.request({
@@ -482,6 +525,22 @@ const appUtils = {
     var month = parseInt(date.getMonth()) + 1;
     var day = date.getDate();
     return year + "-" + month + "-" + day;
+  },
+  // 获取年/月/日 时:分
+  getDateTimes: (timeStamp) => {
+    var date = new Date(timeStamp);
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);//月  
+    var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();//日  
+    var hours = date.getHours();//时  
+    var mint = date.getMinutes();//分  
+    if (mint < 10) {
+      mint = "0" + mint;
+    } else {
+      mint = mint;
+    }
+    var Sec = date.getSeconds();//秒
+    return year + "/" + month + "/" + day + " " + hours + ":" + mint + ":" + Sec;
   }
 }
 module.exports = {

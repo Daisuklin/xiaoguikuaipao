@@ -44,13 +44,6 @@ Page({
       focus: true
     })
   },
-  //去详情页、
-  // gotoGoodsDetail: function (e) {
-  //   console.log(e)
-  //   wx.navigateTo({
-  //     url: '/pages/detail/goodsdetail?goodId=' + e.currentTarget.id,
-  //   })
-  // },
   radioChange: function (e) {//选择配送还是自提
     var that = this;
     console.log('radio发生change事件，携带value值为：', e.detail.value)
@@ -86,7 +79,6 @@ Page({
     console.info("禁止多次点击")
     // ************禁止多次点击 end**************
     wx.navigateTo({
-      // url: '../orderAddress/site',
       url: '/pages/my/site/site?transmitId=' + '15626199190',//来自确认订单页的入口
     })
   },
@@ -135,7 +127,6 @@ Page({
         chioceHours: 0,
       })
     }
-
     that.hideChoiceTime();
     if (this.data.since_hand == 0) {//选择配送后进行重新渲染
       var getDefaltId = appUtil.appUtils.getDefaltId();
@@ -509,8 +500,8 @@ Page({
             appointmentTime: that.data.nowTime,
             isShow: 0,
             is_freight: orderMas.is_freight,
-            // redPacketNum: orderMas.redPacketNum,//优惠券可用
-            redPacketNum: 1,//优惠券可用
+            redPacketNum: orderMas.redPacketNum,//优惠券可用
+            // redPacketNum: 1,//优惠券可用
             discountPrice: '',//优惠券价格
             oldstore_amount: oldstore_amount,//原始实付价格
             oldcoupon_total: oldcoupon_total,//原始优惠数量（即优惠了coupon_total）
@@ -546,8 +537,10 @@ Page({
   // 是否选择龟米抵扣
   bingChangeChecked: function () {
     let that = this;
-    let oldstore_amount = that.data.oldstore_amount;//原始实付价格
-    let oldcoupon_total = that.data.oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+    // let oldstore_amount = that.data.oldstore_amount;//原始实付价格
+    let oldstore_amount = that.data.orderMas.order_amount;
+    // let oldcoupon_total = that.data.oldcoupon_total;//原始优惠数量（即优惠了coupon_total）
+    let oldcoupon_total = that.data.orderMas.couponStr;//原始优惠数量（即优惠了coupon_total）
     that.setData({
       integralchecked: !that.data.integralchecked
     })
@@ -581,10 +574,13 @@ Page({
       integralPrice = integralsVal;
       // integralPrice = parseFloat(that.data.integralsValue == '' ? 0 : that.data.integralsValue);
     }
-    store_cart_list[0].store_amount = parseFloat(oldstore_amount - integralPrice - discountPrice);//满减包邮下的实付
+    // store_cart_list[0].store_amount = parseFloat(oldstore_amount - integralPrice - discountPrice);//满减包邮下的实付
+    var storeAmount = parseFloat(oldstore_amount - integralPrice - discountPrice);//满减包邮下的实付 
+    store_cart_list[0].store_amount = Math.floor(storeAmount * 100) / 100;//小数点后去两位
+    console.info(Math.floor(storeAmount * 100) / 100, "store_cart_list[0].store_amount", store_cart_list[0].store_amount, "store_cart_list", store_cart_list);
     store_cart_list[0].coupon_total = parseFloat(oldcoupon_total + integralPrice + discountPrice);//满减包邮下的优惠
-    console.info("store_cart_list", store_cart_list)
     that.setData({
+      orderMas: orderMas,
       integralsValue: integralPrice,//龟米积分抵扣值
       store_cart_list: store_cart_list,
       order_amount: store_cart_list[0].store_amount,//提交订单的实付
@@ -597,9 +593,9 @@ Page({
     let that = this;
     let ifManSong = that.data.orderMas.ifManSong;
     let ifPackageMall = that.data.orderMas.ifPackageMall;
-    let order_amount = that.data.order_amount;//实付总金额
+    let order_amount = that.data.store_cart_list[0].store_totle;//实付总金额
     wx.navigateTo({
-      url: '/pages/my/vouchers/vouchers?order_amount=' + order_amount + '&ifManSong=' + ifManSong + '&ifPackageMall=' + ifPackageMall +'&showType=2',
+      url: '/pages/my/vouchers/vouchers?order_amount=' + order_amount + '&ifManSong=' + ifManSong + '&ifPackageMall=' + ifPackageMall + '&showType=2',
     })
   },
   onSubmitOrder: function (e) {//提交订单
@@ -667,20 +663,32 @@ Page({
       red_packet_source: couponPrice == '' || couponPrice == null || typeof (couponPrice) == 'undefined' ? 0 : red_storeId, 	// 红包来源  对应订单确认页的  storeId 
       use_point: red_use_point == "" || red_use_point == null || typeof (red_use_point) == 'undefined' ? 0 : red_use_point,		//用户使用多少积分
     }, function (submitData) {
-      // 判断是否要调用支付接口（当实付金额为0时不调用支付接口）
-      if (selfpages.data.order_amount==0) {
-        // 不调用支付接口
-        console.info("submitData---", submitData.data.data)
-        var submitOrder = submitData.data.data;
-        var orderId = submitOrder.suborder_list[0].order_id;
-        wx.redirectTo({
-          url: '/pages/my/order/orderDetail/orderDetail?orderId=' + orderId + '&isShowIntegral=1',
-        })
-        return
+      console.info("submitData---", submitData)
+      if (submitData.data.succeeded) {
+        // 判断是否要调用支付接口（当实付金额为0时不调用支付接口）
+        if (selfpages.data.order_amount == 0) {
+          // 不调用支付接口
+          var submitOrder = submitData.data.data;
+          var orderId = submitOrder.suborder_list[0].order_id;
+          wx.redirectTo({
+            url: '/pages/my/order/orderDetail/orderDetail?orderId=' + orderId + '&isShowIntegral=1',
+          })
+          return
+        }
+        // ***********提交订单----调用支付***************
+        selfpages.gotoApplyPay(submitData); // 提交订单----调用支付
+        // *************提交订单----调用支付*************
+      } else {
+        // 调用接口异常
+        wx.hideLoading();
+        selfpages.setData({ isPrompt: !selfpages.data.isPrompt, promptTit: submitData.data.message.descript })
+        setTimeout(function () {
+          selfpages.setData({
+            isPrompt: !selfpages.data.isPrompt,
+            isClickBind: false,//还原点击事件
+          })
+        }, 2000)
       }
-      // ***********提交订单----调用支付***************
-      selfpages.gotoApplyPay(submitData); // 提交订单----调用支付
-      // *************提交订单----调用支付*************
     }, function (submitData) {
       selfpages.setData({ isClickBind: false });//支付失败之后还原点击事件
       console.log(submitData)

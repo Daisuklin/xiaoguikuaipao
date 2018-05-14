@@ -10,7 +10,8 @@ const getIcons = () => {
     icon_logo_weixin: "https://qnimg.xiaoguikuaipao.com/fsxBY6hInhp9b7ce33bf93e75bc440a1c2f",
     icon_logo_zhifubao: "https://qnimg.xiaoguikuaipao.com/WNkh9JyaoDZge1aff736e6ae7e40c2ddbc7",
     icon_logo_xiaogui: "https://qnimg.xiaoguikuaipao.com/IxfQaXllvwDj22fd4255be194d1897f13f6",
-    icon_date: "https://qnimg.xiaoguikuaipao.com/2G9wzalH3M2K354e26d1c10c262e4b5f931"
+    icon_date: "https://qnimg.xiaoguikuaipao.com/2G9wzalH3M2K354e26d1c10c262e4b5f931",
+    icon_nodata: "https://qnimg.xiaoguikuaipao.com/fOmu29wGKBu16f853550ee4daf127f39157"
   }
   const getDetailsIcons = {//提现详情
     details: "https://qnimg.xiaoguikuaipao.com/X2GXlUDXNoYda7949dbfdcb950f3b214060"
@@ -43,6 +44,7 @@ const getIcons = () => {
     bg1: "https://qnimg.xiaoguikuaipao.com/vKRtJ7fCOWYNa9fb6c371a04350579ca4f7",
     check: "https://qnimg.xiaoguikuaipao.com/Yz8Wn9C1pqw733f32ac950a7d01b7acdec5",
     bg2: "https://qnimg.xiaoguikuaipao.com/4ocRq10aV5oa125b8896ef4c3fbf960c27d",
+    bg3: "https://qnimg.xiaoguikuaipao.com/jJ06NeLTjSiE76511b9916b8d91c549448a",
     xin: "https://qnimg.xiaoguikuaipao.com/qV1RA5CaJ1cXcdc6d0ecba4502538c4f23b",
     no: "https://qnimg.xiaoguikuaipao.com/mQTCCFV1ToFQ81194156246033162c8ac60"
   }

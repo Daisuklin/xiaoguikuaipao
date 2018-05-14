@@ -9,6 +9,7 @@ Page({
     password: "",
     code: ""
   },
+  //获取验证码
   getCodeFromServer: function () {
     var that = this;
     var phone = this.data.phone;
@@ -23,6 +24,7 @@ Page({
       wx.hideLoading();
     });
   },
+  //设置安全密码
   addSafePassword: function () {
     wx.showLoading({
       title: '提交中',
@@ -59,7 +61,7 @@ Page({
           if (res.confirm) {
             console.log('用户点击确定')
             wx.navigateBack({
-              delta: 2
+              delta: 1
             })
           } else if (res.cancel) {
             console.log('用户点击取消')
@@ -71,6 +73,7 @@ Page({
     }
     
   },
+  //获取验证码前作数据合法性判断
   getCode: function () {
     var phone = this.data.phone;
     if (phone == '' || phone.length != 11 || isNaN(phone)) {
@@ -120,6 +123,7 @@ Page({
     }
     this.getCodeFromServer();
   },
+  //设置倒计时
   reSetWaitTime: function (waitTime) {
     var that = this;
     this.setData({ text: waitTime, getClass: "noget" });
@@ -164,6 +168,7 @@ Page({
     }
 
   },
+  //初始化数据
   initPhoneData:function(){
     var blackUserInfo = wx.getStorageSync("blackUserInfo");
     this.setData({ phone: blackUserInfo.userData.mobile});
@@ -186,14 +191,17 @@ Page({
       this.reSetWaitTime(waitTime);
     }
   },
+  //设置验证码
   setCode: function (e) {
     var code = e.detail.value;
     this.setData({ code: code });
   },
+  //设置手机号
   setPhone: function (e) {
     var phone = e.detail.value;
     this.setData({ phone: phone });
   },
+  //设置密码
   setPassword: function (e) {
     var password = e.detail.value;
     this.setData({ password: password });
@@ -209,7 +217,7 @@ Page({
   onLoad: function (options) {
 
   },
-
+  //点击提交
   onTapCommit: function () {
     let that = this;
     if (that.data.code.length < 6) {

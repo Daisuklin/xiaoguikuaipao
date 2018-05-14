@@ -14,8 +14,13 @@ Page {
   width: 6.133vw;
   height: 6.133vw;
 }
+
 /*list  */
-.incomestatistics_list{margin-bottom: 4vw;}
+
+.incomestatistics_list {
+  margin-bottom: 4vw;
+}
+
 .incomestatistics_list .list_box {
   background: #fff;
 }
@@ -103,4 +108,46 @@ Page {
 .list_childlit .childlit_cont .childlit_cont_r .txt2 {
   color: #5dd9ab;
   font-size: 3.2vw;
+}
+
+.list_childlit .childlit_cont_income {
+  display: flex;
+  flex-direction: column;
+}
+.list_childlit .childlit_cont_income .txt2 {
+  color: #5dd9ab;
+  font-size: 3.2vw;
+}
+/* 底部提示信息 */
+
+.text_mesg {
+  text-align: center;
+  padding-top: 2vw;
+  padding-bottom: 10rpx;
+}
+
+.text_mesg text {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+/* 暂无收款记录 */
+
+.thatno_data {
+  text-align: center;
+  padding-top: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.thatno_data image {
+  width: 43.6vw;
+  height: 33.87vw;
+}
+
+.thatno_data text {
+  color: #999;
+  font-size: 3.6vw;
 }

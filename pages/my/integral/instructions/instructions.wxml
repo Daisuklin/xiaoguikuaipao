@@ -1,1 +1,7 @@
-<web-view src="{{url}}" style="height:100vh;width:100vw;"></web-view>
+<!-- <web-view src="{{url}}" style="height:100vh;width:100vw;"></web-view> -->
+<view class='instruction_box'>
+  <view class='listcontent' wx:for="{{AnalysisData}}">
+    <view class='list_title'>{{index+1}}、{{item.title}}</view>
+    <view class='list_txt'>{{item.content}}</view>
+  </view>
+</view>

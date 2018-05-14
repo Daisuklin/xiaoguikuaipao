@@ -11,7 +11,7 @@ Page({
   getAccountDetails: function (options) {
     let that = this;
     let orderId = options.orderId;
-    let realTimeIncome = options.realTimeIncome;
+    // let realTimeIncome = options.realTimeIncome;
     // let orderId ='1';
     integralUtil.controllerUtil.getAccountDetails(orderId, {
     }, function (detailData) {
@@ -40,7 +40,7 @@ Page({
         // 
         that.setData({
           detailsdata: detailData.data.data,
-          index: realTimeIncome,
+          index: detailData.data.data.realTimeIncome,
           createAt: times
         })
       }
@@ -51,8 +51,28 @@ Page({
     })
 
   },
+  // 回到首页
+  getbackhomes: function () {
+    let that = this;
+    wx.switchTab({
+      url: '/pages/home2/home2'
+    })
+  },
   onLoad: function (options) {
     // var orderId = options.orderId;
+    //----判断是否从父级页面中心过来的 isfromfather=1是 isfromfather!=1否 -----
+    if (options.isfromfather == 1) {
+      // 是来自父级页面的
+      this.setData({
+        isfromfather: 1
+      })
+    } else {
+      // 非来父级页面
+      this.setData({
+        isfromfather: 0
+      })
+    }
+   //----判断是否从父级页面中心过来的 end-----
     this.getAccountDetails(options)
 
   },

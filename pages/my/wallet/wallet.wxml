@@ -1,6 +1,6 @@
-<view class='box' style='display:none'>
+<view class='box' wx:if="{{onePayFlag}}">
   <view class="top">
-    <view class='text1'>{{getUserStoreData.store_name}}</view>
+    <view class='text1'>{{getUserStoreData.nickname}}</view>
     <view class='text2-3-container'>
       <label class='text2'>今日收款</label>
       <label class='text3'>{{detailsData.countNumber}}</label>
@@ -8,7 +8,7 @@
     </view>
     <view class='text4-5-container'>
       <label class='text4'>￥</label>
-      <label class='text5'>{{detailsData.sumTotalMoney}}</label>
+      <label class='text5'>{{detailsData.sumIncomeMoney}}</label>
     </view>
   </view>
   <view class='center'>
@@ -48,12 +48,15 @@
       </view>
     </view>
   </view>
+  <view class='comebackhome' hover-class="weui-cell_active" wx:if="{{isfromuser!=1}}">
+    <button class='btn_back' bindtap='getbackhomes'>回到首页</button>
+  </view>
 </view>
 <!-- 非店员通知 -->
-<view class='receipt_notice'>
+<view class='receipt_notice' wx:else>
   <view class='receipt_notice_center'>
-  <image src="https://qnimg.xiaoguikuaipao.com/lLuAQcp9fPEQ826b95cf2b2226249a3f87e"></image>
-  <text class='text_title'>请扫描商家收款通知二维码</text>
-  <text class='text_cont'>当商家确认添加后，你即可接收他(她)的收款通知</text>
+    <image src="https://qnimg.xiaoguikuaipao.com/lLuAQcp9fPEQ826b95cf2b2226249a3f87e"></image>
+    <text class='text_title'>请扫描商家收款通知二维码</text>
+    <text class='text_cont'>当商家确认添加后，你即可接收他(她)的收款通知</text>
   </view>
 </view>

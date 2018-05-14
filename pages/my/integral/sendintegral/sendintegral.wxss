@@ -4,20 +4,23 @@
 
 .container {
   width: 690rpx;
-  height: 690rpx;
   background-color: white;
   margin-left: 30rpx;
   margin-top: 38rpx;
   padding-left: 60rpx;
   padding-right: 60rpx;
   padding-top: 0px;
+  padding-bottom: 4vw;
+  border-radius: 10rpx;
 }
 
 .title {
   width: 100%;
   text-align: left;
-  padding: 60rpx;
-  line-height: 38rpx;
+  /* padding: 60rpx;
+  line-height: 38rpx; */
+  height: 13.33vw;
+
   display: flex;
   align-items: center;
 }
@@ -29,16 +32,16 @@
 }
 
 .title-text1 {
-  width: 118rpx;
+  width: 120rpx;
   font-size: 30rpx;
   font-family: PingFang-SC-Medium;
   color: rgba(0, 0, 0, 1);
 }
 
 .input-phone {
-  display: inline-block;
+  /* display: inline-block; */
   width: 420rpx;
-  height: 38rpx;
+  /* height: 38rpx; */
   padding-left: 30rpx;
 }
 
@@ -276,4 +279,31 @@
   top: 0px;
   left: 0px;
   z-index: 1100;
+}
+/*弹窗之提示信息  */
+
+.box_prompt_box {
+  position: fixed;
+  top: 0vh;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  margin-top: -5.3334vw;
+  z-index: 999999;
+  justify-content: center;
+  height: 105vh;
+}
+
+.box_prompt {
+  background: rgba(0, 0, 0, 0.5);
+  line-height: 4.6666vw;
+  padding: 2vw 5vw;
+  border-radius: 2vw;
+  max-width: 80vw;
+  font-size: 4vw;
+}
+
+.box_prompt text {
+  color: #fff;
+  font-size: 4vw;
 }

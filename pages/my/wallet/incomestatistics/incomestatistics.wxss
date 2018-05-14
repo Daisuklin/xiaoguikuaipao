@@ -216,3 +216,6 @@ Page {
   background: none;
 }
 .datachoice_box .btn_box button::after{border: none;}
+/* 底部提示信息 */
+.text_mesg{text-align: center;padding-top: 2vw;padding-bottom: 10rpx;}
+.text_mesg text{font-size: 3.6vw;color: #999;}

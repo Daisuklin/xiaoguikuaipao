@@ -2,14 +2,20 @@
   width: 100vw;
   background: white;
   margin-top: 20rpx;
+  overflow-y: auto;
+  margin-bottom: 50rpx;
 }
-
+.fl{float: left;}
+.fr{float: right;}
 .item1 {
   border-bottom: 1rpx solid #eee;
   padding: 17rpx 23rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   display: flex; 
+  display: -webkit-flex; 
+   justify-content: space-between; 
+   align-items: center; 
+  /* height: 11.33vw; */
+  /* overflow: hidden; */
   background-color: white;
 }
 
@@ -30,4 +36,5 @@
   font-size: 30rpx;
   font-family: FZLTZHUNHK--GBK1-0;
   color: rgba(34, 34, 34, 1);
+  line-height: 11.33vw;
 }

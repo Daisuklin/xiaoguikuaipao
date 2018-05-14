@@ -63,7 +63,7 @@
   </view>
 
   <view class="pwdInputStyle">
-    <input class="pas_input" type="number" maxlength="6" focus="{{focus}}" bindinput="onChangeInput" adjust-position="{{adjust_position}}"></input>
+    <input class="pas_input" value='{{passWord}}' type="number" maxlength="6" focus="{{focus}}" bindinput="onChangeInput" adjust-position="{{adjust_position}}"></input>
     <block wx:for="{{[0,1,2,3,4,5]}}">
       <view class="{{index==0?'itemStyle0':'itemStyle'}}">
         <view wx:if="{{passWordArr[item] == true}}" class="PwdStyle"></view>
