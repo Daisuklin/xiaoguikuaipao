@@ -11,7 +11,7 @@
   <view class="manage-content_duplication">
     <view class="manage-content_duplication1">
       <view>
-        <view bindtap='goNavigateBack' id="{{item.id}}">
+        <view bindtap='goNavigateBack' data-items="{{item}}">
           <view class="manage-content_textarea">{{item.addr}} {{item.roomNo == "null"?"":item.roomNo}}</view>
           <view style=" overflow: hidden;">
             <view class="manage-content_compellation">{{item.contactName}}</view>

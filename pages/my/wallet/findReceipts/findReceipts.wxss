@@ -22,10 +22,23 @@ Page {
   color: #444;
 }
 
+.findReceipts_data .findReceipts_data_list .view_r {
+  height: 16vw;
+  line-height: 16vw;
+}
+
 .findReceipts_data .findReceipts_data_list .text_r {
   font-size: 3.6vw;
   color: #222;
   padding-right: 2.67vw;
+}
+
+.findReceipts_data .findReceipts_data_list .children1 {
+  padding:4vw 4vw;
+}
+
+.findReceipts_data .findReceipts_data_list .children2 {
+  padding:4vw 4vw;
 }
 
 .findReceipts_data .findReceipts_data_btn {
@@ -129,15 +142,21 @@ Page {
   color: #999;
   font-size: 3.2vw;
 }
-.list_childlit .childlit_cont .childlit_cont_r .txt{text-align: left;}
+
+.list_childlit .childlit_cont .childlit_cont_r .txt {
+  text-align: left;
+}
+
 .list_childlit .childlit_cont_income {
   display: flex;
   flex-direction: column;
 }
+
 .list_childlit .childlit_cont_income .txt2 {
   color: #5dd9ab;
   font-size: 3.2vw;
 }
+
 /* 时间选择器 */
 
 .park_bg {

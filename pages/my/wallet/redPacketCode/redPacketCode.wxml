@@ -1,0 +1,21 @@
+<!--pages/my/wallet/redPacketCode/redPacketCode.wxml-->
+<view class='redpacket_contain' bindlongtap='getlongtapsaveimg' >
+  <view class='h1'>新用户专享优惠</view>
+  <view class='content_txt'>{{redpacketData.context}}</view>
+  <view class='conter_bg' style="background: url({{iconImg.img_redpacket_yellow_664_856}}) no-repeat left center / 88.53vw 114.13vw;">
+    <view class='qrcond_title'>
+      <text>龟米新人专属红包</text>
+    </view>
+    <view class='qrcond_price'>
+      <text>5</text>元
+    </view>
+    <view class='qrcode_img'>
+      <image src='{{redpacketData.qrCode}}'></image>
+      <text>打开手机扫一扫领红包</text>
+    </view>
+    <button class='btn_saveimg' bindtap='getSaveCodeimg'>保存图片</button>
+  </view>
+</view>
+<view class='canvas_box'>
+  <canvas style="width: 100vw;height:100vh;background:#fff;" canvas-id="redPacketqrCode" class='canvasd'></canvas>
+</view>

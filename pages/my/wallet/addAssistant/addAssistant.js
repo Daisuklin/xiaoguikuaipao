@@ -1,6 +1,7 @@
 // pages/my/wallet/addAssistant/addAssistant.js
 var iconsUtils = require("../../../../image/icons.js");
 var walletUtil = require("../../../../utils/walletUtil.js");
+var publicEnvironment = require("../../../../utils/publicEnvironment.js");
 Page({
 
   /**
@@ -159,7 +160,47 @@ Page({
     let profileId = courierData.id;//获取user的profileId
     console.info("getuserMessage", getuserMessage, "profileId", profileId)
     // let profileId = 'f68c5359850c4e17bf181cad607719c6'
-    let url = walletUtil.requestUrlList().logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId;//二维码链接
+    //二维码链接
+    let url = walletUtil.requestUrlList().logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId + '?profileOnePayId=' + walletUtil.appUtils.getShopIdData()
+    if (!publicEnvironment.isTest) {
+      url = url + "&env=dev";
+    }
+    var that =this;
+    walletUtil.controllerUtil.getStoreDetail(walletUtil.appUtils.getShopIdData(), {},
+      function (sucData) {
+        if (sucData.data.succeeded) {
+          console.info(sucData.data)
+          let editData = sucData.data.data;
+          let storeNameVal = editData.nickname;
+          let userNameVal = editData.contactName;
+          let setPhoneVal = editData.contactNumber;
+          let addressVal = editData.addr;
+          let setAdressDetailVal = editData.roomNo;
+          let tempFilePaths = editData.avatar;
+          let incomeAcount = editData.incomeAcount;//支付宝邮箱/手机号码
+          let incomeRealName = editData.incomeRealName;//真实姓名
+          that.setData({
+            shopDetail: {
+              editData: editData,
+              storeNameVal: storeNameVal,
+              userNameVal: userNameVal,
+              setPhoneVal: setPhoneVal,
+              AddressVal: addressVal,
+              setAdressDetailVal: setAdressDetailVal,
+              tempFilePaths: tempFilePaths,
+              setincomeAcount: incomeAcount,
+              setincomeRealName: incomeRealName,
+              profileId: profileId,
+              loc: editData.loc
+            }})
+        } else {
+          that.getPromptPark(sucData.data.message.descript)
+        }
+
+
+      }, function (faildata) { }, function (comData) { })
+
+
     this.getAddAssistants();
     this.setData({
       codeImg: url,

@@ -1,4 +1,39 @@
 const getIcons = () => {
+  const  baseIcons={
+    //切换 绿色  35*35
+    icon_qiehuan_green_35_35: "https://qnimg.xiaoguikuaipao.com/JmEQYQNtN3ajdc1372be3ac574d50a43e3d", 
+    //店铺Icon  绿色  40*36
+    icon_dianpu_green_40_36: "https://qnimg.xiaoguikuaipao.com/mLcKmVUHCEBg931502ccc576883776fb2c7",
+    //列表Icon  绿色  51*60
+    icon_liebiao_green_51_60: "https://qnimg.xiaoguikuaipao.com/sinncp1U5Qjk3544076b328b389384ebcf9",
+    //统计Icon  绿色  60*56
+    icon_tongji_green_60_56: "https://qnimg.xiaoguikuaipao.com/YAv2ce6uo0Ghc285f9146a0f434cd3ded93",
+
+    //成功Icon  绿色  120*120
+    icon_chenggong_green_120_120: "https://qnimg.xiaoguikuaipao.com/yFt5sMskkFAB0e9b27a20f5ac75ede198b8",
+    //二维码  
+    icon_erweima_gray_30_30:"https://qnimg.xiaoguikuaipao.com/r3q0LLnQikkSaf5caf3f682d57c79cbdfb3",
+    //广播icon 绿色 105*83
+    icon_Extension_green_105_83: "https://qnimg.xiaoguikuaipao.com/RrpCA3i9vAQW8abf5d579d095b97fa424f7",
+    //用户头像icon 绿色
+    icon_clerk_green_90_83: "https://qnimg.xiaoguikuaipao.com/0ayFD9dUzt6qf9d0836a64b3b3b849854ce",
+    //红包icon 绿色
+    icon_redenvelopes_green_51_60: "https://qnimg.xiaoguikuaipao.com/JYRagNicM0Zr85ae8b66182d3fee9eb7c37",  
+    //获取地址图标 透明
+    icon_address_white_35_41: "https://qnimg.xiaoguikuaipao.com/kvvlDw6fLd5S3ddc4df5b8f5d98bd02721e",
+    // 拍照图标
+    icon_photo_blue_100_100: "https://qnimg.xiaoguikuaipao.com/hlIHwm66JRuNd645b22bf95e44667e9a565",
+    // 获取本地相册
+    icon_album_yellow_100_100: "https://qnimg.xiaoguikuaipao.com/AOgPlWo3ixEAb197a1bff9e81eba5458408",
+    icon_failImg_white_200_200: "https://qnimg.xiaoguikuaipao.com/mXfQ4Bob12Eife88f4be379377e52d9e244",//保存失败图标
+  }
+  const  baseImages={
+    //店铺信息为空 图片
+    img_KongDianPu_gray_310_252: "https://qnimg.xiaoguikuaipao.com/bcAW6TwzgWwl7140b4c6a0953a227d04376", 
+    // 推荐龟米红包中间背景图
+    img_redpacket_yellow_664_856: "https://qnimg.xiaoguikuaipao.com/8XNsHx4AvrIQb4d2c546fc495bb5c382896"
+   
+  }
   const walletIcons = {//钱包页面的图标
     wallet:"https://qnimg.xiaoguikuaipao.com/26RfAbl9c0FQ1c0745d56a455a40b55943f",
     wechat:"https://qnimg.xiaoguikuaipao.com/zVxe2q0FzYD4b4ff225217e38f8b88618f7",
@@ -9,7 +44,7 @@ const getIcons = () => {
     icon_tongji: "https://qnimg.xiaoguikuaipao.com/RMkr4fdlfzqW8638d2e087e7bac54e0b20f",
     icon_logo_weixin: "https://qnimg.xiaoguikuaipao.com/fsxBY6hInhp9b7ce33bf93e75bc440a1c2f",
     icon_logo_zhifubao: "https://qnimg.xiaoguikuaipao.com/WNkh9JyaoDZge1aff736e6ae7e40c2ddbc7",
-    icon_logo_xiaogui: "https://qnimg.xiaoguikuaipao.com/IxfQaXllvwDj22fd4255be194d1897f13f6",
+    icon_logo_xiaogui: "https://qnimg.xiaoguikuaipao.com/KFjvqN2ZihP00ceedea6e22d04a8c1cb93b",
     icon_date: "https://qnimg.xiaoguikuaipao.com/2G9wzalH3M2K354e26d1c10c262e4b5f931",
     icon_nodata: "https://qnimg.xiaoguikuaipao.com/fOmu29wGKBu16f853550ee4daf127f39157"
   }
@@ -49,6 +84,8 @@ const getIcons = () => {
     no: "https://qnimg.xiaoguikuaipao.com/mQTCCFV1ToFQ81194156246033162c8ac60"
   }
   return {
+    baseIcons: baseIcons,
+    baseImages: baseImages,
     walletIcons: walletIcons,
     getDetailsIcons: getDetailsIcons,
     integralIcons: integralIcons,

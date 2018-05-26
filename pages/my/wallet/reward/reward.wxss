@@ -1,0 +1,167 @@
+/* pages/my/wallet/reward/reward.wxss */
+
+.top {
+  height: 383rpx;
+  width: 100vw;
+  text-align: center;
+  background: #f8f8f8;
+}
+
+.text1 {
+  padding-top: 70rpx;
+  font-size: 35rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(34, 34, 34, 1);
+  line-height: 35rpx;
+  font-weight: bold;
+}
+
+.text2-3-container {
+  line-height: 30rpx;
+  padding-top: 11.33vw;
+  padding-bottom: 4vw;
+}
+
+.text2 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: rgba(153, 153, 153, 1);
+  line-height: 30rpx;
+}
+
+.text3 {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  color: #5dd9ab;
+  line-height: 30rpx;
+  font-weight: bold;
+  padding: 0px 10rpx;
+}
+
+.text4-5-container {
+  line-height: 70rpx;
+}
+
+.text4 {
+  font-size: 40rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(254, 117, 26, 1);
+  line-height: 40rpx;
+  display: inline-block;
+}
+
+.text5 {
+  font-size: 80rpx;
+  font-family: PingFang-SC-Bold;
+  color: rgba(254, 117, 26, 1);
+  line-height: 70rpx;
+  display: inline-block;
+}
+
+.bg999 {
+  background: #999;
+}
+
+.qrCode {
+  margin: 0 auto;
+  width: 250rpx;
+  height: 60rpx;
+  background: rgba(236, 236, 236, 1);
+  border-radius: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qrCode image {
+  width: 4vw;
+  height: 4vw;
+}
+
+.qrCode text {
+  padding-left: 1vw;
+  color: #666;
+  font-size: 3.2vw;
+}
+
+.list_data {
+  background: #fff;
+}
+
+.list_data .nav_tab {
+  display: flex;
+  height: 12vw;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.list_data .nav_tab view {
+  font-size: 3.6vw;
+  color: #999;
+  flex: 1;
+  text-align: center;
+  height: 12vw;
+  line-height: 12vw;
+}
+
+.list_data .nav_tab .active {
+  color: #5dd9ab;
+  background: url('https://qnimg.xiaoguikuaipao.com/JsAkk05tnyth83139588f6be478b13e903f') no-repeat center 10vw / 7.67vw 1.3vw;
+}
+
+.list_data .ul .li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 4.267vw;
+  border-bottom: 1rpx solid #eee;
+  height: 14vw;
+  align-items: center;
+}
+
+.list_data .ul .li:last-child {
+  border: none;
+}
+
+.list_data .ul .li .li_l {
+  display: flex;
+  flex-direction: column;
+}
+
+.list_data .ul .li .txt_top {
+  font-size: 3.6vw;
+  color: #222;
+}
+
+.list_data .ul .li .txt_tit {
+  font-size: 3.2vw;
+  color: #999;
+}
+
+.list_data .ul .li .li_r {
+  font-size: 4vw;
+  color: #fe751a;
+}
+
+.promise_text {
+  font-size: 3.6vw;
+  color: #999;
+  text-align: center;
+  padding: 50rpx 0rpx 30rpx;
+}
+
+.nodata {
+  text-align: center;
+  padding-top: 25vw;
+}
+
+.nodata image {
+  width: 43.6vw;
+  height: 33.87vw;
+}
+
+.nodata text {
+  display: block;
+  font-size: 3.6vw;
+  color: #999;
+  text-align: center;
+}

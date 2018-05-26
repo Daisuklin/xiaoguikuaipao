@@ -2,13 +2,17 @@
   "pages": [
     "pages/home2/home2",
     "pages/my/my",
+    "pages/my/wallet/wallet",
+    "pages/my/wallet/multipleShop/list/list",
+    "pages/my/wallet/multipleShop/edit/edit",
+    "pages/my/wallet/reward/reward",
+    "pages/my/wallet/redPacketCode/redPacketCode",
     "pages/my/wallet/findReceipts/findReceipts",
     "pages/my/wallet/recordReceipts/recordReceipts",
     "pages/my/wallet/incomestatistics/incomestatistics",
     "pages/my/wallet/details/details",
     "pages/my/wallet/receiptcode/receiptcode",
     "pages/my/wallet/addAssistant/addAssistant",
-    "pages/my/wallet/wallet",
     "pages/my/vouchers/vouchers",
     "pages/my/integral/integral",
     "pages/my/integral/instructions/instructions",
@@ -76,6 +80,7 @@
     "pages/my/order/order",
     "pages/my/order/orderDetail/orderDetail",
     "pages/newLogin/newLogin"
+    
   ],
   "window": {
     "backgroundTextStyle": "black",

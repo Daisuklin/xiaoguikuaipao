@@ -1,14 +1,15 @@
 /* pages/my/wallet/receiptcode/receiptcode.wxss */
 
 .receipt_code {
+  height: 100vh;
+  overflow: hidden;
 }
 
 .receipt_code .receipt_code_main {
-  background: #4d993a;
-}
-
-.receipt_code .receipt_code_main {
-  text-align: center;
+  background: #25853b;
+   text-align: center;
+   height: 93vh;
+   position: relative;
 }
 
 .receipt_code .receipt_code_main .code_title {
@@ -27,7 +28,7 @@
 .receipt_code .receipt_code_main .code_icon_img {
   display: flex;
   justify-content: center;
-  padding-top: 8.6vw;
+  padding-top: 6.6vw;
 }
 
 .receipt_code .code_icon_img .code_icon_vie {
@@ -51,16 +52,26 @@
 }
 
 .receipt_code .receipt_code_main .code_qr {
-  padding: 9.5vw 0px 15.73vw;
+   padding: 8.5vw 0px 10.13vw; 
+  /* padding: 4.5vh 0px 6.13vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 .receipt_code .receipt_code_main .code_qr image {
-  width: 49.2vw;
-  height: 49.2vw;
+  width: 44vw;
+  height: 44vw;
 }
-
+.receipt_code .receipt_code_main .code_qr text{
+  font-size: 3.6vw;color: #eee;
+  padding-top: 3vw;
+ 
+  }
 .receipt_code .receipt_code_main .code_xiaoguilogo {
   height: 26.667vw;
+   position: absolute;bottom: 0rpx;left: 0rpx;
 }
 
 .receipt_code .receipt_code_main .code_xiaoguilogo image {
@@ -69,23 +80,38 @@
 }
 
 .code_btn {
-   height: 12vw;
+  height: 7vw;
 }
 
 .code_btn button {
   background: #5dd9ab;
   color: #fff;
-  height: 12vw;
+  height: 7vh;
+  line-height: 7vh;
   width: 100vw;
   border: none;
   border-radius: 0rpx;
 }
-.code_btn button::after{border: none;}
 
+.code_btn button::after {
+  border: none;
+}
 
 /* canvas画店铺二维码 */
-.receipt_code_box{background: #f8f8f8;}
+
+.receipt_code_box {
+  background: #f8f8f8;
+  height: 0rpx;
+  overflow: hidden;
+  opacity: 0;position: fixed;top: 200vh;
+}
+
 .press-style {
   background: rgb(43, 43, 43);
   opacity: 1;
+}
+
+.canvas_content {
+  /* display: none; */
+  opacity: 0;
 }

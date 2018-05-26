@@ -1,0 +1,38 @@
+<!--pages/my/wallet/reward/reward.wxml 龟米奖励-->
+<view class='tortoise_reward'>
+  <view class="top">
+    <view class='text2-3-container'>
+      <label class='text2'>已获得</label>
+    </view>
+    <view class='text4-5-container'>
+      <label class='text5'>{{rewardMessage.totalBounty}}</label>
+      <label style='font-size:3.6vw;color:#999;'>龟米</label>
+    </view>
+    <view class='qrCode' bindtap='gotoReceiptcode'>
+      <image src='{{baseIcons.icon_erweima_gray_30_30}}'></image>
+      <text>龟米红包码</text>
+    </view>
+  </view>
+  <view class='list_data'>
+    <view class='nav_tab'>
+      <view class="{{active=='1'?'active':''}}" id='1' bindtap='bindNav'>奖励明细</view>
+      <view class="{{active=='2'?'active':''}}" id='2' bindtap='bindNav'>奖励在途中</view>
+    </view>
+    <view class='ul'>
+      <view class='li' wx:for="{{rewardData}}" wx:key="{{item.id}}">
+        <view class='li_l'>
+          <text class='txt_top'>{{item.time}}</text>
+          <text class='txt_tit'>{{item.context}}</text>
+        </view>
+        <text class='li_r' style="{{active==2?'color:#222;':''}}">{{active==1?'+':''}}2</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='promise_text' >
+  没有更多了~
+</view>
+<view class='nodata' hidden='true'>
+  <image src='{{icons2.icon_nodata}}'></image>
+  <text>快去赚奖励吧~</text>
+</view>

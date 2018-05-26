@@ -1,7 +1,7 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
 	"appid": "wx0156fc8fcb812dbf",
-	"projectname": "%E5%B0%8F%E9%BE%9FtestDemo",
+	"projectname": "%E5%B0%8F%E9%BE%9FtestServer",
 	"svr": "",
 	"client": "",
 	"qcloudRoot": "",
@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 28,
 			"list": [
 				{
 					"id": 0,
@@ -106,7 +106,7 @@
 					"id": 11,
 					"name": "收款详情",
 					"pathName": "pages/my/wallet/details/details",
-					"query": "orderId=298"
+					"query": "orderId=158"
 				},
 				{
 					"id": -1,
@@ -191,6 +191,30 @@
 					"name": "店铺分类",
 					"pathName": "pages/store/glspecial/glspecial",
 					"query": "isAgin=0&storeId=1166"
+				},
+				{
+					"id": 26,
+					"name": "添加分店",
+					"pathName": "pages/my/wallet/multipleShop/edit/edit",
+					"query": "indexs=2&profileId=27"
+				},
+				{
+					"id": -1,
+					"name": "龟米奖励",
+					"pathName": "pages/my/wallet/reward/reward",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "龟米红包二维码",
+					"pathName": "pages/my/wallet/redPacketCode/redPacketCode",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分店列表",
+					"pathName": "pages/my/wallet/multipleShop/list/list",
+					"query": ""
 				}
 			]
 		}

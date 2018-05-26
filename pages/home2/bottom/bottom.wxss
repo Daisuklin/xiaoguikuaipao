@@ -71,7 +71,10 @@
   font-size: 28rpx;
   color: #666;
 }
-
+.pull-text image{width: 30rpx;height: 30rpx;padding-right:6rpx;
+position:relative;
+top:6rpx;
+}
 .box_hotshop {
   width: 100%;
   height: auto;

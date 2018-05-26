@@ -47,7 +47,10 @@
   <view wx:for="{{stores}}">
     <template is="store5" data="{{item}}" />
   </view>
-  <view class='pull-text' wx:if='{{goodsLen!=stores.length}}'>上拉加载更多</view>
+  <!-- <view class='pull-text' wx:if='{{goodsLen!=stores.length}}'>上拉加载更多</view> -->
+   <view class='pull-text' wx:if='{{goodsLen!=stores.length}}'>
+   <image src="https://qnimg.xiaoguikuaipao.com/jycFEvyRA82Qf227102d9d17ded1a33e262"></image>
+   努力加载中...</view>
   <view wx:if='{{goodsLen==stores.length&&stores.length==0}}'>
     <image class='no-server-img2' src='https://qnimg.xiaoguikuaipao.com/bcAW6TwzgWwl7140b4c6a0953a227d04376'></image>
   </view>

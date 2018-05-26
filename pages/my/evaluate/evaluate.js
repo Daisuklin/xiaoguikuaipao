@@ -164,8 +164,9 @@ Page({
         })
         var commodity = that.data.commodity;
         var image = that.data.tempFilePaths;
-        console.log(JSON.stringify(image) + "我是图片哦")
+        
         var imgName = JSON.stringify(image).substr(60, 35);
+        console.log(JSON.stringify(image) + "我是图片哦", "image", image, 'imgName', imgName)
         for (var i = 0; i < commodity.length; i++) {
           if (rec_id == commodity[i].rec_id) {
             var flagIndex = i;
@@ -176,6 +177,7 @@ Page({
                 'imageURL': res.imageURL,
               });
               var images = that.data.imageURL
+              console.info("res.imageURL", res.imageURL, "images", images)
               if (images == undefined || images == null || images == 0) {
 
               } else {

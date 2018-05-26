@@ -1,6 +1,7 @@
 <!--pages/my/wallet/recordReceipts/recordReceipts.wxml 收款记录详情-->
 <view class='contain_receipts'>
   <view class='contain_receipts_date'>
+    <text bindtap='getFindReceipts'>时间条件查询</text>
     <image src='{{icons.icon_date}}' bindtap='getFindReceipts'></image>
   </view>
   <view class='incomestatistics_list'>

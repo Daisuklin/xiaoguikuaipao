@@ -1,13 +1,20 @@
 <!--pages/my/wallet/findReceipts/findReceipts.wxml-->
 <view class='contain_findReceipts'>
   <view class='findReceipts_data'>
-    <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='1'>
+    <view class='findReceipts_data_list border-bot'>
       <text class='text_l'>开始时间 </text>
-      <text class='text_r' style="{{beginTime==''?'color:#999':''}}">{{beginTime==""?'选择时间':beginTime}}</text>
+      <view class='view_r'>
+        <text class='text_r weui-cell__ft_in-access children1'  bindtap='bindthetimes' id='1' style="{{beginTime==''?'color:#999':''}}">{{beginTime==""?'选择日期':beginTime}}</text>
+        <text class='text_r weui-cell__ft_in-access children2' bindtap='getTimeHourMin' id='1' style="{{showHourMinBegin==''?'color:#999':''}}">{{showHourMinBegin==""?'选择时间':showHourMinBegin}}</text>
+      </view>
+
     </view>
-    <view class='findReceipts_data_list weui-cell__ft_in-access border-bot' bindtap='bindthetimes' id='2'>
+    <view class='findReceipts_data_list border-bot'>
       <text class='text_l'>截止时间 </text>
-      <text class='text_r' style="{{endTime==''?'color:#999':''}}">{{endTime==''?'选择时间':endTime}}</text>
+      <view class='view_r'>
+        <text class='text_r weui-cell__ft_in-access children1'  bindtap='bindthetimes' id='2' style="{{endTime==''?'color:#999':''}}">{{endTime==""?'选择日期':endTime}}</text>
+        <text class='text_r weui-cell__ft_in-access children2' bindtap='getTimeHourMin' id='2' style="{{showHourMinEnd==''?'color:#999':''}}">{{showHourMinEnd==""?'选择时间':showHourMinEnd}}</text>
+      </view>
     </view>
     <view class='findReceipts_data_btn'>
       <button bindtap='geFindTreceiptsList'>查询</button>
@@ -54,11 +61,11 @@
     </view>
   </view>
 </view>
-<view class='text_mesg'>
+<view class='text_mesg' wx:if="{{showSource}}">
   <text wx:if="{{recordReceiptsList.length>0}}">以上是全部数据 </text>
   <text wx:else>暂无收款记录数据 </text>
 </view>
-<!-- 时间选择 -->
+<!-- 日期选择 begin -->
 <view class='park_bg' wx:if="{{isshowtime}}"></view>
 <view class='datachoice_box' wx:if="{{isshowtime}}">
   <view class='datachoice_conten'>
@@ -79,6 +86,27 @@
     </view>
   </view>
 </view>
+<!-- 日期选择 end -->
+<!-- 时间选择器 begin -->
+<view class='park_bg' wx:if="{{isTimeHourMin}}"></view>
+<view class='datachoice_box' wx:if="{{isTimeHourMin}}">
+  <view class='datachoice_conten'>
+    <picker-view indicator-style="height: 50px;" class='picker_view' style="width: 92vw; height: 36vw;" value="{{timeVal}}" bindchange="bindChangeTimes">
+      <picker-view-column class="picker_view_child border-radius-top-bot-left">
+        <view wx:for="{{hour}}" style="line-height: 50px">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column class="picker_view_child">
+        <view wx:for="{{minute}}" style="line-height: 50px">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+    <view class='btn_box'>
+      <button bindtap='getHourMinCancel'>取消</button>
+      <button style='border-left:1rpx solid #eee;' bindtap='getHourMinDetermine' id="{{judnum}}">确定</button>
+    </view>
+  </view>
+</view>
+<!-- 时间选择器 end -->
+
 <!-- 提示弹窗 begin-->
 <block wx:if="{{isPrompt}}">
   <view class="box_prompt_box">

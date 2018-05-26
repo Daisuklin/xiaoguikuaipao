@@ -8,8 +8,19 @@ Page {
   text-align: right;
   padding: 2vw 4vw;
   height: 6.133vw;
-}
+  background: #fff;
+  position: fixed;
+  top: 0rpx;
+  width: 92vw;
+  display: flex;
+  justify-content: flex-end;
 
+}
+.contain_receipts_date text{
+  font-size: 3.6vw;
+  color: #999;
+  padding-right: 10rpx;
+  }
 .contain_receipts_date image {
   width: 6.133vw;
   height: 6.133vw;
@@ -19,6 +30,7 @@ Page {
 
 .incomestatistics_list {
   margin-bottom: 4vw;
+  padding-top: 10.133vw;
 }
 
 .incomestatistics_list .list_box {

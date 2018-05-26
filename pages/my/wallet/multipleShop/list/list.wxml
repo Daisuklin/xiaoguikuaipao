@@ -1,0 +1,24 @@
+<!--pages/my/wallet/multipleShop/list/list.wxml-->
+<view>
+  <view class='none' wx:if="{{list.length<=1}}" >
+    <image src='{{baseImages.img_KongDianPu_gray_310_252}}'></image>
+    <text>暂无分店</text>
+  </view>
+
+  <view wx:if="{{list.length>1}}">
+    <view class='ul'>
+      <view class='li' wx:for="{{list}}" wx:key="{{item.id}}">
+        <view>{{item.nickname}}</view>
+        <view bindtap='{{isClick?"":"delAction"}}' id="{{item.id}}" hover-class='hover' >删除</view>
+        <view bindtap='{{isClick?"":"gotoUpdate"}}' hover-class='hover' id='{{item.id}}'>编辑</view>
+      </view>
+      
+    </view>
+  </view>
+  <view class='btn_add' bindtap='{{isClick?"":"gotoEdit"}}'>
+    <button>
+      新增分店
+    </button>
+  </view>
+
+</view>

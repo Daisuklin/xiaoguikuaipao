@@ -1,5 +1,6 @@
 // pages/my/wallet/receiptcode/receiptcode.js
 var iconsUtils = require("../../../../image/icons.js");
+var publicEnvironment = require("../../../../utils/publicEnvironment.js");
 var walletUtil = require("../../../../utils/walletUtil.js");
 Page({
 
@@ -12,6 +13,9 @@ Page({
   },
   // 获取商家二维码数据
   getcodeData: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     let that = this;
     let getuserMessage = walletUtil.appUtils.getUserData();
     let courierData = getuserMessage.userData;
@@ -22,12 +26,18 @@ Page({
     let profileId = courierData.id;//获取user的profileId
     // https://dev-logistics.xiaoguikuaipao.com/onePay/qrcode/employee/f68c5359850c4e17bf181cad607719c6
     console.info("logisticsUrl--", walletUtil.requestUrlList().logisticsUrl)
-    let url = walletUtil.requestUrlList().logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId
-    console.info(url)
+    var url = walletUtil.requestUrlList().logisticsUrl + '/onePay/qrcode/' + types + '/' + profileId + '?profileOnePayId=' + walletUtil.appUtils.getShopIdData() 
+    if (!publicEnvironment.isTest){
+      url = url+"&env=dev";
+    }
+   
     that.setData({
       imgurl: url
     })
     that.downloadImg(url)
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
   },
     
   /**
@@ -124,7 +134,7 @@ Page({
           }, fail(res) {
             wx.showToast({
               title: '保存失败',
-              icon: "success"
+              image: "../../../../image/evaluate/cry.png"
             })
           }
         })
@@ -157,7 +167,7 @@ Page({
   },
   //画海报
   drawCard: function (imgUrl, bgImg) {
-    console.info(this.data.w + "本地临时文件" + this.data.h, imgUrl);
+    console.info(this.data.w + "本地临时文件" + this.data.h, imgUrl, bgImg);
     const ctx = wx.createCanvasContext('firstCanvas')
     // ctx.drawImage(bgImg, 0, 0, 750, 1334, 0, 0, 375, 667);
     //ctx.drawImage(bgImg, 0, 0, 750, 1334, 0, 0, 320, 504);

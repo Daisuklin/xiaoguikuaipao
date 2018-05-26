@@ -25,11 +25,13 @@ Page({
   goNavigateBack: function (e) {
     console.log(e)
     var a = this.options.transmitId;
-    console.log(a)
+    var items = e.currentTarget.dataset.items;
+    // console.log(a)
     if (a == 15626199190) {//来自确认订单的入口，做跳转处理
-      var defaltId = e.currentTarget.id;
+      var defaltId = items.id;
       wx.setStorageSync("defaltId", defaltId);//将id储存到本地
-      wx.navigateBack({ delta: 1 });//返回上一级
+      wx.setStorageSync("addressVal", items);//将id储存到本地
+      wx.navigateBack();//返回上一级
     } else {//来自总地址列表的入口
     }
   },

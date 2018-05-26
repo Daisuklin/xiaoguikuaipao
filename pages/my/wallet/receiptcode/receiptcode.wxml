@@ -1,6 +1,6 @@
 <!--pages/my/wallet/receiptcode/receiptcode.wxml-->
-<!-- <view class='receipt_code' hidden='ture'>
-  <view class='receipt_code_main'>
+<view class='receipt_code'>
+  <view class='receipt_code_main' bindlongtap='getlongtapsaveimg'>
     <view class='code_title'>在此扫码付款</view>
     <text class='code_txt'>支付送龟米｜龟米当钱花</text>
     <view class='code_icon_img'>
@@ -15,18 +15,19 @@
     </view>
     <view class='code_qr'>
       <image src="{{imgurl}}"></image>
+      <text>长按可保存收款二维码</text>
     </view>
     <view class='code_xiaoguilogo'>
       <image src="{{icons.icon_logo_xiaogui}}"></image>
     </view>
-    <view class='code_btn'>
-      <button bindtap='getSaveCodeimg'>保存收款二维码</button>
-    </view>
   </view>
-</view> -->
-<view class='receipt_code_box' >
-<canvas style="width:100vw; height:100vh;" canvas-id="firstCanvas" bindlongtap="getlongtapsaveimg"></canvas>
-<view class='code_btn'>
+   <view class='code_btn'>
       <button bindtap='getSaveCodeimg'>保存收款二维码</button>
-    </view>
+    </view> 
+</view>
+<view class='receipt_code_box'>
+  <canvas style="width:100vw; height:100vh;" class='canvas_content' canvas-id="firstCanvas" bindlongtap="getlongtapsaveimg"></canvas>
+  <!-- <view class='code_btn'>
+    <button bindtap='getSaveCodeimg'>保存收款二维码</button>
+  </view> -->
 </view>

@@ -1,0 +1,54 @@
+/* pages/my/wallet/multipleShop/list/list.wxss */
+
+.none{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction:column;
+  font-size: 3.6vw;
+
+}
+.none image{
+  width: 41.333vw;
+  height: 33.6vw;
+}
+.none>text{
+  color:#999999;
+}
+
+.ul{
+width: 100vw;
+padding-bottom: 12vw;
+}
+.ul .li{
+  height:16vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(238,238,238,1);
+  background: #fff;
+}
+.ul .li view{
+  line-height:16vw;
+  font-size:35rpx;
+}
+.ul .li  view:nth-child(1){
+  width: 70vw;
+  text-indent: 30rpx;
+}
+.ul .li  view:nth-child(2),.ul .li  view:nth-child(3){
+   font-size:27rpx;
+   width: 15vw;
+  text-align: center;
+}
+.ul .li  view:nth-child(3){
+  color:#5DD9AB;
+}
+.ul .li  view.hover{
+  background: #eeeeee;
+}
+
+.btn_add{position: fixed;bottom: 0;left: 0;width: 100vw;height: 12vw;}
+.btn_add button{width: 100vw;height: 12vw;color:#fff; background: #5DD9AB; border-radius: 0;}

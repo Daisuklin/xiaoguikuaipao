@@ -1,0 +1,271 @@
+/* pages/my/wallet/multipleShop/edit/edit.wxss */
+
+/* 新增分店 */
+
+.multipleShop_edit {
+}
+
+.multipleShop_edit .multipleShop_contain {
+  margin: 2.67vw 4vw;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.multipleShop_contain .head_portrait {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 22.8vw;
+}
+
+.multipleShop_contain .head_portrait image {
+  width: 10.67vw;
+  height: 10.67vw;
+  border-radius: 50%;
+}
+
+.multipleShop_contain .head_portrait text {
+  font-size: 3.6vw;
+  color: #999;
+  padding-top: 15rpx;
+}
+
+.multipleShop_contain .ul {
+}
+
+.multipleShop_contain .ul .li {
+  padding: 0rpx 4.26vw;
+}
+
+.multipleShop_contain .ul .li .li_title {
+  height: 10.67vw;
+  line-height: 10.67vw;
+  color: #5dd9ab;
+  font-size: 3.6vw;
+}
+
+.multipleShop_contain .ul .li .li_bot {
+  height: 9.33vw;
+}
+
+.multipleShop_contain .ul .li .li_bot .li_input {
+  font-size: 3.6vw;
+  color: #222;
+  height: 9.33vw;
+  line-height: 9.33vw;
+}
+
+.multipleShop_contain .ul .li .li_bot .li_input::-webkit-input-placeholder,
+.multipleShop_contain .ul .li .li_bot .li_input::-moz-input-placeholder {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.multipleShop_contain .ul .li .li_address {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.multipleShop_contain .ul .li .li_address text {
+  color: #999;
+  font-size: 3.6vw;
+}
+
+.multipleShop_contain .ul .li .li_address .text_r {
+  padding-right: 4vw;
+  padding-left: 4vw;
+  background: url(https://qnimg.xiaoguikuaipao.com/kvvlDw6fLd5S3ddc4df5b8f5d98bd02721e) no-repeat left center / 3.33vw 4vw;
+}
+
+.accounts_receivable_account {
+  margin: 2.67vw 4vw 6.67vw;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.accounts_receivable_account .account_title {
+  height: 10.67vw;
+  line-height: 10.67vw;
+  color: #666;
+  font-size: 4.67vw;
+  padding-left: 4.26vw;
+}
+
+.accounts_receivable_account .ul .li {
+  padding: 0rpx 4.26vw;
+}
+
+.accounts_receivable_account .ul .li .li_title {
+  height: 10.67vw;
+  line-height: 10.67vw;
+  color: #5dd9ab;
+  font-size: 3.6vw;
+}
+
+.accounts_receivable_account .ul .li .li_bot {
+  height: 9.33vw;
+}
+
+.accounts_receivable_account .ul .li .li_bot .li_input {
+  font-size: 4vw;
+  color: #222;
+  height: 9.33vw;
+  line-height: 9.33vw;
+}
+
+.accounts_receivable_account .ul .li .li_bot .li_input::-webkit-input-placeholder {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.btn_submint {
+  width: 100vw;
+  height: 12vw;
+  line-height: 12vw;
+  background: #5dd9ab;
+  color: #fff;
+  border: none;
+  border-radius: 0rpx;
+}
+
+.btn_submint::after {
+  border: none;
+}
+
+/* 弹窗 */
+
+.park_bg {
+  background: rgba(0, 0, 0, 0.5);
+  width: 105vw;
+  height: 105vh;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 100;
+}
+
+.store_portrait {
+  position: fixed;
+  left: 0rpx;
+  width: 100vw;
+  background: #fff;
+  bottom: 0rpx;
+  z-index: 101;
+}
+
+.store_portrait .title {
+  font-size: 4.667vw;
+  color: #444;
+  text-align: center;
+  padding: 5.3vw 0rpx 5.87vw;
+}
+
+.store_portrait .park_img {
+  display: flex;
+  justify-content: center;
+}
+
+.store_portrait .park_img .img_li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.store_portrait .park_img .img_li text {
+  font-size: 3.6vw;
+  color: #999;
+}
+
+.store_portrait .park_img image {
+  width: 13.33vw;
+  height: 13.33vw;
+}
+
+.pad_l_155 {
+  padding-left: 20.67vw;
+}
+
+.store_portrait .btn_close {
+  width: 48vw;
+  height: 9.33vw;
+  line-height: 9.33vw;
+  color: #999;
+  font-size: 4vw;
+  background: none;
+  border-radius: 20vw;
+  margin: 8vw auto 4vw;
+}
+
+.store_portrait .btn_close::after {
+  border: 1rpx solid #999;
+  border-radius: 20vw;
+}
+
+/* 新增成功 */
+
+.multipleShop_success_content {
+  margin: 2.67vw;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.multipleShop_success_content .img_top {
+  width: 16vw;
+  height: 16vw;
+  margin: 10.67vw 0rpx 5.3vw;
+}
+
+.multipleShop_success_content .p_tit {
+  color: #222;
+  font-size: 4vw;
+  padding-bottom: 5.3vw;
+}
+.multipleShop_success_content .p_txt{
+  font-size: 3.6vw;
+  color: #666;
+}
+.multipleShop_success_content .btn_ok{
+  width: 33.3vw;
+  height: 9.33vw;
+  line-height: 9.33vw;
+  color: #5DD9AB;
+  font-size: 4.67vw;
+  background: #fff;
+  margin: 7.6vw 0rpx 5.6vw;
+}
+.multipleShop_success_content .btn_ok::after{border: 1rpx solid #5DD9AB;}
+/*弹窗之提示信息  */
+
+.box_prompt_box {
+  position: fixed;
+  top: 0vh;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  margin-top: -5.3334vw;
+  z-index: 999999;
+  justify-content: center;
+  height: 105vh;
+}
+
+.box_prompt {
+  background: rgba(0, 0, 0, 0.5);
+  line-height: 4.6666vw;
+  padding: 2vw 5vw;
+  border-radius: 2vw;
+  max-width: 80vw;
+  font-size: 4vw;
+}
+
+.box_prompt text {
+  color: #fff;
+  font-size: 4vw;
+}

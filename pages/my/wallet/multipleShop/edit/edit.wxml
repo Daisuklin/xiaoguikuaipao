@@ -1,0 +1,173 @@
+<!--pages/my/wallet/multipleShop/edit/edit.wxml-->
+<!-- 新增分店 begin-->
+<view class='multipleShop_edit' wx:if="{{indexs==1}}">
+  <view class='multipleShop_contain'>
+    <view class='head_portrait'>
+      <image src="{{tempFilePaths==''?icon_img.icon_photo_blue_100_100:tempFilePaths}}" bindtap='takeStorePhoto' mode="aspectFill"></image>
+      <text>店铺头像</text>
+    </view>
+    <view class='ul'>
+      <form>
+        <view class='li'>
+          <view class='li_title'>店名</view>
+          <view class='li_bot'>
+            <input placeholder='店铺名称' class='li_input' bindinput='setStoreName'></input>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>联系人</view>
+          <view class='li_bot'>
+            <input placeholder='联系人姓名' class='li_input' bindinput='setUserName'></input>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>联系方式</view>
+          <view class='li_bot'>
+            <input placeholder='手机号码' type='number' maxlength='11' class='li_input' bindinput='setPhone'></input>
+          </view>
+        </view>
+        <view class='li' bindtap='getAdress'>
+          <view class='li_title'>地址</view>
+          <view class='li_bot li_address'>
+            <block wx:if="{{AddressVal==''}}">
+              <text>店铺地址</text>
+              <text class='text_r weui-cell__ft_in-access'>定位</text>
+            </block>
+            <block wx:else>
+            <text>{{AddressVal}}</text>
+            </block>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>详细地址</view>
+          <view class='li_bot'>
+            <input placeholder='街道，门牌号' class='li_input' bindinput='setAdressDetail'></input>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+  <view class='accounts_receivable_account'>
+    <view class='account_title'>实时到账账号</view>
+    <view class='ul'>
+      <view class='li'>
+        <view class='li_title'>支付宝邮箱/手机号码</view>
+        <view class='li_bot'>
+          <input placeholder='支付宝邮箱/手机号码' class='li_input' value='{{setincomeAcount}}' bindinput='setincomeAcount'></input>
+        </view>
+      </view>
+      <view class='li'>
+        <view class='li_title'>支付宝真实姓名</view>
+        <view class='li_bot'>
+          <input placeholder='支付宝真实姓名' class='li_input' value='{{setincomeRealName}}' bindinput='setincomeRealName'></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='btn_submint' bindtap='getNewBranchStore'  id='1'>确认新增</button>
+</view>
+<!-- 新增分店 end -->
+
+<!-- 编辑分店 begin -->
+<view class='multipleShop_edit' wx:if="{{indexs==2}}">
+  <view class='multipleShop_contain'>
+    <view class='head_portrait'>
+      <image src="{{tempFilePaths}}" bindtap='takeStorePhoto'></image>
+      <text>店铺头像</text>
+    </view>
+    <view class='ul'>
+      <form>
+        <view class='li'>
+          <view class='li_title'>店名</view>
+          <view class='li_bot'>
+            <input placeholder='店铺名称' class='li_input' value='{{storeNameVal}}' bindinput='setStoreName'></input>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>联系人</view>
+          <view class='li_bot'>
+            <input placeholder='联系人姓名' class='li_input' value='{{userNameVal}}' bindinput='setUserName'></input>
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>联系方式</view>
+          <view class='li_bot'>
+            <input placeholder='手机号码' type='number' maxlength='11' class='li_input' value='{{setPhoneVal}}' bindinput='setPhone'></input>
+          </view>
+        </view>
+        <view class='li' bindtap='getAdress'>
+          <view class='li_title'>地址</view>
+          <view class='li_bot li_address'>
+          <text>{{AddressVal}}</text>
+            <!-- <text>店铺地址</text>
+            <text class='text_r weui-cell__ft_in-access'>定位</text> -->
+          </view>
+        </view>
+        <view class='li'>
+          <view class='li_title'>详细地址</view>
+          <view class='li_bot'>
+            <input placeholder='街道，门牌号' class='li_input' value='{{setAdressDetailVal}}' bindinput='setAdressDetail'></input>
+          </view>
+        </view>
+      </form>
+    </view>
+
+  </view>
+  <view class='accounts_receivable_account'>
+    <view class='account_title'>实时到账账号</view>
+    <view class='ul'>
+      <view class='li'>
+        <view class='li_title'>支付宝邮箱/手机号码</view>
+        <view class='li_bot'>
+          <input placeholder='支付宝邮箱/手机号码' class='li_input' value='{{setincomeAcount}}' bindinput='setincomeAcount'></input>
+        </view>
+      </view>
+      <view class='li'>
+        <view class='li_title'>支付宝真实姓名</view>
+        <view class='li_bot'>
+          <input placeholder='支付宝真实姓名' class='li_input' value='{{setincomeRealName}}' bindinput='setincomeRealName'></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='btn_submint' bindtap='getNewBranchStore' id='2'>确认修改</button>
+</view>
+<!-- 编辑分店 end -->
+
+<!-- 分店新增成功 begin-->
+<view class='multipleShop_success' wx:if="{{indexs==3}}">
+  <view class='multipleShop_success_content'>
+    <image src='{{icon_img.icon_chenggong_green_120_120}}' class='img_top'></image>
+    <text class='p_tit'>新增成功</text>
+    <text class='p_txt'>您可点击【切换分店】选择分店</text>
+    <text class='p_txt'>查看分店账本情况</text>
+    <button class='btn_ok' bindtap='returnList'>确定</button>
+  </view>
+</view>
+<!-- 分店新增成功 end-->
+<!-- 店铺头像 -->
+<view class='park_bg' wx:if="{{isstorephoto}}"></view>
+<view class='store_portrait' wx:if="{{isstorephoto}}">
+  <view class='title'>选择头像</view>
+  <view class='park_content'>
+    <view class='park_img'>
+      <view class='img_li' bindtap='getPhotograph' id="1">
+        <image src='{{icon_img.icon_photo_blue_100_100}}'></image>
+        <text>拍照</text>
+      </view>
+      <view class='img_li pad_l_155' bindtap='getPhotograph' id='2'>
+        <image src='{{icon_img.icon_album_yellow_100_100}}'></image>
+        <text>相册</text>
+      </view>
+    </view>
+    <button class='btn_close' bindtap='bindClosePark'>关闭</button>
+  </view>
+</view>
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

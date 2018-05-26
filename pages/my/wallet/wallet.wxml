@@ -1,6 +1,21 @@
-<view class='box' wx:if="{{onePayFlag}}">
+<view class='box {{showShopList?"noscroll":""}}' wx:if="{{onePayFlag==200}}">
+  <view wx:if="{{shops.length>1&&detailsData.isEmployee==false}}" class='btn_select' bindtap='btn_select'>
+    <text>切换分店</text>
+    <image src='{{baseIcons.icon_qiehuan_green_35_35}}'></image>
+  </view>
+  <view class='pickerListBg ' wx:if="{{showShopList}}">
+    <view class='{{showShopList?" nextProblem":""}}'>
+      <view class='title'>
+        切换分店
+        <text class='btn_Close' bindtap='btn_select'>X</text>
+      </view>
+      <scroll-view bindscroll="scrollFun" class='pickerList' scroll-top="{{scrollTo}}" scroll-y="true">
+        <view bindtap='changeShopId' wx:for="{{shops}}" wx:key="item" class='{{item.isCurrent?"on":""}}' data-id="{{item.id}}">{{item.nickname}}</view>
+      </scroll-view>
+    </view>
+  </view>
   <view class="top">
-    <view class='text1'>{{getUserStoreData.nickname}}</view>
+    <view class='text1'>{{detailsData.isAll?'总账本':detailsData.nickName}}</view>
     <view class='text2-3-container'>
       <label class='text2'>今日收款</label>
       <label class='text3'>{{detailsData.countNumber}}</label>
@@ -10,53 +25,91 @@
       <label class='text4'>￥</label>
       <label class='text5'>{{detailsData.sumIncomeMoney}}</label>
     </view>
+    <view class='qrCode' bindtap='gotoReceiptcode'  wx:if="{{!detailsData.isAll}}">
+      <image src='{{baseIcons.icon_erweima_gray_30_30}}'></image>
+      <text>官方收款码</text>
+    </view>
   </view>
   <view class='center'>
     <view class='item-container border' hover-class='press-style' bindtap='gotorecordReceipts'>
       <view class='text6-7-container'>
         <label>
-          <image src='{{icons.icon_jilu}}' class='his-icon'></image>
+          <image src='{{baseIcons.icon_liebiao_green_51_60}}' class='his-icon'></image>
         </label>
         <label class='text6'>收款记录</label>
       </view>
       <label class='triangle'></label>
     </view>
-    <view class='item-container' hover-class='press-style' bindtap='gotoincomestatistics'>
+    <view class='item-container border' hover-class='press-style' bindtap='gotoincomestatistics'>
       <view class='text6-7-container'>
         <label>
-          <image src='{{icons.icon_tongji}}' class='get-icon'></image>
+          <image src='{{baseIcons.icon_tongji_green_60_56}}' class='get-icon'></image>
         </label>
         <label class='text7'>收入统计</label>
       </view>
       <label class='triangle'></label>
     </view>
+    <view wx:if="{{detailsData.isEmployee==false}}" class='item-container' hover-class='press-style' bindtap='gotomultipleshops'>
+      <view class='text6-7-container'>
+        <label>
+          <image src='{{baseIcons.icon_dianpu_green_40_36}}' class='get-icon'></image>
+        </label>
+        <label class='text7'>分店管理</label>
+      </view>
+      <label class='triangle'></label>
+    </view>
   </view>
-  <view class='bottom'>
+  <view class='bottom' wx:if="{{!detailsData.isAll}}" >
     <view class='text8'>更多功能</view>
     <view class='text8-9-container'>
-      <view class='code-container' hover-class='press-style' bindtap='gotoReceiptcode'>
-        <view>
-          <image src='{{icons.icon_recode}}' class='code-icon'></image>
+      <view class='message-container' hover-class='press-style' bindtap='gotoaddAssistant' wx:if="{{!detailsData.isEmployee}}">
+        <view class='text9'>
+          <rich-text> 店员收款通知</rich-text>
+          <rich-text>有效管理款项到账</rich-text>
         </view>
-        <view class='text9'>店铺收款码</view>
+        <view class='item-icon'>
+          <image src='{{baseIcons.icon_clerk_green_90_83}}' class='message-icon'></image>
+        </view>
       </view>
-      <view class='message-container' hover-class='press-style' bindtap='gotoaddAssistant'>
-        <view>
-          <image src='{{icons.icon_user}}' class='message-icon'></image>
+      <view class='message-container' hover-class='press-style' bindtap='gotoRedpacketcode'>
+        <view class='text9'>
+          <rich-text> 推荐龟米红包</rich-text>
+          <rich-text>新用户就有奖励</rich-text>
         </view>
-        <view class='text9'>添加店员收款通知</view>
+        <view class='item-icon'>
+          <image src='{{baseIcons.icon_redenvelopes_green_51_60}}' class='code-icon'></image>
+        </view>
+
+      </view>
+      <view class='message-container' hover-class='press-style' bindtap='gotoReceiptcode' hidden='true'>
+        <view class='text9'>
+          <rich-text>收款码推广</rich-text>
+          <rich-text>邀好友，赚奖励</rich-text>
+        </view>
+        <view class='item-icon icon_extension'>
+          <image src='{{baseIcons.icon_Extension_green_105_83}}' class='code-icon'></image>
+        </view>
+
       </view>
     </view>
   </view>
-  <view class='comebackhome' hover-class="weui-cell_active" wx:if="{{isfromuser!=1}}">
+  <!-- <view class='comebackhome' hover-class="weui-cell_active" wx:if="{{isfromuser!=1}}">
     <button class='btn_back' bindtap='getbackhomes'>回到首页</button>
-  </view>
+  </view> -->
 </view>
 <!-- 非店员通知 -->
-<view class='receipt_notice' wx:else>
+<view class='receipt_notice' wx:if="{{onePayFlag==403}}">
   <view class='receipt_notice_center'>
     <image src="https://qnimg.xiaoguikuaipao.com/lLuAQcp9fPEQ826b95cf2b2226249a3f87e"></image>
     <text class='text_title'>请扫描商家收款通知二维码</text>
     <text class='text_cont'>当商家确认添加后，你即可接收他(她)的收款通知</text>
   </view>
 </view>
+<!-- 提示弹窗 -->
+<block wx:if="{{isPrompt}}">
+  <view class="box_prompt_box">
+    <view class="box_prompt">
+      <text>{{promptTit}}</text>
+    </view>
+  </view>
+</block>

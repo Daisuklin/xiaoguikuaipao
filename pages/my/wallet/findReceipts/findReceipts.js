@@ -5,6 +5,8 @@ const date = new Date()
 const years = []
 const months = []
 const days = []
+const hour = []
+const minute = []
 for (let i = 2016; i <= date.getFullYear(); i++) {
   years.push(i)
 }
@@ -14,12 +16,25 @@ for (let i = 1; i <= 12; i++) {
 for (let i = 1; i <= 31; i++) {
   days.push(i)
 }
+for (let i = 0; i <= 23; i++) {
+  if (i < 10) {
+    i = '0' + i;
+  }
+  hour.push(i)
+}
+for (let i = 0; i <= 59; i++) {
+  if (i < 10) {
+    i = '0' + i;
+  }
+  minute.push(i)
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    showSource:false,
     // 时间选择器
     years: years,
     year: date.getFullYear(),
@@ -28,13 +43,19 @@ Page({
     days: days,
     // day: 2,
     // value: [9999, 1, 1],
+    hour: hour,
+    minute: minute,
     // 时间选择器
     isshowtime: false,
     theDate: 0,
     beginTime: '',
     endTime: '',
+    showHourMinBegin: '',
+    showHourMinEnd: '',
     isPrompt: false,
-    isnewtime:false,//是否选择了新的时间
+    isnewtime: false,//是否选择了新的时间
+    isTimeHourMin: false,
+    isnewHours: false,
   },
   // 公共提示语
   getPromptPark: function (promptTit) {
@@ -44,7 +65,7 @@ Page({
       that.setData({ isPrompt: !that.data.isPrompt })
     }, 1500)
   },
-  // 时间选择器
+  // 时间选择器--选择日期
   bindChange: function (e) {
     const val = e.detail.value;
     console.info("val", val, this.data.years[val[0]], this.data.months[val[1]], this.data.days[val[2]])
@@ -52,15 +73,25 @@ Page({
       year: this.data.years[val[0]],
       month: this.data.months[val[1]],
       day: this.data.days[val[2]],
-      isnewtime:true
+      isnewtime: true
     })
     console.info("选择了新时间")
   },
-  // 选择时间-确定
+  // 选择时间-确定 --选择日期
   getDetermine: function (e) {
+    
     let that = this;
     let num = e.currentTarget.id;
-    let choiceTime = that.data.year + '/' + that.data.month + "/" + that.data.day;
+    let months = that.data.month;
+    let days = that.data.day;
+    if (months < 10) {
+      months = '0' + months
+    }
+    if (days < 10) {
+      days = '0' + days
+    }
+    
+    let choiceTime = that.data.year + '/' + months + "/" + days;
     let defaultTime = that.data.defaultTime;//默认时间
     let isnewtime = that.data.isnewtime;
     console.info("isnewtime", isnewtime)
@@ -77,9 +108,9 @@ Page({
         isshowtime: false,
       })
     }
-    that.setData({ isnewtime:false})
+    that.setData({ isnewtime: false })
   },
-  // 选择时间-取消
+  // 选择时间-取消 --选择日期
   getCancel: function () {
     let that = this;
     if (that.data.judgmentnum == 1) {
@@ -97,7 +128,7 @@ Page({
     }
     that.setData({ isnewtime: false })
   },
-  //弹出时间选择器， 判断是开始时间还是截止时间,
+  //弹出时间选择器， 判断是开始时间还是截止时间, --选择日期
   bindthetimes: function (e) {
     let that = this;
     let idnum = e.currentTarget.id;//1开始时间,2截止时间
@@ -106,14 +137,20 @@ Page({
       isshowtime: true
     })
   },
-  // 记录列表查询
+  //查询---点击按钮
   geFindTreceiptsList: function () {
     wx.showLoading({
       title: '加载中',
     })
     let that = this;
-    let beginDate = that.data.beginTime;//开始时间
-    let endDate = that.data.endTime;//截止时间
+    // 判断是否有时间还未选择
+    if (that.data.beginTime == '' || that.data.showHourMinBegin == '' || that.data.endTime == '' || that.data.showHourMinEnd == '') {
+      wx.hideLoading();
+      that.getPromptPark('请选择时间！')
+      return
+    }
+    let beginDate = that.data.beginTime + " " + that.data.showHourMinBegin;//开始时间
+    let endDate = that.data.endTime + " " + that.data.showHourMinEnd;//截止时间
     let isTime = that.getDetermineTime();
     if (!isTime) {
       //isTime=true选择的时间正确，反之就为错
@@ -124,6 +161,7 @@ Page({
       endDate: endDate
     },
       function (sucData) {
+        
         if (sucData.data.succeeded) {
           console.info("recordReceipts", sucData.data.data)
           var recordReceiptsList = sucData.data.data;
@@ -133,10 +171,11 @@ Page({
             return;
           }
           that.setData({
+            showSource:true,
             recordReceiptsList: recordReceiptsList
           })
           wx.hideLoading()
-        }else{
+        } else {
           that.getPromptPark(sucData.data.message.descript);
         }
       }, function (failData) {
@@ -184,21 +223,79 @@ Page({
   onLoad: function (options) {
     let datatime = new Date;
     let year = datatime.getFullYear();    //获取完整的年份(4位,1970-????)
-    let mon = datatime.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+    let mon = datatime.getMonth() + 1;       //获取当前月份(0-11,0代表1月)
     let day = datatime.getDate();        //获取当前日(1-31)
     console.info(year + "/" + mon + "/" + day)
+    if(mon<10){
+      mon = "0" + mon
+    }
     let defaultTime = year + "/" + mon + "/" + day;//默认时间
     // icon 图标
     console.info("图标", iconsUtils.getIcons().walletIcons);
-    this.setData({ 
+    let defutVal = '00';
+    this.setData({
       icons: iconsUtils.getIcons().walletIcons,
       month: mon,
       day: day,
-      defaultTime:defaultTime,
-      value: [9999, mon-1, day-1],//设置默认时间选择器默认时间
-       });
+      defaultTime: defaultTime,
+      value: [9999, mon - 1, day - 1],//设置默认时间选择器默认时间
+      n_hour: '00',
+      n_min: '00'
+    });
   },
-
+  // ----------------选择时间 时、分 begin-------------------
+  // 时间选择器--选择时间
+  bindChangeTimes: function (e) {
+    const val = e.detail.value;
+    this.setData({
+      n_hour: this.data.hour[val[0]],
+      n_min: this.data.minute[val[1]],
+      isnewHours: true
+    })
+    console.info("选择了新时间")
+  },
+  // 弹出时间选择器--选择时间
+  getTimeHourMin: function (e) {
+    let that = this;
+    let idnum = e.currentTarget.id;
+    console.info(idnum)
+    that.setData({
+      isTimeHourMin: true,
+      judnum: idnum
+    })
+  },
+  // 取消--选择时间
+  getHourMinCancel: function () {
+    let that = this;
+    that.setData({
+      isTimeHourMin: false,
+      isnewHours: false
+    })
+  },
+  // 确定--选择时间
+  getHourMinDetermine: function (e) {
+    let that = this;
+    let judnumId = e.currentTarget.id;//1为开始时间，2为截止时间
+    let choiceTimeHour = that.data.n_hour + ":" + that.data.n_min;
+    let choiceDefaultHour = '00:00';
+    let isnewHours = that.data.isnewHours;//是否有选择时间
+    console.info("choiceTimeHour", choiceTimeHour)
+    if (judnumId == 1) {
+      // 开始时间
+      that.setData({
+        showHourMinBegin: isnewHours == false ? choiceDefaultHour : choiceTimeHour,//开始时间
+        isTimeHourMin: false
+      })
+    } else {
+      // 截止时间
+      that.setData({
+        showHourMinEnd: isnewHours == false ? choiceDefaultHour : choiceTimeHour,//截止时间
+        isTimeHourMin: false
+      })
+    }
+    that.setData({ isnewHours: false })
+  },
+  // ----------------选择时间 时、分 end-------------------
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
